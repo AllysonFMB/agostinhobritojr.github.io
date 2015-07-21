@@ -1,0 +1,98 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 7. Edi&ccedil;&atilde;o de textos com joe</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="prev" href="cha.redes.html" title="Cap&iacute;tulo 6. Unix em Redes TCP/IP"><link rel="next" href="cha-ambiente.html" title="Cap&iacute;tulo 8. O ambiente gr&aacute;fica X Windows"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://www.dca.ufrn.br/~ambj/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Cap&iacute;tulo 7. Edi&ccedil;&atilde;o de textos com <span class="command"><strong>joe</strong></span></th></tr><tr><td width="20%" align="left"><a accesskey="p" href="cha.redes.html">Anterior</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="cha-ambiente.html">Pr&oacute;xima</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha-joe"></a>Cap&iacute;tulo 7. Edi&ccedil;&atilde;o de textos com <span class="command"><strong>joe</strong></span></h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="cha-joe.html#d5e1086">7.1. Introdu&ccedil;&atilde;o</a></span></dt><dt><span class="sect1"><a href="cha-joe.html#d5e1094">7.2. O editor de textot <span class="command"><strong>joe</strong></span></a></span></dt></dl></div>
+    
+    <p>Neste cap&iacute;tulo ser&aacute; apresentado um dos editores ascii de texto mais populares no sistema Linux: o <span class="command"><strong>joe</strong></span>. O que motiva o seu uso &eacute; o fato de sua operac&atilde;o ser simples, pois seus comandos se assemelham bastante aos utilizados em editores como o WordStar, Sidekick e Turbo Pascal para MSDOS, com os quais a maioria dos usu&aacute;rios de PC s&atilde;o familiares. Esta sua caracter&iacute;stica o torna bastante atrativo para edi&ccedil;&atilde;o de textos em terminais.</p>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1086"></a>7.1. Introdu&ccedil;&atilde;o</h2></div></div></div>
+      
+
+      <p>Existem diversos editores de texto para Unix. Entre os mais conhecidos e utilizados, destacam-se o <span class="command"><strong>vi</strong></span>, amplamente difundido na maioria dos sistemas Unix, e o <span class="command"><strong>emacs</strong></span>, desenvolvido pela GNU. A populariza&ccedil;&atilde;o destes editores se deu principalmente devido &agrave; enormidade de recursos e ferramentas de edi&ccedil;&atilde;o e processamento de texto dispon&iacute;veis em cada um, que, algumas vezes, os tornam dif&iacute;ceis de utilizar. </p>
+      
+      <p>Tamb&eacute;m podem ser encontrados muitos editores gr&aacute;ficos do tipo WYSIWYG(<span class="foreignphrase"><em class="foreignphrase">What You See Is What You Get</em></span>), alguns deles em vers&otilde;es <span class="foreignphrase"><em class="foreignphrase">freeware</em></span> (a grande maioria) e alguns em vers&otilde;es comerciais. Podemos citar como exemplos de bons editores gr&aacute;ficos os pacotes Andrew, Lyx, Thot, Applixware e StarOffice, tendo este &uacute;ltimo funcionalidades bastante semelhantes &agrave;s do Microsoft Word 6.0</p>
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1094"></a>7.2. O editor de textot <span class="command"><strong>joe</strong></span></h2></div></div></div>
+      
+
+      <p>Para executar o joe basta digitar o comando <span class="command"><strong>joe</strong></span> seguido ou n&atilde;o do nome do arquivo que se deseja editar, e da tecla &lt;ENTER&gt;. Com isso, a tela de edi&ccedil;&atilde;o do <span class="command"><strong>joe</strong></span> ser&aacute; apresentada para o usu&aacute;rio tal como mostrado abaixo.</p>
+    
+      <pre class="screen">
+IW  teste.txt                     Row <span class="hl-number">1</span>    Col <span class="hl-number">1</span>    <span class="hl-number">4</span>:<span class="hl-number">49</span>  Ctrl-K H <strong class="hl-keyword">for</strong> help
+
+Este e<strong class="hl-string"><em style="color:red">' um exemplo de texto editado no joe,
+</em></strong>um popular editor de texto bastante utilizado por
+usua<strong class="hl-string"><em style="color:red">'rios do sistema Linux.
+</em></strong>
+Seus comandos sao bastante semelhantes aos <strong class="hl-keyword">do</strong> WordStar e 
+Sidekick para MSDOS.
+
+        
+        Use o joe para editar os seus textos!
+
+
+
+
+** Joe<strong class="hl-string"><em style="color:red">'s Own Editor v2.2 ** Copyright (C) 1994 Joseph H. Allen **
+</em></strong>      </pre>
+
+      <p>Para acessar a ajuda <span class="foreignphrase"><em class="foreignphrase">on-line</em></span>, basta digitar a combina&ccedil;&atilde;o de teclas &lt;CTRL&gt;+K+H (^KH, segundo a nota&ccedil;&atilde;o do <span class="command"><strong>joe</strong></span>) que a tela de ajuda aparecer&aacute;, como mostrado a seguir. Para fechar a tela de ajuda, basta digitar a combina&ccedil;&atilde;o ^KH novamente.</p>
+
+      <pre class="screen">
+ CURSOR           GO TO            BLOCK      DELETE   MISC         EXIT       
+ ^B left ^F right ^U  prev. screen ^KB begin  ^D <strong class="hl-keyword">char</strong>. ^KJ reformat ^KX save   
+ ^P up   ^N down  ^V  next screen  ^KK end    ^Y line  ^T  options  ^C  abort  
+ ^Z previous word ^A  beg. of line ^KM move   ^W &gt;word ^R  refresh  ^KZ shell  
+ ^X next word     ^E  end of line  ^KC copy   ^O word&lt; @  insert   FILE       
+ SEARCH           ^KU top of file  ^KW file   ^J &gt;line SPELL        ^KE edit   
+ ^KF find text    ^KV end of file  ^KY <strong class="hl-keyword">delete</strong> ^_ undo  ^[N word     ^KR insert 
+ ^L  find next    ^KL to line No.  ^K/ filter ^^ redo  ^[L file     ^KD save  
+      </pre>
+
+      <p>A movimenta&ccedil;&atilde;o do cursor dentro do texto pode ser feita com as setas do teclado, para mudar entre linhas e colunas, ou atrav&eacute;s das teclas PGUP e PGDN, para deslocamento entre p&aacute;ginas.</p>
+
+      <p>Para procurar por grupos de caracteres dentro do texto, basta utilizar a combina&ccedil;&atilde;o de teclas ^KF e indicar a <span class="foreignphrase"><em class="foreignphrase">string</em></span> de texto desejada. Feito isso, o joe requisita algumas op&ccedil;&otilde;es de busca, tais como sensibilidade ao caso (MAI&Uacute;SCULAS/min&uacute;sculas) e dire&ccedil;&atilde;o de busca. Para repetir a &uacute;ltima busca realizada, basta digitar ^L.</p>
+
+      <p>Para remover caracteres, podem ser utilizadas as teclas &lt;BACKSPACE&gt;, para apagar um caracter &agrave; esquerda do cursor, e &lt;DEL&gt;, para apagar caracteres &agrave; direita do cursos. A remo&ccedil;&atilde;o de linhas inteiras &eacute; feita digitando o comando ^Y. O joe tamb&eacute;m suporta opera&ccedil;&otilde;es de bloco. Para marcar o in&iacute;cio e o fim de um bloco, digita-se ^KB e ^KK, respectivamente. Para remover o bloco marcado, digita-se ^KY. Para mover o bloco para a posi&ccedil;&atilde;o corrente do cursor, basta digitar ^KM. A c&oacute;pia do bloco para a posi&ccedil;&atilde;o do cursor, por sua vez, &eacute; feita com a combina&ccedil;&atilde;o de teclas ^KC.</p>
+
+      <p>O joe mant&eacute;m uma lista de todas as mudan&ccedil;as realizadas pelo usu&aacute;rio no documento, permitindo desfazer e refazer quaisquer a&ccedil;&otilde;es dentro de uma sess&atilde;o de edi&ccedil;&atilde;o de texto. Para desfazer a mudan&ccedil;a mais recente, digita-se &lt;CTRL&gt;+&lt;SHIFT&gt;+_ (control-sublinhado). Para refazer uma mudan&ccedil;a desfeita anteriormente, basta digitar &lt;CTRL&gt;+&lt;SHIFT&gt;+^ (control-circunflexo).</p>
+
+      <p>As mudan&ccedil;as realizadas no arquivo podem ser salvas com a combina&ccedil;&atilde;o de teclas &lt;CTRL&gt;+K+D. Para sair do <span class="command"><strong>joe</strong></span> e salvar as mudan&ccedil;as correntes, basta digitar ^KX. Caso o usu&aacute;rio n&atilde;o deseje salvar as altera&ccedil;&otilde;es, o mesmo pode sair do editor digitando ^C. Se alguma mudan&ccedil;a tiver sido efetuada, o <span class="command"><strong>joe</strong></span> ir&aacute; perguntar se o usu&aacute;rio deseja sair sem salvar as altera&ccedil;&otilde;es.</p>
+
+      <p>No quadro abaixo s&atilde;o apresentados os principais comandos do <span class="command"><strong>joe</strong></span>, incluindo opera&ccedil;&otilde;es de movimenta&ccedil;&atilde;o na tela, manipula&ccedil;&atilde;o de blocos e arquivos, busca de express&otilde;es e remo&ccedil;&atilde;o de objetos, entre outros.</p>
+
+      <pre class="screen">
+ CURSOR                     MOVER                      MARCAR BLOCO
+ ^B esquerda                ^U  tela anterior          ^KB in&iacute;cio  
+ ^P cima                    ^V  tela posterior         ^KK final    
+ ^Z palavra anterior        ^A  in&iacute;cio da linha        ^KM mover   
+ ^X palavra posterior       ^E  fim da linha           ^KC copiar   
+ ^F direita                 ^KU in&iacute;cio <strong class="hl-keyword">do</strong> arquivo      ^KW salvar  
+ ^N baixo                   ^KV final <strong class="hl-keyword">do</strong> arquivo       ^KY apagar
+                            ^KL mover para linha       ^K/ filtro
+
+ DELETAR                MISCEL&Acirc;NEA              SAIR   
+ ^D caracter            ^KJ reformatar          ^KX salvar   
+ ^Y linha               ^T  op&ccedil;&otilde;es              ^C  abortar  
+ ^W palavra a direita   ^R  refrescar           ^KZ shell  
+ ^O palavra a esquerda  ^@  inserir             ARQUIVO      
+ ^J final da linha      SPELL                   ^KE editar 
+ ^_ desfazer            ^[N palavra             ^KR inserir 
+ ^^ refazer             ^[L arquivo             ^KD salvar  
+
+ BUSCA          
+ ^KF procurar texto   
+ ^L  procurar pr&oacute;ximo
+
+      </pre> 
+
+      <p>&Eacute; importante ter em mente que o <span class="command"><strong>joe</strong></span> &eacute; apenas um editor de texto ascii e n&atilde;o um completo processador de texto. Op&ccedil;&otilde;es tais como mudan&ccedil;a de fontes, alinhamento ou insers&atilde;o de gr&aacute;ficos s&atilde;o deixadas por conta de pacotes como o LaTeX, que d&atilde;o ao usu&aacute;rio muni&ccedil;&atilde;o suficiente para construir as mais variadas formas de arranjo textos e objetos gr&aacute;ficos em um documento.</p>
+
+    </div>
+  </div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="cha.redes.html">Anterior</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="cha-ambiente.html">Pr&oacute;xima</a></td></tr><tr><td width="40%" align="left" valign="top">Cap&iacute;tulo 6. Unix em Redes TCP/IP&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td><td width="40%" align="right" valign="top">&nbsp;Cap&iacute;tulo 8. O ambiente gr&aacute;fica X Windows</td></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>

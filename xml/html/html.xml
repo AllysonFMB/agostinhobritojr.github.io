@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:lang="pt-br">
+  <info>
+    <title>Tutorial de HTML</title>
+    <author>
+      <personname>
+	<firstname>Agostinho</firstname>
+	<surname>Brito</surname>
+      </personname>
+    </author>
+    <address>DCA-CT-UFRN</address>
+    <copyright><year>2012</year><holder>Agostinho Brito</holder></copyright>
+  </info>
+  
+  <!-- prefacio ############################################################################# -->
+  <preface xml:id="pre.prefacio">
+    <title>Prefácio</title>
+    <para> Este breve tutorial de programação em HTML visa introduzir conceitos fundamentais de construção de páginas <foreignphrase>web</foreignphrase> usando a linguagem nativa dos navegadores.</para>
+  </preface>
+
+  <!-- introducao ############################################################################# -->
+  <chapter xml:id="cha.linguagem">
+    <title>A linguagem HTML</title>
+    <para>Os documentos HTML são arquivos do tipo texto simples (ASCII), geralmente gravados no computador com extensões {\bfseries \tt .html ou .htm}, e que podem ser criados em qualquer editor de texto (notepad, vi, emacs, edit, etc).</para>
+
+    <para>Além dos editores de texto simples, existem também programas que possibilitam a conversão entre padrões de documentos conhecidos (doc, do Word; rtf; latex; etc) e a linguagem HTML. O Internet Assistant for Windows, por exemplo, converte documentos do Microsoft Word 6.0 ou superior para HTML.</para>
+
+    <para>HTML é uma linguagem composta de marcações, ou seja, delimitadores que definem um determinado efeito a ser apresentado no documento multimídia. Estes marcadores podem alterar o tamanho e o formato do texto, inserir referências a outros documentos, inserir imagens, som, vídeo, criar menus, formulários e manipular cores, entre outras coisas.</para>
+
+    <para>Existem diferenças de implementação dos efeitos de formatação de documentos entre os diversos tipos de browsers, de sorte que nem todas as marcações e seus correspondentes recursos são suportados. Quando uma marcação é desconhecida ou está colocada de modo incorreto, tal marcação é ignorada.</para>
+
+    <para>Diante disto, um bom documento HTML deve ser criado de modo a ser o mais universal possível para a maioria dos browsers conhecidos, não usando marcações proprietárias de um ou de outro.</para>
+  </chapter>
+  <chapter xml:id="cha.marcadores">
+    <title>Marcadores</title>
+    <para>A linguagem HTML é composta de marcadores (tags), delimitados por sinais de "&lt;" e "&gt;" e podem ser escritos tanto em letras maiúsculas quanto minúsculas. Contudo é recomendável manter sempre um padrão, de modo a poder diferenciá-los bem do restante do texto. Os marcadores especificam elementos estruturais no documento, como por exemplo cabeçalhos. Em geral, os marcadores HTML obedecem a seguinte sintaxe: </para>
+    <para><command>&lt;MARCADOR ATRIB1=PARAM1 ATRIB2=PARAM2 ... OBJETO &lt;/MARCADOR&gt;</command></para>
+    <example xml:id="exe.exemplo1">
+      <title>Marcador</title>
+    <programlisting>&lt;H2 ALIGN=RIGHT&gt; Informação ou outros marcadores &lt;/H2&gt;</programlisting></example>
+    <para>A primeira palavra entre os símbolos "&lt;" e "&gt;", H2, é o nome do marcador. Quaisquer palavras ou caracteres subsequentes são atributos, como <parameter>ALIGN=RIGHT</parameter>.</para>
+
+    <para>De modo geral (existem algumas exceções), os marcadores aparecem em pares, como em &lt;H2&gt; e &lt;/H2&gt;. O final da marcação é feito pelo símbolo que a inicia precedido pelo caractere "/". Cada marcação é uma instrução básica e os atributo colocados são apenas detalhes adicionais, que especificam um determinado efeito que aquele marcador propicia, tal como o alinhamento do texto à direita mostrado no exemplo com o marcador H2.</para>
+
+    <para>Os pares de marcadores podem ser imaginados como recipientes, onde o conteúdo do recipiente obedece o conjunto de regras aplicados pelo mesmo. Projetando os conjuntos de marcadores como recipientes ajudará a lembrar que as marcações devem ser balanceadas. Em outras palavras, os recipientes deverão ser mantidos aninhados uns com outros, como ilustra a <xref linkend="fig.aninhamento"/>.</para>
+    <figure xml:id="fig.aninhamento">
+      <title>Aninhamento de marcadores</title>
+      <mediaobject>
+	<imageobject role="html">
+	  <imagedata align="center" format="SVG" fileref="figs/aninhamento.svg" scale="100"/>
+	</imageobject>	
+	<imageobject role="dblatex">
+	  <imagedata align="center" format="SVG" fileref="figs/aninhamento.svg" scale="60"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+  </chapter>
+  <chapter xml:id="cha.marcacao">
+    <title>Marcaçoẽs de documentos</title>
+    <para>Definimos marcações de documentos como aquelas que irão dividir o documento em seções. Um documento HTML consiste em duas partes principais: o cabeçalho, que contém atributos gerais sobre a aparência da página; e o corpo, composto pelos textos e imagens exibidos na tela do navegador.</para>
+
+    <para>A estrutura básica de um documento HTML é exibida a seguir:</para>
+    <programlisting>
+      &lt;HTML&gt;
+      &lt;HEAD&gt; 
+      . . . 
+      &lt;/HEAD&gt; 
+      &lt;BODY&gt; 
+      . . .
+      &lt;/BODY&gt; 
+      &lt;/HTML&gt;
+    </programlisting>
+
+    <para>Observações:</para>
+
+    
+    <para>A primeira e a última marcação de um documento são:<command> &lt;HTML&gt;</command> e<command> &lt;/HTML&gt;</command>, respectivamente informando ao navegador onde o documento começa e termina.</para>
+
+    <para>A marcação <command>&lt;HEAD&gt;</command> contém todas as informações do cabeçalho do documento. A marcação de título <command>&lt;TITLE&gt;</command> está contida dentro da marcação <command>&lt;HEAD&gt;</command> e informa o titulo do documento ao navegador. Todo documento deve ter um título, o qual aparecerá como um rótulo no canto superior da janela do navegador.</para> 
+
+    <para>Embora não o tamanho do título não seja limitado, é sempre aconselhável utilizar um título breve que descreva de forma suscinta o conteúdo da página apresentada. Títulos muito extensos dificultam para o usuário a inteligibilidade no armazenamento de bookmarks Caso o título seja omitido, o nome do arquivo será exibido pelo navegador. é importante resaltar que devemos ter somente uma marcação de título por documento, caso contrário causará erro no imterpretador de comandos <command>&lt;HTML&gt;</command> do paginador.</para> 
+
+    <para>O marcador<command> &lt;BODY&gt;</command> vem logo em seguida à estrutura <command>&lt;HEAD&gt;</command>. Entre as marcações<command> &lt;BODY&gt;</command> e<command> &lt;/BODY&gt;</command> deve ser colocada tudo que será exibido na janela do navegador, incluindo textos, imagens, apontadores etc.</para>
+
+    <para>Para praticar o que foi aprendido até aqui, experimente construir um documento contendo apenas o título e o seu nome na janela do navegador. Abra o editor, edite o documento e salve-o com um nome qualquer (NÃO ESQUEÇA QUE A EXTENSÃO DESTE DEVE SER .html ou .htm). Pode ser algo como mostra o exemplo a seguir. Salve este arquivo com o nome index.html.</para>
+    <example xml:id="exemplo3">
+      <title>Criando um  documento</title>
+      <programlisting>
+	&lt;HTML&gt;
+	&lt;HEAD&gt;
+	&lt;TITLE&gt; Homepage de José &lt;/TITLE&gt; 
+	&lt;/HEAD&gt;
+	&lt;BODY&gt;
+	Homepage de José Ferreira da Silva
+	&lt;/BODY&gt;
+	&lt;/HTML&gt;
+      </programlisting>
+    </example>
+
+    <para>Eventualmente, é necessário inserir comentários dentro do documento para facilitar o entendimento do código escrito, colocar o nome dos construtores, etc. Como em toda boa linguagem, a HTML também possui marcadores de comentários, os quais não são exibidos na janela do navegador. O exemplo a seguir exibe uma linha de comentário:</para>
+
+
+    <para><command>&lt;!-- Isso é um comentário --&gt;</command></para> 
+
+
+    <para>O ponto de exclamação (!) é obrigatório após o caracter "&lt;", mas não é escrito antes do caracter "&gt;". Note também que não existe a marcação de fim, como por exemplo &lt;/!&gt;. Comentários podem ser colocados em qualquer parte do documento. É importante lembrar que qualquer texto colocado dentro de um comentário, inclusive outros marcadores, não serão levados em conta pelo navegador no momento da formatação da página.</para>
+  </chapter> 
+  <chapter xml:id="cha.marcacao.basica">
+    <title>Marcação  basica de texto</title>
+    <section xml:id="sec.cabecalho">
+      <title>Cabeçalho</title>
+      <para>Os cabeçalhos são normalmente usados para definição de títulos e subtítulos em uma página, ou seja, para a divisão do documento em seções. Existem seis níveis de cabeçalhos, numerados de 1 a 6, sendo o de número 1 o nível de maior destaque, considerado o cabeçalho principal e geralmente usado no topo do documento. O de número 6 é o menor de todos e raramente é usado. Os cabeçalhos são exibidos em letras maiores e em negrito. As marcações relativas aos cabeçalhos são definidas da forma:</para>
+
+      <programlisting><command>&lt;Hy&gt; texto do cabeçalho &lt;/Hy&gt;</command></programlisting>
+
+      <para>Neste caso, y é um número entre 1 e 6, especificando o nível de cabeçalho. Quanto menor o número, maior o tamanho da fonte do cabeçalho a ser desenhado. Experimente agora Colocar o seu nome em destaque utilizando o marcador <command>&lt;Hy&gt;</command>, como mostra o exemplo a seguir. Aproveite também e acrescente mais informações pessoais à sua homepage.</para>
+      <example xml:id="exemplo4">
+	<title> Cabeçalho </title>
+	<programlisting>
+	  &lt;HTML&gt; 
+	  &lt;!-- este é meu cabeçalho --&gt;
+	  &lt;HEAD&gt; 
+	  &lt;TITLE&gt; Homepage de José &lt;/TITLE&gt; 
+	  &lt;/HEAD&gt; 
+	  &lt;!-- aqui começa o corpo da homepage --&gt;
+	  &lt;BODY&gt;  
+	  &lt;H1&gt; Homepage de José Ferreira da Silva &lt;/H1&gt; 
+	  &lt;H2&gt; Dados Pessoais &lt;/H2&gt;
+	  Nacionalidade: Brasileira.
+	  Naturalidade: Natal/RN.
+	  Idade: 25 anos.
+	  Profissão: Engenheiro.
+	  Estado Civil: Solteiro.
+	  &lt;H4&gt; Preferências Pessoais &lt;/H4&gt; 
+	  Música
+	  Computação
+	  Automobilismo
+	  Natação
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;
+	</programlisting>
+      </example>
+
+      <para>Se o trecho de código acima for interpretado por um navegador, você poderá notar que os caracteres em branco e quebras de linhas são descartados pelo, exceto quando são empregadas marcações especiais.</para>
+    </section>
+    <section xml:id="sec.paragrafos.linha">
+      <title> Parágrafos e quebras de linha </title>
+      <para>Quebras de linha em um texto HTML são inseridas através do marcador <command>&lt;BR&gt;</command>. Parágrafos são inseridos com a marcação <command>&lt;P&gt;</command> no final do parágrafo (opcionalmente <command>&lt;P&gt;</command> no início e <command>&lt;/P&gt;</command> no final do parágrafo).</para>
+
+      <para>Quando <command>&lt;P&gt;</command> é usado, é deixada uma linha em branco entre o parágrafo corrente e o seguinte. Coloque agora no final de cada linha a ser quebrada na sua homepage o marcador <command>&lt;P&gt;</command>, como mostrado a seguir, e observe o efeito na tela do navegador.</para>
+
+      <example xml:id="exemplo5">
+	<title> Quebra de linha </title>
+	<programlisting>
+	  &lt;HTML&gt; 
+	  &lt;!-- este é meu cabeçalho --&gt;
+	  &lt;HEAD&gt; 
+	  &lt;TITLE&gt; Homepage de José &lt;/TITLE&gt; 
+	  &lt;/HEAD&gt; 
+	  &lt;!-- aqui começa o corpo da homepage --&gt;
+	  &lt;BODY&gt;  
+	  &lt;H1&gt; Homepage de José Ferreira da Silva &lt;/H1&gt; 
+	  &lt;H2&gt; Dados Pessoais&lt;/H2&gt;
+	  Nacionalidade: Brasileira.&lt;P&gt;
+	  Naturalidade: Natal/RN.&lt;P&gt;
+	  Idade: 25 anos.&lt;P&gt;
+	  Profissão: Engenheiro.&lt;P&gt;
+	  Estado Civil: Solteiro.&lt;P&gt;
+	  &lt;H4&gt; Preferências Pessoais&lt;/H4&gt; 
+	  Música&lt;P&gt;
+	  Computação&lt;P&gt;
+	  Automobilismo&lt;P&gt;
+	  Natação&lt;P&gt;
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;
+	</programlisting>
+      </example>
+
+      <para>Substitua agora os marcadores <command>&lt;P&gt;</command> por marcadores <command>&lt;BR&gt;</command> e observe a diferença. O fato de o marcador <command>&lt;BR&gt;</command> conseguir realizar o mesmo efeito proporcionado pelo marcador <command>&lt;P&gt;</command> (dois <command>&lt;BR&gt;</command> consecutivos) não implica que este último seja inútil. A sua função vai além de uma simples quebra de linha. Parâmetros especiais passados ao marcador <command>&lt;P&gt;</command> realizam alinhamento no texto. Por exemplo,</para>
+
+      <example xml:id="exemplo6">
+	<title> Alinhamento </title>
+	<programlisting>
+	  &lt;P ALIGN=JUSTIFY&gt;
+	  Texto do texto do teste do texto
+	  &lt;/P&gt;
+	</programlisting>
+      </example>
+    </section>
+  </chapter>
+  <chapter xml:id="ancora">
+    <title>Criação de âncora (links)</title>
+    <para>O que torna mais atrativo o uso do WWW é a existência dos links, ou âncoras - referências eletrônicas a recursos multimídia existentes. Os navegadores exibem esses links em destaque (normalmente com cores diferenciadas ou sublinhado) para indicar que se trata de um apontador. A marcação que cria esses apontadores é chamada de marcação âncora (<command>&lt;A&gt;</command>) e possui  HREF como seu atributo principal, especificando a localização do documento destino. Esta localização é geralmente chamada URL (Localizador Universal de Recursos). A definição geral para inserção de links é a seguinte:</para>
+    <programlisting>
+      &lt;A HREF=''URL''> hipertexto a ser selecionado &lt;/A&gt;
+    </programlisting>
+    <para>Experimente criar links na sua homepage principal como mostra o exemplo abaixo. Para cada categoria criada na seção de preferências pessoais, crie um link para a URL que vai conter as informações pertinentes a cada categoria.</para>
+    <example xml:id="exemplo7">
+      <title>Criar link</title>
+      <programlisting>
+	&lt;H4&gt; Preferências Pessoais&lt;/H4&gt; 
+	&lt;A HREF="musica.html"&gt;Música&lt;/A&gt;&lt;BR&gt;
+	&lt;A HREF="computacao.html"&gt;Computação&lt;/A&gt;&lt;BR&gt;
+	&lt;A HREF="automobilismo.html"&gt;Automobilismo&lt;/A&gt;&lt;BR&gt;
+	&lt;A HREF="natacao.html"&gt;Natação&lt;/A&gt;&lt;BR&gt;
+	&lt;/BODY&gt; 
+	&lt;/HTML&gt;
+      </programlisting>
+    </example>
+    <para>Este exemplo contém apontadores (links) para os documentos especificos que assumimos ainda ainda não terem sido criados. Se uma destas referências for selecionada no navegador, uma mensagem de erro será apresentada na tela.</para> 
+
+    <para>Crie agora arquivos com os nomes especificados no exemplo anterior e preencha estes arquivos com algum texto sobre o tema de cada um. Exemplo para musica.html:</para>
+    <example xml:id="exemplo8">
+      <title>Criar arquivo</title>
+      <programlisting>
+	&lt;HTML&gt; 
+	&lt;HEAD&gt; 
+	&lt;TITLE&gt; Prefs - Música &lt;/TITLE&gt; 
+	&lt;/HEAD&gt; 
+	&lt;BODY&gt;  
+	&lt;H1&gt; Preferências pessoais - Música&lt;/H1&gt;
+	&lt;H3&gt; Nacionais &lt;/H3&gt;
+	Marisa Monte &lt;BR&gt;
+	Joao Gilberto &lt;BR&gt;
+	Geraldo Azevedo &lt;BR&gt;
+	Boca Livre &lt;BR&gt;
+	Zé Ramalho &lt;BR&gt;
+	&lt;H3&gt; Internacionais &lt;/H3&gt;
+	Deep Forest &lt;BR&gt;
+	Wes&lt;BR&gt;
+	Joe Satriani &lt;BR&gt;
+	Kraftwerk &lt;BR&gt;
+	Electrik Music &lt;BR&gt;
+	Enigma &lt;BR&gt;
+	&lt;/BODY&gt; 
+	&lt;/HTML&gt;
+      </programlisting>
+    </example>
+    <para>A sintaxe de escrita da marcação de apontador exige um espaço em branco entre o <emphasis>A</emphasis> e o <citetitle>HREF</citetitle>. Além disso, o nome do documento referenciado deve estar SEMPRE entre aspas duplas. O texto a ser destacado no navegador fica logo após a definição da URL e antes do encerramento da marcação <command>&lt;/A&gt;</command>. Praticamente quaisquer elemntos podem ser utilizados como âncoras para outros documentos de hipertexto.</para>
+    <table frame='all'><title>Importante</title>
+    <tgroup cols='1' align='center' colsep='1' rowsep='1'>
+      <tbody>
+	<row>
+	  <entry align="center"> NUNCA ESQUEÇA DE FECHAR O MARCADOR &lt;A&gt; COM O MARCADOR &lt;/A&gt; QUANDO ESTIVER USANDO ÂNCORAS PARA OUTROS DOCUMENTOS</entry>
+	</row>
+      </tbody>
+    </tgroup>
+    </table>
+    <section xml:id="sec.interligacao">
+      <title>Interligando Documentos em Outros Diretórios</title>
+      
+      <para>Os documentos não precisam estar localizados dentro do mesmo diretório para serem referenciados. Se o documento não estiver no diretório corrente, basta indicar a referência completa para a localização do arquivo na árvore de diretórios. Preferencialmente, adote referências relativas ao diretório corrente, tipo ../ para o diretório pai.</para> 
+
+      <para>Coloque o arquivo <emphasis>musica.html</emphasis> criado no exemplo anterior dentro de um diretório novo chamado musicas, criado dentro do mesmo diretório onde o arquivo <emphasis>index.html</emphasis> foi salvo. Altere no arquivo <emphasis>index.html</emphasis> a URL para o link Música.</para>
+      <example xml:id="exemplo9">
+	<title>Diretório</title>
+	<programlisting>
+	  &lt;H4&gt; Preferências Pessoais&lt;/H4&gt; 
+	  &lt;A HREF="musicas/musica.html"&gt;Música&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="computacao.html"&gt;Computação&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="automobilismo.html"&gt;Automobilismo&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="natacao.html"&gt;Natação&lt;/A&gt;&lt;BR&gt;
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;
+	</programlisting>
+      </example>
+    </section>
+    <section xml:id="inter.doc.rem">
+      <title>Interligando documentos remotos</title>
+      <para>Se o documento não for local, ou seja, estiver em um site remoto na Internet, a URL a ser referenciada inclui o endereço completo da máquina remota, o nome do arquivo e o diretório onde o mesmo está armazenado, como mostra o exemplo a seguir (Homepage do LECA).</para>
+      <example xml:id="exemplo10">
+	<title>Endereço da Homepage</title>
+	<programlisting>
+	  &lt;H4&gt; Preferências Pessoais&lt;/H4&gt; 
+	  &lt;A HREF="musicas/musica.html"&gt;Música&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="computacao.html"&gt;Computação&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="automobilismo.html"&gt;Automobilismo&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="natacao.html"&gt;Natação&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="http://www.leca.ufrn.br"&gt; Homepage do LECA &lt;/A&gt; &lt;BR&gt;
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;
+	</programlisting>
+      </example>
+    </section>
+    <section xml:id="inter.sec.doc">
+      <title>Interligando seções de documentos</title>
+
+      <para>Em HTML, uma seção pode ser definida como um ponto específico do documento para o qual se deseja levar o usuário. Para apontar para uma seção em outro documento, devemos referencia-la com o caractere especial "<emphasis>#</emphasis>" junto com a marcação de âncora. Para visualizar melhor o efeito de seção, acrescente bastante grupos nacionais no arquivo de preferências musicais, de modo a ocupar mais de uma página na tela do navegador.</para>
+      <section xml:id="arquivo.index">
+	<title><emphasis>No arquivo Index.html</emphasis></title>
+	<programlisting>
+	  &lt;H4&gt; Preferências Pessoais&lt;/H4&gt; 
+	  &lt;A HREF="musicas/musica.html#internacionais"&gt;Música&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="computacao.html"&gt;Computação&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="automobilismo.html"&gt;Automobilismo&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="natacao.html"&gt;Natação&lt;/A&gt;&lt;BR&gt;
+	  &lt;A HREF="http://www.leca.ufrn.br"&gt; Homepage do PoP &lt;/A&gt; &lt;BR&gt;
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;
+	</programlisting>
+      </section>
+      <section xml:id="arq.musica">
+	<title><emphasis>No arquivo musica.html</emphasis></title>
+	<programlisting>
+	  &lt;HTML&gt; 
+	  &lt;HEAD&gt; 
+	  &lt;TITLE&gt; Prefs - Música &lt;/TITLE&gt; 
+	  &lt;/HEAD&gt; 
+	  &lt;BODY&gt;  
+	  &lt;H1&gt; Preferências pessoais - Música&lt;/H1&gt;
+	  &lt;H3&gt; Nacionais &lt;/H3&gt;
+	  Marisa Monte &lt;BR&gt;
+	  Joao Gilberto &lt;BR&gt;
+	  Geraldo Azevedo &lt;BR&gt;
+	  Boca Livre &lt;BR&gt;
+	  Zé Ramalho &lt;BR&gt;
+	  &lt;H3&gt; Internacionais &lt;/H3&gt;
+	  &lt;A NAME="internacionais"&gt;
+	  Deep Forest &lt;BR&gt;
+	  Wes&lt;BR&gt;
+	  Joe Satriani &lt;BR&gt;
+	  Kraftwerk &lt;BR&gt;
+	  Electrik Music &lt;BR&gt;
+	  Enigma &lt;BR&gt;
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;
+	</programlisting>
+      </section>
+    </section>
+  </chapter>
+  <chapter xml:id="listas">
+    <title>Listas</title>
+    <para>A linguagem HTML possibilita criar 3 tipos principais de listas: numeradas, onde os <emphasis>"numeros"</emphasis> podem ser números decimais, romanos (maiúsculos e minúsculos), letras do alfabeto (maiúsculas e minúsculas), e listas de definição, onde são colocados tópicos e suas descrições.</para> 
+
+    <para>As listas também podem colocadas umas dentro das outras, sem limite para o número de níveis. Para praticar o uso dos vários tipos de listas, vamos melhorar código do arquivo <emphasis>música.html</emphasis> da seção anterior.</para>
+    <section xml:id="Lis.nao.numeradas">
+      <title>Listas Não Numeradas</title>
+      <para>As listas não numeradas são criadas com o marcador <command>&lt;UL&gt;</command> (<emphasis>Unumbered List</emphasis>, sendo cada um dos itens da lista incluídos com o marcador <command>&lt;LI&gt;</command>. O tipo do marcador exibido na tela pode ser alterado através do parâmetro <emphasis>TYPE</emphasis>, cujos atributos podem ser: <emphasis>SQUARE</emphasis>, para um quadrado; <emphasis>CIRCLE</emphasis>, para um círculo vazado; e <emphasis>DISC</emphasis>, para um círculo cheio.</para>
+      <example xml:id="exemplo11">
+	<title>Lista sem numeração</title>
+	<programlisting>
+	  &lt;H1&gt; Preferências pessoais - Música&lt;/H1&gt;
+	  &lt;H3&gt; Nacionais &lt;/H3&gt;
+	  &lt;UL&gt;
+	  &lt;LI&gt; Marisa Monte 
+	  &lt;LI&gt; Joao Gilberto
+	  &lt;LI&gt; Geraldo Azevedo
+	  &lt;LI&gt; Boca Livre 
+	  &lt;LI&gt; Zé Ramalho 
+	  &lt;/UL&gt;
+	</programlisting>
+      </example>
+      <para>A saída gerada será:</para>
+      <itemizedlist mark="opencircle">
+	<title>Preferências pessoais - Música</title>
+	<listitem>
+	  <para>
+	    Nacional
+	  </para>
+	  <itemizedlist mark="bullet">
+	    <listitem>
+	      <para>Marisa Monte</para>
+	    </listitem>
+	    <listitem>
+	      <para>Joao Gilberto</para>
+	    </listitem>
+	    <listitem>
+	      <para> Geraldo Azevedo</para>
+	    </listitem>
+	    <listitem>
+	      <para> Boca Livre</para>
+	    </listitem>
+	    <listitem> 
+	      <para> Zé Ramalho</para>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+      </itemizedlist>
+    </section>
+    <section xml:id="listas.numeradas">
+      <title>Listas Numeradas</title>
+      <para>Uma lista numerada é quase idêntica a uma lista não numerada, exceto na marcação utilizada <command>&lt;OL&gt;</command> e na saída gerada. O tipo de numeração pode ser alterado através do parâmetro <emphasis>TYPE</emphasis>, cujos atributos podem ser: <emphasis>1</emphasis>, para a numeração normal (default); <emphasis>i</emphasis>, para números romanos minúsculos; <emphasis>I</emphasis>, para números romanos maiúsculos; <emphasis>a</emphasis> e <emphasis>A</emphasis>, para letras minúsculas e maiúsculas do alfabeto, respectivamente como em <command>&lt;OL TYPE="a"&gt;</command>. Além disto, também pode ser definido o elemento inicial a ser colocado como marcador da lista, através do parâmetro <emphasis>START</emphasis> (tal como em <emphasis>START="3"</emphasis>).</para>
+
+      <para>A mesma lista usada no exemplo anterior ficaria da seguinte forma se fosse utilizado o marcador <command>&lt;OL&gt;</command>.</para>
+      <orderedlist>
+	<title>Preferências pessoais - Música</title>
+	<listitem>
+	  <para>Nacional</para>
+	  <orderedlist numeration="arabic">
+	    <listitem>
+	      <para>Marisa Monte</para>
+	    </listitem>
+	    <listitem>
+	      <para>Joao Gilberto</para>
+	    </listitem>
+	    <listitem>
+	      <para>Geraldo Azevedo</para>
+	    </listitem>
+	    <listitem>
+	      <para>Boca Livre</para>
+	    </listitem>
+	    <listitem>
+	      <para>Zé Ramalho</para>
+	    </listitem>
+	  </orderedlist>
+	</listitem>
+      </orderedlist>
+    </section>
+    <section xml:id="listas.de.definicao">
+      <title>Lista de definição</title>
+      <para>A lista de definição é uma lista formada por um conjunto de títulos (título da descrição) e parágrafos indentados (dado da definição). A lista é iniciada através do marcador <command>&lt;DL&gt;</command> (<emphasis>Description List</emphasis>). Os títulos são inseridos através do marcador <command>&lt;DT&gt;</command> e cada parágrafo através do marcador <command>&lt;DD&gt;</command>, como mostra o exemplo a seguir.</para>
+      <example xml:id="exemplo12">
+	<title>Lista com definição</title>
+	<programlisting>
+	  &lt;H1&gt; Preferências pessoais - Música&lt;/H1&gt;
+	  &lt;H3&gt; Nacionais &lt;/H3&gt;
+	  &lt;DL&gt;
+	  &lt;DT&gt; Marisa Monte
+	  &lt;DD&gt; Uma das vozes mais bonitas que já ouvi. 
+	  Minha música preferida: diariamente, composta por Nando Reis.
+
+	  &lt;DT&gt; Joao Gilberto
+	  &lt;DD&gt; Um dos inspiradores da bossa nova no Brasil. 
+	  Interpreta suas canções com muita calma e compenetração.
+
+	  &lt;DT&gt; Geraldo Azevedo
+	  &lt;DD&gt; O grande compositor de "dia branco", uma das músicas 
+	  mais lindas que já ouvi. Suas letras são singelas mas de 
+	  extremo bom gosto. Um dos ases do violão brasileiro.
+
+	  &lt;DT&gt; Boca Livre 
+	  &lt;DD&gt; Muito legal. Se ainda não conhece, escute o CD "Americana"
+
+	  &lt;DT&gt; Zé Ramalho 
+	  &lt;DD&gt; Sua voz de tom forte levanta até difunto da cova. 
+	  Entre suas músicas mais famosas estão "Avohai", "Chão de giz"
+	  e "Mulher nova, bonita e carinhosa faz o homem gemer sem sentir dor",
+	  composta para Amelinha.
+
+	  &lt;/DL&gt;
+	</programlisting>
+      </example>
+
+      <para>As listas também podem ser aninhadas umas dentro de outras. Deve-se lembrar apenas que os marcadores de início e fim devem obedecer à regra de definição de recipientes apresentado no <xref linkend="cha.Marcadores"/> .</para>
+    </section>
+  </chapter>
+  <chapter xml:id="estil.carac">
+    <title>Estilos de Caracteres</title>
+
+    <para>A linguagem HTML prevê também marcadores aplicam estilos especiais ao texto de modo a torná-lo mais rico e elegante. Os estilos mais comuns e seus respectivos marcadores são:</para>
+    <itemizedlist>
+      <listitem>
+	<para>Negrito, marcadores <command>&lt;B&gt;</command> e <command>&lt;/B&gt;</command>, delimitando o texto a ser alterado;</para>
+      </listitem>
+      <listitem>
+	<para>Itálico, marcadores <command>&lt;I&gt;</command> e <command>&lt;/I&gt;</command>;
+	</para>
+      </listitem>
+      <listitem>
+	<para>Enfático, marcadores <command>&lt;EM</command> e <command>&lt;/EM&gt;</command>;</para>
+      </listitem>
+      <listitem>
+	<para>Forte, marcadores <command>&lt;STRONG&gt;</command> e <command>&lt;/STRONG&gt;</command>;
+	</para>
+      </listitem>
+      <listitem>
+	<para>Sublinhado, marcadores <command>&lt;U&gt;</command> e <command>&lt;/U&gt;</command>;</para>
+      </listitem>
+      <listitem>
+	<para>Riscado ao meio, marcadores <command>&lt;S&gt;</command> e <command>&lt;/S&gt;</command>;</para>
+      </listitem>
+      <listitem>
+	<para>Texto piscando, marcadores <command>&lt;BLINK&gt;</command> e <command>&lt;/BLINK&gt;</command>.</para>
+      </listitem>
+    </itemizedlist>
+    <para>Exemplo de uso dos marcadores acima para modificar o estilo do texto:</para>
+    <example xml:id="exemplo13">
+      <title>Estilos</title>
+      <programlisting>
+	&lt;B>Deep Forest&lt;/B&gt; é um dos maiores sucessos da &lt;I&gt;World Music&lt;/I&gt;. 
+	Seus CDs mais famosos são &lt;U&gt;Deep Forest&lt;/U&gt;, o primeiro, 
+	&lt;U&gt;Boheme&lt;/U&gt;, o segundo, e &lt;U&gt;Comparsa&lt;/U&gt;, lançado no segundo 
+	semestre de 1998. &lt;BR&gt;
+
+	Maiores informações podem ser encontrados na 
+	&lt;A HREF="http://www.sony.com"&gt; Homepage da Sony Music&lt;/A&gt;
+      </programlisting>
+    </example>
+  </chapter>
+  <chapter xml:id="manipulando.fontes">
+    <title>Manipulando fontes</title>
+    <para>Usando os marcadores adequados é possível alterar não somente o estilo, mas também características próprias da fonte que será exibida na tela. HTML prevê alterações no tamanho, na cor e no tipo de fonte do caractere (Times New Roman, Arial, Terminal etc) através do marcador <command>&lt;FONT></command>. No exemplo a seguir, o nome <foreignphrase>Marisa Monte</foreignphrase> é modificado de forma a ficar com a cor <foreignphrase>BLUE</foreignphrase>, tamanho <foreignphrase>+2</foreignphrase> e fonte <foreignphrase>HELVETICA</foreignphrase>.</para>
+
+    <example xml:id="exemplo14">
+      <title>Modificando fonte</title>
+      <programlisting role="HTML"><![CDATA[
+      <DT> <FONT COLOR=BLUE SIZE=+2 FACE=''HELVETICA''> Marisa Monte </FONT>
+      <DD> Uma das vozes mais bonitas que já ouvi. 
+      Minha música preferida: diariamente, composta por Nando Reis.
+      ]]></programlisting>
+    </example>
+  </chapter>
+  <chapter xml:id="util.img">
+    <title>Utilizando Imagens</title>
+
+    <para>A revolução dos <foreignphrase>browsers</foreignphrase> teve início com um programa chamado Mosaic, o primeiro navegador na Internet que conseguir colocar em uma mesma tela gráfica textos e imagens lado a lado. Até então os programas de navegação possibilitavam apenas a colocação de textos na tela do computador.</para>
+
+    <para>Desde então, a Internet sofreu um avanço considerável, tendo em vista que o WWW é o serviço mais utilizado dos usuários desta rede. Um dos grandes avanços na área de apresentação de documentos multimídia ocorreu por volta de 1996, quando foi criado um padrão que possibilitava colocar imagens animadas na tela do <foreignphrase>browser</foreignphrase>.</para>
+
+    <para>Existem atualmente diversas formas de armazenar uma imagem no computador. Cada forma obedece a um determinado padrão internacional. Os mais conhecidos são BMP, GIF, JPG e TIF. Na maioria dos <foreignphrase>browsers</foreignphrase> atuais, apenas os padrões GIF e JPG são reconhecidos, sendo que o primeiro permite construir animações.</para>
+    <section xml:id="marc.img">
+      <title>O marcador IMG</title>
+
+      <para>As imagens são inseridas em uma <foreignphrase>homepage</foreignphrase> através do marcador <command>&lt;IMG></command>. O atributo <emphasis>SRC</emphasis> deste marcador indica a localização do arquivo dentro do computador ou em alguma URL (<foreignphrase>Universal Resource Locator</foreignphrase>. Em suma, o endereço de um recurso na Internet). Os atributos <emphasis>WIDTH</emphasis> e <emphasis>HEIGHT</emphasis> especificam as dimensões de largura e altura, respectivamente, da imagem na página; estes podem ser dados em pixels, ou como porcentagem do tamanho original.</para>
+
+      <para>Exemplo de uso do marcador <command>&lt;IMG&gt;</command>:</para>
+      <example xml:id="exemplo15">
+	<title>Marcador de imagem &lt;IMG&gt;</title>
+	<programlisting role="HTML"><![CDATA[
+	<IMG SRC="imagens/estrela.gif">
+	<H1> Preferências pessoais - Música</H1>
+	<H3> Nacionais </H3>
+	<DL>
+	<DT> Marisa Monte
+	<DD> Uma das vozes mais bonitas que já ouvi. 
+	Minha música preferida: diariamente, composta por Nando Reis.
+	]]></programlisting>
+      </example>
+      <para>A saída gerada pelo netscape para este trecho de código será da seguinte forma:</para>
+      <figure xml:id="marc.img">
+	<title>Marcador &lt;IMG></title>
+	<mediaobject>
+	  <imageobject role="html">
+	    <imagedata align="center" format="PDF" fileref="figs/net_estrela.pdf" scale="100"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>O marcador <command>&lt;IMG&gt;</command> pode receber também outros parâmetros, tais como <emphasis>ALIGN</emphasis> (pode assumir LEFT, RIGHT, TOP, MIDDLE, BOTTOM), <emphasis>ALT</emphasis> (como em ALT="estrela"), que substitui a imagem em <foreignphrase>browsers</foreignphrase> sem interface gráfica, e <emphasis>BORDER</emphasis>, que define a largura da borda lateral da imagem, em pixels.</para> 
+
+      <para>Experimente utilizar o parâmetro <emphasis>ALIGN</emphasis> para alinhar o texto na tela. A opção <emphasis>LEFT</emphasis>, por exemplo, coloca a imagem no canto esquerdo da área de desenho e escreve o texto do lado da imagem. Produz um efeito bonito e interessante à página.</para>
+    </section>
+    <section xml:id="img.links">
+      <title>Imagens como <foreignphrase>links</foreignphrase></title>
+
+      <para>As imagens também podem ser utilizadas como <foreignphrase>links</foreignphrase> para outros documentos, bastando somente colocá-las apropriadamente dentro de um conjunto de marcadores <command>&lt;A>/&lt;/A></command>.</para>
+
+      <para>Exemplo:</para>
+      <example xml:id="exemplo16">
+	<title>Imagens através de links</title>
+	<programlisting role="HTML"><![CDATA[
+	<A HREF="http://www.engcomp.ufrn.br">
+	<IMG SRC="imagens/estrela.gif" WIDTH="50%" ALT="estrela"></A>
+	<H1> Preferências pessoais - Música</H1>
+	<H3> Nacionais </H3>
+	<DL>
+	<DT> Marisa Monte
+	<DD> Uma das vozes mais bonitas que já ouvi. 
+	Minha música preferida: diariamente, composta por Nando Reis.
+	]]></programlisting>
+      </example>
+      <para>É possível notar no exemplo acima que a imagem mostrada aparecerá com uma borda ao seu redor. Esta borda é colocada automaticamente pelo navegador para realçar a sua condição de <foreignphrase>link</foreignphrase>. Para retirá-la, basta acrescentar o parâmetro <emphasis>BORDER=0</emphasis> dentro da definição do marcador <command>&lt;IMG&gt;</command>.</para>
+    </section>
+  </chapter>
+  <chapter xml:id="tab">
+    <title>Tabelas</title>
+
+    <para>Praticamente toda <foreignphrase>homepage</foreignphrase> encontrada hoje na Internet possui uma estrutura tabular na sua construção. A maioria delas está oculta aos olhos do usuário,servindo apenas como um poderoso instrumento de diagramação dos elementos de texto e imagens dentro de uma <foreignphrase>homepage</foreignphrase>.</para> 
+
+    <para>As tabelas são criadas através do marcador <command>&lt;TABLE&gt;</command>. Os principais parâmetros passados para uma tabelas são:</para>
+    <itemizedlist>
+      <listitem>
+	<para><emphasis>WIDTH</emphasis>: define a largura da tabela;</para>
+      </listitem>
+      <listitem>
+	<para><emphasis>HEIGHT</emphasis>: define a altura da tabela;</para>
+      </listitem>
+      <listitem>
+	<para><emphasis>COLS</emphasis>: número de colunas;</para>
+      </listitem>
+      <listitem>
+	<para><emphasis>ROWS</emphasis>: número de linhas;</para>
+      </listitem>
+      <listitem>
+	<para><emphasis>BORDER</emphasis>: indica a largura da borda da tabela;</para>
+      </listitem>
+      <listitem>
+	<para><emphasis>CELLSPACING</emphasis>: espaçamento, em pixels, entre as células da tabela;</para>
+      </listitem>
+      <listitem>
+	<para><emphasis>CELLPADDING</emphasis>: espaçamento, em pixels, entre a borda de uma célula e o seu conteúdo;</para>
+      </listitem>
+      <listitem>
+	<para><emphasis>BGCOLOR</emphasis>: cor de fundo da tabela;</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Cada nova linha da tabela é iniciada com o marcador <command>&lt;TR&gt;</command>. Os títulos das colunas são definidos com o marcador <token>&lt;TH&gt;</token> e as células da tabela são criadas com o marcador <command>&lt;TD&gt;</command> (O parâmetro <emphasis>BGCOLOR</emphasis> também é válido para este marcador). Observe no exemplo abaixo a estrutura de tabela em HTML:</para>
+
+    <example xml:id="exemplo17">
+      <title>Tabela</title>
+      <programlisting role="HTML"><![CDATA[
+      <HTML>
+      <HEAD>
+      <TITLE>Teste de tabela</TITLE>
+      </HEAD>
+      <BODY>
+      <TABLE BORDER=2>
+      <TR>
+      <TH>SEGUNDA</TH> 
+      <TH>TERÇA</TH> 
+      <TH>QUARTA</TH>
+      </TR> 
+      <TR>
+      <TD>Parte1</TD>
+      <TD>Parte3</TD>
+      <TD>Parte5</TD>
+      </TR> 
+      <TR>
+      <TD>Intervalo</TD>
+      <TD>Intervalo</TD>
+      <TD>Intervalo</TD>
+      </TR> 
+      <TR>
+      <TD>Parte2</TD>
+      <TD>Parte4</TD>
+      <TD>Final</TD>
+      </TR> 
+      </TABLE> 
+      </BODY>
+      </HTML>
+      ]]></programlisting>
+    </example>
+    <para>A saída gerada para este trecho de código será da seguinte forma:</para>
+    <table frame='all'><title>Teste de tabela</title>
+    <tgroup cols='3' align='center' colsep='1' rowsep='1'>
+      <tbody>
+	<row>
+	  <entry><emphasis role="bold">Segunda</emphasis></entry>
+	  <entry><emphasis role="bold">Terça</emphasis></entry>
+	  <entry><emphasis role="bold">Quarta</emphasis></entry>
+	</row>
+	<row>
+	  <entry>Parte 1</entry>
+	  <entry>Parte 3</entry>
+	  <entry>Parte 5</entry>
+	</row>
+	<row>
+	  <entry>Intervalo</entry>
+	  <entry>Intervalo</entry>
+	  <entry>Intervalo</entry>
+	</row>
+	<row>
+	  <entry>Parte 2</entry>
+	  <entry>Parte 4</entry>
+	  <entry>Final</entry>
+	</row>
+      </tbody>
+    </tgroup>
+    </table>
+
+    <para>É importante lembrar de sempre manter os marcadores aninhados. Sempre que um marcador <command>&lt;TABLE&gt;</command> for aberto, um marcador <command>&lt;/TABLE&gt;</command> deve ser fechado logo em seguida. O mesmo vale para os marcadores <command>&lt;TH;gt;</command>, <command>&lt;TR&gt;</command> e <command>&lt;TD&gt;</command>. Uma boa prática é primeiro colocar os marcadores de início e fim de bloco (tipo <command>&lt;TD&gt;</command> e <command>&lt;/TD&gt;</command>) e depois começar a escrever algo dentro deles. Fazendo assim, muitos aborrecimentos poderão ser evitados.</para>
+  </chapter>
+</book>

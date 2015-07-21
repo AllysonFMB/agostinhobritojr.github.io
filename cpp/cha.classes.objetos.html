@@ -1,0 +1,286 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 3. Classes e objetos</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Programa&ccedil;&atilde;o Orientada a Objetos em C++"><link rel="up" href="index.html" title="Programa&ccedil;&atilde;o Orientada a Objetos em C++"><link rel="prev" href="cha.parafernalha.html" title="Cap&iacute;tulo 2. Ferramentas de desenvolvimento"><link rel="next" href="cha.construtores.destrutores.html" title="Cap&iacute;tulo 4. Construtores e destrutores"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="cha.parafernalha.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 3. Classes e objetos</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="cha.construtores.destrutores.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.classes.objetos"></a>Cap&iacute;tulo 3.  Classes e objetos </h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.classes.objetos.html#sec.classes.objetos.definicoes">3.1. Definindo classes e objetos</a></span></dt><dt><span class="section"><a href="cha.classes.objetos.html#sec.classes.objetos.abstracao">3.2. Abstraindo uma classe</a></span></dt><dd><dl><dt><span class="section"><a href="cha.classes.objetos.html#sec.classes.objetos.vetor2d.descricao">3.2.1. Descri&ccedil;ao do programa <code class="filename">vetor2d.cpp</code></a></span></dt></dl></dd><dt><span class="section"><a href="cha.classes.objetos.html#sec.classes.objetos.revisitando">3.3. Revisitando a defini&ccedil;&atilde;o de classes</a></span></dt><dt><span class="section"><a href="cha.classes.objetos.html#sec.classes.objetos.exercicios">3.4. Exerc&iacute;cios de fixa&ccedil;&atilde;o</a></span></dt></dl></div>
+    
+    
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.classes.objetos.definicoes"></a>3.1. Definindo classes e objetos</h2></div></div></div>
+      
+      <p>Dois conceitos principais destacam-se no tocante &agrave;s linguagens orientadas a objeto, que s&atilde;o os de <span class="emphasis"><em>objeto</em></span> e <span class="emphasis"><em>classe</em></span>.</p>
+      <p>Um <span class="emphasis"><em>objeto</em></span> do mundo real pode ser definido como uma entidade tang&iacute;vel que apresenta algum comportamento bem definido. Os objetos geralmente fazem alguma coisa e a intera&ccedil;&atilde;o com eles se d&aacute; atrav&eacute;s de mensagens que lhes s&atilde;o passadas. Entenda-se mensagem como alguma a&ccedil;&atilde;o que foi requisitada para o objeto realizar. Por exemplo, para se mudar o canal de uma TV usando o controle remoto, aperta-se um bot&atilde;o e o controle envia um sinal eletromagn&eacute;tico que faz o canal mudar. A mensagem enviada para o controle, neste caso, foi a solicita&ccedil;&atilde;o de mudan&ccedil;a de canal, quando um determinado bot&atilde;o foi pressionado.</p>
+      <p>Um objeto possui estado, comportamento e identidade. O <span class="emphasis"><em>estado</em></span> indica todas as propriedades de um objeto, bem como os valores dessas propriedades. O <span class="emphasis"><em>comportamento</em></span> indica como um determinado objeto reage perante mudan&ccedil;as no seu estado e durante a passagem de mensagens. Finalmente, a <span class="emphasis"><em>identidade</em></span> &eacute; a propriedade que diferencia um objeto de todos os outros. Para o caso do controle remoto, por exemplo, pode-se afirmar que seu estado poderia ser representado por diversas propriedades, como cor (preto, branco, amarelo), quantidade e tipos de bot&otilde;es, se os bot&otilde;es est&atilde;o pressionados ou n&atilde;o, se ele est&aacute; emitindo sinais ou n&atilde;o, etc.. O comportamento &eacute; definido pelas a&ccedil;&otilde;es que controle remoto &eacute; capaz de realizar, ou seja, emitir um sinal eletromagn&eacute;tico diferente para cada um dos bot&otilde;es que &eacute; pressionado. A identidade do controle remoto &eacute; assegurada pela sua exist&ecirc;ncia &uacute;nica, ou seja, embora possam existir outros exatamente xml:id&ecirc;nticos, apenas do controle em quest&atilde;o ocupa o seu lugar no espa&ccedil;o.</p>
+      <p>Em se tratando de um objeto digital, existente somente no computador, as mesmas propriedades s&atilde;o v&aacute;lidas. Objetos digitais tamb&eacute;m possuem estado, comportamento e identidade. O estado &eacute; definido pelos valores que as vari&aacute;veis presentes no objeto assumem, o comportamento &eacute; determinado pelas funcionalidades que os objetos implementam, e a identidade &eacute; assegurada pelo fato de apenas um dado objeto de cada vez ocupar um espa&ccedil;o determinado de mem&oacute;ria. Os mecanismos para definir estes objetos ser&atilde;o vistos nas se&ccedil;&otilde;es que se seguir&atilde;o.</p>
+      <p>A <span class="emphasis"><em>classe</em></span>, por sua vez, &eacute; um conjunto de objetos individuais que partilham caracter&iacute;sticas comuns e um comportamento comum. A classe dos mam&iacute;feros, por exemplo, descreve as caracter&iacute;sticas comuns de todos os animais de um determinado grupo. As caracter&iacute;sticas mais determinantes s&atilde;o o fato de mamarem ao nascer e possuirem p&ecirc;los no corpo. Sendo assim, o homem, que possui estas duas caracter&iacute;sticas, pertence &agrave; classe dos mam&iacute;feros. Em outras palavras, poder&iacute;amos afirmar que <span class="emphasis"><em>Um homem &eacute; um inst&acirc;ncia da classe dos mam&iacute;feros</em></span>.</p>
+      <p>Os objetos de uma mesma classe podem at&eacute; assumir o mesmo estado, mas n&atilde;o a mesma identidade. O que os diferencia &eacute; justo o fato de ocuparem diferentes lugares no espa&ccedil;o, ou na mem&oacute;ria de uma m&aacute;quina (no caso de objetos digitais).</p>
+      <p>Dessa forma, apresentamos a defini&ccedil;&atilde;o que relaciona os conceitos de classe e objeto:</p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note: Rela&ccedil;&atilde;o entre classe e objeto"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Rela&ccedil;&atilde;o entre classe e objeto</th></tr><tr><td align="left" valign="top">
+	
+	<p>Uma classe &eacute; um conjunto de objetos que partilham caracter&iacute;sticas comuns. Um objeto &eacute; uma inst&acirc;ncia de uma classe.</p>
+      </td></tr></table></div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.classes.objetos.abstracao"></a>3.2. Abstraindo uma classe</h2></div></div></div>
+      
+      <p>Todo o desenvolvimento de classes e objetos em C++ &eacute; feito com base no conceito de abstra&ccedil;&atilde;o. Uma abstra&ccedil;&atilde;o &eacute; uma descri&ccedil;&atilde;o resumida de um objeto que apresenta detalhes que s&atilde;o interessantes para seu usu&aacute;rio e esconde aqueles que n&atilde;o s&atilde;o. O processo de abstra&ccedil;&atilde;o permite organizar objetos complexos na forma de um conjunto de objetos cada vez menos complexos, de modo a permitir que se entenda cada peda&ccedil;o desse sistema complexo de forma independente. Dessa maneira, &eacute; mais f&aacute;cil relacionar os objetos desse sistema e entender seu funcionamento como um todo. Para compilar um programa de computador, por exemplo, o usu&aacute;rio abstrai a m&aacute;quina, ignorando todo o complicado processo de acionamento dos circuitos combinacionais que s&atilde;o necess&aacute;rio para gerar um simples programa execut&aacute;vel.</p>
+      <p>Para programas de computador, a abstra&ccedil;&atilde;o permite que sistemas compostos de milhares de linhas de c&oacute;digo sejam fracionados em por&ccedil;&otilde;es menores. Fazendo assim, o programador &eacute; capaz de se concentrar apenas nas tarefas que cada por&ccedil;&atilde;o realiza enquanto estiver realizando o processo de desenvolvimento.</p>
+      <p>Em C++, a abstra&ccedil;&atilde;o de uma classe &eacute; descrita na forma de um trecho de c&oacute;digo que cont&eacute;m as informa&ccedil;&otilde;es essenciais para representar a estrutura que se deseja.</p>
+      <p>Considere, por exemplo, o conceito de vetor bidimensional. Tais vetores poderiam ser descritos, por exemplo, na forma de dois pares ordenados <span class="inlinemediaobject"><span class="phrase">$(x_0, y_0)$</span></span> e <span class="inlinemediaobject"><span class="phrase">$(x_1, y_1)$</span></span>, denotando os seus pontos inicial e final, como mostra a <a class="xref" href="cha.classes.objetos.html#fig.vetor2d" title="Figura 3.1. Modelo de vetor bidimensional">Figura&nbsp;3.1</a>.</p>
+      <div class="figure"><a name="fig.vetor2d"></a><p class="title"><b>Figura 3.1. Modelo de vetor bidimensional</b></p><div class="figure-contents">
+	
+	<div class="mediaobject" align="center"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/vetor2d.svg">figs/vetor2d.svg</object></div></div>
+      </div></div><br class="figure-break">
+      <p>Para simplificar o processo de abstra&ccedil;&atilde;o da classe vetor, vamos assumir que todos os vetores possuem seus pontos iniciais localizados na origem do sistema de coordenadas, ou seja <span class="inlinemediaobject"><span class="phrase">$(x_0, y_0) = (0,0)$</span></span> . Dessa forma, um vetor existente no plano seria representado apenas pelas coordenadas do seu ponto final, definindo, assim, sua orienta&ccedil;&atilde;o e sentido.</p>
+      <p>Assumindo tamb&eacute;m que a comunica&ccedil;&atilde;o com os objetos da classe vetor se d&aacute; atrav&eacute;s de mensagens que lhes s&atilde;o repassadas, &eacute; razo&aacute;vel assumir para seu comportamento funcionalidades bastantes para definir os valores das coordenadas do ponto final do vetor, bem como para recuperar o estado do objeto, lendo os valores dessas coordenadas.</p>
+      <p>Neste ponto, levantamos uma quest&atilde;o importante: se o estado do objeto est&aacute; representado pelos valores assumidos pelas suas vari&aacute;veis, por que n&atilde;o atribuir ou recuperar valores diretamente dessas vari&aacute;veis, ao inv&eacute;s de criar funcionalidades s&oacute; para isso? Para poder encapsular e esconder a informa&ccedil;&atilde;o! Pelo encapsulamento, dados e fun&ccedil;&otilde;es de uma classe s&atilde;o representados em uma mesma estrutura cujo principal objetivo &eacute; n&atilde;o permitir que o programador realize acesso direto aos dados.</p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note: Encapsulamento"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Encapsulamento</th></tr><tr><td align="left" valign="top">
+	
+	<p>&Eacute; o processo de organizar os elementos de uma abstra&ccedil;&atilde;o de modo que os clientes de uma determinada classe saibam apenas o necess&aacute;rio sobre o comportamento dos objetos que a ela pertencem.</p>
+      </td></tr></table></div>
+      <p>Entenda por cliente de uma classe quais quer estruturas (classes ou fun&ccedil;&otilde;es) que usam objetos dessa classe para realizar alguma opera&ccedil;&atilde;o. No <a class="xref" href="cha.parafernalha.html#exe.parafernalha.ambiente.exemplo" title="Exemplo 2.1. Programa testa-ambiente.cpp para testar sua ferramenta de desenvolvimento.">Exemplo&nbsp;2.1</a>, por exemplo, a fun&ccedil;&atilde;o <code class="function">main()</code> &eacute; cliente da classe <code class="literal">std::iostream</code>, pois usam os objetos <code class="literal">cin</code> e <code class="literal">cout</code>, que est&atilde;o nela definidos.</p>
+      <p>A defini&ccedil;&atilde;o de um classe em C++ basicamente cria um novo tipo de dado, semelhante &agrave; uma <span class="token">struct</span> da linguagem C. A diferen&ccedil;a b&aacute;sica &eacute; que fun&ccedil;&otilde;es que representam o comportamento do tipo tamb&eacute;m podem ser inclu&iacute;das.</p>
+      <p>O processo de encapsulamento permite que o usu&aacute;rio tenha controle sobre o que pode e o que n&atilde;o pode ser observado ou modificado nas entranhas dos objetos de uma classe. Isto &eacute; feito atrav&eacute;s do uso de especificadores de acesso que, em C++, s&atilde;o tr&ecirc;s:</p>
+      <div class="variablelist"><dl class="variablelist"><dt><span class="term">Public (p&uacute;blicas)</span></dt><dd>
+	    <p>Declara&ccedil;&otilde;es que s&atilde;o acess&iacute;veis por todos os clientes.</p>
+	  </dd><dt><span class="term">Private (privadas)</span></dt><dd>
+	    <p> declara&ccedil;&otilde;es que s&atilde;o acess&iacute;veis somente pela classe e suas amigas (<span class="token">friends</span>).</p>
+	  </dd><dt><span class="term">Protected (protegidas)</span></dt><dd>
+	    <p>Declara&ccedil;&otilde;es que s&atilde;o acess&iacute;veis somente pela classe, pelas suas amigas e pelas suas subclasses.</p>
+	  </dd></dl></div>
+      <p>Por enquanto, n&atilde;o &eacute; interessante entrar em detalhes acerca do que s&atilde;o amigas e subclasses. Vamos apresentar primeiro os conceitos de acesso p&uacute;blico e privado usando um exemplo simples, para n&atilde;o sobrecarregar a compreens&atilde;o de conceitos apresentados.</p>
+      <p></p>
+      <p>Vamos apresentar uma poss&iacute;vel implementa&ccedil;&atilde;o para a classe dos vetores bidimensionais. Antes, por&eacute;m, &eacute; importante refletir um pouco sobre como representar um vetor. Dessa forma, estruturas adequadas ser&atilde;o escolhidas para resolver o problema e abstrair do usu&aacute;rio da classe o funcionamento interno dessa.</p>
+      <p>A implementa&ccedil;&atilde;o m&iacute;nima para uma classe de vetores bidimensionais deve prover mecanismos para armazenar pelo menos duas informa&ccedil;&otilde;es importantes, que s&atilde;o os valores dessas coordenadas <span class="inlinemediaobject"><span class="phrase">$x$</span></span> e <span class="inlinemediaobject"><span class="phrase">$y$</span></span>. Vari&aacute;veis do tipo <span class="token">float</span> podem ser usadas para esse fim.</p>
+      <p>Ainda, devem existir fun&ccedil;&otilde;es que fa&ccedil;am as seguintes tarefas:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Defina o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$x$</span></span> do vetor.</p></li><li class="listitem"><p>Recupera o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$x$</span></span> do vetor.</p></li><li class="listitem"><p>Defina o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$y$</span></span> do vetor.</p></li><li class="listitem"><p>Recupera o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$y$</span></span> do vetor.</p></li><li class="listitem"><p>Mostre informa&ccedil;&otilde;es sobre o vetor.</p></li></ul></div>
+      <p>Uma poss&iacute;vel implementa&ccedil;&atilde;o para de uma classe que represente vetores bidimensionais &eacute; mostrada no <a class="xref" href="cha.classes.objetos.html#exe.classevetor" title="Exemplo 3.1. Classe Vetor2d">Exemplo&nbsp;3.1</a>.</p>
+      <div class="example"><a name="exe.classevetor"></a><p class="title"><b>Exemplo 3.1. Classe Vetor2d</b></p><div class="example-contents">
+	
+	<pre class="programlisting">#include &lt;iostream&gt;
+
+<strong class="hl-keyword">using</strong> <strong class="hl-keyword">namespace</strong> std;
+
+<strong class="hl-keyword">class</strong> Vetor2d{
+<strong class="hl-keyword">private</strong>:
+  <strong class="hl-keyword">float</strong> x, y;
+<strong class="hl-keyword">public</strong>:
+  <strong class="hl-keyword">void</strong> setX(<strong class="hl-keyword">float</strong> _x){
+	x = _x;
+  }
+  <strong class="hl-keyword">float</strong> getX(<strong class="hl-keyword">void</strong>){
+	<strong class="hl-keyword">return</strong> x;
+  }
+  <strong class="hl-keyword">void</strong> setY(<strong class="hl-keyword">float</strong> _y){
+	y = _y;
+  }
+  <strong class="hl-keyword">float</strong> getY(<strong class="hl-keyword">void</strong>){
+	<strong class="hl-keyword">return</strong> y;
+  }
+};
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">void</strong>){
+  Vetor2d v1;
+  v1.setX(<span class="hl-number">4.5</span>);
+  v1.setY(-<span class="hl-number">1.3</span>);
+  cout &lt;&lt; v1.getX() &lt;&lt; <strong class="hl-string"><em style="color:red">" "</em></strong> &lt;&lt; v1.getY() &lt;&lt; <strong class="hl-string"><em style="color:red">"\n"</em></strong>;
+}
+
+	  </pre>
+      </div></div><br class="example-break">
+      <p>O compilar e executar o programa do <a class="xref" href="cha.classes.objetos.html#exe.classevetor" title="Exemplo 3.1. Classe Vetor2d">Exemplo&nbsp;3.1</a>, escreva as linha de c&oacute;digo no seu ambiente de desenvolvimento favorito e aperte algum bot&atilde;o especial que compile o c&oacute;digo digitado. Se achar mais f&aacute;cil, pode copiar e colar, exercitando uma das <a class="ulink" href="http://en.wikipedia.org/wiki/Larry_Wall" target="_top">tr&ecirc;s virtudes do programador</a>. Na minha m&aacute;quina, realizo a compila&ccedil;&atilde;o e execu&ccedil;&atilde;o do c&oacute;digo na linha de comando com as seguintes instru&ccedil;&otilde;es:</p>
+      <pre class="screen">
+	<code class="prompt">$</code> <span class="command"><strong>g++</strong></span> vetor2d.cpp <code class="option">-o</code> vetor2d
+	<code class="prompt">$</code> <span class="command"><strong>./vetor2d</strong></span>
+	<code class="computeroutput">4.5 -1.3</code>
+      </pre>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec.classes.objetos.vetor2d.descricao"></a>3.2.1. Descri&ccedil;ao do programa <code class="filename">vetor2d.cpp</code></h3></div></div></div>
+	
+	<p>O in&iacute;cio do programa &eacute; bem semelhante ao descrito no <a class="xref" href="cha.parafernalha.html#exe.parafernalha.ambiente.exemplo" title="Exemplo 2.1. Programa testa-ambiente.cpp para testar sua ferramenta de desenvolvimento.">Exemplo&nbsp;2.1</a>, com o uso da diretiva de inclus&atilde;o e da diretiva <span class="token">using</span>. As novidades iniciam com a cria&ccedil;&atilde;o da classe com a palavra reservada <span class="token">class</span> seguida do nome da classe e das suas defini&ccedil;&otilde;es.</p>
+	<div class="informalexample">
+	  <pre class="programlisting"><strong class="hl-keyword">class</strong> Vetor2d{
+...
+};</pre>  
+	</div>
+	<p>A defini&ccedil;&atilde;o acima cria a classe <code class="classname">Vetor2d</code> dentro da qual podem ser inseridas defini&ccedil;&otilde;es de vari&aacute;veis, tipos de dados, fun&ccedil;&otilde;es, e at&eacute; mesmos outras classes. &Eacute; importante lembrar que o comportamento da classe se assemelha ao de uma <span class="token">struct</span> e n&atilde;o ao de uma fun&ccedil;&atilde;o. Estruturas de controle de fluxo como <span class="token">for</span>, <span class="token">while</span> e <span class="token">if-then-else</span> n&atilde;o podem figurar dentro de uma classe sem estarem abrigados dentro de uma de suas fun&ccedil;&otilde;es. &Eacute; importante <span class="emphasis"><em>n&atilde;o esquecer do ponto-e-v&iacute;rgula</em></span> ap&oacute;s a chave que demarca o final da defini&ccedil;&atilde;o da classe. Ele &eacute; OBRIGAT&Oacute;RIO! Esquecer do ponto-e-v&iacute;rgula &eacute; bastante comum e pode causar erros de compila&ccedil;&atilde;o dif&iacute;ceis de serem identificados.</p>
+	<div class="informalexample">
+	  <pre class="programlisting"><strong class="hl-keyword">private</strong>:
+<strong class="hl-keyword">float</strong> x, y;</pre>  
+	</div>
+	<p>A palavra reservada <span class="token">private</span> marca o in&iacute;cio das declara&ccedil;&otilde;es privadas da classe, com os elementos que podem ser acessados somente pelas fun&ccedil;&otilde;es definidas dentro da pr&oacute;pria classe. Vari&aacute;veis e fun&ccedil;&otilde;es definidas nesta se&ccedil;&atilde;o n&atilde;o podem ser vistas pelos clientes da classe. Neste exemplo, as vari&aacute;veis <code class="varname">x</code> e <code class="varname">y</code> guardam as coordenadas <span class="inlinemediaobject"><span class="phrase">$x$</span></span> e <span class="inlinemediaobject"><span class="phrase">$y$</span></span> do vetor, respectivamente. A influ&ecirc;ncia dos clientes da classe nos elementos privados da classe somente pode se dar atrav&eacute;s de fun&ccedil;&otilde;es p&uacute;blicas, declaradas na se&ccedil;&atilde;o <span class="token">public</span> da classe.</p>	
+	<div class="informalexample">
+	  <pre class="programlisting"><strong class="hl-keyword">public</strong>:
+  <strong class="hl-keyword">void</strong> setX(<strong class="hl-keyword">float</strong> _x){
+    x = _x;
+  }
+  <strong class="hl-keyword">float</strong> getX(<strong class="hl-keyword">void</strong>){
+    <strong class="hl-keyword">return</strong> x;
+  }</pre>
+	</div>
+	<p>A palavra reservada <span class="token">public</span> marca o in&iacute;cio da interface p&uacute;blica da classe, ou seja, todas as vari&aacute;veis e fun&ccedil;&otilde;es definidas nessa se&ccedil;&atilde;o poder&atilde;o ser acessadas de forma direta pelos clientes da classe. &Eacute; atrav&eacute;s delas que o cliente deve ser capaz de observar e modificar o estado do objeto e enxergar o seu comportamento.</p>
+	<p> Neste trecho, duas fun&ccedil;&otilde;es s&atilde;o apresentadas: <code class="function">setX(float)</code> e <code class="function">getX()</code>. A primeira recebe uma vari&aacute;vel do tipo <span class="type">float</span> e armazena o valor nela contido na vari&aacute;vel <code class="literal">x</code>, declarada na se&ccedil;&atilde;o privada da classe. A segunda retorna o valor armazenado em <code class="literal">x</code>. As fun&ccedil;&otilde;es <code class="function">setY(float)</code> e <code class="function">getY()</code> operam sobre a vari&aacute;vel <code class="literal">y</code>, realizando opera&ccedil;&otilde;es semelhantes &agrave;s realizadas com a vari&aacute;vel <code class="literal">x</code>.</p>
+	<p>A <a class="xref" href="cha.classes.objetos.html#fig.visao-classe-cliente" title="Figura 3.2. O encapsulamento esconde os detalhes de implementa&ccedil;&atilde;o do objeto.">Figura&nbsp;3.2</a> ilustra as fun&ccedil;&otilde;es p&uacute;blicas da classe e mostra como um cliente da classe enxerga as funcionalidades que elas oferecem.</p>
+	<div class="figure"><a name="fig.visao-classe-cliente"></a><p class="title"><b>Figura 3.2. O encapsulamento esconde os detalhes de implementa&ccedil;&atilde;o do objeto.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject" align="center"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/visao-classe-cliente.svg">figs/visao-classe-cliente.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>Para o cliente da classe, o funcionamento interno destas fun&ccedil;&otilde;es &eacute; completamente desconhecido (encapsulado). No entendimento do cliente, as fun&ccedil;&otilde;es <span class="emphasis"><em>"set"</em></span> servem para guardar em algum lugar no objeto os valores das coordenadas do vetor. Normalmente, m&eacute;todos que alteram o estado do objeto s&atilde;o chamados de <span class="emphasis"><em>modificadores</em></span>.</p> 
+	<p>As fun&ccedil;&otilde;es <span class="emphasis"><em>"get"</em></span>, por sua vez, servem para recuperar os valores das coordenadas que foram armazenados em um tempo passado sem alterar o estado do objeto. M&eacute;todos apresentam este funcionamento s&atilde;o normalmente chamados de <span class="emphasis"><em>seletores</em></span>.</p>
+	<p>Repare que o uso de nomes de fun&ccedil;&otilde;es iniciando com <span class="emphasis"><em>"set"</em></span> ou <span class="emphasis"><em>"get"</em></span> N&Atilde;O &Eacute; OBRIGAT&Oacute;RIO, ficando a cargo do programador a livre escolha dos nomes que ir&aacute; utilizar. Entretanto, o uso de <span class="emphasis"><em>"sets"</em></span> ou <span class="emphasis"><em>"gets"</em></span> evidencia o prop&oacute;sito da fun&ccedil;&atilde;o que se segue (atribuir ou recuperar valores).</p>
+	<p>Desta forma, a vis&atilde;o que o programador concebe da classe &eacute; a de uma caixa preta capaz de realizar tarefas que lhes s&atilde;o solicitadas atrav&eacute;s da chamada de fun&ccedil;&otilde;es espec&iacute;ficas. A estas fun&ccedil;&otilde;es &eacute; geralmente dado o nome de fun&ccedil;&atilde;o membro ou m&eacute;todo da classe.</p>
+	<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note: M&eacute;todo de uma classe"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">M&eacute;todo de uma classe</th></tr><tr><td align="left" valign="top">
+	  
+	  <p>Fun&ccedil;&atilde;o implementada que permite o usu&aacute;rio acessar ou modificar o estado do objeto.</p>
+	</td></tr></table></div>
+	<div class="informalexample">
+	  <pre class="programlisting">Vetor2d v1;</pre>
+	</div>
+	<p>&Eacute; na fun&ccedil;&atilde;o <code class="function">main()</code> &eacute; que a classe <code class="classname">Vetor2d</code> entra em a&ccedil;&atilde;o. Neste ponto, o objeto <code class="varname">v1</code> &eacute; declarado, criando assim uma inst&acirc;ncia da classe correspondente na mem&oacute;ria. No programa, <code class="varname">v1</code> figura como uma vari&aacute;vel, assim como outras criadas de tipos primitivos da linguagem. Entretanto, ela possui habilidades especiais que podem ser invocadas pelo seu usu&aacute;rio. Estas habilidades s&atilde;o definidas pelos diversos m&eacute;todos que sua classe implementa.</p>
+	<div class="informalexample">
+	  <pre class="programlisting">v1.setX(<span class="hl-number">4.5</span>);
+		     v1.setY(-<span class="hl-number">1.3</span>);
+		     cout &lt;&lt; v1.getX() &lt;&lt; <strong class="hl-string"><em style="color:red">" "</em></strong> &lt;&lt; v1.getY() &lt;&lt; <strong class="hl-string"><em style="color:red">"\n"</em></strong>;</pre>
+	</div>
+	<p>Na primeira e segunda linha desse trecho, s&atilde;o chamados para o objeto <code class="varname">v1</code> os m&eacute;todos <code class="function">setX(float)</code> e <code class="function">setY(float)</code>, com os par&acirc;metros <em class="parameter"><code>4.5</code></em> e <em class="parameter"><code>-1.3</code></em> repassados para cada m&eacute;todo, respectivamente. Dessa maneira, instrui-se ao objeto para mudar seu estado, recebendo os novos valores que definir&atilde;o as coordenadas do vetor.</p>
+	<p>A mudan&ccedil;a no estado do objeto pode ser verificada pela declara&ccedil;&atilde;o que exibe os valores de <code class="varname">x</code> e <code class="varname">y</code>, usando <code class="literal">cout</code>.</p>
+      </div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.classes.objetos.revisitando"></a>3.3. Revisitando a defini&ccedil;&atilde;o de classes</h2></div></div></div>
+      
+      <p>Qualquer fun&ccedil;&atilde;o definida dentro da declara&ccedil;&atilde;o da classe torna-se, automaticamente, uma fun&ccedil;&atilde;o <span class="foreignphrase"><em class="foreignphrase">inline</em></span> (em linha), ou seja, o c&oacute;digo criado &eacute; copiado diretamente para o trecho de programa onde o objeto &eacute; utilizado. Os benef&iacute;cios de fun&ccedil;&otilde;es <span class="foreignphrase"><em class="foreignphrase">inline</em></span> s&atilde;o traduzidos na forma melhoria de performance para o programa. Em contrapartida, os programas demandam mais mem&oacute;ria para executar, o que pode ser problem&aacute;tico em sistemas com limita&ccedil;&atilde;o de recursos. Sendo assim, o uso de fun&ccedil;&otilde;es <span class="foreignphrase"><em class="foreignphrase">inline</em></span> deve ser bem dosado, com prefer&ecirc;ncia para fun&ccedil;&otilde;es membro curtas.</p>
+      <p>O processo de desenvolver uma classe geralmente demanda um conjunto de passos, ao inv&eacute;s de criar tudo de uma vez s&oacute;. O programador deve fragmentar seu programa em um conjunto de partes menores, visando tornar o c&oacute;digo mais compartimentalizado, separando a defini&ccedil;&atilde;o da classe da sua implementa&ccedil;&atilde;o.</p>
+      <p>Considere o <a class="xref" href="cha.classes.objetos.html#exe.classevetor" title="Exemplo 3.1. Classe Vetor2d">Exemplo&nbsp;3.1</a> que trata da representa&ccedil;&atilde;o de vetores bidimensionais. Seguindo a xml:id&eacute;ia da compartimentaliza&ccedil;&atilde;o do c&oacute;digo, poderiamos separar o arquivo de c&oacute;digo gerado em tr&ecirc;s arquivos relativamente independentes: <code class="filename">vetor2d.hpp</code> (<a class="xref" href="cha.classes.objetos.html#exe.classevetor.revisitada.vetor2d.hpp" title="Exemplo 3.2. Defini&ccedil;&atilde;o da classe Vetor2d (vetor2d.hpp)">Exemplo&nbsp;3.2</a>), contendo a defini&ccedil;&atilde;o da classe <code class="classname">Vetor2d</code>; <code class="filename">vetor2d.cpp</code> (<a class="xref" href="cha.classes.objetos.html#exe.classevetor.revisitada.vetor2d.cpp" title="Exemplo 3.3. Implementa&ccedil;&atilde;o da classe Vetor2d (vetor2d.cpp)">Exemplo&nbsp;3.3</a>), contendo a implementa&ccedil;&atilde;o da classe <code class="classname">Vetor2d</code>; e <code class="filename">main.cpp</code> (<a class="xref" href="cha.classes.objetos.html#exe.classevetor.revisitada.main-vetor2d.cpp" title="Exemplo 3.4. Programa cliente da classe Vetor2d (main-vetor2d.cpp)">Exemplo&nbsp;3.4</a>), o programa cliente que faz uso da classe criada.</p>
+      <div class="example"><a name="exe.classevetor.revisitada.vetor2d.hpp"></a><p class="title"><b>Exemplo 3.2. Defini&ccedil;&atilde;o da classe Vetor2d (<code class="filename">vetor2d.hpp</code>)</b></p><div class="example-contents">
+	
+	<pre class="programlisting">#ifndef VETOR2D_HPP
+<span class="hl-directive" style="color: maroon">#define VETOR2D_HPP</span>
+
+<strong class="hl-keyword">class</strong> Vetor2d{
+<strong class="hl-keyword">private</strong>:
+  <strong class="hl-keyword">float</strong> x, y;
+<strong class="hl-keyword">public</strong>:
+  <strong class="hl-keyword">void</strong> setX(<strong class="hl-keyword">float</strong> _x);
+  <strong class="hl-keyword">float</strong> getX(<strong class="hl-keyword">void</strong>);
+  <strong class="hl-keyword">void</strong> setY(<strong class="hl-keyword">float</strong> _y);
+  <strong class="hl-keyword">float</strong> getY(<strong class="hl-keyword">void</strong>);
+};
+
+<span class="hl-directive" style="color: maroon">#endif</span>
+</pre>
+      </div></div><br class="example-break">
+      <p>No <a class="xref" href="cha.classes.objetos.html#exe.classevetor.revisitada.vetor2d.hpp" title="Exemplo 3.2. Defini&ccedil;&atilde;o da classe Vetor2d (vetor2d.hpp)">Exemplo&nbsp;3.2</a> aparecem duas linhas com as diretivas de compila&ccedil;&atilde;o <span class="token">#ifndef</span> e <span class="token">#define</span>. Elas servem para proteger os programas clientes de m&uacute;ltiplas inclus&otilde;es do mesmo arquivo de cabe&ccedil;alho. Quando o compilador interpreta esse arquivo e passa por essa linha, ele testa se o nome <code class="varname">VETOR2D_HPP</code> j&aacute; foi definido pela diretiva <span class="token">#define</span>. Caso ainda n&atilde;o tenha sido definido, o nome <code class="varname">VETOR2D_HPP</code> &eacute; definido e o segmento de c&oacute;digo &eacute; processado. Caso contr&aacute;rio, o compilador n&atilde;o processa aquele segmento, pulando para a linha seguindo a diretiva <span class="token">#endif</span>.</p>      
+      <div class="example"><a name="exe.classevetor.revisitada.vetor2d.cpp"></a><p class="title"><b>Exemplo 3.3. Implementa&ccedil;&atilde;o da classe Vetor2d (<code class="filename">vetor2d.cpp</code>)</b></p><div class="example-contents">
+	
+	<pre class="programlisting">#include &lt;iostream&gt;
+<span class="hl-directive" style="color: maroon">#include "vetor2d.hpp"</span>
+
+<strong class="hl-keyword">using</strong> <strong class="hl-keyword">namespace</strong> std;
+
+<strong class="hl-keyword">void</strong> Vetor2d::setX(<strong class="hl-keyword">float</strong> _x){
+	x = _x;
+}
+
+<strong class="hl-keyword">float</strong> Vetor2d::getX(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">return</strong> x;
+}
+
+<strong class="hl-keyword">void</strong> Vetor2d::setY(<strong class="hl-keyword">float</strong> _y){
+  y = _y;
+}
+
+<strong class="hl-keyword">float</strong> Vetor2d::getY(<strong class="hl-keyword">void</strong>){
+	<strong class="hl-keyword">return</strong> y;
+}
+
+	  </pre>
+      </div></div><br class="example-break">
+      <p>Tanto no <a class="xref" href="cha.classes.objetos.html#exe.classevetor.revisitada.vetor2d.cpp" title="Exemplo 3.3. Implementa&ccedil;&atilde;o da classe Vetor2d (vetor2d.cpp)">Exemplo&nbsp;3.3</a> quanto no  <a class="xref" href="cha.classes.objetos.html#exe.classevetor.revisitada.main-vetor2d.cpp" title="Exemplo 3.4. Programa cliente da classe Vetor2d (main-vetor2d.cpp)">Exemplo&nbsp;3.4</a> deve ser inserida no in&iacute;cio do arquivo a diretiva de compila&ccedil;&atilde;o <span class="token">#include</span> seguida do nome do arquivo de cabe&ccedil;alho com a defini&ccedil;&atilde;o da classe. Dessa maneira, o compilador ser&aacute; instru&iacute;do para varrer o arquivo de defini&ccedil;&atilde;o da classe antes de proceder com a compila&ccedil;&atilde;o do restante do c&oacute;digo.</p>
+      <p>Observe que, na implementa&ccedil;&atilde;o, o nome de cada m&eacute;todo &eacute; precedido do termo <code class="classname">Vetor2d::</code>, formado pelo nome da classe seguido do operador de resolu&ccedil;&atilde;o de escopo <span class="token">::</span>. Tal nota&ccedil;&atilde;o serve para determinar a qual classe pertence o m&eacute;todo que ser&aacute; definido adiante, permitindo que o mesmo nome de fun&ccedil;&atilde;o seja utilizado tamb&eacute;m em outras classes. Caso deseje, o usu&aacute;rio tamb&eacute;m poder&aacute; definir fun&ccedil;&otilde;es em linha, precedendo a defini&ccedil;&atilde;o da fun&ccedil;&atilde;o membro da palavra chave <span class="token">inline</span> (ex: <code class="function">inline float Vetor2d::getX()...</code>).</p>
+      <p>Agora, o programa cliente cont&eacute;m apenas a fun&ccedil;&atilde;o <code class="function">main()</code>, que &eacute; usada como insumo para testar a classe <code class="classname">Vetor2d</code>.</p>
+      <div class="example"><a name="exe.classevetor.revisitada.main-vetor2d.cpp"></a><p class="title"><b>Exemplo 3.4. Programa cliente da classe Vetor2d (<code class="filename">main-vetor2d.cpp</code>)</b></p><div class="example-contents">
+	
+	<pre class="programlisting">#include &lt;iostream&gt;
+<span class="hl-directive" style="color: maroon">#include "vetor2d.hpp"</span>
+
+<strong class="hl-keyword">using</strong> <strong class="hl-keyword">namespace</strong> std;
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">void</strong>){
+  Vetor2d v1;
+  v1.setX(<span class="hl-number">4.5</span>);
+  v1.setY(-<span class="hl-number">1.3</span>);
+  cout &lt;&lt; v1.getX() &lt;&lt; <strong class="hl-string"><em style="color:red">" "</em></strong> &lt;&lt; v1.getY() &lt;&lt; <strong class="hl-string"><em style="color:red">"\n"</em></strong>;
+}
+</pre>
+      </div></div><br class="example-break">
+      <p>O exemplo completo pode ser compilado e executado em um terminal Linux a partir das seguintes linhas de comando:</p>
+      <pre class="screen"><code class="prompt">$</code> <span class="command"><strong>g++</strong></span> <code class="option">-c</code> vetor2d.cpp
+<code class="prompt">$</code> <span class="command"><strong>g++</strong></span> <code class="option">-c</code> main-vetor2d.cpp
+<code class="prompt">$</code> <span class="command"><strong>g++</strong></span> vetor2d.o main-vetor2d.o <code class="option">-o</code> main-vetor2d
+<code class="prompt">$</code> <span class="command"><strong>./main-vetor2d</strong></span>
+<code class="computeroutput">4.5 -1.3</code></pre>
+      <p>Agora, modifica&ccedil;&otilde;es realizadas no arquivo que cont&eacute;m a fun&ccedil;&atilde;o <code class="function">main()</code> podem ser processadas pelo compilador sem a necessidade de recompilar a implementa&ccedil;&atilde;o da classe <code class="classname">Vetor2d</code>.</p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.classes.objetos.exercicios"></a>3.4. Exerc&iacute;cios de fixa&ccedil;&atilde;o</h2></div></div></div>
+      
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Defina os seguintes conceitos, mostrando exemplos para ilustrar sua resposta.</p>
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Classe</p></li><li class="listitem"><p>Objeto</p></li><li class="listitem"><p>M&eacute;todo</p></li><li class="listitem"><p>Abstra&ccedil;&atilde;o</p></li><li class="listitem"><p>Encapsulamento</p></li></ul></div>
+	</li><li class="listitem">
+	  <p>O encapsulamento pode ser considerado um dispositivo de seguran&ccedil;a?</p>
+	</li><li class="listitem">
+	  <p>Qual a diferen&ccedil;a entre public, private e protected? D&ecirc; exemplos de uso de cada uma destas interfaces.</p>
+	</li><li class="listitem">
+	  <p>Crie uma classe denominada <code class="classname">Veiculo</code> com as seguintes vari&aacute;veis:</p>
+	  <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="varname">fabricante</code>: literal com tamanho m&aacute;ximo de 40 caracteres que armazena o nome do fabricante do ve&iacute;culo.</p>
+	    </li><li class="listitem"><p><code class="varname">rodas</code>: inteiro que guarda o n&uacute;mero de rodas do ve&iacute;culo.</p>
+	    </li><li class="listitem"><p><code class="varname">massa</code>: inteiro que armazena a massa do ve&iacute;culo.</p>
+	    </li><li class="listitem"><p><code class="varname">velocidade</code>: inteiro que armazena a velocidade atual do ve&iacute;culo.</p>
+	    </li><li class="listitem"><p><code class="varname">velocidadeMaxima</code>: inteiro que armazena a pot&ecirc;ncia em cv do ve&iacute;culo.</p></li></ul></div>
+	  <p>Al&eacute;m disso, a classe dever&aacute; prever as seguintes fun&ccedil;&otilde;es-membro:</p>
+	  <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Fun&ccedil;&otilde;es para receber o nome do fabricante e a velocidade m&aacute;xima desenvolvida pelo ve&iacute;culo e armazenar estes dados nas vari&aacute;veis da classe. A velocidade inicial do ve&iacute;culo dever&aacute; ser sempre igual a zero.</p>
+	    </li><li class="listitem"><p>Fun&ccedil;&otilde;es para recuperar as informa&ccedil;&otilde;es gravadas nas vari&aacute;veis da classe (fabricante e velocidade).</p>
+	    </li><li class="listitem"><p>Uma fun&ccedil;&atilde;o <code class="function">acelerar</code> que acrescente 5 unidades &agrave; velocidade atual do ve&iacute;culo, respeitando o limite m&aacute;ximo de velocidade estabelecido para o ve&iacute;culo.</p>
+	    </li><li class="listitem"><p>Uma fun&ccedil;&atilde;o <code class="function">frear</code> que decrementa em 5 unidades a velocidade atual do ve&iacute;culo.</p>
+	    </li></ul></div>
+	  <p>Implemente programa em C++ capaz de testar a classe que voc&ecirc; criou. Procure na Internet os dados de seu carro favorito e crie um objeto para represent&aacute;-lo usando a classe <code class="classname">Veiculo</code>. Acelere seu carro 4 vezes, mostrando a velocidade atual ap&oacute;s cada acelera&ccedil;&atilde;o. Em seguida, freie o carro por 4 vezes consecutivas, novamente mostrando a velocidade ap&oacute;s cada freiada.</p>
+	</li><li class="listitem">
+	  <p>Crie uma classe denominada <code class="classname">Point2d</code> para representar pontos no espa&ccedil;o bidimensional. Na sua implementa&ccedil;&atilde;o, voc&ecirc; dever&aacute; encapsular duas vari&aacute;veis <code class="varname">x</code> e <code class="varname">y</code> do tipo <span class="token">float</span> para guardar a posi&ccedil;&atilde;o do ponto. Apenas as fun&ccedil;&otilde;es da classe poder&atilde;o ter acesso direto a essas vari&aacute;vies, de modo que os clientes da classe somente poder&atilde;o modific&aacute;-las usando m&eacute;todos espec&iacute;ficos que voc&ecirc; definir. Implemente, na sua classe, m&eacute;todos que realizem as seguintes opera&ccedil;&otilde;es:</p>
+	  <div class="segmentedlist"><table border="0"><thead><tr class="segtitle"><th>Fun&ccedil;&atilde;o</th><th>Descri&ccedil;&atilde;o</th></tr></thead><tbody><tr class="seglistitem">
+	      <td class="seg"><code class="function">setX(float)</code></td>
+	      <td class="seg">Define o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$x$</span></span> do ponto.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">setY(float)</code></td>
+	      <td class="seg">Define o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$y$</span></span> do ponto.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">setXY(float,float)</code></td>
+	      <td class="seg">Define, em uma mesma fun&ccedil;&atilde;o, os valores da coordenadas <span class="inlinemediaobject"><span class="phrase">$x$</span></span> e <span class="inlinemediaobject"><span class="phrase">$y$</span></span> do ponto.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">float getX()</code></td>
+	      <td class="seg">Recupera o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$x$</span></span> do ponto.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">float getY()</code></td>
+	      <td class="seg">Recupera o valor da coordenada <span class="inlinemediaobject"><span class="phrase">$y$</span></span> do ponto.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">add(Point2d p1)</code></td>
+	      <td class="seg">Adiciona as coordenadas <span class="inlinemediaobject"><span class="phrase">$(x,y)$</span></span> do ponto com as coordenadas de um ponto <span class="inlinemediaobject"><span class="phrase">$(x1,y1)$</span></span> fornecido, armazenando o resultado <span class="inlinemediaobject"><span class="phrase">$(x+x1,y+y1)$</span></span> nas coordenadas de um novo ponto, que dever&aacute; ser retornado para o cliente da classe.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">sub(Point2d p1)</code></td>
+	      <td class="seg">Subtrai as coordenadas <span class="inlinemediaobject"><span class="phrase">$(x,y)$</span></span> do ponto das coordenadas de um ponto <span class="inlinemediaobject"><span class="phrase">$(x1,y1)$</span></span> fornecido, armazenando o resultado <span class="inlinemediaobject"><span class="phrase">$(x-x1,y-y1)$</span></span> nas coordenadas de um novo ponto, que dever&aacute; ser retornado para o cliente da classe.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">tamanho()</code></td>
+	      <td class="seg">Calcula a dist&acirc;ncia do ponto para a origem do sistema de coordenadas.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">translada(float a, float b)</code></td>
+	      <td class="seg">Translada o ponto <span class="inlinemediaobject"><span class="phrase">$(x,y)$</span></span> para <span class="inlinemediaobject"><span class="phrase">$+a$</span></span>, <span class="inlinemediaobject"><span class="phrase">$+b$</span></span>, de modo que, ap&oacute;s a execu&ccedil;&atilde;o do m&eacute;todo, as coordenadas do ponto ser&atilde;o <span class="inlinemediaobject"><span class="phrase">$(x+a,y+b)$</span></span>.</td>
+	    </tr><tr class="seglistitem">
+	      <td class="seg"><code class="function">imprime()</code></td>
+	      <td class="seg">Imprime o ponto na forma <code class="computeroutput">(xpos, ypos)</code>.</td>
+	    </tr></tbody></table></div>
+	</li><li class="listitem">
+	  <p>Defina uma classe chamada <code class="classname">Poligono</code> para representar pol&iacute;gonos convexos. Assuma que o tamanho dos pol&iacute;gonos ser&aacute; limitado a 100 v&eacute;rtices. Utilize a classe <code class="classname">Point2d</code> que voc&ecirc; definiu no exemplo anterior para guardar informa&ccedil;&otilde;es com as posi&ccedil;&otilde;es dos <span class="inlinemediaobject"><span class="phrase">$N$</span></span> v&eacute;rtices do pol&iacute;gono. Sua classe dever&aacute; prever as seguintes funcionalidades:</p>
+	  <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Inserir v&eacute;rtice no pol&iacute;gono. Assuma que os <span class="inlinemediaobject"><span class="phrase">$N$</span></span> v&eacute;rtices dever&atilde;o ser inseridos conforme a sequ&ecirc;ncia (anti-hor&aacute;ria) em que figuram ao redor do pol&iacute;gono. As arestas do pol&iacute;gono ser&atilde;o compostas pelos segmentos <span class="inlinemediaobject"><span class="phrase">$(x_0,y_0) \rightarrow (x_1,y_1)$</span></span>, <span class="inlinemediaobject"><span class="phrase">$(x_1,y_1) \rightarrow (x_2,y_2)$</span></span>, com exce&ccedil;&atilde;o da &uacute;ltima aresta, formada pelo segmento <span class="inlinemediaobject"><span class="phrase">$(x_{N-1},y_{N-1}) \rightarrow (x_0,y_0)$</span></span>.</p></li><li class="listitem"><p>Recuperar a quantidade de v&eacute;rtices que foram inseridos no pol&iacute;gono</p></li><li class="listitem"><p>Calcular a &aacute;rea do pol&iacute;gono.</p></li><li class="listitem"><p>Transladar o pol&iacute;gono para <span class="inlinemediaobject"><span class="phrase">$+a$</span></span>, <span class="inlinemediaobject"><span class="phrase">$+b$</span></span>.</p></li><li class="listitem"><p>Rotacionar o pol&iacute;gono de <span class="inlinemediaobject"><span class="phrase">$\theta$</span></span> graus no sentido anti-hor&aacute;rio em torno de um ponto <span class="inlinemediaobject"><span class="phrase">$(x_0,y_0)$</span></span> fornecido pelo usu&aacute;rio.</p></li><li class="listitem"><p>Imprimir o pol&iacute;gono armazenado da forma <code class="computeroutput">(x0,y0)-&gt;(x1,y1)-&gt;(x2,y2)-&gt;...</code></p></li></ul></div>
+	  <p>Crie um pequeno exemplo para testar sua implementa&ccedil;&atilde;o, verificando as funcionalidades criadas para o pol&iacute;gono <span class="inlinemediaobject"><span class="phrase">$(2,5)\rightarrow(-4,3)\rightarrow(5,1)$</span></span>.</p>
+	</li></ol></div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="cha.parafernalha.html">&laquo;&nbsp;Cap&iacute;tulo 2. Ferramentas de desenvolvimento</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="cha.construtores.destrutores.html">Cap&iacute;tulo 4. Construtores e destrutores&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>

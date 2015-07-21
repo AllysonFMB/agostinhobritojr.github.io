@@ -1,0 +1,300 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 12. Sugest&atilde;o de projetos</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Programa&ccedil;&atilde;o Orientada a Objetos em C++"><link rel="up" href="index.html" title="Programa&ccedil;&atilde;o Orientada a Objetos em C++"><link rel="prev" href="cha.excecoes.html" title="Cap&iacute;tulo 11. Tratamento de exce&ccedil;&otilde;es"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="cha.excecoes.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 12. Sugest&atilde;o de projetos</th><td width="20%" align="right">&nbsp;</td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.projetos"></a>Cap&iacute;tulo 12. Sugest&atilde;o de projetos</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.projetos.html#sec.projetos.escultor">12.1. Escultor digital</a></span></dt><dd><dl><dt><span class="section"><a href="cha.projetos.html#sec.projetos.escultor.vect">12.1.1. O formato de armazenamento VECT</a></span></dt><dt><span class="section"><a href="cha.projetos.html#sec.projetos.escultor.off">12.1.2. O formato de armazenamento OFF</a></span></dt><dt><span class="section"><a href="cha.projetos.html#sec.projetos.escultor.cabecalho">12.1.3. Definindo a classe <code class="classname">Escultor</code>.</a></span></dt></dl></dd></dl></div>
+    
+    <p>Neste cap&iacute;tulo s&atilde;o apresentadas algumas sugest&otilde;es de projetos que podem ser usados para desenvolver suas habilidades de programa&ccedil;&atilde;o. Os projetos foram propostos de modo a apresentar algumas aplica&ccedil;&otilde;es da linguagem C++ em engenharia.</p>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.projetos.escultor"></a>12.1. Escultor digital</h2></div></div></div>
+      
+      <p>O objetivo desse projeto &eacute; construir ferramental em C++ para realizar esculturas em blocos digitais. A ideia &eacute; disponibilizar para o usu&aacute;rio uma classe que permita seu usu&aacute;rio especificar um bloco digital formado por um conjunto de elementos de volume dispostos nas tr&ecirc;s dimens&otilde;es do espa&ccedil;o. Para imagens digitais, diz-se que elas s&atilde;o compostas de pixels (<span class="foreignphrase"><em class="foreignphrase">picture elements</em></span>). Para volumes digitais, diz-se que eles s&atilde;o compostos de voxels (<span class="foreignphrase"><em class="foreignphrase">volume elements</em></span>). Portanto, os elementos do bloco digital poder&atilde;o ser referidos como os <span class="foreignphrase"><em class="foreignphrase">voxels</em></span> desse bloco. </p>
+      <p>O bloco digital seria representado por uma matriz tridimensional, com dimens&otilde;es de largura, altura e largura especificadas, onde os &iacute;ndices dos elementos nessa matriz coresponderiam &agrave;s posi&ccedil;&otilde;es dos voxels no espa&ccedil;o. A aloca&ccedil;&atilde;o dessa matriz dever&aacute; ser feita dinamicamente, para se ajustar &agrave;s necessidades do usu&aacute;rio escultor. As dimens&otilde;es servir&atilde;o para especificar o tamanho dos blocos de bytes que dever&atilde;o ser alocados. Por exemplo, para um bloco digital de dimens&otilde;es <span class="inlinemediaobject"><span class="phrase">$largura=2$</span></span>, <span class="inlinemediaobject"><span class="phrase">$altura=3$</span></span> e <span class="inlinemediaobject"><span class="phrase">$altura=4$</span></span>, a matriz digital destinada a represent&aacute;-lo poderia ser declarada da forma <code class="varname">char m[2][3][4];</code>. Essa matriz teria,portanto, <span class="inlinemediaobject"><span class="phrase">$2\times3\times4 = 24$</span></span> voxels. Entretanto, &eacute; importante ressaltar que se trata apenas de um exemplo. Na implementa&ccedil;&atilde;o, essa matriz seria alocada de forma din&acirc;mica, e n&atilde;o estaticamente.</p>
+      <p>O processo de escultura &eacute; feito modificando os valores da matriz digital. Os voxels do volume representados pelos elementos da matriz dever&atilde;o assumir valores iguais a <span class="emphasis"><em>1</em></span> ou <span class="emphasis"><em>0</em></span>, simbolizando que a posi&ccedil;&atilde;o correspondente do elemento no bloco digital encontra-se presente ou n&atilde;o na escultura. Por exemplo, considere a matriz do exemplo anterior inserida no contexto do seguinte trecho de c&oacute;digo:</p>
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">char</strong> m[<span class="hl-number">2</span>][<span class="hl-number">3</span>][<span class="hl-number">4</span>];
+<strong class="hl-keyword">for</strong>(<strong class="hl-keyword">int</strong> x=<span class="hl-number">0</span>; x&lt;<span class="hl-number">2</span>; x++){
+  <strong class="hl-keyword">for</strong>(<strong class="hl-keyword">int</strong> y=<span class="hl-number">0</span>; y&lt;<span class="hl-number">3</span>; y++){
+    <strong class="hl-keyword">for</strong>(<strong class="hl-keyword">int</strong> z=<span class="hl-number">0</span>; z&lt;<span class="hl-number">4</span>; z++){
+      m[x][y][z]=<span class="hl-number">1</span>;
+    }
+  }
+}
+m[<span class="hl-number">0</span>][<span class="hl-number">0</span>][<span class="hl-number">0</span>]=<span class="hl-number">0</span>;</pre>
+      </div>
+      <p>O bloco digital correspondente &agrave; essa matriz &eacute; ilustrado na <a class="xref" href="cha.projetos.html#fig.matriz234" title="Figura 12.1. Exemplo de bloco digital esculpido com $2\times 3\times 4$ voxels">Figura&nbsp;12.1</a>. Observe que o voxel cuja posi&ccedil;&atilde;o espacial &eacute; <span class="inlinemediaobject"><span class="phrase">$(x,y,z) = (0,0,0)$</span></span> &eacute; representado na matriz <code class="varname">m</code> pelos &iacute;ndices <span class="inlinemediaobject"><span class="phrase">$(0,0,0)$</span></span></p>
+      <div class="figure"><a name="fig.matriz234"></a><p class="title"><b>Figura 12.1. Exemplo de bloco digital esculpido com <span class="inlinemediaobject"><span class="phrase">$2\times 3\times 4$</span></span> voxels</b></p><div class="figure-contents">
+	
+	<div class="mediaobject" align="center"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/matriz234.svg">figs/matriz234.svg</object></div></div>
+      </div></div><br class="figure-break">
+      <p>O que espera-se que o desenvolvedor implemente para esse projeto? A proposta &eacute; que a classe disponibilize uma s&eacute;rie de m&eacute;todos apropriados para realizar a escultura no bloco digital. Por exemplo,  m&eacute;todos para remover ou acrescentar sub-blocos &agrave; estrutura, m&eacute;todos para remover ou adicionar esferas digitais de um raio dado, m&eacute;todos para acrescentar ou remover voxels individualmente, m&eacute;todos para perfurar o bloco de um lado para outro, al&eacute;m de recursos para calcular uni&atilde;o, intersecao e diferenca entre blocos.</p>
+      <p>Em se tratando de um elemento abstrato, a escultura digital precisa de uma ferramenta de visualiza&ccedil;&atilde;o para ser exibida no computador. Entre os programas que podem ser usados para visualiza&ccedil;&atilde;o, destaca-se o geomview (<a class="ulink" href="http://www.geomview.org" target="_top">www.geomview.org</a>), livremente dispon&iacute;vel em sistemas Unix. No Ubuntu, por exemplo, a instala&ccedil;&atilde;o &eacute; quase trivial, pois ele se encontra presente na loja virtual de aplicativos. Para usu&aacute;rios de outros sistemas operacionais existe o meshlab (<a class="ulink" href="http://meshlab.sourceforge.net" target="_top">meshlab.sourceforge.net</a>), que tamb&eacute;m &eacute; livre e est&aacute; dispon&iacute;vel para v&aacute;rias plataformas (inclusive android e ios).</p>
+      <p>Para ser visualizada, a escultura digital deve ser armazenada um arquivo utilizando um formato suportado pela ferramenta de visualiza&ccedil;&atilde;o. Diversos formatos de armazenamento de modelos tridimensionais podem ser usados, mas optamos pelo uso de dois formatos bastante simples, de f&aacute;cil cria&ccedil;&atilde;o e entendimento: os formatos VECT e OFF. Ambos s&atilde;o suportados pelo geomview, de sorte que primeiro pode ser usado para armazenar matrizes de pontos com cores associadas, enquanto que o segundo pode ser usado para representar malhas tridimensionais na forma de pol&iacute;gonos planares.</p>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec.projetos.escultor.vect"></a>12.1.1. O formato de armazenamento VECT</h3></div></div></div>
+	
+	<p>Arquivos VECT s&atilde;o normalmente associados &agrave; extens&atilde;o <code class="filename">.vect</code> possui uma descri&ccedil;&atilde;o bem simples. Para fins desse projeto, podemos resumir o comportamento de um arquivo desse tipo da seguinte forma:</p>
+	<p>
+	  </p><pre class="programlisting">VECT
+NPoligonos  NVertices  NCores 
+Nv[<span class="hl-number">0</span>] ... Nv[NPoligonos-<span class="hl-number">1</span>]    
+Nc[<span class="hl-number">0</span>] ... Nc[NPoligonos-<span class="hl-number">1</span>]
+x[<span class="hl-number">0</span>] y[<span class="hl-number">0</span>] z[<span class="hl-number">0</span>]
+...
+x[NVertices-<span class="hl-number">1</span>] y[NVertices-<span class="hl-number">1</span>] z[NVertices-<span class="hl-number">1</span>]
+r[<span class="hl-number">0</span>] g[<span class="hl-number">0</span>] b[<span class="hl-number">0</span>] a[<span class="hl-number">0</span>]
+...
+r[NCores-<span class="hl-number">1</span>] g[NCores-<span class="hl-number">1</span>] b[NCores-<span class="hl-number">1</span>] a[NCores-<span class="hl-number">1</span>]</pre><p>
+	</p>
+	<p>A primeira linha cont&eacute;m apenas a palavra VECT, servindo para identificar o tipo do arquivo.</p>
+	<p>A segunda linha especifica o n&uacute;mero de pol&iacute;gonos, v&eacute;rtices e cores que s&atilde;o representados ao todo na figura geom&eacute;trica. Por natureza, o formato VECT foi previsto para armazenar pol&iacute;gonos. Entretanto, para nossa comodidade, podemos representar os voxels do bloco digital como sendo pol&iacute;gonos de apenas um v&eacute;rtice (sem arestas!) com uma cor associada. Logo, teremos um mesmo valor associado aos tr&ecirc;s descritores NPoligonos, NVertices e NCores.</p>
+	<p>A terceira linha cont&eacute;m uma lista de inteiros especificando o n&uacute;mero de v&eacute;rtices em cada pol&iacute;gono. Haja vista que foi convencionado que cada pol&iacute;gono cont&eacute;m apenas um v&eacute;rtice, esta linha ser&aacute; formada por diversos valores iguais a "<span class="emphasis"><em>1</em></span>", na mesma quantidade que o n&uacute;mero de voxels. A mesma ideia vale para a terceira linha que, dessa vez, especifica a quantidade de cores em cada pol&iacute;gono (tamb&eacute;m igual a 1!).</p>
+	<p>Da quarta linha em diante seguem as coordenadas <span class="inlinemediaobject"><span class="phrase">$(x,y,z)$</span></span> dos NVertices presentes no bloco digital, devendo ser colocados um conjunto de coordenadas por linha.</p>
+	<p>Finalmente, seguem-se NCores linhas contendo as cores R(ed), G(reen) e B(lue) de cada voxel, bem como o valor da componente alpha, que define a transpar&ecirc;ncia desse voxel. As cores s&atilde;o especificadas na forma de n&uacute;meros reais, assumindo valores entre na faixa <span class="inlinemediaobject"><span class="phrase">$[0,1]$</span></span>.</p>
+	<p>Para um bloco digital de dimens&otilde;es 2x2x2 com todos os seus elementos presentes e na cor vermelha, o arquivo VECT correspondente seria o seguinte:</p>
+	<div class="screenco"><pre class="screen">VECT
+<span class="hl-number">8</span> <span class="hl-number">8</span> <span class="hl-number">8</span>                                                      <span class="co" id="tamanhobloco"><img src="images/callouts/1.svg" alt="(1)"></span>
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>                                            <span class="co" id="nelementos"><img src="images/callouts/2.svg" alt="(2)"></span>
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>                                            <span class="co" id="ncores"><img src="images/callouts/3.svg" alt="(3)"></span>
+<span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">0</span>                                                      <span class="co" id="coordenadas"><img src="images/callouts/4.svg" alt="(4)"></span>
+<span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">0</span> <span class="hl-number">1</span> <span class="hl-number">0</span>
+<span class="hl-number">0</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">0</span>
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>                                                    <span class="co" id="cores"><img src="images/callouts/5.svg" alt="(5)"></span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>	</pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/1.svg" alt="1" border="0"></span></p></td><td valign="top" align="left">
+	      <p>Indica que o arquivo possui 8 pol&iacute;gonos, 8 v&eacute;rtices e 8 cores declarados.</p>
+	    </td></tr><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/2.svg" alt="2" border="0"></span></p></td><td valign="top" align="left">
+	      <p>O pol&iacute;gono 1 possui 1 v&eacute;rtice, o pol&iacute;gono 2 possui 1 vertice, ..., o pol&iacute;gono NPoligonos possui 1 v&eacute;rtice.</p>
+	    </td></tr><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/3.svg" alt="3" border="0"></span></p></td><td valign="top" align="left">
+	      <p>O pol&iacute;gono 1 possui 1 cor, o pol&iacute;gono 2 possui 1 cor, ..., o pol&iacute;gono NPoligonos possui 1 cor.</p>
+	    </td></tr><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/4.svg" alt="4" border="0"></span></p></td><td valign="top" align="left">
+	      <p>Apresenta as coordenadas de todos os v&eacute;rtices que formar&atilde;o o bloco digital.</p>
+	    </td></tr><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/5.svg" alt="5" border="0"></span></p></td><td valign="top" align="left">
+	      <p>Define as cores, em sequ&ecirc;ncia, de todos os v&eacute;rtices do bloco.</p>
+	    </td></tr></table></div></div>
+	
+	<p>Considere agora que se deseje representar o cubo mesmo cubo digital, desta vez, sem estar presente o elemento de coordenadas <span class="inlinemediaobject"><span class="phrase">$(0,0,0)$</span></span> e com o elemento de coordenadas <span class="inlinemediaobject"><span class="phrase">$(1,1,1)$</span></span> assumindo a cor verde. As novas modifica&ccedil;&otilde;es seriam representadas em um arquivo VECT com o seguinte conte&uacute;do:</p>
+	<pre class="screen">VECT
+<span class="hl-number">7</span> <span class="hl-number">7</span> <span class="hl-number">7</span>
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> 
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> 
+<span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">0</span> <span class="hl-number">1</span> <span class="hl-number">0</span>
+<span class="hl-number">0</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">0</span>
+<span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">0</span> <span class="hl-number">1</span>
+<span class="hl-number">0</span> <span class="hl-number">1</span> <span class="hl-number">0</span> <span class="hl-number">1</span>	</pre>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec.projetos.escultor.off"></a>12.1.2. O formato de armazenamento OFF</h3></div></div></div>
+	
+	<p>O segundo formato de armazenamento &eacute; o formato OFF, geralmente associados a arquivos com a extens&atilde;o <code class="filename">.off</code>. Ele prev&ecirc; a representa&ccedil;&atilde;o de superf&iacute;cies usando conjuntos de pol&iacute;gonos. Para fins do projeto proposto, um arquivo OFF pode ser descrito da seguinte maneira:</p>
+	<pre class="screen">OFF
+NVertices  NFaces  NArestas
+x[<span class="hl-number">0</span>]  y[<span class="hl-number">0</span>]  z[<span class="hl-number">0</span>]
+...
+x[NVertices-<span class="hl-number">1</span>]  y[NVertices-<span class="hl-number">1</span>]  z[NVertices-<span class="hl-number">1</span>]
+Nv v[<span class="hl-number">0</span>] v[<span class="hl-number">1</span>] ... v[Nv-<span class="hl-number">1</span>]  r g b a
+Nv v[<span class="hl-number">0</span>] v[<span class="hl-number">1</span>] ... v[Nv-<span class="hl-number">1</span>]  r g b a
+...
+Nv v[<span class="hl-number">0</span>] v[<span class="hl-number">1</span>] ... v[Nv-<span class="hl-number">1</span>]  r g b a
+	</pre>
+	<p>A primeira linha cont&eacute;m apenas a palavra OFF, servindo para identificar o tipo do arquivo.</p>
+	<p>A segunda linha especifica o n&uacute;mero de v&eacute;rtices (NVertices), faces (NFaces) e arestas (NArestas) que s&atilde;o representados ao todo na figura geom&eacute;trica. Esta &uacute;ltima informa&ccedil;&atilde;o, o n&uacute;mero de arestas n&atilde;o &eacute; utilizado podendo sempre assumir valor 0.</p>
+	<p>A partir da terceira linha s&atilde;o apresentadas as coordenadas espaciais tridimensionais <span class="inlinemediaobject"><span class="phrase">$(x,y,z)$</span></span> dos NVertices presentes na figura.</p>
+	<p>Seguindo as coordenadas v&ecirc;m as especifica&ccedil;&otilde;es das faces. Cada face &eacute; definida por uma sequ&ecirc;ncia de &iacute;ndices em uma linha do arquivo. O primeiro elemento da linha define o n&uacute;mero de v&eacute;rtices na referida face. Em seguida, s&atilde;o apresentadas os &iacute;ndices dos Nv v&eacute;rtices (na faixa <span class="inlinemediaobject"><span class="phrase">$[0 \dots NVertices]$</span></span>), bem como a cor da face no formato RGBA, tal como descrito para o formato VECT. Um fato importante sobre a especifica&ccedil;&atilde;o da face diz respeito &agrave; sequ&ecirc;ncia em que os v&eacute;rtices s&atilde;o apresentados. O sentido do vetor normal a esta superf&iacute;cie &eacute; indicado pela regra da m&atilde;o direita, onde os dedos acompanham a sequ&ecirc;ncia fornecida (ver <a class="xref" href="cha.projetos.html#fig.normal" title="Figura 12.2. Defini&ccedil;&atilde;o da normal &agrave; superf&iacute;cie pela regra da m&atilde;o direita">Figura&nbsp;12.2</a>). Cada sequ&ecirc;ncia de pontos produz um pol&iacute;gono planar com duas faces opostas e, nos programas de visualiza&ccedil;&atilde;o, a dire&ccedil;&atilde;o e sentido do vetor normal s&atilde;o usados para escolher e iluminar corretamente a face que se deseja exibir.</p>
+	<div class="figure"><a name="fig.normal"></a><p class="title"><b>Figura 12.2. Defini&ccedil;&atilde;o da normal &agrave; superf&iacute;cie pela regra da m&atilde;o direita</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject" align="center"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/normal.svg">figs/normal.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>Para exemplificar a cria&ccedil;&atilde;o de um arquivo OFF, considere o cubo apresentado na <a class="xref" href="cha.projetos.html#fig.cubo3d" title="Figura 12.3. Representa&ccedil;&atilde;o de um cubo com centro no ponto $P(x,y,z)$.">Figura&nbsp;12.3</a>. Sua representa&ccedil;&atilde;o dever&aacute; ser dada pelas posi&ccedil;&otilde;es dos seus oito v&eacute;rtices <span class="inlinemediaobject"><span class="phrase">$(P_0 \dots P_7)$</span></span> e pelas sequ&ecirc;ncias de v&eacute;rtices que definem suas faces, que derver&atilde;o ser organizadas de modo &agrave;s suas normais apontarem para fora do cubo. S&oacute; assim, as superf&iacute;cies das faces corretamente iluminadas, proporcionando o efeito visual desejado na ferramenta de exibi&ccedil;&atilde;o.</p>
+	<div class="figure"><a name="fig.cubo3d"></a><p class="title"><b>Figura 12.3. Representa&ccedil;&atilde;o de um cubo com centro no ponto <span class="inlinemediaobject"><span class="phrase">$P(x,y,z)$</span></span>.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject" align="center"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/cubo.svg">figs/cubo.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>As faces deste cubo seriam definidas ent&atilde;o pelas seguintes sequ&ecirc;ncias de v&eacute;rtices:</p>
+	<pre class="screen">Face <span class="hl-number">1</span>: P0 P3 P2 P1
+Face <span class="hl-number">2</span>: P4 P5 P6 P7
+Face <span class="hl-number">3</span>: P0 P1 P5 P4
+Face <span class="hl-number">4</span>: P0 P4 P7 P3
+Face <span class="hl-number">5</span>: P7 P6 P2 P3
+Face <span class="hl-number">6</span>: P1 P2 P6 P5
+	</pre>
+	<p>Para um cubo de lado de tamanho igual a 1, com centro no ponto <span class="inlinemediaobject"><span class="phrase">$(x,y,z)=(0,0,0)$</span></span> e faces opacas desenhadas na cor branca, sua representa&ccedil;&atilde;o no formato OFF seria dada pelo arquivo com o seguinte conte&uacute;do:</p>
+	<div class="screenco"><pre class="screen">OFF
+<span class="hl-number">8</span> <span class="hl-number">6</span> <span class="hl-number">0</span>                                                      <span class="co" id="tamanho"><img src="images/callouts/1.svg" alt="(1)"></span>
+-<span class="hl-number">0.5</span> <span class="hl-number">0.5</span> -<span class="hl-number">0.5</span>                                              <span class="co" id="vertices"><img src="images/callouts/2.svg" alt="(2)"></span>
+-<span class="hl-number">0.5</span> -<span class="hl-number">0.5</span> -<span class="hl-number">0.5</span>
+<span class="hl-number">0.5</span> -<span class="hl-number">0.5</span> -<span class="hl-number">0.5</span>
+<span class="hl-number">0.5</span> <span class="hl-number">0.5</span> -<span class="hl-number">0.5</span>
+-<span class="hl-number">0.5</span> <span class="hl-number">0.5</span> <span class="hl-number">0.5</span>
+-<span class="hl-number">0.5</span> -<span class="hl-number">0.5</span> <span class="hl-number">0.5</span>
+<span class="hl-number">0.5</span> -<span class="hl-number">0.5</span> <span class="hl-number">0.5</span>
+<span class="hl-number">0.5</span> <span class="hl-number">0.5</span> <span class="hl-number">0.5</span>
+<span class="hl-number">4</span> <span class="hl-number">0</span> <span class="hl-number">3</span> <span class="hl-number">2</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>                                          <span class="co" id="faces"><img src="images/callouts/3.svg" alt="(3)"></span>
+<span class="hl-number">4</span> <span class="hl-number">4</span> <span class="hl-number">5</span> <span class="hl-number">6</span> <span class="hl-number">7</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">4</span> <span class="hl-number">0</span> <span class="hl-number">1</span> <span class="hl-number">5</span> <span class="hl-number">4</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">4</span> <span class="hl-number">0</span> <span class="hl-number">4</span> <span class="hl-number">7</span> <span class="hl-number">3</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">4</span> <span class="hl-number">3</span> <span class="hl-number">7</span> <span class="hl-number">6</span> <span class="hl-number">2</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span>
+<span class="hl-number">4</span> <span class="hl-number">1</span> <span class="hl-number">2</span> <span class="hl-number">6</span> <span class="hl-number">5</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> <span class="hl-number">1</span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/1.svg" alt="1" border="0"></span></p></td><td valign="top" align="left">
+	      <p>Indica que o arquivo possui 8 v&eacute;rtices e 6 faces declarados. O n&uacute;mero de faces igual a zero n&atilde;o &eacute; utilizado.</p>
+	    </td></tr><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/2.svg" alt="2" border="0"></span></p></td><td valign="top" align="left">
+	      <p>Apresenta as coordenadas dos v&eacute;rtices que formar&atilde;o o cubo.</p>
+	    </td></tr><tr><td width="5%" valign="top" align="left"><p><span><img src="images/callouts/3.svg" alt="3" border="0"></span></p></td><td valign="top" align="left">
+	      <p>O primeiro n&uacute;mero define quantidade de faces de um dos pol&iacute;gonos da escultura. Os quatro n&uacute;meros seguintes identificam o &iacute;ndice do v&eacute;rtice que a comp&otilde;e uma face (os &iacute;ndices dos v&eacute;rtices obedecem a ordem em que foram escritos no arquivo). Os quatro n&uacute;meros restantes identificam a cor do pol&iacute;gono (componentes vermelha, verde, azul e a transpar&ecirc;ncia). Os n&uacute;meros podem ser do tipo float, quando dever&atilde;o assumir valores entre 0 e 1, ou do tipo int, assumindo valores entre 0 e 255.</p>
+	    </td></tr></table></div></div>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec.projetos.escultor.cabecalho"></a>12.1.3. Definindo a classe <code class="classname">Escultor</code>.</h3></div></div></div>
+	
+	<p>O exemplo <a class="xref" href="cha.projetos.html#exe.proposta-definicao-escultor" title="Exemplo 12.1. Arquivos de defini&ccedil;&atilde;o voxel.h e escultor.h apresentados como proposta para concep&ccedil;&atilde;o da classe Escultor">Exemplo&nbsp;12.1</a> mostra a defini&ccedil;&atilde;o da classe <code class="classname">Escultor</code> proposta para realizar o processo de escultura digital.</p>
+	<div class="example"><a name="exe.proposta-definicao-escultor"></a><p class="title"><b>Exemplo 12.1. Arquivos de defini&ccedil;&atilde;o <a class="ulink" href="exemplos/voxel.h" target="_top"><code class="filename">voxel.h</code></a> e <a class="ulink" href="exemplos/escultor.h" target="_top"><code class="filename">escultor.h</code></a> apresentados como proposta para concep&ccedil;&atilde;o da classe <code class="classname">Escultor</code></b></p><div class="example-contents">
+	  
+	  <pre class="programlisting">#ifndef VOXEL_H
+<span class="hl-directive" style="color: maroon">#define VOXEL_H</span>
+
+<em class="hl-comment" style="color: silver">// Estrutura de um voxel</em>
+<strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong>{
+    <strong class="hl-keyword">int</strong> r,g,b,a;
+    <strong class="hl-keyword">bool</strong> exists;
+    <em class="hl-comment" style="color: silver">// R,G,B,A : [0,1]</em>
+    <em class="hl-comment" style="color: silver">// A=0 : transparente</em>
+    <em class="hl-comment" style="color: silver">// A=1 : opaco</em>
+    <em class="hl-comment" style="color: silver">// exists: true ou false</em>
+} Voxel;
+
+<em class="hl-comment" style="color: silver">// Estrutura de coordenadas</em>
+<em class="hl-comment" style="color: silver">// (usado para leitura do arquivo VECT)</em>
+<strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong>{
+    <strong class="hl-keyword">int</strong> x,y,z;
+    <strong class="hl-keyword">bool</strong> exists;
+} VoxelCoords;
+<span class="hl-directive" style="color: maroon">#endif // VOXEL_H</span>
+</pre>
+	  <pre class="programlisting">#ifndef ESCULTOR_HPP
+<span class="hl-directive" style="color: maroon">#define ESCULTOR_HPP</span>
+<span class="hl-directive" style="color: maroon">#include &lt;string&gt;</span>
+<span class="hl-directive" style="color: maroon">#include &lt;vector&gt;</span>
+<span class="hl-directive" style="color: maroon">#include "voxel.h"</span>
+
+<strong class="hl-keyword">using</strong> <strong class="hl-keyword">namespace</strong> std;
+
+<strong class="hl-keyword">enum</strong> {OFF, VECT}; <em class="hl-comment" style="color: silver">// identifica o tipo de arquivo para salvamento</em>
+<strong class="hl-keyword">enum</strong> {XY,ZX,YZ}; <em class="hl-comment" style="color: silver">// identifica o plano a ser recuperado</em>
+
+<strong class="hl-keyword">class</strong> Escultor{
+<strong class="hl-keyword">private</strong>:
+  Voxel ***v; <em class="hl-comment" style="color: silver">// array que armazena o bloco 3d</em>
+  <strong class="hl-keyword">float</strong> lado; <em class="hl-comment" style="color: silver">// metade da largura de um cubo</em>
+  <strong class="hl-keyword">float</strong> delta; <em class="hl-comment" style="color: silver">// distancia entre os cubos</em>
+  <strong class="hl-keyword">int</strong> r,g,b,a;
+  <strong class="hl-keyword">int</strong> nx, ny, nz; <em class="hl-comment" style="color: silver">// dimensoes do cubo em x,y,z</em>
+  <strong class="hl-keyword">int</strong> i, x, y, z; <em class="hl-comment" style="color: silver">// variaveis auxiliares</em>
+<strong class="hl-keyword">public</strong>:
+  <em class="hl-comment" style="color: silver">// construtor da classe</em>
+  Escultor(<strong class="hl-keyword">int</strong> _nx=<span class="hl-number">1</span>, <strong class="hl-keyword">int</strong> _ny=<span class="hl-number">1</span>, <strong class="hl-keyword">int</strong> _nz=<span class="hl-number">1</span>);
+
+  <em class="hl-comment" style="color: silver">// destrutor da classe</em>
+  ~Escultor();
+
+  <em class="hl-comment" style="color: silver">// aloca nova matriz para guardar a escultura</em>
+  <strong class="hl-keyword">void</strong> alocaRecursos();
+
+  <em class="hl-comment" style="color: silver">// libera matriz alocada </em>
+  <strong class="hl-keyword">void</strong> liberaRecursos();
+  
+  <em class="hl-comment" style="color: silver">// insere um paralelepipedo com vertices extremos opostos pela diagonal</em>
+  <em class="hl-comment" style="color: silver">// iguais a (x0, y0, z0) e (x1, y1, z1)</em>
+  <strong class="hl-keyword">void</strong> botaCaixa(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> x1, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> y1, <strong class="hl-keyword">int</strong> z0, <strong class="hl-keyword">int</strong> z1);
+  <strong class="hl-keyword">int</strong> sizeX();
+  <strong class="hl-keyword">int</strong> sizeY();
+  <strong class="hl-keyword">int</strong> sizeZ();
+
+  <em class="hl-comment" style="color: silver">// insere um elipsoide com centro em (x0, y0, z0) e raios rx, ry, rz</em>
+  <strong class="hl-keyword">void</strong> botaElipse(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> z0, <strong class="hl-keyword">int</strong> rx, <strong class="hl-keyword">int</strong> ry, <strong class="hl-keyword">int</strong> rz);
+  
+  <em class="hl-comment" style="color: silver">// insere uma esfera com centro em (x0, y0, z0) e raio r</em>
+  <strong class="hl-keyword">void</strong> botaEsfera(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> z0, <strong class="hl-keyword">int</strong> rr);
+
+  <em class="hl-comment" style="color: silver">// insere um voxel em (x0, y0, z0)</em>
+  <strong class="hl-keyword">void</strong> botaVoxel(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> z0);
+
+  <em class="hl-comment" style="color: silver">// remove um paralelepipedo com vertices extremos opostos pela diagonal</em>
+  <em class="hl-comment" style="color: silver">// iguais (x0, y0, z0) e (x1, y1, z1)</em>
+  <strong class="hl-keyword">void</strong> tiraCaixa(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> x1, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> y1, <strong class="hl-keyword">int</strong> z0, <strong class="hl-keyword">int</strong> z1);
+
+  <em class="hl-comment" style="color: silver">// remove um elipsoide com centro em (x0, y0, z0) e raios rx, ry, rz</em>
+  <strong class="hl-keyword">void</strong> tiraElipse(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> z0, <strong class="hl-keyword">int</strong> rx, <strong class="hl-keyword">int</strong> ry, <strong class="hl-keyword">int</strong> rz);
+
+  <em class="hl-comment" style="color: silver">// remove uma esfera com centro em (x0, y0, z0) e raio r</em>
+  <strong class="hl-keyword">void</strong> tiraEsfera(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> z0, <strong class="hl-keyword">int</strong> rr); 
+
+  <em class="hl-comment" style="color: silver">// remove um voxel em (x0, y0, z0)</em>
+  <strong class="hl-keyword">void</strong> tiraVoxel(<strong class="hl-keyword">int</strong> x0, <strong class="hl-keyword">int</strong> y0, <strong class="hl-keyword">int</strong> z0);
+
+  <em class="hl-comment" style="color: silver">// grava o modelo criado no arquivo "nome" no formato OFF</em>
+  <strong class="hl-keyword">void</strong> gravaOFF(string nome);
+
+  <em class="hl-comment" style="color: silver">// grava o modelo criado no arquivo "nome" no formato VECT</em>
+  <strong class="hl-keyword">void</strong> gravaVECT(string nome);
+
+  <em class="hl-comment" style="color: silver">// le o modelo presente no arquivo "nome" no formato VECT</em>
+  <strong class="hl-keyword">void</strong> leVECT(string nome);
+
+  <em class="hl-comment" style="color: silver">// remove os voxels totalmente rodeados, pois nao serao vistos</em>
+  <em class="hl-comment" style="color: silver">// no visualizador, alem de consumirem recursos para exibicao</em>
+  <strong class="hl-keyword">void</strong> limpaVoxels(<strong class="hl-keyword">void</strong>);
+
+  <em class="hl-comment" style="color: silver">// define o espacamento entre os cubos do bloco</em>
+  <strong class="hl-keyword">void</strong> setDelta(<strong class="hl-keyword">float</strong> _delta);
+
+  <em class="hl-comment" style="color: silver">// define a cor de desenho</em>
+  <strong class="hl-keyword">void</strong> setColor(<strong class="hl-keyword">int</strong> _r, <strong class="hl-keyword">int</strong> _g, <strong class="hl-keyword">int</strong> _b, <strong class="hl-keyword">int</strong> _a);
+
+  <em class="hl-comment" style="color: silver">// faz o bloco assumir a uni&atilde;o do bloco atual com</em>
+  <em class="hl-comment" style="color: silver">// o bloco representado no escultor "e"</em>
+  <em class="hl-comment" style="color: silver">// a uniao somente deve ocorrer se os dois blocos</em>
+  <em class="hl-comment" style="color: silver">// forem do mesmo tamanho</em>
+  <strong class="hl-keyword">void</strong> uniao(Escultor &amp;e);
+
+  <em class="hl-comment" style="color: silver">// faz o bloco assumir a interesecao do bloco atual com</em>
+  <em class="hl-comment" style="color: silver">// o bloco representado no escultor "e"</em>
+  <em class="hl-comment" style="color: silver">// a intersecao somente deve ocorrer se os dois blocos</em>
+  <em class="hl-comment" style="color: silver">// forem do mesmo tamanho</em>
+  <strong class="hl-keyword">void</strong> intersecao(Escultor &amp;e);
+
+  <em class="hl-comment" style="color: silver">// faz o bloco assumir a diferenca entre bloco atual</em>
+  <em class="hl-comment" style="color: silver">// e o bloco representado no escultor "e"</em>
+  <em class="hl-comment" style="color: silver">// a diferenca somente deve ocorrer se os dois blocos</em>
+  <em class="hl-comment" style="color: silver">// forem do mesmo tamanho</em>
+  <strong class="hl-keyword">void</strong> diferenca(Escultor &amp;e);
+
+  <em class="hl-comment" style="color: silver">// recupera uma matriz de voxels referente a posicao fornecida no</em>
+  <em class="hl-comment" style="color: silver">// plano informado</em>
+  vector&lt; vector&lt;Voxel&gt; &gt; getPlano(<strong class="hl-keyword">int</strong> i, <strong class="hl-keyword">int</strong> plano=XY);
+};
+<span class="hl-directive" style="color: maroon">#endif</span>
+</pre>
+	</div></div><br class="example-break">
+	<p>Nesta classe s&atilde;o contemplados diversos m&eacute;todos, descritos na forma de coment&aacute;rios no pr&oacute;prio c&oacute;digo apresentado. Entretanto, &eacute; importante realizar um breve relato sobre o processo de gera&ccedil;&atilde;o e visualiza&ccedil;&atilde;o das esculturas digitais.</p>
+      </div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="cha.excecoes.html">&laquo;&nbsp;Cap&iacute;tulo 11. Tratamento de exce&ccedil;&otilde;es</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;</th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>

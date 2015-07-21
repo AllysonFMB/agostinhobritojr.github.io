@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:lang="pt-br">
+  <info>
+    <title>Introdução à programação em Qt</title>
+    <author>
+      <personname>
+	<firstname>Tiago</firstname>
+	<othername>Fernandes</othername>
+	<surname>de Miranda</surname>
+      </personname>
+    </author>
+    <copyright><year>2014</year><holder>Tiago Fernandes</holder></copyright>
+    <address>DCA-CT-UFRN</address>
+  </info>
+
+  <!-- Capitulo 1 - Introducao -->
+  <chapter xml:id="cha.introducao">
+    <title>Introdução</title> 
+    <!-- O que é, história, preparação e instalação, primeiro programa -->
+    <sect1 xml:id="sec1.introducao.oqueé">
+      <title>O que é o Qt (<foreignphrase>software</foreignphrase>)?</title>
+      <!-- Quem criou, quando, o que faz, exemplos atuais, qual linguagem usa -->
+      <!-- Falta explicar melhor o que é, o que faz , termos técnicos de programação -->
+      <para><application>Qt</application> é uma biblioteca de programação em C++ cujo principal objetivo é possibilitar o desenvolvimento de aplicações multiplataforma a partir de um mesmo código fonte. Ela foi concebida em 1991 por <personname>Haavard Nord</personname> e <personname>Eirik Chambe-Eng</personname> na Trolltech, empresa que era sediada na Noruega.</para>
+      <para>As primeiras versões do Qt permitiam o desenvolvimento em sistemas <trademark class="copyright">Windows</trademark> e Linux, e, na época, foi bastante popularizada pelo sistema de gerenciamentos de janelas Kde (<link xlink:href="www.kde.org">www.kde.org</link>). A evolução do <application>Qt</application> chegou a dispositivos móveis com Linux embarcado e symbian, chamando a atenção de empresas como a Nokia sobre as possibilidades da ferramenta. Em 2008, a Nokia obteve direitos de negócio sobre o <application>Qt</application>, havendo então se expandido para suportar diversos outros dispositivos criados por esta empresa. Em 2011, a Nokia desistiu do Qt, repassando a licença comercial da ferramenta para a Digia (<link xlink:href="http://www.digia.com">www.digia.com</link>). Em 2012, a Digia complementou os direitos obtendo todo o mercado do <application>Qt Creator</application>, sendo até hoje a detentora da marca.</para>
+      <para>Junto com a biblioteca Qt, seu SDK comporta diversos aplicativos que auxiliam no desenvolvimento de projetos. Entre estes, destaca-se o Qt Creator, um ambiente de desenvolvimento integrado que possibilita programação em Qt de forma eficiente e agradável. Com o Qt Creator é possível criar programas usando a linguagem de programação C++ em sintonia com elementos de programação visual. Em outras palavras, os programas podem ser desenvolvidos arrastando e soltando componentes gráficos como botões e caixas de texto usando o <foreignphrase>mouse</foreignphrase>, aumentando o rendimento e facilitando a tarefa de novos usuários se habituarem com o ambiente de desenvolvimento.</para>
+      <para>O <application>Qt Creator</application> vem suportando cada vez mais sistemas operacionais diferentes. Ao tempo de escrita desse documento encontrava-se disponíveis suportes para Linux, Windows, OS X, Android, iOS e QNX. Grandes empresas usam <application>Qt</application> para desenvolvimento, destacando-se exemplos famosos como <trademark class="trade">VLC</trademark> (<foreignphrase>player</foreignphrase> de mídia),<trademark class="trade">Skype</trademark>,<trademark class="trade">Google Earth</trademark>.</para> 
+    </sect1>
+    <sect1 xml:id="sec1.introducao.ambiente">
+      <title>Preparando o ambiente de trabalho</title>
+      <!--Como obter o Qt, instalação em Linux e Windows, configurações básicas -->      
+      <!-- Falta explicar melhor sobre os compiladores VS e MinGW -->
+      <para>O <application>Qt</application> possui diversas versões disponíveis, cada uma adequada a um tipo de ambiente e filosofia de desenvolvimento. Neste tutorial, serão descritos os principais passos para <foreignphrase>download</foreignphrase> e instalação do <application>Qt</application> nos sistemas operacionais Windows e Linux.</para>
+      <para>É importante notar que a biblioteca também é disponibilizada para desenvolvimento de aplicações comerciais, de sorte que o usuário deve verificar no <foreignphrase>website</foreignphrase> da Digia mais detalhes sobre o uso de licenças comerciais. Neste tutorial, o foco será dado à versão de código aberto do <application>Qt</application>.</para>
+      <para>O <application>Qt SDK</application> é um <foreignphrase>Software Development Kit</foreignphrase> (<acronym>SDK</acronym>), ou seja, um conjunto de aplicações que permitem a criação de programas de computador usando Qt. No <acronym>SDK</acronym> são incluídos a biblioteca Qt, o ambiente de desenvolvimento integrado Qt Creator, além de outros aplicativos que operam em conjunto para permitir a geração e compilação de código fonte em C++ com esta biblioteca.</para>
+      <warning><para>O Qt por si só não é um compilador, tratando-se apenas de uma biblioteca de programação. O compilador deve coexistir na máquina para que se possam produzir códigos executáveis usando Qt.</para></warning>
+      <sect2 xml:id="sec2.introducao.ambiente.qtwindows">
+	<title>Preparação do <application>Qt SDK</application> no Windows</title>
+	<para>Acessando o site do <orgname>Qt-Project</orgname> (<link xlink:href="http://qt-project.org/">http://qt-project.org/</link>), é possível chegar à área de <foreignphrase>downloads</foreignphrase> e escolher o instalador mais adequado para cada caso. É importante lembrar que as versões de instaladores <foreignphrase>online</foreignphrase> são menores, porém necessitam de conexão com a Internet durante a instalação. As versões completas são maiores, porém não necessitam de conexão com a internet.</para>
+	<para>Os exemplos expostos neste texto serão apresentados com base na instalação do <application>Qt SDK</application> no <trademark class="registered">Windows</trademark> com a versão completa, posto que provê toda a parafernalha necessária para o programador. A instalação em versão online é bastante similar, de modo que os passos ilustrados a seguir serão úteis para ambas as instalações.</para>
+	<para>Podem ser encontradas diversas versões do instalador do Qt para <trademark class="registered">Windows</trademark>. As versões geralmente contemplam o compilador utilizado e a arquitetura do sistema operacional. Duas categorias de versões são as mais comuns: aquelas que usam o compilador Visual Studio e as que usam o compilador MinGW. Caso o usuário disponha do Visual Studio, este deverá escolher a que melhor se adapta ao seus sistema. Caso não possua o compilador, melhor escolher a versão que vem com o MinGW incluído. Caso o usuário disponha dos compiladores nativos da <trademark>Microsoft</trademark> deve preferir o uso das versões para o Visual Studio, uma vez que o suporte para diversos recursos do sistema (ex: bibliotecas de reprodução de arquivos multimídia) somente está disponível para tais compiladores.</para>
+	<para>Após ter carregado e executado devidamente o instalador é iniciado o processo de instalação, a seguinte tela surgirá:</para>
+	<!--% IMAGEM INSTALACAO 1-->
+	<figure xml:id="fig.introducao.ambiente.qtwindows.instalacaoWelcome">
+	  <title>Tela de boas-vindas do instalador</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/instalacao_welcome.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<para>Clique em <keycap>Next</keycap> para prosseguir a instalação. Em seguida é requisitado o local de instalação do <application>Qt SDK</application>, por padrão o instalador irá coloca-lo no disco <filename class="partition">C:</filename> porém isto pode ser alterado clicando em <keycap>Browse...</keycap>. O <foreignphrase>checkbox</foreignphrase> na parte inferior da janela seleciona se o <application>Qt Creator</application> deverá reconhecer arquivos do tipo <filename class="extension">.c,.h,.cc,.hh,.cxx,.hxx,.c++,.h++, .cpp</filename> e <filename class="extension">.hpp</filename> como arquivo padrão de execução.</para> 
+	<!--% IMAGEM INSTALCAO 2-->
+	<figure xml:id="fig.introducao.ambiente.qtwindows.instalacaoDiretorio">
+	  <title>Definindo diretório do Qt Creator</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/instalacao_diretorio.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<para>Clique em <keycap>Next</keycap> para prosseguir a instalação. Na janela seguinte será solicitado os componentes que se deseja instalar, por padrão o instalador irá instalar somente o <application>Qt SDK</application> e a ferramenta de compilação, no caso em exemplo será o <application>MinGW</application> <productnumber>4.8</productnumber>, para se usar o <application>Visual Studio</application> como compilador deve-se carregar o instalador com VS na página de downloads do <orgname>Qt-Project</orgname>. Essas definições padrões são as básicas para a execução do <application>Qt Creator</application> porém aconselha-se a selecionar todos os componentes para evitar problemas futuros. Sendo assim, clique em <keycap>Default</keycap> para selecionar o componentes padrões, <keycap>Select All</keycap> para selecionar todos os componentes e <keycap>Deselect All</keycap> para selecionar nenhuma componente. É possível a todo momento visualizar no lado direito da janela o quanto será instalado no computador de acordo com a seleção dos componentes.</para>
+	<!--% IMAGEM INSTALACAO 3-->
+	<figure xml:id="fig.introducao.ambiente.qtwindows.instalacaoComponentes">
+	  <title>Seleção dos componentes para instalação</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/instalacao_componentes.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<para>Clique em <keycap>Next</keycap> para prosseguir a instalação. Prosseguindo, o instalador irá se certificar se o usuário está de acordo com as licenças LGPL, FDL, GPL e exceções de LGPL que são em suma permissões, direitos e termos legais de uso do <application>Qt SDK</application> por parte do usuário. Caso o usuário esteja de acordo com as licenças deverá selecionar a primeira opção, caso contrário a única possibilidade será de finalizar a instalação.</para>
+	<!--% IMAGEM INSTALAÇÃO 4-->
+	<figure xml:id="fig.introducao.ambiente.qtwindows.instalacaoAcordo">
+	  <title>Confirmação de conhecimento das licenças</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/instalacao_acordo.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<para>Clique em <keycap>Next</keycap> para prosseguir a instalação. Feito isso, o instalador irá requisitar o apelido que será dado ao <application>Qt SDK</application>, por padrão o apelido será <type>Qt &lt;versão&gt;</type> sendo passível de alteração pelo usuário. Clique em <keycap>Next</keycap> para prosseguir a instalação. Após ter configurado todos os dados, o instalador irá fornecer um resumo do que e como será instalado de forma que o usuário esteja ciente das informações fonecidas, clique em <keycap>Show Details</keycap> para ver detalhes da instalação. Clique em <keycap>Install</keycap> para iniciar a instalação.</para>
+	<!--% IMAGEM INSTALACAO 5-->
+	<figure xml:id="fig.introducao.ambiente.qtwindows.instalacaoResumo">
+	  <title>Resumo do que será instalado</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/instalacao_resumo.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<!--% IMAGEM INSTALACAO 6-->
+	<figure xml:id="fig.introducao.ambiente.qtwindows.instalacaoCarregando">
+	  <title>Instalação sendo executada</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/instalacao_carregando.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<para>Durante a instalação é possivel ver o que está sendo feito clicando em <keycap>Show Details</keycap>, aguarde a instalação ser finalizada, isso poderá levar alguns minutos. Ao fim da instalação clique em <keycap>Next</keycap>, o instalador chegará a sua última parte onde o usuário deverá selecionar se deseja executar o <application>Qt Creator</application> ao finalizar a instalação e se deseja abrir o arquivo <filename>ReadMe</filename> do <application>Qt Creator</application> ao fim da instalação, este arquivo contém informações básicas sobre a versão do <application>Qt Creator</application> e sites para mais informações. O usuário deverá selecionar o que deseja e clicar em <keycap>Finish</keycap>. Desta forma o <application>Qt SDK</application> estará instalado no seu computador.</para> 
+      </sect2>
+      <sect2 xml:id="sec2.introducao.ambiente.qtlinux">
+	<title><application>Qt SDK</application> no Linux</title>
+	<!-- Pouco assunto, tentar melhorar -->
+	<para>É possível instalar o <application>Qt SDK</application> no Linux digitando apenas uma linha de código. Abra o terminal e digite o seguinte comando:</para>
+	<screen><command>sudo apt-get install ubuntu-sdk</command></screen>
+	<para>O sistema irá executar o comando e confirmar se o usuário deseja instalar o pacote. Confirme a instalação e aguarde o processo.</para>
+	
+	<para>Feita a instalação basta executar o comando <command>qtcreator</command> no terminal e então o <acronym>SDK</acronym> será executado.</para>
+      </sect2>
+    </sect1>
+    <sect1 xml:id="sec1.introducao.primeiro">
+      <title>Primeiro Programa</title>
+      <!-- Passo a passo do primeiro programa -->
+      <!-- Verificar ortografia -->
+      <para>Com o <application>Qt SDK</application> instalado podemos executar nosso primeiro programa. Seja em qual for o <acronym>SO</acronym> (Windows ou Linux) a forma de programação é a mesma. É aconselhável a se criar uma pasta para armazenar os programas criados a partir deste tutorial com o objetivo de facilitar o desenvolvimento do leitor e evitar possíveis erros de compilação.</para>
+      <para>Abra o <application>Qt Creator</application>, a tela de boas-vindas será exibida. Clique em <option>Arquivo</option> e selecione a opção <option>Novo Arquivo ou Projeto</option>, em seguida surgirá uma janela onde será possível seleciona qual tipo de arquivo ou projeto será iniciado.</para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 1-->
+	<figure xml:id="fig.introducao.primeiro.primeiroSelecao">
+	  <title>Escolha por qual tipo de projeto ou arquivo</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_selecao.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Selecione por <option>Application</option>, em seguida <option>Qt Gui Application</option> e então clique em <keycap>Choose...</keycap>. O <option>Qt Gui Application</option> permite que sejam criados programas com inteface gráfica. Após clicado no botão <keycap>Choose...</keycap> será solicitado o nome e o local do projeto, digite o nome e escolha o local de criação do programa. O checkbox na parte inferior da janela quando habilitado faz com que o local de criação dos restantes dos programas criados pelo <application>Qt Creator</application> sejam pré-definidos no diretório definido anteriormente. Feito o preenchimento do nome e diretório do programa clique em <keycap>Next&gt;</keycap> para prosseguir na instalação.</para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 2-->
+	<figure xml:id="fig.introducao.primeiro.primeiroDiretorio">
+	  <title>Definindo nome e diretório do projeto</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_diretorio.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Na janela seguinte o <application>Qt Creator</application> solicitará o local de criação das versões depuração e de lançamento do programa. Isto possibilita separar o código fonte do programa dos códigos de compilação gerados automaticamente e o executável que serão salvos em outras pastas. Por padrão habilite o programa para criar locais de depuração e lançamento e clique em <keycap>Next&gt;</keycap>.</para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 3-->
+	<figure xml:id="fig.introducao.primeiro.primeiroDepuracao">
+	  <title>Criando diretórios de depuração e lançamento</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_depuracao.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Em sequência o <application>Qt Creator</application> solicitará informações sobre a classe que será criada, o tipo de classe que se deseja criar (<classname>QMainWindow</classname>, <classname>QWidget</classname> ou <classname>QDialog</classname>) o nome do arquivo <filename class="extension">header</filename> (.h), <filename class="extension">fonte</filename> (.cpp) e em caso de habilitado o nome do arquivo de <filename class="extension">form</filename> (.ui). Para início desejamos criar uma janela simples então deixamos tudo como padrão e no futuro estas opções serão melhor explanadas. Clique em <keycap>Next&gt;</keycap> para prosseguir na criação do programa. </para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 4-->
+	<figure xml:id="fig.introducao.primeiro.primeiroClasses">
+	  <title>Definindo o nome da classe e dos arquivos</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_classes.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Por fim será exibida uma última janela de resumo, confirmando todos os passos anteriomente feito. Percebe-se que o <application>Qt Creator</application> confirma o diretório no qual será criado o programa e os arquivos nele criado. Caso esteja de acordo com os dados obtidos clique em <keycap>Finish</keycap>. O <application>Qt Creator</application> então iniciará a criação dos arquivos e irá exibi-los em uma árvore de diretórios.</para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 5-->
+	<figure xml:id="fig.introducao.primeiro.primeiroResumo">
+	  <title>Informações finais da criação do projeto</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_resumo.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 6-->
+	<figure xml:id="fig.introducao.primeiro.primeiroJanelaInicial">
+	  <title>Projeto criado e apto ao desenvolvimento</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_janelainicial.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Estando com o programa criado, é possível acessar a todos os arquivos sejam eles:<filename class="extension"> headers</filename> (.h), <filename class="extension">fontes</filename> (.cpp),<filename class="extension">forms</filename> (.ui) e arquivo de extensão <filename class="extension">pro</filename>. Dê dois cliques no arquivo de <filename class="extension">form</filename> (.ui), será exibida a janela do programa em construção. Clique em <option>Filter</option> e digite <type>Label</type>, no visor logo abaixo estará o <classname>widget Label</classname>, clique e arraste até a janela central.</para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 7-->
+	<figure xml:id="fig.introducao.primeiro.primeiroLabel">
+	  <title>Posicionando o widget Label na janela</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_label.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>De forma similar digite em <option>Filter</option> por <type>Push Button</type> e arraste-o para a janela. A partir deste ponto o programa pode ser executado clicando em <command>Run</command>, o <application>Qt Creator</application> solicitará por salvar as alterações e então contruirá o programa. Durante a execução nada ocorrerá pois não há nenhuma lógica ou evento implementado.</para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 8 -->
+	<figure xml:id="fig.introducao.primeiro.primeiroPushbutton">
+	  <title>Posicionando o widget Pushbutton na janela</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_pushbutton.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 9 -->
+	<figure xml:id="fig.introducao.primeiro.primeiroExecucao">
+	  <title>Primeiro programa sendo executado</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_execucao.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Feche o programa e clique com o botão direito sobre o <classname>Push Button</classname> que está na janela principal, selecione <option>Go To Slot...</option>, na nova janela clique na opção <option>Clicked()</option> e então em <keycap>OK</keycap>. O <application>Qt Creator</application> irá implementar automaticamente uma função na classe do projeto referente ao evento de clique do botão. Dentro da função copie o seguinte código e clique em <command>Run</command> novamente.</para>
+      <screen><command> ui->label->setText("Hello!");</command></screen>
+      <para>Desta vez o programa possui uma ação para o evento do clique no botão.</para>
+      <!--%IMAGEM PRIMEIRO PROGRAMA 10-->
+	<figure xml:id="fig.introducao.primeiro.primeiroLogica">
+	  <title>Primeiro programa sensível ao evento sendo executado</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo1/primeiro_logica.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Este foi um programa simples, porém o <application>Qt Creator</application> tem mais funções para cada <classname>widget</classname> e muitas bibliotecas com inúmeras funcionalidades, em geral o <application>Qt Creator</application> possibilita a criação de programas bons e eficiêntes de forma muito prática.</para>
+    </sect1>
+    <sect1 xml:id="sec1.introducao.nossoprojeto">
+      <title>Nosso projeto</title>
+      <para>Agora que já sabemos como instalar o <application>Qt Creator</application> e como construir um programa podemos definir uma idéia final de projeto.</para>
+      <para>Este tutorial terá por objetivo ensinar e demonstrar a implementação de ferramentas do <application>Qt Creator</application> com base na construção de um projeto final, desta forma ao fim deste tutorial teremos um <foreignphrase>software</foreignphrase>. Este <foreignphrase>software</foreignphrase> será um <foreignphrase>Media Player</foreignphrase> capaz de reproduzir arquivos de áudio, exibir lista de músicas, imagens de capa de <acronym>CD</acronym> obtidas da internet, visualizador de espectro e etc.</para>
+      <para>Com todo o conhecimento obtido neste tutorial será possível fazer um <foreignphrase>Media Player</foreignphrase> e ainda passível de explorações pois o leitor estará apto a gerar soluções de forma independente. Nos próximos cápitulos serão demonstrados as caracteristicas básicas de criação de interfaces gráficas.</para>
+    </sect1>  
+  </chapter>
+
+  <!-- Capitulo 2 - Ensinando os rudimentos de criação de interfaces gráficas --> 
+
+  <chapter xml:id="cha.rudimentos">
+    <title>Rudimentos de criação de interface gráfica</title>
+    <!-- Conceito de signal/slots, Componentes mais comuns -->
+    <!-- EXPLICAÇÃO MUITO SUPERFICIAL DE SIGNAL/SLOTS, INTENSIFICAR, ALTERAR SIGNAL E SLOTS POR SINAIS E SLOTS -->
+    <para>Neste capítulo será demonstrado como funciona a comunicação entre objetos do Qt, como conecta-los para que haja alguma interação e exemplos de objetos comumente usados em programas.</para>
+    <sect1 xml:id="sec1.rudimentos.SignalSlots">
+      <title>Conceituando SIGNAL e SLOTS</title>
+      <!-- O que é SIGNAL, o que é SLOT, vantagens, modos de conexão, exemplos --> 
+      <para>O Qt oferece aos seus desenvolvedores uma ferramenta muito útil, com ela podemos construir a arquitetura do nosso programa, ou seja definir como o mesmo se comporta mediante a ação do usuário do software. Tal ferramenta é o gerenciamento de Signals e Slots. No último exemplo do capítulo anterior quando implementamos uma ação ao clique do Pushbutton tinhamos construido uma conexão de Signal e Slot.</para>
+      <para>Signals e Slots permite de forma simples e intuitiva montar a estrutura do seu programa. Este mecanismo de comunicação intra objetos é o grande diferencial do Qt em relação aos outros frameworks.</para>
+      <para>Com Signals e Slots podemos informar a um objeto A que outro objeto B alterou seu estado, por exemplo no caso do nosso primeiro programa onde ao clicarmos no PushButton o texto do QLabel era alterado, neste caso tinhamos um Signal que era emitido automaticamente ao clicar no PushButton de forma que tal Signal estava conectado com um Slot da QMainWindow onde este tinha por função alterar o texto do QLabel.</para>
+      <!-- IMAGEM ESTRUTURA SIGNAL SLOTS --> 
+	<figure xml:id="fig.rudimentos.SignalSlots.estruturaSignalSlots">
+	  <title>Diagrama de funcionamento do Signals e Slots</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata scale="50" format="SVG" fileref="figuras/capitulo2/ss_estrutura_signal_slot.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Alguns Signals são padrões para alguns objetos, no PushButton por exemplo utilizamos o Signal padrão clicked() para ser emitido quando o botão for clicado, porém podemos criar Signals e emiti-los quando desejar-mos com o comando emit. Similarmente, Slots também possuem suas instâncias padrões para certos objetos, que no nosso caso foi a função setText(QString) do objeto QLabel.</para>
+      <note><para>É uma prática comum o programador definir os Slots visto que somente ele saberá o que deverá ocorrer quando um certo Signal for emitido.</para></note>
+      <para>As conexões Signals e Slots podem ser feitas de diversos modos. Podemos emitir um Signal do Objeto A para vários Slots de outros objetos, emitir vários Signals de vários objetos para um único Slot do objeto A e emitir um Signal de um objeto A para um Signal de um objeto B (neste caso o Signal de A irá emitir o Signal de B sempre que o Signal de A for emitido).</para>
+      <para>Agora que sabemos a definição de Signals e Slots e como eles funcionam podemos criar nossas próprias conexões e assim montar a arquitetura do programa ao própio gosto. É possível criar conexões entre dois objetos de duas formas: por comandos e editor gráfico.</para>
+      <para>Por comando, se desejamos criar uma conexão entre o objeto A com a Signal sinalA() e o objeto B com o Slot slotB() devemos executar a seguinte linha de código.</para>
+      <screen><command>connect(Objeto A,SIGNAL(sinalA()),Objeto B,SLOT(slotB()));</command></screen>
+      <para>Desta forma quando o programa executar este comando uma nova conexão será criada entre os objetos e a partir de então quando o sinalA() do objeto A for emitido, automaticamente o slotB() do objeto B será executado.</para>
+      <note><para>Os Slots são funções normais, ou seja não necessita ser executada só e somente só com um Signal emitido, podemos fazer chamadas dele no código como uma função qualquer.</para></note>
+      <para>Com o Qt Designer (ferramenta que é agregado ao Qt Creator SDK) podemos criar conexões de forma gráfica, ou seja puxando e arrastando as conexões no sentido determinado. Para utilizar esta ferramenta crie um novo projeto e adicione a janela principal do programa os componentes Label e Push Button, clique em Editar Signals/Slots ou pressione F4.</para>
+      <!-- IMAGEM EDIT SIGNALS/SLOTS -->
+	<figure xml:id="fig.rudimentos.SignalSlots.editSignalSlot">
+	  <title>Botão do editor de Signals e Slots.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/ss_editsignalslot.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      
+	<para>Feito isto podemos então criar conexões diretamente na janela do programa, clique e arraste o mouse do PushButton até o QLabel na janela principal. Será exibida uma janela solicitando o Signal do PushButton e o Slot do QLabel, selecione o Signal clicked() e o Slot clear() e clique em OK. Desta forma o programa irá apagar o texto do QLabel quando o PushButton for clicado pois o Signal clicked() será emitido e consequentemente o Slot clear() será executado.</para>
+      
+      <!-- IMAGEM ss_conexaosignalslot -->
+      <figure xml:id="fig.rudimentos.SignalSlots.conexaoSignalSlots">
+	<title>Conexão entre Signal e Slot estabelecida.</title>
+	<mediaobject>
+	  <imageobject role="html">
+	    <imagedata format="SVG" fileref="figuras/capitulo2/ss_conexaosignalslots.svg"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <!-- IMAGEM ss_signalslots -->
+      <figure xml:id="fig.rudimentos.SignalSlots.selecaoSignalSlot">
+	<title>Definindo Signal e Slot da conexão.</title>
+	<mediaobject>
+	  <imageobject role="html">
+	    <imagedata format="SVG" fileref="figuras/capitulo2/ss_signalslots.svg"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>Execute o programa e verifique que quando o PushButton é clicado o QLabel ficará sem texto. Esta foi uma das conexões possíveis criadas por padrão, podemos ainda criar nossos próprios Signals e Slots e conecta-las normalmente. Para criar uma conexão Signal e Slot não padrão do Qt via editor gráfico devemos criar os mesmos e adiciona-los ao editor.</para>
+      <para>Agora criaremos nosso Signal e iremos emitir quando quisermos, para isso crie um novo projeto. Com o projeto criado abra o arquivo mainwindow.ui e adicione a janela do programa um QLabel e um Horizontal Slider (para encontra-los basta pesquisar no campo Filter).</para>
+      <!-- IMAGEM ss_nossosignal1 -->
+      <figure xml:id="fig.rudimentos.SignalSlots.GoToSlotHSlider">
+	  <title>Selecionando a opção <option>Go To Slot...</option> do Horizontal Slider.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/ss_nossosignal1.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Com os objetos posicionados, clique com o botão direito sobre o Horizontal Slider e selecione a opção Go To Slot... isto irá disponibilizar as opções possíveis de Signals padrões do Horizontal Slider que será conectado com um Slot do QMainWindow, tal Slot será contruido automaticamente pelo Qt SDK. Com a nova janela exibida clique na opção valueChanged(int), este Signal é emitido quando o valor do Horizontal Slider é alterado e o argumento passado é um inteiro respectivo ao novo valor. Clique em OK e o Qt irá criar o Slot automaticamente.</para>
+      <para>Agora que já temos a conexão para alteração de valor no Horizontal Slider vamos criar o Signal do QMainWindow, este será ativado quando o Horizontal Slider chegar a um certo valor. Abra o arquivo mainwindow.h e no escopo da classe MainWindow adicione a seguinte definição.</para>
+      <para><screen>signals:
+      void valor_atingido(QString aviso);</screen></para>
+      <para>Isto criará o Signal valor_atingido(QString aviso) do QMainWindow, perceba que não é necessário criar implementação desta função Signal no arquivo .cpp porém é possível.</para>
+      <para>Com o Signal criado, volte ao arquivo Mainwindow.cpp na função Slot criada automaticamente pelo Qt SDK implemente o seguinte código.</para>
+      <para><screen>void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    if(value>=70){
+        emit valor_atingido("Atenção!");
+    }
+}</screen></para>
+      <para>Este código faz com que sempre que o valor do Horizontal Slider for alterado e o atual valor for maior que 70 o Signal valor_atingido("Atenção!") será emitido. Executando o programa a partir deste ponto nada acontecerá mediante a alteração do valor do Horizontal Slider pois o Signal é emitido entretanto nenhum Slot está conectado a ele.</para>
+      <para>Vamos criar agora uma conexão do Signal valor_atingido(QString) com o Slot setText(QString) do QLabel. Dê dois cliques no arquivo mainwindow.ui e abra o editor de Signals e Slots (pressionar F4). Visto que a conexão será entre o Signal do QMainWindow e o Slot do QLabel clique em qualquer lugar da janela principal e arraste até o QLabel.</para>
+      <!-- IMAGEM ss_nossosignal2 -->
+      <figure xml:id="fig.rudimentos.SignalSlots.conexaoNossoSignal2">
+	  <title>Estabelecendo conexão entre o Signal do QMainWindow e o Slot do QLabel.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/ss_nossosignal2.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Feito isso uma janela solicitando o Signal do QMainWindow e Slot do QLabel será exibida, percebe-se que o Signal valor_atingido(QString) não é exibido, para isso clique no botão Edit... respectivo ao QMainWindow, surgirá uma nova janela listando os Signals e Slots do QMainWindow, na parte inferior (Signals) clique no botão com um símbolo de '+', apague o que foi escrito e digite:</para>
+      <screen>valor_atingido(QString)</screen>
+      <para>Pressione Enter e clique em OK.</para>
+      <!-- IMAGEM ss_nossosignal3 -->
+      <figure xml:id="fig.rudimentos.SignalSlots.configuracaoConexaoNossoSignal">
+	  <title>Configurando Conexão Signal e Slot.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/ss_nossosignal3.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <!-- IMAGEM ss_nossosignal4 -->
+      <figure xml:id="fig.rudimentos.SignalSlots.criandoNossoSignal">
+	  <title>Adicionando Signal ao QMainWindow.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/ss_nossosignal4.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      <para>Agora o Signal valor_atingido(QString) é exibido, clique nesta opção e em seguida será disponibilizado o Slot setText(QString), clique nesta opção também e então clique em OK.</para>
+      <note><para>Perceba que os Signals e Slots em sua maioria devem conter os mesmos parâmetros e na mesma ordem, exceto os Slots sem parâmetros, estes podem ser executados por qualquer Signal pois não necessitam de valores de entrada. Desta forma os valores que são emitidos junto ao Signal são repassados ao Slot.</para></note>
+      <para>Na janela principal será construida a conexão, sendo assim quando o Signal valor_atingido(QString) for emitido a função Slot setText(QString) do QLabel será executada.</para>
+      <para>Este trabalho poderia ser evitado utilizando o comando connect no construtor da classe MainWindow, este comando como explicadao anteriormente faz a conexão entre os objetos, veja o comando para conectar o Signal valor_atingido(QString) do QMainWindow e o Slot setText(QString) do QLabel.</para>
+      <screen>connect(this,SIGNAL(valor_atingido(QString)),ui-&gt;label,SLOT(setText(QString)));</screen>
+      <para>O comando conecta o atual objeto "this", no caso MainWindow, via Signal valor_atingido(QString) com o objeto "ui-&gt;label", o QLabel, atráves do Slot setText(QString).</para>
+      <para>Para ambos os casos, criação de conexão via interface gráfica ou por comando, execute o programa, perceba que quando o Horizontal Slidet atinge um valor maior ou igual a 70 o QLabel modifica o texto de "TextLabel" para "Atenção!".</para> 
+      <!-- IMAGEM ss_nossosignal5 -->
+      <figure xml:id="fig.rudimentos.SignalSlots.executandoNossoSignal">
+	  <title>Projeto com Signal criado sendo executado.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/ss_nossosignal5.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<para>Esta foi uma leve e consistente introdução sobre Signal e Slots, existem mais detalhes não menos importantes para esta ferramenta fundamental a qualquer programa desenvolvido no Qt SDK. Podemos perceber que para qualquer programa é necessário utilizar Signals e Slots, eles são a base do programa, a forma como o software se comportará mediante o usuário.</para>
+     
+    </sect1>
+
+    <sect1 xml:id="sec1.rudimentos.Componentes">
+      <title>Componentes mais comuns</title>
+      <!-- Explicar caracteristicas dos componentes mais comuns: label, botão, layout, radio button, check box, line edit, etc -->
+
+      <para>O Qt SDK possui muitos componentes gráficos bastante úteis para softwares em geral, tais componentes são: Botões, Caixa de texto, Scroll, CheckBox, etc. Todos possuem suas funções Slots e Signal com diversas funcionalidades. Nesta seção serão demonstrados os componentes comumentes utilizados em programas, iremos explanar sobre o que cada um faz, quais são os Slots e Signals mais comuns e explicar suas funcionalidades.</para> <!-- A SEGUIR ALGUMAS FUNÇÕES MAIS USADAS PARA CADA COMPONENTE -->
+
+      <!-- IMAGEM LISTA DE COMPONENTES -->
+      <figure xml:id="fig.rudimentos.Componentes.ListadeComponentes">
+	<title>Alguns componentes fornecidos pelo Qt SDK.</title>
+	<mediaobject>
+	  <imageobject role="html">
+	    <imagedata format="SVG" fileref="figuras/capitulo2/componentes_listade.svg"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <sect2 xml:id="sec2.rudimentos.Componentes.botão">
+	<title>QPushButton</title>
+	<!--O que é, funções, exemplos -->
+	
+	<para>Push Buttons são os componentes mais utilizados em programas, com eles é possível criar botões na janela do software que quando clicados executam algum comportamento pré-estabelecido. Para adicionar um botão ao seu programa abra o arquivo .ui do seu projeto e adicione o componente Push Button. Clicando com o botão direito sobre ele e escolhendo a opção Go To Slot... é possível ver algumas opções de Signals padrões do componente.</para>
+
+	<!-- IMAGEM SIGNAL PUSH BUTTON -->
+	<figure xml:id="fig.rudimentos.Componentes.PushbuttonSignals">
+	  <title>Signals padrões do QPushButton.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/componentes_pushbutton.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<para>O PushButton não possui somente Signal de clique, também possui Signals para o pressionamento e liberação do botão. Desta forma podemos fazer com que o programa tenha mais acesso as ações do usuário.</para>
+	<itemizedlist>
+	  <listitem>
+	    <para><command>QPushButton::clicked()</command></para>
+	    <para>O Signal clicked() como mencionado anteriormente é emitido quando o botão é clicado, logo para se criar uma função Slot para este Signal podemos usar a opção Go To Slot...  ou atráves do comando connect.</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(clicked()),Objeto_receptor,SLOT(funcao()));</screen>
+	    <para>Sendo o objeto emissor do tipo QPushButton e o objeto receptor qualquer objeto. Desta forma quando o botão for clicado a função do objeto receptor será executada.</para>	   
+	  </listitem>
+	  <listitem>
+	    <para><command>QPushButton::pressed()</command></para>
+	    <para>Este Signal é emitido quando o QPushButton é pressionado, ou seja quando um clique é iniciado e mantido. É possível criar uma conexão deste Signal atráves da opção Go To Slot... ou via linha de código.</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(pressed()),Objeto_receptor,SLOT(funcao()));</screen>
+	    <para>Onde o objeto emissor deve ser do tipo QPushButton e o objeto receptor de qualquer tipo. Sendo isto configurado, o programa irá executar o Slot funcao() do objeto receptor sempre que o QPushButton for pressionado.</para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QPushButton::released()</command></para>
+	    <para>Ao contrário da função anterior, este método é emitido quando o QPushButton é liberado do clique, ou seja após o momento em que foi clicado. É possível criar uma conexão deste Signal atráves da opção Go To Slot... ou via linha de código.</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(released()),Objeto_receptor,SLOT(funcao()));</screen>
+	    <para>Considerando o objeto emissor do tipo QPushButton e o objeto receptor de qualquer tipo, o Slot funcao() do objeto receptor será executado a todo momento em que o QPushButton for liberado de um clique.</para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QPushButton::click()</command></para>
+	    <para>Com este método podemos forçar um clique no QPushButton e consequentemente executar todas as ações pré-estabelecidas a partir do clique do usuário. Para gerar uma conexão com este método podemos utilizar o seguinte comando.</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(sinal()),Objeto_receptor,SLOT(click()));</screen>
+	    <para>Sendo o objeto receptor um QPushButton, a todo momento em que o Signal sinal() do objeto emissor for emitido o QPushButton objeto receptor será clicado. Perceba que se existe uma conexão de Signal e Slot do clique do QPushButton com outro Slot este será executado também pois o Slot click() "simula" um clique do usuário do software.</para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QPushButton::setText(QString)</command></para>
+	    <para>Este método permite alterar o texto do QPushButton. Para se utilizar este comando é necessário passar apenas o novo texto como parametro da função.</para>
+	    <screen>ui-&gt;botao.setText("Iniciar");</screen>
+	  </listitem>
+	  <listitem>
+	    <para><command>QPushButton::text()</command></para>
+	    <para>Esta função retorna o atual texto escrito no botão.</para>
+	    <screen>QString texto = ui-&gt;botao.text();</screen>
+	  </listitem>
+	</itemizedlist>		
+      </sect2>
+
+      <sect2 xml:id="sec2.rudimentos.Componentes.lineEdit">
+	<title>QLineEdit</title>
+	<!--O que é, funções, exemplos -->
+	<para>Line Edits são componentes muito utilizados em programas, principalmente naqueles em que se deseja obter informações do usuário como nome, endereço, números e etc. Com este objeto podemos criar campos de texto que podem ser preenchidos pelo usuário ou definidos via código. Para adicionar um line edit ao seu programa abra o arquivo .ui do seu projeto e adicione o componente Line Edit. Clicando com o botão direito sobre ele e escolhendo a opção Go To Slot... é possível ver algumas opções de Signals padrões do componente</para>
+
+	<!-- IMAGEM SIGNAL LINE EDIT -->
+	<figure xml:id="fig.rudimentos.Componentes.LineeditSignals">
+	  <title>Signals padrões do QLineEdit.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/componentes_lineedit.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+
+	<itemizedlist>
+	  <listitem>
+	    <para><command>QLineEdit::textChanged(QString)</command></para>
+	    <para>Este Signal é emitido toda vez que o texto do Line Edit é modificado, seja tal modificação proveniente do usuário ou por definição via programação. É possível criar uma conexão deste Signal atráves da opção Go To Slot... ou via linha de código.</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(textChanged(QString)),Objeto_receptor,SLOT(funcao()))</screen>
+	    <para>Sendo o objeto emissor do tipo QLineEdit, sempre que o texto do QLineEdit for alterado o Signal é emitido executando o Slot funcao() do objeto receptor, o Signal também fornece ao objeto receptor o novo texto recém alterado.</para>
+	    <note><para>Vale salientar que as funções Signal e Slot devem estar adquadamente pareadas em termo de parâmetros, ou seja os parâmetros enviados pelo Signal devem ser iguais aos recebidos pelo Slot exceto no caso em que o Slot não possui parâmetros.</para></note>
+	  </listitem>
+	  <listitem>
+	    <para><command>QLineEdit::textEdited(QString)</command></para>
+	    <para>Similar ao Signal anterior, este método tem por diferença o fato que não é emitido a partir de qualquer alteração do texto do QLineEdit. Este método será emitido somente mediante alteração do texto do QLineEdit proveniente do usuário do software. É possível criar uma conexão deste Signal atráves da opção Go To Slot... ou via linha de código.</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(textEdited(QString)),Objeto_receptor,SLOT(funcao()));</screen>
+	    <para>Sendo o objeto emissor do tipo QLineEdit, sempre que o texto do QLineEdit for alterado pelo usuário o Signal é emitido executando o Slot funcao() do objeto receptor, o Signal também fornece ao objeto receptor o novo texto recém alterado.</para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QLineEdit::editingFinished()</command></para>
+	    <para>Este Signal é utilizado para informar quando a edição de um determinado QLineEdit foi finalizada, ele é emitido no momento em que o usuário pressiona Enter, Backspace ou o retira de foco (clicando em outro QLineEdit por exemplo). É possível criar uma conexão deste Signal atráves da opção Go To Slot... ou via linha de código</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(editingFinished()),Objeto_receptor,SLOT(funcao()));</screen>
+	    <para>Considerando o objeto emissor do tipo QLineEdit, a todo momento em que a edição de texto no QLineEdit for finalizada a função funcao() do objeto receptor será executada.</para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QLineEdit::text()</command></para>
+	    <para>Este método retorna o atual texto escrito no QLineEdit.</para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QLineEdit::clear()</command></para>
+	    <para>Este método limpa qualquer texto escrito no QLineEdit.</para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QLineEdit::setText(QString)</command></para>
+	    <para>Esta função define o texto exibido no QLineEdit, podemos utilizar este método em uma conexão de Signal e Slot da seguinte forma.</para>
+	    <screen>connect(Objeto_emissor,SIGNAL(funcao(QString)),Objeto_receptor,SLOT(setText(QString)));</screen>
+	    <para>Sendo o objeto receptor do tipo QLineEdit, o texto do objeto receptor será modificado de acordo com a emissão e o argumento do Signal funcao(QString) enviado.</para>
+	  </listitem>
+	</itemizedlist>
+      </sect2>
+      <sect2 xml:id="sec2.rudimentos.Componentes.label">
+	<title>QLabel</title>
+	<!--O que é, funções, exemplos -->
+	<para>texto</para>
+
+	<!-- IMAGEM SIGNAL LABEL -->
+	<figure xml:id="fig.rudimentos.Componentes.LabelSignals">
+	  <title>Signals padrões do QLabel.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/componentes_label.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+
+	<itemizedlist>
+	  <listitem>
+	    <para><command>QLabel::clear()</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QLabel::setText(QString)</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QLabel::text()</command></para>
+	  </listitem>
+	</itemizedlist>
+
+      </sect2>
+      <sect2 xml:id="sec2.rudimentos.Componentes.radiobutton">
+	<title>QRadioButton</title>
+	<!--O que é, funções, exemplos -->
+	<para>texto</para> <!-- POR SE TRATAR DE UM BOTAO AS FUNCOES EM SUMA SAO AS MESMAS -->
+	
+	<!-- IMAGEM SIGNAL RADIO BUTTON -->
+	<figure xml:id="fig.rudimentos.Componentes.RadiobuttonSignals">
+	  <title>Signals padrões do QRadioButton.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/componentes_radiobutton.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+
+	<itemizedlist>
+	  <listitem>
+	    <para><command>QRadioButton::isChecked()</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QRadioButton::setChecked(bool)</command></para>
+	  </listitem>	   
+	</itemizedlist>
+      </sect2>
+      <sect2 xml:id="sec2.rudimentos.Componentes.checkbox">
+	<title>QCheckBox</title>
+	<!--O que é, funções, exemplos -->
+	<!-- NAO NECESSITA EXPLICAR AS FUNCOES POIS EH A UNIAO DAS FUNCOES DO PUSHBUTTON COM RADIOBUTTON-->
+	<!-- COMENTAR QUE O RADIO PODE SER MUTUAMENTE EXCLUSIVO E CHECK NAO -->
+
+	<!-- IMAGEM SIGNAL CHECK BOX -->
+	<figure xml:id="fig.rudimentos.Componentes.CheckboxSignals">
+	  <title>Signals padrões do QCheckBox.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/componentes_checkbox.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+
+	<para>texto</para>
+      </sect2>
+      <sect2 xml:id="sec2.rudimentos.Componentes.combobox">
+	<title>QComboBox</title>
+	<!--O que é, funções, exemplos -->
+	<para>texto</para>
+
+	<!-- IMAGEM SIGNAL COMBO BOX -->
+	<figure xml:id="fig.rudimentos.Componentes.ComboboxSignals">
+	  <title>Signals padrões do QComboBox.</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata format="SVG" fileref="figuras/capitulo2/componentes_combobox.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+
+	<itemizedlist>
+	  <listitem>
+	    <para><command>QComboBox::addItem(QString)</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QComboBox::currentIndex()</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QComboBox::currentText()</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QComboBox::setCurrentIndex(int)</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QComboBox::setCurrentText(QString)</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QComboBox::currentIndexChanged(int)</command></para>
+	  </listitem>
+	  <listitem>
+	    <para><command>QComboBox::currentTextChanged(QString)</command></para>
+	  </listitem>	   
+	</itemizedlist>
+      </sect2>
+    </sect1>
+  </chapter>
+</book>

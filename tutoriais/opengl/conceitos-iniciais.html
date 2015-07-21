@@ -1,0 +1,171 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 1. Conceitos iniciais</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="introducao.html" title="Introdu&ccedil;&atilde;o"><link rel="next" href="desenhando-linhas-pontos.html" title="Cap&iacute;tulo 2. Desenhando linhas e pontos"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="introducao.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 1. Conceitos iniciais</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="desenhando-linhas-pontos.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="conceitos-iniciais"></a>Cap&iacute;tulo 1. Conceitos iniciais</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="conceitos-iniciais.html#sobre-opengl">1.1. O que &eacute; OpenGL</a></span></dt><dt><span class="sect1"><a href="conceitos-iniciais.html#operacao-normal">1.2. Opera&ccedil;&atilde;o normal</a></span></dt><dt><span class="sect1"><a href="conceitos-iniciais.html#compilando-programas">1.3. Compilando programas que utilizam OpenGL</a></span></dt></dl></div>
+    
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sobre-opengl"></a>1.1. O que &eacute; OpenGL</h2></div></div></div>
+      
+      <p>OpenGL &eacute; uma interface de <span class="foreignphrase"><em class="foreignphrase">software</em></span> para dispositivos de <span class="foreignphrase"><em class="foreignphrase">hardware</em></span>. &Eacute; uma biblioteca gr&aacute;fica de modelagem e exibi&ccedil;&atilde;o tridimensional, bastante r&aacute;pida e port&aacute;vel para v&aacute;rios sistemas operacionais. Seus recursos permitem ao usu&aacute;rio criar objetos gr&aacute;ficos com qualidade pr&oacute;xima &agrave; de um <span class="foreignphrase"><em class="foreignphrase">raytracer</em></span>, de modo mais r&aacute;pido que este &uacute;ltimo, al&eacute;m de incluir recursos avan&ccedil;ados de anima&ccedil;&atilde;o, tratamento de imagens e texturas.</p>
+      
+      <p>A biblioteca OpenGL (<span class="foreignphrase"><em class="foreignphrase">Open Graphics Library</em></span>) foi introduzida em 1992 pela Silicon Graphics (<a class="ulink" href="http://www.sgi.com" target="_top">www.sgi.com</a>), no intuito de conceber uma API (Interface de Programa&ccedil;&atilde;o de Aplica&ccedil;&atilde;o) gr&aacute;fica independente de dispositivos de exibi&ccedil;&atilde;o. Com isto, seria estabelecida uma ponte entre o processo de modelagem geom&eacute;trica de objetos, situadas em um n&iacute;vel de abstra&ccedil;&atilde;o mais elevado, e as rotinas de exibi&ccedil;&atilde;o e de processamento de imagens implementadas em dispositivos (hardware) e sistemas operacionais espec&iacute;ficos. As fun&ccedil;&atilde;o utilizada pelo OpenGL para desenhar um ponto na tela, por exemplo, possui os mesmos nome e par&acirc;metros em todos os sistemas operacionais nos quais OpenGL foi implementada, e produz o mesmo efeito de exibi&ccedil;&atilde;o em cada um destes sistemas.</p>
+      
+      <p>Diante das funcionalidades providas pelo OpenGL, tal biblioteca tem se tornado um padr&atilde;o amplamente adotado na ind&uacute;stria de desenvolvimento de aplica&ccedil;&otilde;es. Este fato tem sido encorajado tamb&eacute;m pela facilidade de aprendizado, pela estabilidade das rotinas, pela boa documenta&ccedil;&atilde;o dispon&iacute;vel [<a class="citation" href="bibliografia.html#d5e1678"><span class="citation">Neider2000</span></a>] e pelos resultados visuais consistentes para qualquer sistema de exibi&ccedil;&atilde;o concordante com este padr&atilde;o. &Eacute; poss&iacute;vel encontrar na Internet diversos <span class="foreignphrase"><em class="foreignphrase">sites</em></span> que tratam sobre OpenGL; o mais popular &eacute; a sua p&aacute;gina oficial: <a class="ulink" href="http://www.opengl.org" target="_top">www.opengl.org</a>. Neste endere&ccedil;o encontram-se dispon&iacute;veis diversos artigos e <span class="foreignphrase"><em class="foreignphrase">links</em></span> sobre o assunto, f&oacute;runs de discuss&atilde;o, informa&ccedil;&otilde;es sobre a evolu&ccedil;&atilde;o desse padr&atilde;o, al&eacute;m de uma s&eacute;rie de programas utilit&aacute;rios.</p>
+      
+      <p>Diversos jogos, aplica&ccedil;&otilde;es cient&iacute;ficas e comerciais tem utilizado OpenGL como ferramenta de apresenta&ccedil;&atilde;o de recursos visuais, principalmente com a ado&ccedil;&atilde;o deste padr&atilde;o por parte dos fabricantes de placas de v&iacute;deo destinadas aos consumidores dom&eacute;sticos. </p>
+      
+      <p>Todas as rotinas do OpenGL s&atilde;o implementadas em C, tornando f&aacute;cil sua utiliza&ccedil;&atilde;o em qualquer programa escrito em C ou C++.</p>
+      
+      <p>Entre os recursos gr&aacute;ficos dispon&iacute;veis pelo OpenGL, podem ser destacados os seguintes:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	  <p> Modos de desenho de pontos (escrita/xor/transpar&ecirc;ncia);</p>
+	</li><li class="listitem">
+	  <p> Ajuste de largura de linhas;</p>
+	</li><li class="listitem">
+	  <p> Aplica&ccedil;&atilde;o de transpar&ecirc;ncia ;</p>
+	</li><li class="listitem">
+	  <p> Ativa&ccedil;&atilde;o/desativa&ccedil;&atilde;o de serrilhamento (<span class="foreignphrase"><em class="foreignphrase">aliasing</em></span>);</p>
+	</li><li class="listitem">
+	  <p> Mapeamento de superf&iacute;cies com textura;</p>
+	</li><li class="listitem">
+	  <p> Sele&ccedil;&atilde;o de janela de desenho;</p>
+	</li><li class="listitem">
+	  <p> Manipula&ccedil;&atilde;o de fontes/tipos de ilumina&ccedil;&atilde;o e sombreamento;</p>
+	</li><li class="listitem">
+	  <p> Transforma&ccedil;&atilde;o de sistemas de coordenadas.</p>
+	</li><li class="listitem">
+	  <p> Transforma&ccedil;&otilde;es em perspectiva</p>
+	</li><li class="listitem">
+	  <p> Combina&ccedil;&atilde;o de imagens (<span class="foreignphrase"><em class="foreignphrase">blending</em></span>)</p>
+	</li></ul></div>
+
+      <p>Diversos desenvolvedores de software possuem suas pr&oacute;prias implementa&ccedil;&otilde;es do OpenGL. Entre as implementa&ccedil;&otilde;es mais populares, destacam-se aquelas providas pela Microsoft, a biblioteca compartilhada din&acirc;mica <code class="filename">opengl32.dll</code>, pela pr&oacute;pria SGI, <code class="filename">opengl.dll</code>, e o pacote Mesa3D (<a class="ulink" href="http://www.mesa3d.org" target="_top">www.mesa3d.org</a>). Esta &uacute;ltima &eacute; uma implementa&ccedil;&atilde;o <span class="foreignphrase"><em class="foreignphrase">Opengl conformant</em></span>, ou seja, possui funcionalidades semelhantes &agrave;s do OpenGL, al&eacute;m de ser completamente gratuita e funcionar nos sistemas operacionais Windows 9x/NT, MS-DOS e Unix, facilitando ainda mais a portabilidade de aplica&ccedil;&otilde;es.</p>
+
+      <p>As implementa&ccedil;&otilde;es do OpenGL geralmente prov&ecirc;em bibliotecas auxiliares, tais como a GLU (<span class="foreignphrase"><em class="foreignphrase">OpenGL Utility library</em></span>), utilizada para realizar tarefas comuns, tais como manipula&ccedil;&atilde;o de matrizes, gera&ccedil;&atilde;o de superf&iacute;cies e constru&ccedil;&atilde;o de objetos por composi&ccedil;&atilde;o.</p>
+
+      <p>As especifica&ccedil;&otilde;es do OpenGL n&atilde;o descrevem as intera&ccedil;&otilde;es entre OpenGL e o sistema de janelas utilizado (Windows, X Window etc). Assim, tarefas comuns em uma aplica&ccedil;&atilde;o, tais como criar janelas gr&aacute;ficas, gerenciar eventos provenientes de mouse e teclado, e apresenta&ccedil;&atilde;o de menus ficam a cargo de bibliotecas pr&oacute;prias de cada sistema operacional. Neste contexto, merece destaque a <span class="foreignphrase"><em class="foreignphrase">OpenGL Utility Toolkit</em></span> (GLUT), uma biblioteca que permite criar janelas, menus, manipular eventos, entre outras coisas, independentemente do sistema operacional utilizado. Aplica&ccedil;&otilde;es escritas em OpenGL/GLUT podem ser compiladas em Windows ou Unix, sem necessidade de altera&ccedil;&otilde;es em seus c&oacute;digos. GLUT tamb&eacute;m foi desenvolvida pela SGI. No <span class="foreignphrase"><em class="foreignphrase">site</em></span> oficial da GLUT (<a class="ulink" href="http://reality.sgi.com/mjk/glut3" target="_top">reality.sgi.com/mjk/glut3</a>) est&atilde;o dispon&iacute;veis o c&oacute;digo fonte dessa biblioteca, vers&otilde;es pr&eacute;-compiladas para alguns sistemas operacionais, e toda a documenta&ccedil;&atilde;o inclu&iacute;da.</p>
+    </div>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="operacao-normal"></a>1.2. Opera&ccedil;&atilde;o normal</h2></div></div></div>
+      
+      <p>Programas criados com OpenGL podem se tornar bastante complicados, diante do volume de opera&ccedil;&otilde;es que podem ser realizadas. Entretanto, a estrutura b&aacute;sica de v&aacute;rios programas &eacute; relativamente simples, geralmente possuindo a seguinte seq&uuml;&ecirc;ncia de opera&ccedil;&otilde;es:</p>
+
+      <div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>Abra uma janela gr&aacute;fica</em></span></span></dt><dd>
+	    <p>Lembre-se que as fun&ccedil;&otilde;es do OpenGL s&atilde;o independentes do sistema operacional utilizado. Logo, voc&ecirc; ter&aacute; que utilizar uma ou mais bibliotecas auxiliares que permitam abrir uma janelas na tela do computador, tais como GLUT, WGL (para Windows), glX (para o sistema XWindow), AGL (para Apple) ou PGL (para OS/2).</p>
+	  </dd><dt><span class="term"><span class="emphasis"><em>Prepare OpenGL para desenhar na janela</em></span></span></dt><dd>
+	    <p>Defina como OpenGL ir&aacute; desenhar nesta janela, por exemplo, se ser&aacute; utilizado <span class="foreignphrase"><em class="foreignphrase">double buffering</em></span> ou <span class="foreignphrase"><em class="foreignphrase">single buffering</em></span>, e se as imagens ser&atilde;o geradas utilizando mapa de cores indexado ou diretamente no formato RGB.</p>
+	  </dd><dt><span class="term"><span class="emphasis"><em>Defina o sistema de coordenadas e o estado inicial do OpenGL</em></span></span></dt><dd>
+	    <p>Indique as caracter&iacute;sticas do sistema de coordenadas a ser utilizado, por exemplo, os limites inferior e superior dos eixos coordenados. Defina as fontes de luz existentes, cores para desenho de pol&iacute;gonos, modos de preenchimento de superf&iacute;cies etc.</p>
+	  </dd><dt><span class="term"><span class="emphasis"><em>Loop:</em></span></span></dt><dd>
+	    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+		<p> Trate os eventos de mouse e teclado;</p>
+	      </li><li class="listitem">
+		<p> Mude a cena com base nos eventos ocorridos;</p>
+	      </li><li class="listitem">
+		<p> Redesenhe a cena com OpenGL.</p>
+	      </li></ul></div>
+	  </dd></dl></div>
+    </div>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="compilando-programas"></a>1.3. Compilando programas que utilizam OpenGL</h2></div></div></div>
+      
+      <p>Todos os programas deste curso foram criados e testados no Linux (<a class="ulink" href="www.linux.org" target="_top">www.linux.org</a>), e utilizam GLUT como biblioteca auxiliar para manipular janelas e tratar eventos. Esta escolha pode ser justificada por duas raz&otilde;es principais:</p>
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	  <p>O Linux (clone do Unix) &eacute;, de longe, o melhor sistema operacional do mundo, do sistema solar (j&aacute; est&aacute; presente at&eacute; em Marte) e, brevemente, da gal&aacute;xia, nas futuras viagens interplanet&aacute;rias. Um programa escrito em C padr&atilde;o, compilado e testado no Linux, tamb&eacute;m funcionar&aacute; a contento em outros sistemas, principalmente se for compilado com a mesma ferramenta utilizada para compilar os exemplos deste curso, o <code class="filename">gcc</code>, da GNU (<a class="ulink" href="www.gnu.org" target="_top">www.gnu.org</a>). Al&eacute;m de ser gratuito, este compilador &eacute; bastante otimizado e possui vers&otilde;es dispon&iacute;veis para a maioria dos sistemas operacionais existentes.</p>
+	</li><li class="listitem">
+	  <p>O GLUT est&aacute; implementado em diversos sistemas operacionais, facilitando a portabilidade de programas.</p>
+	</li></ol></div>
+
+      <p>As tarefas de compila&ccedil;&atilde;o foram automatizadas com o utilit&aacute;rio <span class="command"><strong>make</strong></span>. O <span class="command"><strong>make</strong></span> determina automaticamente que partes de um grande programa necessitam ser recompiladas e os comandos necess&aacute;rios para recompil&aacute;-las, a partir da leitura das regras definidas em um arquivo <code class="filename">Makefile</code>. Assim, para efetuar a compila&ccedil;&atilde;o do programa, basta executar o comando <span class="command"><strong>make</strong></span>, ao inv&eacute;s de digitar dezenas de comandos no prompt do Unix.</p>
+
+      <p>O <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> da <a class="xref" href="conceitos-iniciais.html#fig-Makefile" title="Figura 1.1. arquivo Makefile">Figura&nbsp;1.1</a> foi utilizado para compilar os exemplos desse curso. Para obter uma c&oacute;pia deste arquivo clique <a class="ulink" href="exemplos/Makefile" target="_top">aqui</a>.</p>
+      <div class="figure"><a name="fig-Makefile"></a><p class="title"><b>Figura 1.1. arquivo Makefile</b></p><div class="figure-contents">
+	
+	<pre class="programlisting">
+	    # Compila programas <strong class="hl-keyword">do</strong> curso de OpenGL
+<span class="hl-directive" style="color: maroon"># digite: make programa.c</span>
+<span class="hl-directive" style="color: maroon">#</span>
+
+CC = gcc
+CFLAGS = -O2 -funroll-loops -ansi -pedantic -ffast-math -D_SVID_SOURCE -D_BSD_SOURCE -DSHM -I/usr/X11R6/include
+XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 -lXext -lXmu -lXt -lXi -lSM -lICE
+
+<span class="hl-directive" style="color: maroon">##### MACROS #####</span>
+
+INCDIR = /usr/include
+LIBDIR = /usr/lib
+
+GL_LIBS = -L$(LIBDIR) -lglut -lGLU -lGL -lm $(XLIBS)
+
+LIB_DEP = $(LIBDIR)/$(GL_LIB)
+
+<span class="hl-directive" style="color: maroon">##### RULES #####</span>
+
+.SUFFIXES:
+.SUFFIXES: .c
+
+.c: $(LIB_DEP)
+	$(CC) -I$(INCDIR) $(CFLAGS) $&lt; $(GL_LIBS) -o $@
+
+<span class="hl-directive" style="color: maroon">##### TARGETS ######</span>
+
+clean:
+	-rm *.o *~
+
+	  </pre>
+      </div></div><br class="figure-break">
+
+      <p>As regras contidas neste arquivo Makefile incluem op&ccedil;&otilde;es de compila&ccedil;&atilde;o tais como <span class="command"><strong>-lglut</strong></span>, referente &agrave; biblioteca auxiliar GLUT, e <span class="command"><strong>-lGLU -lGL</strong></span>, referentes &agrave;s bibliotecas padr&atilde;o do OpenGL para o Mesa3d, possibilitando que programas simples possam ser f&aacute;cilmente compilados.</p>
+
+      <p>Para testar se esse arquivo funciona no seu sistema, copie-o com o nome "<code class="filename">Makefile</code>" para um diret&oacute;rio, juntamente com o programa <a class="ulink" href="exemplos/teste-make.c" target="_top"><code class="filename">teste-make.c</code></a>, mostrado na <a class="xref" href="conceitos-iniciais.html#fig-teste-make" title="Figura 1.2. programa teste-make.c">Figura&nbsp;1.2</a>. Dentro deste diret&oacute;rio, execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
+      <pre class="screen">
+<code class="prompt">$</code> <span class="command"><strong>make</strong></span> <code class="option">teste-make</code>
+<code class="prompt">$</code> <span class="command"><strong>teste-make</strong></span>
+</pre>	
+
+      <p>Caso apare&ccedil;a um quadrado branco dentro de uma janela com fundo preto, &eacute; sinal de que ocorreu tudo bem.</p>
+
+      <div class="figure"><a name="fig-teste-make"></a><p class="title"><b>Figura 1.2. programa <code class="filename">teste-make.c</code></b></p><div class="figure-contents">
+	
+	<pre class="programlisting"><em class="hl-comment" style="color: silver">/* programa teste-make.c */</em>
+
+<span class="hl-directive" style="color: maroon">#include &lt;GL/glut.h&gt;</span>
+<span class="hl-directive" style="color: maroon">#include &lt;stdlib.h&gt;</span>
+
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>);
+<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y);
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+  glutInitWindowSize (<span class="hl-number">256</span>, <span class="hl-number">256</span>); 
+  glutInitWindowPosition (<span class="hl-number">100</span>, <span class="hl-number">100</span>); 
+  glutCreateWindow (argv[<span class="hl-number">0</span>]);
+  glClearColor(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);
+  glShadeModel (GL_FLAT);
+  glOrtho (<span class="hl-number">0</span>, <span class="hl-number">1</span>, <span class="hl-number">0</span>, <span class="hl-number">1</span>, -<span class="hl-number">1</span> ,<span class="hl-number">1</span>);
+  glutDisplayFunc(display);
+  glutMainLoop();
+  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+}
+
+
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">int</strong> i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glColor3f (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glBegin(GL_POLYGON);
+  glVertex2f(<span class="hl-number">0.25</span>,<span class="hl-number">0.25</span>);
+  glVertex2f(<span class="hl-number">0.75</span>,<span class="hl-number">0.25</span>);
+  glVertex2f(<span class="hl-number">0.75</span>,<span class="hl-number">0.75</span>);
+  glVertex2f(<span class="hl-number">0.25</span>,<span class="hl-number">0.75</span>);
+  glEnd();
+  glFlush();
+}
+
+</pre>
+      </div></div><br class="figure-break">
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="introducao.html">&laquo;&nbsp;Introdu&ccedil;&atilde;o</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="desenhando-linhas-pontos.html">Cap&iacute;tulo 2. Desenhando linhas e pontos&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>

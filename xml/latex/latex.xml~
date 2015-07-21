@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!DOCTYPE book[
+<!ENTITY local "/home/ambj/Dropbox/www/xml/exemplo">
+]>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:lang="pt-br">
+  <info>
+    <title>Tutorial de LaTeX</title>
+    <author>
+      <personname>
+	<firstname>Maykon</firstname>
+	<othername>Ricardo</othername>
+	<surname>de Morais</surname>
+      </personname>
+    </author>
+    <address>DCA-CT-UFRN</address>
+    <copyright><year>2014</year><holder>Maykon Ricardo</holder></copyright>
+  </info>
+  
+  <!-- prefacio ############################################################################# -->
+  <preface xml:id="pre.prefacio">
+    <title>Prefácio</title>
+    <para>Nesse tutorial apresentaremos a linguagem <emphasis role="bold">LaTeX</emphasis> e mostraremos como utilizá-la com noções de baixa a média complexidade, mostraremos também como fazer desde uma simples estrutura de criação de documento até a criação de artigos, relatórios entre outros, mais antes de tudo iremos conhecer o ambiente de criação de textos em <emphasis role="bold">TeX</emphasis> e como instalá-lo tanto no sistema Windows como no Ubuntu.</para>
+  </preface>
+  <!-- introducao ############################################################################# -->
+  <chapter xml:id="cha.introducao">
+    <title>Introdução</title>
+    <section xml:id="sec.historia">
+      <title>História</title>
+      <para>O <emphasis>LaTeX</emphasis> é um conjunto de macros que visa processar textos dando origem a um documento com alta qualidade tipográfica, através de um sistema tipográfico chamado <emphasis>TeX</emphasis>, onde o usuário cria seus textos através de comandos, sem qualquer preocupação com formatação visual, dando mais atenção para o conteúdo do seu texto.</para>
+      <para>A criação do processador de texto <emphasis>TeX</emphasis> teve inicio no ano de 1978 pelo professor da universidade de Stanford chamado Donald E. Knuth, depois de ter se decepcionado com a baixa qualidade na editoração de seus livros. Porém, só no ano de 1985 o matemático Leslie Lamport em busca de mais praticidade na criação de textos em <emphasis>TeX</emphasis> criou um conjunto de macros (agrupamento de comandos em TeX) para agilizar o processo de desenvolvimento de textos. Este conjunto de recursos veio a se chamar de <emphasis>LaTeX</emphasis> e é utilizado no meio acadêmico ate hoje por possuir alta qualidade tipográfica e belos desenhos para fórmulas matemáticas, sendo amplamente usados e artigos, relatórios, livros, posters e <foreignphrase>slides</foreignphrase>.</para>
+    </section>
+    <section xml:id="sec.funcionamento">
+      <title>Funcionamento</title>
+      <para>O processador de texto <emphasis role="bold">TeX</emphasis> diferentemente de outros processadores como <emphasis role="bold"> Word, LibbreOffice Writer e etc.</emphasis> não é baseado em <link xlink:href="http://pt.wikipedia.org/wiki/WYSIWYG">WYSIWYG</link>, (<emphasis role="bold">"What You See Is What You Get"</emphasis>), que traduzido significa <emphasis role="bold">"O Que Você Vê É O Que Você Obtém"</emphasis>, onde você vê como seu documento ficará formatado no momento da criação. No <emphasis role="bold">TeX</emphasis> só iremos ver como o documento vai ficar formatado no final, após o texto ser compilado.</para>
+      <section xml:id="sec.compilacao">
+	<title>Compilação</title>
+	<para>O LaTeX assim como qualquer outra linguagem necessita de uma compilação, no <emphasis role="bold">Texmaker</emphasis> basta você clicar na setinha azul na barra superior do lado esquerdo do nome <emphasis role="bold">compilar</emphasis> como mostrado na <xref linkend="fig.compilar"/> (salve o arquivo antes de compilar).</para>
+	<figure xml:id="fig.compilar">	 
+	  <title>Compilação</title>
+	  <mediaobject>
+	    <imageobject role="html">
+	      <imagedata fileref="images/compilar.svg" format="JPG"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	  <para>No terminal tembém é possível compilar, basta usar o comando <command>$ pdflatex nome_do_documento</command>. Lembrando que antes de compilar você tem que definir o diretório onde esta localizado o arquivo <emphasis>.tex</emphasis></para>
+	  <orderedlist>
+	    <title>Arquivos gerados ao compilar</title>
+	    <para>Ao compilar o arquivo <emphasis>.tex</emphasis> serão gerados três arquivos sendo eles <emphasis>nome_do_documento.pdf, nome_do_documento.aux e nome_do_documento.log</emphasis>.</para>
+	    <listitem>
+	      <para><emphasis role="bold">nome_do_arquivo.pdf:</emphasis></para>
+	      <para>Esse é o documento final gerado pelo <emphasis role="bold">LaTeX</emphasis> e já formatado.</para>
+	    </listitem>
+	    <listitem>
+	      <para><emphasis role="bold">nome_do_documento.aux:</emphasis></para>
+	      <para>Esse arquivo armazena informações sobre as referências cruzadas usadas no documento.</para>
+	    </listitem>
+	    <listitem>
+	      <para><emphasis role="bold">nome_do_documento.log:</emphasis></para>
+	      <para>Nesse arquivo são armazenado as informações sobre a compilação.</para>
+	    </listitem> 
+	  </orderedlist>
+      </section>
+      <section xml:id="vantagens_desvantagens">
+	<title>Vantagens e Desvantagens</title>
+	<para>Você já deve ter ouvido alguem falar que o <emphasis role="bold">LaTeX</emphasis> é uma boa ferramenta para criação de textos em geral, mas por que ela é tão boa? nessa seção iremos mostra quais as vantagens e desvantagens de criar documentos em <emphasis role="bold">TeX</emphasis>.</para>
+	<orderedlist>
+	  <title>Vantagens</title>
+	  <listitem>
+	    <para>Documentos criados em <emphasis role="bold">TeX</emphasis> traz mais profisionalismo a seus trabalhos.</para>
+	  </listitem>
+	  <listitem>
+	    <para>O fato do TeX ser um processador de texto sem prévia formatação visual, faz com que o usuário concentre-se apenas na criação de seu texto, deixando-o bem estruturado.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Sem custos na criação de seus textos, os Softwares que utilizaremos são totalmente gratuitos.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Pode ser utilizado tanto no Windows como no Linux.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Criar bons documentos com poucos comandos.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Introduzir multimídias ao seu documento como vídeos, audios, imagens entre outros (somente em formato PDF).</para>
+	  </listitem>
+	  <listitem>
+	    <para>Criação de fórmulas matemáticas com belos designs.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Documentos de textos muito leve, mesmo com grande quantidade de páginas.</para>
+	  </listitem>
+	  <listitem>
+	    <para>ótima qualidade tipográfica em seu documentos.</para>
+	  </listitem>
+	</orderedlist>
+	<orderedlist>
+	  <title>Desvantagens</title>
+	  <listitem>
+	    <para>A principal desvantagem é a criação de novos estilos, pois é muito complexo e requer muito tempo e dedicação.</para>
+	  </listitem>
+	  <listitem>
+	    <para>Dificuldade em aprender no primeiro contato com LaTeX, diferente dos processadores de texto baseados em WYSIWYG.</para>
+	  </listitem>
+	</orderedlist>
+      </section>
+    </section>
+    <section xml:id="sec.instalacao">
+      <title>Instalação</title>
+      <para>O ambiente de criação de texto que iremos utilizar no Windows e no Ubuntu é o <emphasis>TexMaker</emphasis>.</para>
+      <section xml:id="sec.instalacao.windows">
+	<title>Instalação no Windows</title>
+	<para>São necessários 2 simples passos para a instalação:</para>
+	<section xml:id="sec.intalacao.windows.texlive">
+	  <title>Instalando o TeX Live 2013:</title>
+	  <para>Para baixar o <emphasis>Tex Live 2013</emphasis> <link xlink:href="http://mirror.ctan.org/systems/texlive/tlnet/install-tl.exe">clique aqui</link>, em seguida execute-o e a seguinte janela representada na <xref linkend="fig.instalacao.windows.texlive.tipo_de_instalacao"/> se abrirá.</para>
+	  <figure xml:id="fig.instalacao.windows.texlive.tipo_de_instalacao">	 
+	    <title>Tipo de instalação</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/tipo_de_instalacao_texlive_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Selecione <emphasis>“simple install (big)”</emphasis> e clique em <emphasis>“Next”</emphasis>, ira aparecer a janela da <xref linkend="fig.instalacao.windows.texlive.descompactando"/>.</para>
+	  <figure xml:id="fig.instalacao.windows.texlive.descompactando">
+	    <title>Descompactando o TeX Live</title>  
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/descompactando_texlive_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Clique em <emphasis>“Install”</emphasis>, logo abrirá a seguinte janela (<xref linkend="fig.instalacao.windows.texlive.recomendacoes_de_instalacao"/>).</para>
+	  <figure xml:id="fig.instalacao.windows.texlive.recomendacoes_de_instalacao">
+	    <title>Recomendações de instalação</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/recomendacoes_de_instalacao_texlive_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Siga as recomendações do programa Clique em <emphasis>“próximo”</emphasis>, então aparecerá a proxima janela (<xref linkend="fig.instalacao.windows.texlive.alterar_diretorio"/>).</para>
+	  <figure xml:id="fig.instalacao.windows.texlive.alterar_diretorio">
+	    <title>Alterar diretório de instalação</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/alterar_diretorio_texlive_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Nessa janela você poderá alterar o local onde será instalado o TeX Live clicando em <emphasis>“alterar”</emphasis>, caso não queira alterar o local de instalação é só clicar em <emphasis>“próximo”</emphasis> para pasarmos para a próxima janela (<xref linkend="fig.instalacao.windows.texlive.tamanho_padrao_do_papel"/>).</para>
+	  <figure xml:id="fig.instalacao.windows.texlive.tamanho_padrao_do_papel">
+	    <title>Tamanho padrão do papel</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/tamanho_padrao_papel_texlive_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Nesse passo você deve escolher qual vai ser o tamanho padrão do papel, os tamanhos são <emphasis>“A4”</emphasis> ou <emphasis>“carta”</emphasis>, feita sua escolha, agora marque a opção <emphasis>“Adicionar atalho de menu”</emphasis> e deixe desmarcado a opção <emphasis>“Instalar o editor TeXworks”</emphasis>, caso esteja marcado desmarque-o, pois instalaremos na <xref linkend="sec.instalacao.windows.texmaker"/> o <emphasis>TexMaker</emphasis>, agora clique em <emphasis>“Próximo”</emphasis>, e a janela da <xref linkend="fig.intalacao.windows.texlive.baixando_instalando"/> abrirá.</para>
+	  <figure xml:id="fig.intalacao.windows.texlive.baixando_instalando">
+	    <title>Baixando e instalando o TeX Live</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/baixando_instalando_texlive_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Nesse momento o TeX Live estara baixando e instalando os arquivos necessários podendo levar cerca de 1 a 3 horas dependendo da velocidade da sua internet, ao terminar de baixar e instalar a seguinte janela abrirá (<xref linkend="fig.instalacao.windows.texlive.finalizando_instalacao"/>).</para>
+	  <figure xml:id="fig.instalacao.windows.texlive.finalizando_instalacao">
+	    <title>Finalizando a instalação</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/finalizando_instalacao_texlive_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Clique em <emphasis>“close”</emphasis> e pronto a primeira parte foi concluída.</para>
+	</section>
+	<section xml:id="sec.instalacao.windows.texmaker">
+	  <title>Instalando o TexMaker:</title>
+	  <para>Nessa parte iremos instalar o <emphasis>TexMaker</emphasis>, um editor de textos em <emphasis>TeX</emphasis>. Para começarmos <link xlink:href="http://www.xm1math.net/texmaker/texmakerwin32_install.exe">clique aqui</link> para baixar o programa, depois de baixá-lo execute-o e a janela da <xref linkend="fig.instalacao.windows.texmaker.termos_de_licenca"/> se abrirá.</para>
+	  <figure xml:id="fig.instalacao.windows.texmaker.termos_de_licenca">
+	    <title>Termos de licença</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/termos_de_licenca_texmaker_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Clique em <emphasis>“I Agree”</emphasis>, e a próxima janela abrirá (<xref linkend="fig.instalacao.windows.texmaker.diretorio_instalacao"/>).</para>
+	  <figure xml:id="fig.instalacao.windows.texmaker.diretorio_instalacao">
+	    <title>Diretório de instalação</title>	
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/diretorio_instalacao_texmaker_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Em seguida escolha o local de destino da instalação e clique em <emphasis>“Install”</emphasis>, ao terminar a instalação a janela representada na <xref linkend="fig.instalacao.windows.texmaker.finalizando_instalacao"/> abrirá.</para>
+	  <figure xml:id="fig.instalacao.windows.texmaker.finalizando_instalacao">
+	    <title>Finalizando a instalação</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/finalizando_instalacao_texmaker_windows.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para> Clique em <emphasis>“close”</emphasis>. Pronto a segunda parte terminou, agora você pode avançar para o <xref linkend="cha.estrutura_basica"/>.</para>
+	</section>
+      </section>
+      <section xml:id="sec.instalacao.ubuntu">
+	<title>Instalação no Ubuntu</title>
+	<para>No Ubuntu o processo é mais simples, basta instalar o <emphasis>TexMaker</emphasis> e o pacote Tex Live: Portuguese.</para>
+	<section xml:id="sec.intalacao.ubuntu.texmaker">
+	  <title>Instalando o TexMaker:</title>
+	  <para>Vá até a <emphasis>“Central de programas do Ubuntu”</emphasis>, procure a barra de pesquisa e digite <emphasis>TexMaker</emphasis>, como mostra a <xref linkend="fig.instalacao.ubuntu.texmaker.procurando"/>.</para>
+	  <figure xml:id="fig.instalacao.ubuntu.texmaker.procurando">
+	    <title>Procurando TexMaker</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/procurando_texmaker_ubuntu.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Ao clicar no <emphasis>TexMaker</emphasis> aparecerá o nome <emphasis>“Instalar”</emphasis> como na <xref linkend="fig.instalacao.ubuntu.texmaker.instalar"/>.</para>
+	  <figure xml:id="fig.instalacao.ubuntu.texmaker.instalar">
+	    <title>Instalar TexMaker</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/instalar_texmaker_ubuntu.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Clique-o, será requisitado sua senha, digite-a e espere a instalação ser concluída. Pronto o TexMaker foi instalado.</para>
+	</section>
+	<section xml:id="sec.instalacao.ubuntu.pacote_texlive">
+	  <title>Instalando Pacote TeX Live: Portuguese</title>
+	  <para>O pacote Tex Live: Portuguese, é um pacote de suporte a linguagem portuguesa que configura o estilo do documento.</para>
+	  <para>Para instala-lo vá ate a "Central de programas do Ubuntu" e digite na barra de pesquisa "texlive portuguese", aparecerá as seguintes opções mostradas na <xref linkend="fig.instalacao.ubuntu.pacote_texlive.instalando_pacote"/></para>
+	  <figure xml:id="fig.instalacao.ubuntu.pacote_texlive.instalando_pacote">
+	    <title>Instalando Pacote</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/instalando_pacote_texlive_ubuntu.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Clique em "Tex Live: Potuguese", em seguida clique em instalar, digite sua senha quando requisitado e espere a conclusão da instalação. Pronto você já pode avançar para o <xref linkend="cha.estrutura_basica"/>.</para>
+	</section>
+	<section xml:id="sec.instalacao.ubuntu.ambiente_emacs">
+	  <title>Instalando o emacs como editor de textos em Tex (opcional)</title>
+	  <para>Se você gosta ou já esta familiarizado com <emphasis role="bold">emacs</emphasis> então aqui vai uma boa dica, pode-mos fazer com que o <emphasis role="bold">emacs</emphasis> reconheça a linguagem <emphasis role="bold">LaTeX</emphasis>, nessa seção iremos ver o procedimento de instalação do ambiente <emphasis role="bold">emacs</emphasis> e uma ferramenta chamada <emphasis role="bold">auctex</emphasis> utilizada para reconhecimento de comandos de <emphasis role="bold">LaTeX</emphasis>.</para>
+	  <section xml:id="sec.instalacao.ubuntu.ambiente_emacs.emacs">
+	    <title>Instalando o emacs</title>
+	    <para>Para instalarmos o emacs abra primeiramente a <emphasis role="bold">Central de programas do Ubuntu</emphasis>, localize a barra de pesquisa e em seguida digite <emphasis>emacs</emphasis> como mostra a <xref linkend="fig.instalacao.ubuntu.ambiente_emacs.procurando_emacs"/>.</para>
+	    <figure xml:id="fig.instalacao.ubuntu.ambiente_emacs.procurando_emacs">
+	      <title>Procurando o emacs</title>
+	      <mediaobject>
+		<imageobject role="html">
+		  <imagedata format="SVG" fileref="images/procurando_emacs_ubuntu.svg"/>
+		</imageobject>
+	      </mediaobject>
+	    </figure>
+	    <para>Clique em <emphasis role="bold">GNU Emacs 23</emphasis> e aparecerá a opção <emphasis role="bold">Instalar</emphasis> como na <xref linkend="fig.instalacao.ubuntu.ambiente_emacs.instalando_emacs"/>.</para>
+	    <figure xml:id="fig.instalacao.ubuntu.ambiente_emacs.instalando_emacs">
+	      <title>Instalando o emacs</title>
+      <mediaobject>
+		<imageobject role="html">
+		  <imagedata format="SVG" fileref="images/instalando_emacs_ubuntu.svg"/>
+		</imageobject>
+	      </mediaobject>
+	    </figure>
+	    <para>Clique-a em seguida digite sua senha e espere a instalação ser concluida, ao concluir passe para a <xref linkend="sec.instalacao.ubuntu.ambiente_emacs.auctex"/>.</para>
+	  </section>
+	  <section xml:id="sec.instalacao.ubuntu.ambiente_emacs.auctex">
+	    <title>Instalando a ferramenta auctex</title>
+	    <para>Ainda na <emphasis role="bold">Central de programas do Ubuntu</emphasis>, vá até a barra de pesquisa e digite <emphasis>auctex</emphasis> (<xref linkend="fig.instalacao.ubuntu.ambiente_emacs.procurando_auctex"/>).</para>
+	    <figure xml:id="fig.instalacao.ubuntu.ambiente_emacs.procurando_auctex">
+	    <title>Pesquisando auctex</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/procurando_auctex_emacs_ubuntu.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Agora clique nessa opção e será exibida a opção de instalar como mostrado na <xref linkend="fig.instalacao.ubuntu.ambiente_emacs.instalando_auctex"/>.</para>
+	  <figure xml:id="fig.instalacao.ubuntu.ambiente_emacs.instalando_auctex">
+	    <title>Instalando auctex</title>
+	    <mediaobject>
+	      <imageobject role="html">
+		<imagedata format="SVG" fileref="images/instalando_auctex_ubuntu.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </figure>
+	  <para>Ao clicar em <emphasis>instalar</emphasis> será requisitado sua senha, digite-a e aguarde a conclusão da instalação. Pronto! agora você tem um ambiente de edição de LaTeX no emacs.</para>
+	  </section>
+	</section>
+      </section>
+    </section>
+  </chapter>
+  <!-- elabora um documento basico em Latex ####################################################################### -->
+  <chapter xml:id="cha.estrutura_basica">
+    <title>Criando um documento básico em Latex</title>
+    <para>Nesse capítulo mostraremos como criar uma documento em <emphasis role="bold">LaTeX</emphasis>, começando da estrutura bem simples e evoluindo até a criação de um documento mais elaborado. Essa estrutura é apresentada no <xref linkend="exa.estrutura_basica"/>.</para>
+   <example xml:id="exa.estrutura_basica">
+     <title>Estrutura Básica</title>
+    <programlisting>
+\documentclass[a4paper,12pt]{article}
+\begin{document}
+Esse é um exemplo de como se usa alguns comandos básicos para criação de documentos em \LaTeX.
+\end{document}
+    </programlisting>
+   </example>
+    <para>Este exemplo é composto de quatro linhas e quando compilado uma única página é produzida no documento de saída, como mostra a <xref linkend="fig.documento_simples"/>, mas antes de compilar vamos entender o que cada comando significa.</para>
+    <section xml:id="sec.comandos_basicos">
+      <title>Comandos Básicos</title>
+      <para>A primeira linha do documento contém as declarações</para>
+      <programlisting>\documentclass[a4paper,12pt]{article}</programlisting>
+      
+      <para>Nesse comando definimos que tipo de documento queremos criar e as configurações fundamentais do documento, tais como o tamanho do papel e o tamanho da fonte. Neste caso, possíveis classes e opções a serem passadas para esse comando <command>documentclass</command> são:</para>
+      <variablelist>
+	<title>Classes</title>
+	<varlistentry><term><filename>article</filename></term>
+	<listitem>
+	  <para>Essa classe configurar o documento para forma de um artigo.</para>
+	</listitem>
+	</varlistentry>
+	<varlistentry><term><filename>report</filename></term>
+	<listitem>
+	  <para>Essa classe é usada para relatórios longos.</para>
+	</listitem>
+	</varlistentry>
+	<varlistentry><term><filename>book</filename></term>	
+	<listitem>
+	  <para>Essa classe deve ser utilizada quando se quer criar livro.</para>
+	</listitem>
+	</varlistentry>
+	<varlistentry><term><filename>slides:</filename></term>
+	<listitem>
+	  <para>Essa classe configura seu documento como um Slide.</para>
+	</listitem>
+	</varlistentry>
+	<varlistentry><term><filename>letter</filename></term>
+	<listitem>
+	    <para>Essa classe é ideal para criação de carta.</para>
+	</listitem>
+	</varlistentry>
+      </variablelist>
+      <orderedlist>
+	<title>Opções</title>
+	<listitem>
+	  <para><emphasis role="bold">Tipo de Papel:</emphasis> essa opção nos dar vários tipos de papeis para configurar nosso documento, são elas <emphasis role="bold">letterpaper</emphasis> (formato de carta) (215,9mm X 279,4mm), <emphasis role="bold">legalpaper</emphasis> (formato legal) esse é um tipo de papel econtrado no EUA (216mm X 356mm), <emphasis role="bold">executivepaper</emphasis> (formato executivo) usado para cartas oficiais (184mm X 267mm), <emphasis role="bold">a4paper</emphasis> (formato A4) dimensões (210mm X 297mm) e <emphasis role="bold">a5paper</emphasis> (formato A5) dimensões (148mm X 210mm), entre outros tipos, porém nesse tutorial utilizaremos o formato <emphasis role="bold">a4paper</emphasis>.</para>
+	</listitem>
+	<listitem>
+	  <para><emphasis role="bold">Tamanho da Fonte:</emphasis> nessa opção podemos alterar o tamanho da fonte de todo o documento, sendo disponível somente três tamanhos <emphasis role="bold">10pt, 11pt e 12pt</emphasis>. obs: para alterar o tamanho de uma determinada palavra, frase ou até mesmo um texto usa-se outra tag que mostraremos mais a adiante.</para>
+	</listitem>
+	<listitem>
+	  <para><emphasis role="bold">Orientação do Documento:</emphasis> com essa opção podemos alterar a orientação da página do documento da vertical para horizontal usando a opção <emphasis role="bold">landscape</emphasis>.</para>
+	</listitem>
+	<listitem>
+	  <para><emphasis role="bold">Impressão:</emphasis> com essa opção definimos como vai ser a impressão do documento se é em um lado (<emphasis role="bold">oneside</emphasis>) da folha ou nos dois lados (<emphasis role="bold">twoside</emphasis>), caso não seja declarada a impressão será definida como <emphasis role="bold">oneside</emphasis> com exceção da classe <emphasis role="bold">book</emphasis> que usa como padrão o <emphasis role="bold">twoside</emphasis>.</para>
+	</listitem>
+	<listitem>
+	  <para><emphasis role="bold">Colunas:</emphasis> essa opção nos dar a alternativa de dividir a página em duas colunas usando o <emphasis role="bold">twocolumn</emphasis> exceto na classe <emphasis role="bold">slides</emphasis>.</para>
+	</listitem>
+	<listitem>
+	  <para><emphasis role="bold">Equações:</emphasis> exite uma opção que faz com que as equações apresentadas no documento fiquem alinhadas à esquerda (<emphasis role="bold">fleqn</emphasis>) em vez do centro e uma opção que coloca a numeração das equações tambem à esquerda (<emphasis role="bold">leqno</emphasis>) ao invés da direita.</para>
+	</listitem>
+      </orderedlist>
+      <para> Existem outras opções além dessas, porém essas são as principais opções que iremos utilizar durante o tutorial.</para>
+      <para>Na segunda e quarta linha do <xref linkend="exa.estrutura_basica"/> temos os respectivos comandos <programlisting>\begin{document}</programlisting> <programlisting>\end{document}</programlisting> É entre esses dois comandos que criaremos o nosso texto.</para>
+      <para>Agora que já conhecemos os comandos básicos para criação de um documento podemos compilar o <xref linkend="exa.estrutura_basica"/> (caso você não lembre como compilar o <emphasis>arquivo.tex</emphasis> reveja a <xref linkend="sec.compilacao"/>), para isso abra o <emphasis role="bold">Texmaker</emphasis>, clique no botão <emphasis>"Novo"</emphasis> copie e cole o codigo do <xref linkend="exa.estrutura_basica"/> na area á direita do programa e compile-o, logo o seguinte documento será gerado em PDF (<xref linkend="fig.documento_simples"/>). </para>
+      <figure xml:id="fig.documento_simples">
+	<title>Primeiro Documento em LaTeX</title>
+	<mediaobject>
+	  <imageobject role="html">
+	    <imagedata format="SVG" fileref="images/dcumento_simples.svg"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+       <para>Se observada a figura, é fácil concluir que alguma coisa está incorreta. No caso, as acentuações que são comuns à língua portuguesa. Para entender melhor os recursos que serão necessários para que o texto fique correto, é importante compreender que recursos são esses e o que fazem no seu documento.</para>
+      <para>Esses recursos que utilizaremos serão os <emphasis role="bold">Pacotes</emphasis> <programlisting>\usepackage[opção]{pacote}</programlisting> Com esse comando você pode importar pacotes específicos para configuração do seu documento, mostraremos alguns pacotes mais utilizados.</para>
+      <orderedlist>
+	<title>Pacotes</title>
+	<listitem><para><programlisting>\usepackage[brazil]{babel}</programlisting> Esse pacote configura seu texto para a forma brasileira, reconhecendo hífenização e outras coisas.</para>
+	</listitem>
+	<listitem><para><programlisting>\usepackage[utf8]{inputenc}</programlisting> Com esse pacote o latex reconhece acentos e caracteres especiais no seu texto.</para>
+	</listitem>
+	<listitem><para><programlisting>\usepackage{color}</programlisting> Esse pacote disponibiliza a opção de mudar as cores das fontes do seu texto.</para>
+	</listitem>
+	<listitem><para><programlisting>\usepackage{graphicx}</programlisting> Esse pacote é utilizado quando você precisar adicionar imagens ao seu documento.</para>
+	</listitem>
+	<listitem><para><programlisting>\usepackage{amsfonts}</programlisting> Ao incluir esse pacote você pode alterar o estilo das fontes utilizadas no ambiente matemático.</para>
+	</listitem>
+	<listitem><para><programlisting>\usepackage{fancyhdr}</programlisting> Com esse pacote você pode personalizar o cabeçalho e o rodapé do seu documento.</para>
+	</listitem>
+	<listitem><para><programlisting>\usepackage[normalem]{ulem}</programlisting> Esse pacote é usado quando precisa de sublinha alguma palavra.</para>
+	</listitem>
+	<listitem><para><programlisting>\usepackage{indentfirst}</programlisting> Com esse pacote a primeira linha de todas as seções e subseções são recuadas para o parágrafo usual.</para>
+	</listitem>
+      </orderedlist>
+      <para>Agora que já obtemos mais conhecimentos sobre o LaTeX vamos configurar o arquivo do <xref linkend="exa.estrutura_basica"/>, fazendo as modificações mostradas no <xref linkend="exa.estrutura_basica_configurada"/>.</para>
+      <example xml:id="exa.estrutura_basica_configurada">
+	<title>Reconhecendo Acentos</title>
+	<programlisting>
+\documentclass[a4paper,12pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\begin{document}
+Esse é um exemplo de como se usa alguns comandos básicos para criação de documentos em \LaTeX. 
+\end{document}
+	</programlisting>
+      </example>
+      <para>Ao compilar o codigo do <xref linkend="exa.estrutura_basica_configurada"/> o seguinte resultado (<xref linkend="fig.documento_simples_configurado"/>) será gerado:</para>
+      <figure xml:id="fig.documento_simples_configurado">	
+	<title>Reconhecendo Acentos</title>
+	<mediaobject>
+	  <imageobject role="html">
+	    <imagedata format="SVG" fileref="images/documento_simples_configurado.svg"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>Perceba que agora os acentos e os caracteres especiais estão sendo mostrados e que você criou seu primeiro documento em <emphasis role="bold">LaTeX</emphasis>.</para>
+    </section>
+    <section xml:id="sec.estrutura_basica.comandos_editoracao">
+      <title>Comandos para editoração</title>
+      <para>Agora veremos por ordem hierárquica alguns comandos necessários para organização do documento em capítulos, seções, subseções e etc.</para>
+      <para>O primeiro comando da hierárqia é o <programlisting>\chapter{título}:</programlisting> ao usa esse comando você cria capítulos numerados.</para>
+       <warning><para>o comando <command>\chapter{título}</command> é exclusivo para as classes <emphasis>book e report</emphasis>, já os comandos listado abaixo serve tanto para <emphasis>book e report</emphasis> como para as demais classes.</para></warning>
+      <para>Em seguida temos o comando <programlisting>\part{título}</programlisting> Com ele criaremos textos particionados como por exemplo: <emphasis role="bold">Parte I, Parte II e etc</emphasis>.</para>
+      <para>Logo após temos <programlisting>\section{título}</programlisting> Esse comando cria seções numeradas.</para>
+      <para>Para criarmos uma subseção numerada utilizamos <programlisting>\subsection{título}</programlisting></para>
+      <para>Se quisermos criar uma subseção numerada dentro de outra subseção, utilizamos o <programlisting>\subsubsection{título}</programlisting></para>
+      <para>Temos também o comando <programlisting>\paragraph{título}</programlisting> usado para criar parágrafos.</para>
+      <para>E por último na hieráquia temos o <programlisting>\subparagraph{título}:</programlisting> que cria subparágrafos.</para>
+      <important><para>Você pode retirar as numerações e deixar só os titulos colocando um <emphasis>"*"</emphasis> entre o comando e o abre chaves <emphasis>"{"</emphasis> como mostrado abaixo.</para></important>
+      <screen><command>\section*{titulo}</command></screen>
+      <para>Depois de utilizado os comandos de seção, subseção e os demais, podemos agora criar uma súmairo usando o <programlisting>\tableofcontents</programlisting> onde ele cria automaticamente o súmario de acordo com a utilização de <command>\section{título}, \subsection{título}, \subsubsection{título}, \part{título}</command> e <command>\chapter{título}</command> que você estiver fazendo.</para>
+      <tip><para>É recomendável você colocar o comando <command>\newpage</command> logo após o comando <command>\tableofcontents</command>, para que o súmario fique separado do inicio do texto.</para></tip> 
+      <para>Agora que conhecemos mais alguns comandos do <emphasis role="bold">LaTeX</emphasis> vamos colocar em prática o que aprendemos como mostra o <xref linkend="exa.estrutura_basica.documento_editoracao"/>.</para>
+      <example xml:id="exa.estrutura_basica.documento_editoracao">
+	<title>Documento com seções e etc.</title>
+	<programlisting>
+EM BREVE.
+	</programlisting>
+      </example>
+    </section>
+  </chapter>
+</book>

@@ -1,0 +1,7 @@
+<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+  <namespace ns="http://projectmallard.org/1.0/" uri="mallard-1.0.rnc"/>
+  <documentElement prefix="" localName="article" typeId="DocBook"/>
+  <documentElement prefix="" localName="book" typeId="DocBook"/>
+  <typeId id="DocBook" uri="docbook-xml-4.5/docbook.rnc"/>
+</locatingRules>
+

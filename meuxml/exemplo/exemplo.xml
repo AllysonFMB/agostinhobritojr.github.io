@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!DOCTYPE book[
+<!ENTITY local "/home/ambj/Dropbox/www/xml/exemplo">
+]>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:lang="pt-br">
+  <info>
+    <title>Exemplo de documento em docbook</title>
+    <author>
+      <personname>
+	<firstname>Agostinho</firstname>
+	<surname>Brito</surname>
+      </personname>
+    </author>
+    <address>DCA-CT-UFRN</address>
+    <copyright><year>2012</year><holder>Agostinho Brito</holder></copyright>
+  </info>
+
+  <!-- prefacio ############################################################################# -->
+  <preface xml:id="pre.prefacio">
+    <title>Prefácio</title>
+    <para> Esta introdução à programação em linguagem C++ foi desenvolvida com foco no ensino de orientação a objetos em cursos de engenharia. Tais cursos geralmente demandam apenas conhecimentos básicos da linguagem, dadas as limitações de tempo impostas nos currículos e a carga de outras disciplinas presentes nos currículos. Empestar de conteúdos mais avançados em programação a rotina de futuros engenheiros pode sobrecarregar a audiência e colocar o público para correr.</para>
+    <para> Serão apresentados ao leitor conceitos rudimentares de orientação a objetos em C++, construtores e destrutores, alocação dinâmica de memória, herança, polimorfismo, classes abstratas, tratamento de exceções, sobrecarga de operadores e de funções. Apresentamos também alguns recursos da biblioteca padrão de gabaritos STL (<link xlink:href="http://www.sgi.com/tech/stl">www.sgi.com/tech/stl</link>), uma espécie de canivete suíco em algoritmos e estruturas de dados. Acreditamos que tais conceitos são razoáveis para alunos de engenharia que desejam se aventurar nos meandros da programação em C++. </para>
+    <para> Os exemplos apresentados no texto foram testados com sucesso em um sistema Linux.</para>
+  </preface>
+
+  <!-- introducao ############################################################################# -->
+  <chapter xml:id="cha.introducao">
+    <title>Introdução</title>
+    <para>Desde que começaram a se espalhar, as linguagens de programação vêm acompanhando de perto a evolução do <foreignphrase>hardware</foreignphrase> em que operam. As primeiras linguagens que surgiram por aí foram projetadas para dispositivos bem mais modestos que o seu telefone celular. Em verdade, possuíam limitações de memória e velocidade nos sistemas da época. A arquitetura dos antigos processadores forçava os pioneiros a realizar verdadeiros malabarismos para implementar programas que hoje conseguimos desenvolver com grande facilidade em equipamentos baratos comprados na loja da esquina. Para leitores curiosos e com tempo livre, vale a pena gastar alguns minutos lendo sobre a <link xlink:href="http://en.wikipedia.org/wiki/History_of_programming_languages">História da programação</link> e ver as dificuldades enfrentadas pelos nossos antepassados.</para>
+    <para>Se olharmos para os programas de computador criados no passado e compararmos com os criados no presente, não é muito difícil concluir que é preciso cada vez mais esforço para conseguir prosperar na área de programação de computadores. Antigamente, a oferta de desenvolvedores de <foreignphrase> software </foreignphrase> e de ferramentas de desenvolvimento era bem mais escassa. Hoje, com a disseminação dos meios de educação em massa, de ferramentas de desenvolvimento gratuitas e de mecanismos eficientes para comercialização de programas de computador, está bem mais difícil encontrar compradores para programas do tipo <emphasis>"hello, world!"</emphasis>.</para>
+    <para>Provavelmente, o paradigma mais conhecido é o procedural (presente na linguagem de programação C), mas há outras opções também disponíveis por aí, capazes de permitir a solução de algumas classes de problemas de forma mais eficiente. Em todo caso, os paradigmas de programação mais comuns são os seguintes:</para>
+    <itemizedlist>
+      <listitem>
+	<para>Procedural</para>
+      </listitem>
+      <listitem>
+	<para>Funcional</para>
+      </listitem>
+      <listitem>
+	<para>Lógico</para>
+      </listitem>
+      <listitem>
+	<para>Orientado a objeto</para>
+      </listitem>
+    </itemizedlist>
+    <para>Cada um desses paradigmas será brevemente apresentado nas seções seguintes, ilustrando classes de problema cada um se aplica.</para>
+    <section xml:id="sec.introducao.procedural">
+      <title>Paradigma de programação procedural
+      </title>
+      <para>O paradigma de programação procedural geralmente é o preferido dos iniciantes. Foi um dos primeiros paradigmas de programação adotados, pois permitia (e ainda permite) que diversos algoritmos, principalmente aqueles que envolviam computação numérica, fossem criados com relativa facilidade.</para>
+      <para>Para o ensino da programação, o paradigma procedural facilita a introdução aos alunos dos conceitos básicos de concepção de algoritmos, de entrada e saída de dados e de tratamento de memória. Tais conceitos são normalmente tratados em cursos introdutórios de programação para alunos de engenharia e normalmente atendem às exigências curriculares da maioria dos cursos.</para>
+      <para>Programas de computador escritos em linguagens que seguem este paradigma geralmente são compostos por um conjunto de módulos (ou funções), cada um realizando uma determinada parte do processo. Cada programa é composto de uma rotina principal e diversas subrotinas auxiliares, sendo dada ênfase principal à ordem dos eventos no sistema desenvolvido, conforme ilustrado na <xref linkend="fig.paradigma-procedural"/>. </para>
+      <figure xml:id="fig.paradigma-procedural">
+	<title>Paradigma de programação procedural</title>
+	<mediaobject>
+	  <imageobject role="html">
+	    <imagedata align="center" format="SVG" fileref="figs/paradigma-procedural.svg" scale="100"/>
+	  </imageobject>
+	  <imageobject role="dblatex">
+	    <imagedata align="center" format="SVG" fileref="figs/paradigma-procedural.svg" scale="60"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>Normalmente, linguagens puramente procedurais oferecem um melhor controle do fluxo do código e são mais fáceis de entender. Como o foco é dado na sequência de eventos, elas geralmente são bastante comuns nas comunidades que lidam com a concepção e implementação de algoritmos numéricos. As bibliotecas mais difundidas para uso em computação numérica são escritas em linguagens procedurais como C ou FORTRAN.</para>
+    <example xml:id="exe.parafernalha.ambiente.exemplo">
+      <title>Programa <link xlink:href="exemplos/testa-ambiente.cpp"><filename>testa-ambiente.cpp</filename></link> para testar sua ferramenta de desenvolvimento.</title>
+      <programlisting>
+	<textobject><textdata fileref="&local;/exemplos/testa-ambiente.cpp" format="linespecific"/>
+	</textobject>
+      </programlisting>
+    </example>
+    <para>O programa do <xref linkend="exe.parafernalha.ambiente.exemplo"/> pode ser compilado e executado em um terminal Linux a partir das seguintes linhas de comando:</para>
+    <screen><prompt>$</prompt> <command>g++</command> testa-ambiente.cpp <option>-o</option> testa-ambiente
+<prompt>$</prompt> <command>./testa-ambiente</command>
+<computeroutput>
+Digite seu nome: <userinput>Jose</userinput>
+Seu nome é Jose
+</computeroutput></screen>
+  </section>
+    <section xml:id="sec.parafernalha.ambiente-exemplo-descricao">
+      <title>Descriçao do programa <filename>testa-ambiente.cpp</filename></title>
+      <para>O programa inicia com uma diretiva de inclusão que insere para processamento o arquivo <filename>iostream</filename>. A diretiva <token>#include</token> instrui o compilador a usar um pré-processador que lê e processa o arquivo referenciado antes de processar o restante do programa.</para>
+      <informalexample>
+	<programlisting role="c++">
+	  <![CDATA[
+#include <iostream>
+	  ]]>
+	</programlisting>
+      </informalexample>
+    </section>
+  </chapter>
+</book>

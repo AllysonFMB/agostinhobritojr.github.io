@@ -1,0 +1,67 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Exemplo de documento em docbook"><link rel="up" href="index.html" title="Exemplo de documento em docbook"><link rel="prev" href="pre.prefacio.html" title="Pref&aacute;cio"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="pre.prefacio.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o</th><td width="20%" align="right">&nbsp;</td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.introducao"></a>Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.introducao.html#sec.introducao.procedural">1.1. Paradigma de programa&ccedil;&atilde;o procedural
+      </a></span></dt><dt><span class="section"><a href="cha.introducao.html#sec.parafernalha.ambiente-exemplo-descricao">1.2. Descri&ccedil;ao do programa <code class="filename">testa-ambiente.cpp</code></a></span></dt></dl></div>
+    
+    <p>Desde que come&ccedil;aram a se espalhar, as linguagens de programa&ccedil;&atilde;o v&ecirc;m acompanhando de perto a evolu&ccedil;&atilde;o do <span class="foreignphrase"><em class="foreignphrase">hardware</em></span> em que operam. As primeiras linguagens que surgiram por a&iacute; foram projetadas para dispositivos bem mais modestos que o seu telefone celular. Em verdade, possu&iacute;am limita&ccedil;&otilde;es de mem&oacute;ria e velocidade nos sistemas da &eacute;poca. A arquitetura dos antigos processadores for&ccedil;ava os pioneiros a realizar verdadeiros malabarismos para implementar programas que hoje conseguimos desenvolver com grande facilidade em equipamentos baratos comprados na loja da esquina. Para leitores curiosos e com tempo livre, vale a pena gastar alguns minutos lendo sobre a <a class="ulink" href="http://en.wikipedia.org/wiki/History_of_programming_languages" target="_top">Hist&oacute;ria da programa&ccedil;&atilde;o</a> e ver as dificuldades enfrentadas pelos nossos antepassados.</p>
+    <p>Se olharmos para os programas de computador criados no passado e compararmos com os criados no presente, n&atilde;o &eacute; muito dif&iacute;cil concluir que &eacute; preciso cada vez mais esfor&ccedil;o para conseguir prosperar na &aacute;rea de programa&ccedil;&atilde;o de computadores. Antigamente, a oferta de desenvolvedores de <span class="foreignphrase"><em class="foreignphrase"> software </em></span> e de ferramentas de desenvolvimento era bem mais escassa. Hoje, com a dissemina&ccedil;&atilde;o dos meios de educa&ccedil;&atilde;o em massa, de ferramentas de desenvolvimento gratuitas e de mecanismos eficientes para comercializa&ccedil;&atilde;o de programas de computador, est&aacute; bem mais dif&iacute;cil encontrar compradores para programas do tipo <span class="emphasis"><em>"hello, world!"</em></span>.</p>
+    <p>Provavelmente, o paradigma mais conhecido &eacute; o procedural (presente na linguagem de programa&ccedil;&atilde;o C), mas h&aacute; outras op&ccedil;&otilde;es tamb&eacute;m dispon&iacute;veis por a&iacute;, capazes de permitir a solu&ccedil;&atilde;o de algumas classes de problemas de forma mais eficiente. Em todo caso, os paradigmas de programa&ccedil;&atilde;o mais comuns s&atilde;o os seguintes:</p>
+    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	<p>Procedural</p>
+      </li><li class="listitem">
+	<p>Funcional</p>
+      </li><li class="listitem">
+	<p>L&oacute;gico</p>
+      </li><li class="listitem">
+	<p>Orientado a objeto</p>
+      </li></ul></div>
+    <p>Cada um desses paradigmas ser&aacute; brevemente apresentado nas se&ccedil;&otilde;es seguintes, ilustrando classes de problema cada um se aplica.</p>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.introducao.procedural"></a>1.1. Paradigma de programa&ccedil;&atilde;o procedural
+      </h2></div></div></div>
+      
+      <p>O paradigma de programa&ccedil;&atilde;o procedural geralmente &eacute; o preferido dos iniciantes. Foi um dos primeiros paradigmas de programa&ccedil;&atilde;o adotados, pois permitia (e ainda permite) que diversos algoritmos, principalmente aqueles que envolviam computa&ccedil;&atilde;o num&eacute;rica, fossem criados com relativa facilidade.</p>
+      <p>Para o ensino da programa&ccedil;&atilde;o, o paradigma procedural facilita a introdu&ccedil;&atilde;o aos alunos dos conceitos b&aacute;sicos de concep&ccedil;&atilde;o de algoritmos, de entrada e sa&iacute;da de dados e de tratamento de mem&oacute;ria. Tais conceitos s&atilde;o normalmente tratados em cursos introdut&oacute;rios de programa&ccedil;&atilde;o para alunos de engenharia e normalmente atendem &agrave;s exig&ecirc;ncias curriculares da maioria dos cursos.</p>
+      <p>Programas de computador escritos em linguagens que seguem este paradigma geralmente s&atilde;o compostos por um conjunto de m&oacute;dulos (ou fun&ccedil;&otilde;es), cada um realizando uma determinada parte do processo. Cada programa &eacute; composto de uma rotina principal e diversas subrotinas auxiliares, sendo dada &ecirc;nfase principal &agrave; ordem dos eventos no sistema desenvolvido, conforme ilustrado na <a class="xref" href="cha.introducao.html#fig.paradigma-procedural" title="Figura 1.1. Paradigma de programa&ccedil;&atilde;o procedural">Figura&nbsp;1.1</a>. </p>
+      <div class="figure"><a name="fig.paradigma-procedural"></a><p class="title"><b>Figura 1.1. Paradigma de programa&ccedil;&atilde;o procedural</b></p><div class="figure-contents">
+	
+	<div class="mediaobject" align="center"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/paradigma-procedural.svg">figs/paradigma-procedural.svg</object></div></div>
+      </div></div><br class="figure-break">
+      <p>Normalmente, linguagens puramente procedurais oferecem um melhor controle do fluxo do c&oacute;digo e s&atilde;o mais f&aacute;ceis de entender. Como o foco &eacute; dado na sequ&ecirc;ncia de eventos, elas geralmente s&atilde;o bastante comuns nas comunidades que lidam com a concep&ccedil;&atilde;o e implementa&ccedil;&atilde;o de algoritmos num&eacute;ricos. As bibliotecas mais difundidas para uso em computa&ccedil;&atilde;o num&eacute;rica s&atilde;o escritas em linguagens procedurais como C ou FORTRAN.</p>
+    <div class="example"><a name="exe.parafernalha.ambiente.exemplo"></a><p class="title"><b>Exemplo 1.1. Programa <a class="ulink" href="exemplos/testa-ambiente.cpp" target="_top"><code class="filename">testa-ambiente.cpp</code></a> para testar sua ferramenta de desenvolvimento.</b></p><div class="example-contents">
+      
+      <pre class="programlisting">#include &lt;iostream&gt;
+
+<strong class="hl-keyword">using</strong> <strong class="hl-keyword">namespace</strong> std;
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">char</strong> s[<span class="hl-number">40</span>];
+  cout &lt;&lt; <strong class="hl-string"><em style="color:red">"Digite seu nome: "</em></strong>;
+  cin &gt;&gt; s;
+  cout &lt;&lt; <strong class="hl-string"><em style="color:red">"Seu nome eh"</em></strong> &lt;&lt; s &lt;&lt; <strong class="hl-string"><em style="color:red">"\n"</em></strong>;
+  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+}
+
+	</pre>
+    </div></div><br class="example-break">
+    <p>O programa do <a class="xref" href="cha.introducao.html#exe.parafernalha.ambiente.exemplo" title="Exemplo 1.1. Programa testa-ambiente.cpp para testar sua ferramenta de desenvolvimento.">Exemplo&nbsp;1.1</a> pode ser compilado e executado em um terminal Linux a partir das seguintes linhas de comando:</p>
+    <pre class="screen"><code class="prompt">$</code> <span class="command"><strong>g++</strong></span> testa-ambiente.cpp <code class="option">-o</code> testa-ambiente
+<code class="prompt">$</code> <span class="command"><strong>./testa-ambiente</strong></span>
+<code class="computeroutput">
+Digite seu nome: <strong class="userinput"><code>Jose</code></strong>
+Seu nome &eacute; Jose
+</code></pre>
+  </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.parafernalha.ambiente-exemplo-descricao"></a>1.2. Descri&ccedil;ao do programa <code class="filename">testa-ambiente.cpp</code></h2></div></div></div>
+      
+      <p>O programa inicia com uma diretiva de inclus&atilde;o que insere para processamento o arquivo <code class="filename">iostream</code>. A diretiva <span class="token">#include</span> instrui o compilador a usar um pr&eacute;-processador que l&ecirc; e processa o arquivo referenciado antes de processar o restante do programa.</p>
+      <div class="informalexample">
+	<pre class="programlisting">#include &lt;iostream&gt;</pre>
+      </div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="pre.prefacio.html">&laquo;&nbsp;Pref&aacute;cio</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;</th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>

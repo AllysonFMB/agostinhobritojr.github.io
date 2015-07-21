@@ -1,0 +1,50 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 7. Ponteiros e aloca&ccedil;&atilde;o din&acirc;mica de mem&oacute;ria</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Programa&ccedil;&atilde;o Orientada a Objetos em C++"><link rel="up" href="index.html" title="Programa&ccedil;&atilde;o Orientada a Objetos em C++"><link rel="prev" href="cha.sobrecarga.html" title="Cap&iacute;tulo 6. Sobrecarga de operadores"><link rel="next" href="cha.gabaritos.html" title="Cap&iacute;tulo 8. Gabaritos"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script><script xmlns:fo="http://www.w3.org/1999/XSL/Format">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-41839650-1', 'area8.dca.ufrn.br');
+      ga('send', 'pageview');
+      
+    </script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="cha.sobrecarga.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 7. Ponteiros e aloca&ccedil;&atilde;o din&acirc;mica de mem&oacute;ria</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="cha.gabaritos.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.ponteiros.objetos"></a>Cap&iacute;tulo 7. Ponteiros e aloca&ccedil;&atilde;o din&acirc;mica de mem&oacute;ria</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.ponteiros.objetos.html#sec.ponteiros.objectos.newdelete">7.1. Aloca&ccedil;&atilde;o din&acirc;mica com <span class="token">new</span> e <span class="token">delete</span></a></span></dt></dl></div>
+    
+    <p>Nas linguagens de programa&ccedil;&atilde;o, as vari&aacute;veis s&atilde;o entendidas como blocos de mem&oacute;ria capazes de armazenar valores de um determinado tipo. Por exemplo, se uma declara&ccedil;&atilde;o da forma</p>
+    <pre class="programlisting"><strong class="hl-keyword">int</strong> x;</pre>
+    <p>&eacute; realizada, associa-se ao s&iacute;mbolo <code class="varname">x</code> o conceito de vari&aacute;vel inteira, ou seja, <code class="varname">x</code> denota uma c&eacute;lula de mem&oacute;ria capaz de armazenar um valor inteiro, desde que contido dentro de uma faixa de valores predefinida.</p>
+    <p>Vari&aacute;veis primitivas como o inteiro <code class="varname">x</code> citadas no par&aacute;grafo anterior geralmente s&atilde;o usadas para a lide com dados comuns utilizados em um programa, como por exemplo para armazenar um contador de ocorr&ecirc;ncias, o n&uacute;mero de rodas de um ve&iacute;culo ou a quantidade de registros em um banco de dados.</p>
+    <p>Entretanto, existe um outro tipo de vari&aacute;vel em C/C++ concebida especificamente para armazenar endere&ccedil;os de mem&oacute;ria: a vari&aacute;vel ponteiro.</p>
+    <p>Diz-se que os ponteiros <span class="emphasis"><em>apontam</em></span> para o endere&ccedil;o de mem&oacute;ria que eles armazenam. Diversas opera&ccedil;&otilde;es em C++ somente s&atilde;o poss&iacute;veis com o uso de ponteiros, sendo as mais comuns relacionadas &agrave; passagem de par&acirc;metros para fun&ccedil;&otilde;es e &agrave; aloca&ccedil;&atilde;o din&acirc;mica de mem&oacute;ria.</p>
+    <p>O uso de ponteiros em C++ n&atilde;o difere muito do uso na linguagem C. Entretanto, em se tratando da alo&ccedil;a&ccedil;&atilde;o din&acirc;mica de mem&oacute;ria, novos recursos s&atilde;o introduzidos de modo a contemplar a sistem&aacute;tica das classes e objetos da linguagem.</p>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.ponteiros.objectos.newdelete"></a>7.1. Aloca&ccedil;&atilde;o din&acirc;mica com <span class="token">new</span> e <span class="token">delete</span></h2></div></div></div>
+      
+      <p>Em C, os processos de aloca&ccedil;&atilde;o din&acirc;mica de mem&oacute;ria s&atilde;o realizados com <span class="token">malloc()</span> e <span class="token">free()</span>. Em C++, os operadores <span class="token">new</span> e <span class="token">delete</span> tomam lugar. Embora as fun&ccedil;&otilde;es de manipula&ccedil;&atilde;o de mem&oacute;ria da linguagem C possam ser usadas em algumas ocasi&otilde;es, o uso dos operadores deve ser posto em prefer&ecirc;ncia, dados alguns aspectos que ser&atilde;o evidenciados adiante.</p>
+      <p>A aloca&ccedil;&atilde;o, uso e libera&ccedil;&atilde;o de um bloco de mem&oacute;ria em C++ pode ser ilustrado no <a class="xref" href="cha.ponteiros.objetos.html#exe.ponteiros.objetos.alocacaoarray" title="Exemplo 7.1. Usando new e delete para alocar e liberar um elemento na mem&oacute;ria.">Exemplo&nbsp;7.1</a> a seguir.</p>
+      <div class="example"><a name="exe.ponteiros.objetos.alocacaoarray"></a><p class="title"><b>Exemplo 7.1. Usando <span class="token">new</span> e <span class="token">delete</span> para alocar e liberar um elemento na mem&oacute;ria.</b></p><div class="example-contents">
+	
+	<pre class="programlisting">#include &lt;iostream&gt;
+
+<strong class="hl-keyword">using</strong> <strong class="hl-keyword">namespace</strong> std;
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">int</strong> *x;
+  x = <strong class="hl-keyword">new</strong> <strong class="hl-keyword">int</strong>;
+  *x = <span class="hl-number">3</span>; <em class="hl-comment" style="color: silver">// ou x[0] = 3;</em>
+  <strong class="hl-keyword">delete</strong> x;
+}
+</pre>
+      </div></div><br class="example-break">
+      <p>Quando utilizado para alocar um &uacute;nico elemento de um determinado tipo, a sintaxe de uso dos operadores &eacute; a seguinte:</p>
+      <pre class="programlisting"><strong class="hl-keyword">new</strong> tipo_de_dado;
+<strong class="hl-keyword">delete</strong> tipo_de_dado;</pre>
+
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="cha.sobrecarga.html">&laquo;&nbsp;Cap&iacute;tulo 6. Sobrecarga de operadores</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="cha.gabaritos.html">Cap&iacute;tulo 8. Gabaritos&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>

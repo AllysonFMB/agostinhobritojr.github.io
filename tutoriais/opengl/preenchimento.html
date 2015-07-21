@@ -1,0 +1,301 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 3. Preenchimento de regi&otilde;es</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="desenhando-linhas-pontos.html" title="Cap&iacute;tulo 2. Desenhando linhas e pontos"><link rel="next" href="transformacoes.html" title="Cap&iacute;tulo 4. Transforma&ccedil;&otilde;es geom&eacute;tricas"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="desenhando-linhas-pontos.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 3. Preenchimento de regi&otilde;es</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="transformacoes.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="preenchimento"></a>Cap&iacute;tulo 3. Preenchimento de regi&otilde;es</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="preenchimento.html#d5e367">3.1. Descri&ccedil;&atilde;o do programa <code class="filename">preenchimento.c</code></a></span></dt><dt><span class="sect1"><a href="preenchimento.html#preenchimento-exercicios">3.2. Exerc&iacute;cios</a></span></dt></dl></div>
+    
+    <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; aprender fun&ccedil;&otilde;es b&aacute;sicas do OpenGL que tratam do preenchimento de regi&otilde;es. Ser&aacute; mostrado um programa de desenho de pol&iacute;gonos com preenchimento interno com cores s&oacute;lidas, padr&otilde;es e combina&ccedil;&otilde;es de cores. O programa analisado, <a class="ulink" href="exemplos/preenchimento.c" target="_top"><code class="filename">preenchimento.c</code></a>, &eacute; mostrado no <a class="xref" href="preenchimento.html#example-preenchimento" title="Exemplo 3.1. programa preenchimento.c">Exemplo&nbsp;3.1</a>.</p>
+    <div class="example"><a name="example-preenchimento"></a><p class="title"><b>Exemplo 3.1. programa <a class="ulink" href="exemplos/preenchimento.c" target="_top"><code class="filename">preenchimento.c</code></a></b></p><div class="example-contents">
+      
+      <pre class="programlisting">#include &lt;GL/glut.h&gt;
+<span class="hl-directive" style="color: maroon">#include &lt;stdlib.h&gt;</span>
+
+GLubyte tux[] = {
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x7f</span>,  <span class="hl-number">0xfe</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xc4</span>,  <span class="hl-number">0x23</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x83</span>,  <span class="hl-number">0x21</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x7</span>,  <span class="hl-number">0xe0</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x7</span>,  <span class="hl-number">0xf0</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x8f</span>,  <span class="hl-number">0xf9</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xff</span>,  <span class="hl-number">0xff</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x4f</span>,  <span class="hl-number">0xf1</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x6f</span>,  <span class="hl-number">0xf1</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x2f</span>,  <span class="hl-number">0xf3</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x27</span>,  <span class="hl-number">0xe2</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x30</span>,  <span class="hl-number">0x66</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x1b</span>,  <span class="hl-number">0x1c</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xb</span>,  <span class="hl-number">0x88</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xb</span>,  <span class="hl-number">0x98</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x8</span>,  <span class="hl-number">0x18</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xa</span>,  <span class="hl-number">0x90</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x8</span>,  <span class="hl-number">0x10</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xc</span>,  <span class="hl-number">0x30</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x6</span>,  <span class="hl-number">0x60</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x3</span>,  <span class="hl-number">0xc0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>
+};
+
+GLfloat r,g,b;
+
+<strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>);
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>);
+<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y);
+<strong class="hl-keyword">void</strong> mouse(<strong class="hl-keyword">int</strong> button, <strong class="hl-keyword">int</strong> state, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y);
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+  glutInitWindowSize (<span class="hl-number">256</span>, <span class="hl-number">256</span>); 
+  glutInitWindowPosition (<span class="hl-number">100</span>, <span class="hl-number">100</span>); 
+  glutCreateWindow (<strong class="hl-string"><em style="color:red">"Preenchendo regi&#65533;es"</em></strong>);
+  init();
+  glutDisplayFunc(display); 
+  glutKeyboardFunc(keyboard);
+  glutMouseFunc(mouse);
+  glutMainLoop();
+  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+}
+
+<strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>){
+  glClearColor(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>);
+  glOrtho (<span class="hl-number">0</span>, <span class="hl-number">256</span>, <span class="hl-number">0</span>, <span class="hl-number">256</span>, -<span class="hl-number">1</span> ,<span class="hl-number">1</span>);
+  r=<span class="hl-number">0</span>; g=<span class="hl-number">1</span>; b=<span class="hl-number">0</span>;
+}
+
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">int</strong> i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glDisable(GL_POLYGON_STIPPLE);
+
+  glPolygonMode(GL_BACK, GL_LINE);
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glBegin(GL_POLYGON);
+  glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">226</span>);  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">226</span>);
+  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">143</span>); glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">143</span>); 
+  glEnd();
+
+  glPolygonMode(GL_BACK, GL_FILL);
+  glColor3f(r, g, b);
+  glBegin(GL_POLYGON);
+  glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">226</span>); glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">226</span>);
+  glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">143</span>); glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">143</span>); 
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);  glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">113</span>);  
+  glColor3f(<span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">113</span>);
+  glColor3f(<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">30</span>);  
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);  glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">30</span>); 
+  glEnd();
+
+  glEnable(GL_POLYGON_STIPPLE);
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);
+  glPolygonStipple(tux);
+  glBegin(GL_POLYGON);
+  glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">113</span>); glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">113</span>);
+  glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">30</span>); glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">30</span>); 
+  glEnd();
+  glFlush();
+  glutSwapBuffers();
+}
+
+<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">switch</strong> (key) {
+  <strong class="hl-keyword">case</strong> <span class="hl-number">27</span>:
+	exit(<span class="hl-number">0</span>);
+	<strong class="hl-keyword">break</strong>;
+  }
+}
+
+<strong class="hl-keyword">void</strong> mouse(<strong class="hl-keyword">int</strong> button, <strong class="hl-keyword">int</strong> state, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">switch</strong> (button) {
+  <strong class="hl-keyword">case</strong> GLUT_LEFT_BUTTON:
+	<strong class="hl-keyword">if</strong> (state == GLUT_DOWN) {
+	  r=(GLfloat)rand()/(RAND_MAX+<span class="hl-number">1.0</span>);
+	  g=(GLfloat)rand()/(RAND_MAX+<span class="hl-number">1.0</span>);
+	  b=(GLfloat)rand()/(RAND_MAX+<span class="hl-number">1.0</span>);
+	  glutPostRedisplay();
+	}
+	<strong class="hl-keyword">break</strong>;
+  }
+}
+
+</pre>
+
+    </div></div><br class="example-break">
+    <p>Para compilar e executar o programa <a class="ulink" href="exemplos/preenchimento.c" target="_top"><code class="filename">preenchimento.c</code></a>, salve-o juntamente com o arquivo <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
+    <pre class="screen">
+<code class="prompt">$</code> <span class="command"><strong>make</strong></span> <code class="option">preenchimento</code>
+<code class="prompt">$</code> <span class="command"><strong>preenchimento</strong></span>
+</pre>	
+    
+    <p>A sa&iacute;da do programa <span class="command"><strong>preenchimento</strong></span> &eacute; mostrado na <a class="xref" href="preenchimento.html#fig-preenchimento" title="Figura 3.1. Sa&iacute;da do programa preenchimento.">Figura&nbsp;3.1</a>.</p>
+    <div class="figure"><a name="fig-preenchimento"></a><p class="title"><b>Figura 3.1. Sa&iacute;da do programa <span class="command">preenchimento</span>.</b></p><div class="figure-contents">
+      
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/preenchimento.jpg" src="figs/preenchimento.jpg"></div></div>
+    </div></div><br class="figure-break">
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e367"></a>3.1. Descri&ccedil;&atilde;o do programa <code class="filename">preenchimento.c</code></h2></div></div></div>
+      
+      <p>Ser&atilde;o descritas aqui apenas as partes do programa que acrescentam conceitos novos em rela&ccedil;&atilde;o aos exemplos anteriores.</p>
+      <div class="informalexample">
+	<pre class="programlisting">GLubyte tux[] = {
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x7f</span>,  <span class="hl-number">0xfe</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xc4</span>,  <span class="hl-number">0x23</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x83</span>,  <span class="hl-number">0x21</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x7</span>,  <span class="hl-number">0xe0</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x7</span>,  <span class="hl-number">0xf0</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x1</span>,  <span class="hl-number">0x8f</span>,  <span class="hl-number">0xf9</span>,  <span class="hl-number">0x80</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xff</span>,  <span class="hl-number">0xff</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x4f</span>,  <span class="hl-number">0xf1</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x6f</span>,  <span class="hl-number">0xf1</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x2f</span>,  <span class="hl-number">0xf3</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x27</span>,  <span class="hl-number">0xe2</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x30</span>,  <span class="hl-number">0x66</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x1b</span>,  <span class="hl-number">0x1c</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xb</span>,  <span class="hl-number">0x88</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xb</span>,  <span class="hl-number">0x98</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x8</span>,  <span class="hl-number">0x18</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xa</span>,  <span class="hl-number">0x90</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x8</span>,  <span class="hl-number">0x10</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0xc</span>,  <span class="hl-number">0x30</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x6</span>,  <span class="hl-number">0x60</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x3</span>,  <span class="hl-number">0xc0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>, 
+ <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>,  <span class="hl-number">0x0</span>
+};</pre>
+
+      </div>
+      <p>Define o vetor <code class="varname">tux[]</code>, do tipo <span class="type">GLubyte</span>, para representar o padr&atilde;o de preenchimento de pol&iacute;gonos utilizado neste exemplo.</p>
+      <p>Existem dois m&eacute;todos principais para preencher regi&otilde;es utilizando padr&otilde;es. O mais comum utiliza texturas, mas n&atilde;o ser&aacute; abordado nesta li&ccedil;&atilde;o. O outro m&eacute;todo consiste em definir um mapa de bits monocrom&aacute;tico de 32x32 pixels, representando a m&aacute;scara para o padr&atilde;o que se deseja desenhar. O padr&atilde;o utilizado neste exemplo &eacute; mostrado na <a class="xref" href="preenchimento.html#fig-tuxfig" title="Figura 3.2. Padr&atilde;o de desenho &#34;tux&#34;.">Figura&nbsp;3.2</a>.</p>
+      <div class="figure"><a name="fig-tuxfig"></a><p class="title"><b>Figura 3.2. Padr&atilde;o de desenho "tux".</b></p><div class="figure-contents">
+	
+	<div class="mediaobject" align="center"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/tuxfig.jpg" src="figs/tuxfig.jpg"></div></div>
+      </div></div><br class="figure-break">
+      <p>A m&aacute;scara de desenho (vetor <code class="varname">tux[]</code>) &eacute; formada por um conjunto de n&uacute;meros representados na forma hexadecimal. Para construir este vetor, toma-se cada linha do mapa de bits de baixo para cima. Cada 8 pixels de uma linha da figura equivalem aos bits componentes de um elemento do vetor. Os bits mais significativos ficam &agrave; esquerda e os menos significativos &agrave; direita. Seguindo esta receita, ent&atilde;o a linha 8 da <a class="xref" href="preenchimento.html#fig-tuxfig" title="Figura 3.2. Padr&atilde;o de desenho &#34;tux&#34;.">Figura&nbsp;3.2</a>, representada pela seq&uuml;&ecirc;ncia de bits <span class="emphasis"><em>00000000110001000010001100000000</em></span>, equivaler&aacute; &agrave; seq&uuml;&ecirc;ncia "0x0,  0xc4,  0x23,  0x0" do array <code class="varname">tux[]</code>. </p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);</pre>
+
+      </div>
+      <p> A fun&ccedil;&atilde;o <code class="function">glutInitDisplayMode()</code> avisa GLUT para utilizar dois <span class="foreignphrase"><em class="foreignphrase">buffers</em></span> no desenho de cenas: um principal e outro auxiliar. Todos os objetos dever&atilde;o desenhados no buffer auxiliar. Quando a fun&ccedil;&atilde;o <code class="function">glutSwapBuffers()</code> for chamada, o buffer auxiliar passa a ser o principal, e o principal toma o lugar do auxiliar. Assim, a imagem gerada &eacute; apresentada de uma s&oacute; vez na tela, evitando cintila&ccedil;&otilde;es e a visualiza&ccedil;&atilde;o do processo de desenho, efeitos indesej&aacute;veis principalmente em anima&ccedil;&otilde;es. </p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutMouseFunc(mouse);</pre>
+
+      </div>
+      <p>Define que fun&ccedil;&atilde;o GLUT dever&aacute; chamar quando ocorrerem eventos de mouse. Quando o usu&aacute;rio pressiona ou solta uma dos bot&otilde;es do mouse, cada pressionamento ou soltura gera uma chamada de mouse. A fun&ccedil;&atilde;o de chamada passada como argumento para <code class="function">glutMouseFunc()</code> deve possuir o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <b class="fsfunc">funcao()</b>(</code></td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="paramdef-list"><code>int button</code>;<br><code>int state</code>;<br><code>int x</code>;<br><code>int y</code>;</div><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+      
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">int</strong> i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glDisable(GL_POLYGON_STIPPLE);</pre>
+
+      </div>
+      <p>As fun&ccedil;&otilde;es <code class="function">glDisable()</code> e <code class="function">glEnable()</code> permitem habilitar diversas habilidades do OpenGL. O par&acirc;metro <em class="parameter"><code>GL_POLYGON_STIPPLE</code></em> passado para essa fun&ccedil;&atilde;o desabilita o desenho de pol&iacute;gonos utilizando padr&otilde;es de desenho. Quando <em class="parameter"><code>GL_POLYGON_STIPPLE</code></em> &eacute; habilitado, OpenGL usa o padr&atilde;o corrente para desenhar.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glPolygonMode(GL_BACK, GL_LINE);
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glBegin(GL_POLYGON);
+  glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">226</span>);  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">226</span>);
+  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">143</span>); glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">143</span>); 
+  glEnd();</pre>
+
+      </div>
+      <p>Neste trecho, a fun&ccedil;&atilde;o <code class="function">glPolygonMode()</code> indica que a parte de tr&aacute;s dos pol&iacute;gonos (<em class="parameter"><code>GL_BACK</code></em>) ser&aacute; desenhada apenas com a linha de contorno externo (<em class="parameter"><code>GL_LINE</code></em>), de cor vermelha, conforme especificado pela fun&ccedil;&atilde;o <code class="function">glColor3f()</code>. As fun&ccedil;&otilde;es <code class="function">glBegin()</code>/<code class="function">glEnd()</code> s&atilde;o usadas agora para iniciar o tra&ccedil;ado de um pol&iacute;gono (<em class="parameter"><code>GL_POLYGON</code></em>) de coordenadas especificadas pela fun&ccedil;&atilde;o <code class="function">glVertex2i()</code>. O resultado &eacute; o contorno retangular vermelho mostrado na <a class="xref" href="preenchimento.html#fig-tuxfig" title="Figura 3.2. Padr&atilde;o de desenho &#34;tux&#34;.">Figura&nbsp;3.2</a>. </p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glPolygonMode(GL_BACK, GL_FILL);
+  glColor3f(<span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);
+  glBegin(GL_POLYGON);
+  glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">226</span>); glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">226</span>);
+  glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">143</span>); glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">143</span>); 
+  glEnd();</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o <code class="function">glPolygonMode()</code> indica agora que a parte de tr&aacute;s dos pol&iacute;gonos ser&aacute; desenhada apenas com preenchimento s&oacute;lido (<em class="parameter"><code>GL_FULL</code></em>). A cor de desenho agora &eacute; (R, G, B) = (0, 1, 0), de modo que o resultado da execu&ccedil;&atilde;o desse trecho de c&oacute;digo &eacute; o ret&acirc;ngulo verde mostrado na <a class="xref" href="preenchimento.html#fig-tuxfig" title="Figura 3.2. Padr&atilde;o de desenho &#34;tux&#34;.">Figura&nbsp;3.2</a>.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glBegin(GL_POLYGON);
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);  glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">113</span>);  
+  glColor3f(<span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">113</span>);
+  glColor3f(<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);  glVertex2i(<span class="hl-number">113</span>,<span class="hl-number">30</span>);  
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);  glVertex2i(<span class="hl-number">30</span>,<span class="hl-number">30</span>); 
+  glEnd();</pre>
+
+      </div>
+      <p>Este trecho de c&oacute;digo demonstra uma caracter&iacute;stica peculiar de preenchimento. Como cada v&eacute;rtice &eacute; desenhado com uma cor diferente, OpenGL interpola estas cores para compor as tonalidades do interior do pol&iacute;gono, gerando um preenchimento bastante colorido.</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glEnable(GL_POLYGON_STIPPLE);
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);
+  glPolygonStipple(tux);
+  glBegin(GL_POLYGON);
+  glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">113</span>); glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">113</span>);
+  glVertex2i(<span class="hl-number">226</span>,<span class="hl-number">30</span>); glVertex2i(<span class="hl-number">143</span>,<span class="hl-number">30</span>); 
+  glEnd();</pre>
+
+      </div>
+      <p> O preenchimento com padr&otilde;es &eacute; agora habilitado pela fun&ccedil;&atilde;o <code class="function">glEnable()</code>. A fun&ccedil;&atilde;o <code class="function">glColor3f()</code> define magenta, combina&ccedil;&atilde;o das tonalidades puras vermelho (R=1) e azul (B=1), como a nova cor de desenho. A fun&ccedil;&atilde;o <code class="function">glPolygonStipple()</code> define o novo padr&atilde;o de preenchimento de pol&iacute;gonos, representado pelo vetor <code class="varname">tux[]</code>. Em seguida, o par <code class="function">glBegin()</code>/<code class="function">glEnd()</code> desenha o &uacute;ltimo pol&iacute;gono, preenchindo com o padr&atilde;o "tux".</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glFlush();</pre>
+
+      </div>
+      <p> A fun&ccedil;&atilde;o <code class="function">glFlush()</code> faz com que qualquer comando OpenGL ainda n&atilde;o executado seja executado o mais r&aacute;pido poss&iacute;vel pelo mecanismo de exibi&ccedil;&atilde;o. OpenGL freq&uuml;entemente executa comandos aos lotes, de modo a tornar mais eficiente o processo de exibi&ccedil;&atilde;o, principalmente quando os programas s&atilde;o executados via rede. Neste caso, quando os comandos executados um a um, o programa pode se tornar ineficiente, considerando as sobrecargas existentes em um barramento de rede. Caso o programa desenvolvido seja destinado ao uso somente local, a fun&ccedil;&atilde;o <code class="function">glFlush()</code> torna-se desnecess&aacute;ria. Entretanto, se o programa &eacute; feito para funcionar bem tanto localmente quanto em rede, deve ser inclu&iacute;da uma chamada &agrave; fun&ccedil;&atilde;o <code class="function">glFlush()</code> no final de cada quadro ou cena.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> mouse(<strong class="hl-keyword">int</strong> button, <strong class="hl-keyword">int</strong> state, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">switch</strong> (button) {
+  <strong class="hl-keyword">case</strong> GLUT_LEFT_BUTTON:
+	<strong class="hl-keyword">if</strong> (state == GLUT_DOWN) {
+	  r=(GLfloat)rand()/(RAND_MAX+<span class="hl-number">1.0</span>);
+	  g=(GLfloat)rand()/(RAND_MAX+<span class="hl-number">1.0</span>);
+	  b=(GLfloat)rand()/(RAND_MAX+<span class="hl-number">1.0</span>);
+	  glutPostRedisplay();
+	}
+	<strong class="hl-keyword">break</strong>;
+  }
+}</pre>
+
+      </div>
+      <p> A fun&ccedil;&atilde;o de tratamento de eventos de mouse verifica se algum bot&atilde;o &eacute; pressionado. Caso o bot&atilde;o esquerdo (<em class="parameter"><code>GLUT_LEFT_BUTTON</code></em>) seja pressionado (<em class="parameter"><code>GLUT_DOWN</code></em>), ser&atilde;o gerados tr&ecirc;s valores aleat&oacute;rios para as vari&aacute;veis <code class="varname">r</code>, <code class="varname">g</code> e <code class="varname">b</code>, na faixa [0,1]. Quando a fun&ccedil;&atilde;o <code class="function">glutPostRedisplay()</code> &eacute; executada, a fun&ccedil;&atilde;o <code class="function">display</code> &eacute; chamada novamente, fazendo com que a janela corrente seja redesenhada e o pol&iacute;gono no canto superior esquerdo dessa janela mude de cor.</p>
+    </div>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="preenchimento-exercicios"></a>3.2. Exerc&iacute;cios</h2></div></div></div>
+      
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	  <p>Utilizando o programa <a class="ulink" href="exemplos/preenchimento.c" target="_top"><code class="filename">preenchimento.c</code></a> como refer&ecirc;ncia, implemente um programa <code class="filename">selecao.c</code>. Este programa dever&aacute; desenhar numa janela com fundo branco, de dimens&otilde;es 256x256 pixels, quatro pol&iacute;gonos com as mesmas coordenadas dos pol&iacute;gonos do programa de refer&ecirc;ncia. Todos os pol&iacute;gonos devem estar inicialmente preenchidos de amarelo e com bordas pretas. Quando o usu&aacute;rio clicar com o bot&atilde;o esquerdo do mouse dentro de um dos pol&iacute;gonos, a cor de preechimento deste pol&iacute;gono dever&aacute; mudar para uma cor aleat&oacute;ria. Quando a tecla <span class="keycap"><strong>b</strong></span> (<span class="foreignphrase"><em class="foreignphrase">keycode</em></span>=<span class="keycode">98</span>) for pressionada, o programa passar&aacute; a mudar as cores das bordas e n&atilde;o mais dos fundos dos pol&iacute;gonos. Quando a tecla <span class="keycap"><strong>f</strong></span> (<span class="foreignphrase"><em class="foreignphrase">keycode</em></span>=<span class="keycode">102</span>) for pressionada, o programa passar&aacute; a mudar as cores dos fundos dos pol&iacute;gonos e n&atilde;o mais das bordas.</p>
+	</li><li class="listitem">
+	  <p>Repita o item anterior utilizando <span class="foreignphrase"><em class="foreignphrase">buffer</em></span> simples e comente os resultados obtidos.</p>
+	</li><li class="listitem">
+	  <p>Crie um padr&atilde;o de preenchimento com as iniciais dos seu nome e sobre nome, por exemplo, AB, para Agostinho Brito. Implemente um programa que desenhe em uma janela de fundo branco de dimens&otilde;es 300x300 pixels um hex&aacute;gono com <span class="foreignphrase"><em class="foreignphrase">bounding box</em></span> de dimens&otilde;es 200x200 pixels. O hex&aacute;gono deve estar centrado na tela e preenchido com cor azul, utilize este padr&atilde;o de preenchimento criado.</p>
+	</li></ol></div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="desenhando-linhas-pontos.html">&laquo;&nbsp;Cap&iacute;tulo 2. Desenhando linhas e pontos</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="transformacoes.html">Cap&iacute;tulo 4. Transforma&ccedil;&otilde;es geom&eacute;tricas&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>

@@ -1,0 +1,14 @@
+PINE 3.96   MAIN MENU                            Folder: INBOX  93  Messages  
+
+       ?     HELP               -  Get help using Pine                   
+       C     COMPOSE MESSAGE    -  Compose and send/post a message       
+       I     FOLDER INDEX       -  View messages in current folder       
+       L     FOLDER LIST        -  Select a folder OR news group to view 
+       A     ADDRESS BOOK       -  Update address book                   
+       S     SETUP              -  Configure or update Pine              
+       Q     QUIT               -  Exit the Pine program                 
+
+   Copyright 1989-1997.  PINE is a trademark of the University of Washington.
+                    [Folder "INBOX" opened with 93 messages]
+? Help                     P PrevCmd                  R RelNotes            
+O OTHER CMDS L [ListFldrs] N NextCmd                  K KBLock              

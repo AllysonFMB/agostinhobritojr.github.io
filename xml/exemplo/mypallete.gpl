@@ -1,0 +1,24 @@
+GIMP Palette
+Name: Minha paleta #0v42Pw0w0w0w0Columns: 4
+
+#
+255 118   0     primary 1
+191 114  48     primary 2
+166  77   0     primary 3
+255 152  64     primary 4
+255 180 115     primary 5
+251 254   0     secondary-a 1
+189 191  48     secondary-a 2
+163 165   0     secondary-a 3
+252 255  64     secondary-a 4
+253 255 115     secondary-a 5
+115   9 170     secondary-b 1
+ 97  37 128     secondary-b 2
+ 74   3 111     secondary-b 3
+161  61 213     secondary-b 4
+175 102 213     secondary-b 5
+  1 147 154     complement 1
+ 29 112 116     complement 2
+  0  96 100     complement 3
+ 52 198 205     complement 4
+ 93 200 205     complement 5

@@ -1,0 +1,63 @@
+\select@language {brazil}
+\contentsline {chapter}{\numberline {1}Unix}{4}
+\contentsline {section}{\numberline {1.1}Introdu\c c\~ao}{4}
+\contentsline {section}{\numberline {1.2}Conceitos sobre a estrutura do Unix}{4}
+\contentsline {subsection}{\numberline {1.2.1}Acesso ao hardware}{4}
+\contentsline {subsection}{\numberline {1.2.2}Processos em Unix}{5}
+\contentsline {subsection}{\numberline {1.2.3}Arquivos}{5}
+\contentsline {subsection}{\numberline {1.2.4}Diret\'orios de usu\'arios}{5}
+\contentsline {subsection}{\numberline {1.2.5}Usu\'arios do sistema Unix}{6}
+\contentsline {chapter}{\numberline {2}Conceitos iniciais no Unix}{7}
+\contentsline {section}{\numberline {2.1}Introdu\c c\~ao}{7}
+\contentsline {section}{\numberline {2.2}Entrada, sa\IeC {\'\i }da e identifica\c c\~ao de usu\'arios}{7}
+\contentsline {subsection}{\numberline {2.2.1}{\it Logging in}}{7}
+\contentsline {subsection}{\numberline {2.2.2}Mudan\c ca de senha}{8}
+\contentsline {subsection}{\numberline {2.2.3}Executando comandos}{8}
+\contentsline {subsection}{\numberline {2.2.4}Ajuda {\it on-line}}{9}
+\contentsline {subsection}{\numberline {2.2.5}Identificando usu\'arios}{10}
+\contentsline {subsection}{\numberline {2.2.6}Saindo do sistema}{10}
+\contentsline {chapter}{\numberline {3}Arquivos e Diret\'orios no Unix}{11}
+\contentsline {section}{\numberline {3.1}Introdu\c c\~ao}{11}
+\contentsline {section}{\numberline {3.2}Manipula\c c\~ao de diret\'orios}{11}
+\contentsline {subsection}{\numberline {3.2.1}Navegando entre diret\'orios}{11}
+\contentsline {subsection}{\numberline {3.2.2}Permiss\~oes de arquivos}{12}
+\contentsline {subsection}{\numberline {3.2.3}Criando e destruindo diret\'orios}{13}
+\contentsline {section}{\numberline {3.3}Manipula\c c\~ao de arquivos}{14}
+\contentsline {subsection}{\numberline {3.3.1}Criando e listando arquivos}{14}
+\contentsline {subsection}{\numberline {3.3.2}Copiando, movendo e removendo arquivos}{14}
+\contentsline {subsection}{\numberline {3.3.3}Procurando coisas no Unix}{16}
+\contentsline {subsection}{\numberline {3.3.4}Ordenando o conte\'udo de um arquivo}{17}
+\contentsline {subsection}{\numberline {3.3.5}{\bf {\it Links}}}{17}
+\contentsline {subsection}{\numberline {3.3.6}Imprimindo arquivos}{19}
+\contentsline {subsection}{\numberline {3.3.7}Arquivando e compactando arquivos}{19}
+\contentsline {subsubsection}{O comando tar}{19}
+\contentsline {subsubsection}{O comando gzip}{21}
+\contentsline {subsection}{\numberline {3.3.8}Utilizando o conjunto de ferramentas {\bf mtools}}{22}
+\contentsline {chapter}{\numberline {4}Processos em Unix}{23}
+\contentsline {section}{\numberline {4.1}Introdu\c c\~ao}{23}
+\contentsline {section}{\numberline {4.2}Visualizando processos em Unix}{23}
+\contentsline {section}{\numberline {4.3}{\bf {\it Foreground}} e {\bf {\it Background}}}{24}
+\contentsline {section}{\numberline {4.4}Finalizando processos}{24}
+\contentsline {subsection}{\numberline {4.4.1}{\it Pipelines}}{25}
+\contentsline {subsection}{\numberline {4.4.2}Redirecionamento}{26}
+\contentsline {chapter}{\numberline {5}Unix em Redes TCP/IP}{27}
+\contentsline {section}{\numberline {5.1}Introdu\c c\~ao}{27}
+\contentsline {section}{\numberline {5.2}TCP/IP}{27}
+\contentsline {section}{\numberline {5.3}Conceitos b\'asicos sobre Internet}{27}
+\contentsline {section}{\numberline {5.4}Aplicativos de redes}{29}
+\contentsline {subsection}{\numberline {5.4.1}Correio Eletr\^onico}{29}
+\contentsline {subsection}{\numberline {5.4.2}Transfer\^encia de arquivos}{31}
+\contentsline {subsection}{\numberline {5.4.3}Emula\c c\~ao de Terminal Remoto}{32}
+\contentsline {subsection}{\numberline {5.4.4}Conversando pela Internet}{33}
+\contentsline {subsection}{\numberline {5.4.5}Verificando se uma m\'aquina est\'a ativa com {\bf ping}}{33}
+\contentsline {chapter}{\numberline {6}Edi\c c\~ao de textos com {\bf joe}}{35}
+\contentsline {section}{\numberline {6.1}Introdu\c c\~ao}{35}
+\contentsline {section}{\numberline {6.2}O editor de textos {\bf joe}}{35}
+\contentsline {chapter}{\numberline {7}O ambiente gr\'afico X Window}{38}
+\contentsline {section}{\numberline {7.1}Introdu\c c\~ao}{38}
+\contentsline {section}{\numberline {7.2}Iniciando e Finalizando o X Window}{38}
+\contentsline {section}{\numberline {7.3}Executando aplicativos}{39}
+\contentsline {section}{\numberline {7.4}Usando o mouse}{39}
+\contentsline {section}{\numberline {7.5}A \'area de trabalho}{39}
+\contentsline {section}{\numberline {7.6}Definindo o Display}{41}
+\contentsline {section}{\numberline {7.7}Permitindo que m\'aquinas remotas acessem o servidor X local}{41}

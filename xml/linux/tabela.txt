@@ -1,0 +1,11 @@
+{\bf dir}   Lista o conteúdo do diretório da máquina remota. 
+{\bf binary}   Informa ao FTP que os arquivos a serem transferidos são programas e não texto. 
+{\bf ascci}   Informa ao FTP que os arquivos transferidos são no modo texto. 
+{\bf get $<$arquivo$>$}   Transfere o arquivo remoto para a sua máquina. 
+{\bf put $<$arquivo$>$}   Transfere o arquivo de sua máquina para a máquina remota. 
+{\bf mget $<$arquivo1$>${[}$<$arquivo2$>$...{]}}   Transfere o arquivo remoto para a sua máquina.
+{\bf mput $<$arquivo1$>${[}$<$arquivo2$>$...{]}}   Transfere o arquivo de sua máquina para a máquina remota.
+{\bf cd $<$diretório$>$}   Muda de diretório na máquina remota.
+{\bf lcd $<$diretório$>$}   Muda de diretório na máquina local.
+{\bf quit ou bye}   Finaliza o FTP.
+{\bf help}   Exibe informações sobre todos os comandos disponíveis.

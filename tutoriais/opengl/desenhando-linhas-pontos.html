@@ -1,0 +1,221 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 2. Desenhando linhas e pontos</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="conceitos-iniciais.html" title="Cap&iacute;tulo 1. Conceitos iniciais"><link rel="next" href="preenchimento.html" title="Cap&iacute;tulo 3. Preenchimento de regi&otilde;es"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="conceitos-iniciais.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 2. Desenhando linhas e pontos</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="preenchimento.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="desenhando-linhas-pontos"></a>Cap&iacute;tulo 2. Desenhando linhas e pontos</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="desenhando-linhas-pontos.html#d5e180">2.1. Descri&ccedil;&atilde;o do programa <code class="filename">linha.c</code></a></span></dt><dt><span class="sect1"><a href="desenhando-linhas-pontos.html#desenhando-exercicios">2.2. Exerc&iacute;cios</a></span></dt></dl></div>
+    
+
+    <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; entender recursos fundamentais da biblioteca OpenGL e da biblioteca auxiliar GLUT, tais como abrir uma janela, definir sistemas de coordenadas, limpar a tela e especificar cores de desenho. Este prop&oacute;sito ser&aacute; alcan&ccedil;ado atrav&eacute;s da an&aacute;lise do programa <a class="ulink" href="exemplos/linha.c" target="_top"><code class="filename">linha.c</code></a>, mostrado no <a class="xref" href="desenhando-linhas-pontos.html#example-linha" title="Exemplo 2.1. programa linha.c">Exemplo&nbsp;2.1</a>, cuja &uacute;nica funcionalidade desenhar uma reta entre dois pontos de uma janela gr&aacute;fica. </p>
+    <div class="example"><a name="example-linha"></a><p class="title"><b>Exemplo 2.1. programa <a class="ulink" href="exemplos/linha.c" target="_top"><code class="filename">linha.c</code></a></b></p><div class="example-contents">
+      
+      <pre class="programlisting">#include &lt;GL/glut.h&gt;
+<span class="hl-directive" style="color: maroon">#include &lt;stdlib.h&gt;</span>
+
+<strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>);
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>);
+<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y);
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+  glutInitWindowSize (<span class="hl-number">256</span>, <span class="hl-number">256</span>); 
+  glutInitWindowPosition (<span class="hl-number">100</span>, <span class="hl-number">100</span>); 
+  glutCreateWindow (<strong class="hl-string"><em style="color:red">"Desenhando uma linha"</em></strong>);
+  init();
+  glutDisplayFunc(display); 
+  glutKeyboardFunc(keyboard);
+  glutMainLoop();
+  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+}
+
+<strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>){
+  glClearColor(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>);
+  glOrtho (<span class="hl-number">0</span>, <span class="hl-number">256</span>, <span class="hl-number">0</span>, <span class="hl-number">256</span>, -<span class="hl-number">1</span> ,<span class="hl-number">1</span>);
+}
+
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">int</strong> i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glColor3f (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glBegin(GL_LINES);
+  glVertex2i(<span class="hl-number">40</span>,<span class="hl-number">200</span>);  glVertex2i(<span class="hl-number">200</span>,<span class="hl-number">10</span>);
+  glEnd();
+  glFlush();
+}
+
+<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">switch</strong> (key) {
+  <strong class="hl-keyword">case</strong> <span class="hl-number">27</span>:
+	exit(<span class="hl-number">0</span>);
+	<strong class="hl-keyword">break</strong>;
+  }
+}
+
+</pre>
+
+    </div></div><br class="example-break">
+
+    <p>Para compilar e executar o programa <a class="ulink" href="exemplos/linha.c" target="_top"><code class="filename">linha.c</code></a>, salve-o juntamente com o arquivo <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
+    <pre class="screen">
+<code class="prompt">$</code> <span class="command"><strong>make</strong></span> <code class="option">linha</code>
+<code class="prompt">$</code> <span class="command"><strong>linha</strong></span>
+</pre>	
+    
+    <p>A sa&iacute;da do programa <span class="command"><strong>linha</strong></span> &eacute; mostrado na <a class="xref" href="desenhando-linhas-pontos.html#fig-linha" title="Figura 2.1. sa&iacute;da do programa linha">Figura&nbsp;2.1</a>.</p>
+    <div class="figure"><a name="fig-linha"></a><p class="title"><b>Figura 2.1. sa&iacute;da do programa <span class="command">linha</span></b></p><div class="figure-contents">
+      
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/linha.jpg" src="figs/linha.jpg"></div></div>
+    </div></div><br class="figure-break">
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e180"></a>2.1. Descri&ccedil;&atilde;o do programa <code class="filename">linha.c</code></h2></div></div></div>
+      
+      
+      <div class="informalexample">
+	<pre class="programlisting">#include &lt;GL/glut.h&gt;
+<span class="hl-directive" style="color: maroon">#include &lt;stdlib.h&gt;</span></pre>
+
+      </div>
+      <p>Estes includes definem os prot&oacute;tipos das fun&ccedil;&otilde;es utilizadas pelo programa. <code class="filename">stdlib.h</code> cont&eacute;m o prot&oacute;tipo da fun&ccedil;&atilde;o <span class="citerefentry"><span class="refentrytitle">exit</span>(3)</span>; O arquivo de cabe&ccedil;alho <code class="filename">glut.h</code> inclui, al&eacute;m dos prot&oacute;tipos das fun&ccedil;&otilde;es GLUT, os arquivos <code class="filename">gl.h</code> e <code class="filename">glu.h</code>, que cont&eacute;m os prot&oacute;tipos das fun&ccedil;&otilde;es principais e auxiliares do OpenGL.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>);
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>);
+<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y);</pre>
+
+      </div>
+      <p> Fun&ccedil;&otilde;es implementadas ap&oacute;s a fun&ccedil;&atilde;o <span class="citerefentry"><span class="refentrytitle">main</span></span> devem ser prototipadas aqui, de modo a evitar erros de compila&ccedil;&atilde;o.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){</pre>
+
+      </div>
+      <p>Todo programa em C/C++ inicia com a fun&ccedil;&atilde;o <span class="citerefentry"><span class="refentrytitle">main</span></span>. </p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutInit(&amp;argc, argv);</pre>
+
+      </div>
+      <p>Inicializa a biblioteca GLUT e negocia uma se&ccedil;&atilde;o com o gerenciador de janelas. &Eacute; poss&iacute;vel passar argumentos para a fun&ccedil;&atilde;o glutInit provenientes da linha de execu&ccedil;&atilde;o, tais como a vari&aacute;vel de ambiente <code class="envar">DISPLAY</code>, ou informa&ccedil;&otilde;es sobre a geometria da tela.</p>
+      <div class="informalexample">
+	<pre class="programlisting">glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);</pre>
+
+      </div>
+      <p>Informa &agrave; biblioteca GLUT o modo do display a ser utilizado quando a janela gr&aacute;fica for criada. O <span class="foreignphrase"><em class="foreignphrase">flag</em></span> <em class="parameter"><code>GLUT_SINGLE</code></em> for&ccedil;a o uso de uma janela com <span class="foreignphrase"><em class="foreignphrase">buffer</em></span> simples, significando que todos os desenhos ser&atilde;o feitos diretamente nesta janela. O <span class="foreignphrase"><em class="foreignphrase">flag</em></span> <em class="parameter"><code>GLUT_RGB</code></em> diz que o modelo de cor utilizado ser&aacute; o RGB.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutInitWindowSize (<span class="hl-number">256</span>, <span class="hl-number">256</span>); 
+  glutInitWindowPosition (<span class="hl-number">100</span>, <span class="hl-number">100</span>);</pre>
+
+      </div>
+      <p>Define o tamanho inicial da janela, 256x256 pixels, e a posi&ccedil;&atilde;o inicial do seu canto superior esquerdo na tela, (x, y)=(100, 100). </p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutCreateWindow (<strong class="hl-string"><em style="color:red">"Desenhando uma linha"</em></strong>);</pre>
+
+      </div>
+      <p>Cria uma janela e define seu t&iacute;tulo como "<span class="guilabel">Desenhando uma linha</span>".</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">init();</pre>
+
+      </div>
+      <p>Nesta fun&ccedil;&atilde;o &eacute; definido o estado inicial do OpenGL, antes de qualquer desenho seja feito.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutDisplayFunc(display);</pre>
+
+      </div>
+      <p>Define <code class="function">display()</code> como a fun&ccedil;&atilde;o de desenho (<span class="foreignphrase"><em class="foreignphrase">display callback</em></span>) para a janela corrente. Quando GLUT determina que esta janela deve ser redesenhada, a fun&ccedil;&atilde;o de desenho &eacute; chamada. A fun&ccedil;&atilde;o de desenho deve possuir o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <b class="fsfunc">funcao()</b>(</code></td><td><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutKeyboardFunc(keyboard);</pre>
+
+      </div>
+      <p>Indica que sempre que uma tecla for pressionada no teclado, GLUT dever&aacute; chama a fun&ccedil;&atilde;o <code class="function">keyboard()</code> para tratar eventos de teclado (<span class="foreignphrase"><em class="foreignphrase">keyboard callback</em></span>). A fun&ccedil;&atilde;o de teclado deve possuir o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <b class="fsfunc">funcao()</b>(</code></td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="paramdef-list"><code>unsigned char key</code>;<br><code>int x</code>;<br><code>int y</code>;</div><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutMainLoop();</pre>
+
+      </div>
+      <p>Inicia o <span class="foreignphrase"><em class="foreignphrase">loop</em></span> de processamento de desenhos com GLUT. Esta rotina deve ser chamada pelo menos uma vez em um programa que utilize a biblioteca GLUT.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+}</pre>
+
+      </div>
+      <p> Finaliza o programa.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>){
+  glClearColor(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>);</pre>
+
+      </div>
+      <p>Especifica as intensidade de vermelho (<span class="foreignphrase"><em class="foreignphrase">RED</em></span>), verde (<span class="foreignphrase"><em class="foreignphrase">GREEN</em></span>) e azul (<span class="foreignphrase"><em class="foreignphrase">BLUE</em></span>) utilizadas para limpar a janela. Cada par&acirc;metro pode varia de 0 a 1, o equivalente a uma varia&ccedil;&atilde;o de 0 a 255, usada convecionalmente no sistema de janelas. O &uacute;ltimo argumento &eacute; o canal alfa, usado para compor superf&iacute;cies transparentes ou translucentes. Como estes conceitos ainda n&atilde;o foram, o canal alfa deve ser mantido com valor igual a 1.</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glOrtho (<span class="hl-number">0</span>, <span class="hl-number">256</span>, <span class="hl-number">0</span>, <span class="hl-number">256</span>, -<span class="hl-number">1</span> ,<span class="hl-number">1</span>);
+}</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o glOrtho define as coordenadas do volume de recorte (<span class="foreignphrase"><em class="foreignphrase">clipping volume</em></span>), possuindo o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <b class="fsfunc">glOrtho()</b>(</code></td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="paramdef-list"><code> GLdouble left </code>;<br><code> GLdouble right </code>;<br><code> GLdouble bottom </code>;<br><code> GLdouble top </code>;<br><code> GLdouble zNear </code>;<br><code> GLdouble zFar </code>;</div><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+      <p> Os par&acirc;metros <em class="parameter"><code>left</code></em> e <em class="parameter"><code>right</code></em> especificam as coordenadas esquerda e direita, respectivamente, dos planos de corte verticais. Os par&acirc;metros <em class="parameter"><code>bottom</code></em> e <em class="parameter"><code>top</code></em> especificam as coordenadas inferior e superior, respectivamente, dos planos de corte horizontais. <em class="parameter"><code>zNear</code></em> e <em class="parameter"><code>zFar</code></em>, por sua vez, especificam a coordenada mais pr&oacute;xima e mais distante do observador, respectivamente, no eixo de profundidade. Assim, o volume de recorte definido no exemplo ser&aacute; x<sub>min</sub>=0 e x<sub>max</sub>=256; y<sub>min</sub>=0 e y<sub>max</sub>=256; z<sub>min</sub>=-1 e z<sub>max</sub>=1.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">int</strong> i;
+  glClear(GL_COLOR_BUFFER_BIT);</pre>
+
+      </div>
+      <p> A fun&ccedil;&atilde;o <code class="function">glClear()</code> serve para limpar <span class="foreignphrase"><em class="foreignphrase">buffers</em></span> utilizados pelo OpenGL com valores pr&eacute;-definidos. A m&aacute;scara utilizada neste exemplo, <em class="parameter"><code>(GL_COLOR_BUFFER_BIT</code></em>, diz &agrave; fun&ccedil;&atilde;o <code class="function">glClear()</code> que apenas o <span class="foreignphrase"><em class="foreignphrase">buffer</em></span> de desenho deve ser limpo. Ap&oacute;s a execu&ccedil;&atilde;o desta fun&ccedil;&atilde;o, a tela ficar&aacute; branca, uma vez que a <code class="function">init()</code> define (R, G, B)=(1.0, 1.0, 1.0) como cor de limpeza de tela.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glColor3f (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);</pre>
+
+      </div>
+      <p> Especifica (R, G, B)=(0, 0, 0), preto, como a cor de desenho. Todos os objetos desenhados a partir daqui ter&atilde;o cor preta.</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glBegin(GL_LINES);
+  glVertex2i(<span class="hl-number">40</span>,<span class="hl-number">200</span>);  glVertex2i(<span class="hl-number">200</span>,<span class="hl-number">10</span>);
+  glEnd();</pre>
+
+      </div>
+      <p>As fun&ccedil;&otilde;es <code class="function">glBegin()</code> e <code class="function">glEnd()</code> delimitam os v&eacute;rtices de uma primitiva de desenho ou de um grupo de primitivas. O par&acirc;metro passado para a fun&ccedil;&atilde;o especifica o tipo de primitiva a ser desenhado. Neste exemplo, o par&acirc;metro <em class="parameter"><code>GL_LINES</code></em> indica que os v&eacute;rtices especificados devem ser tratados como pares de pontos que compor&atilde;o segmentos de reta independentes. A fun&ccedil;&atilde;o <code class="function">glVertex2i()</code> define as coordenadas de um v&eacute;rtice.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">switch</strong> (key) {
+  <strong class="hl-keyword">case</strong> <span class="hl-number">27</span>:
+	exit(<span class="hl-number">0</span>);
+	<strong class="hl-keyword">break</strong>;
+  }
+}</pre>
+
+      </div>
+      <p> Conforme mencionado, a fun&ccedil;&atilde;o <code class="function">keyboard()</code> serve para tratar eventos de teclado. Sua implementa&ccedil;&atilde;o especifica que quando a tecla <span class="keycap"><strong>ESC</strong></span> (<span class="foreignphrase"><em class="foreignphrase">keycode</em></span>=<span class="keycode">27</span>) for pressionada o programa dever&aacute; ser finalizado.</p>
+
+    </div>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="desenhando-exercicios"></a>2.2. Exerc&iacute;cios</h2></div></div></div>
+      
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	  <p> Utilizando o programa <a class="ulink" href="exemplos/linha.c" target="_top"><code class="filename">linha.c</code></a> como refer&ecirc;ncia, implemente um programa <code class="filename">quadrado.c</code>. Este programa dever&aacute; desenhar numa janela com fundo branco, de dimens&otilde;es 256x256 pixels, um quadrado vermelho, com v&eacute;rtice superior esquerdo de coordenadas (x, y)= (30, 226) e v&eacute;rtice inferior direito de coordenadas (x, y) = (226, 30). Quando a tecla <span class="keycap"><strong>a</strong></span> (<span class="foreignphrase"><em class="foreignphrase">keycode</em></span>=<span class="keycode">97</span>) for pressionada, o quadrado dever&aacute; ficar com a cor azul. Quando a tecla <span class="keycap"><strong>v</strong></span> (<span class="foreignphrase"><em class="foreignphrase">keycode</em></span>=<span class="keycode">118</span>) for pressionada, o quadrado dever&aacute; voltar &agrave; cor vermelha. </p>
+	</li><li class="listitem">
+	  <p> Implemente o algoritmo de Bresenham para tra&ccedil;ado de linhas, utilizando <em class="parameter"><code>GL_POINTS</code></em> como par&acirc;metro da fun&ccedil;&atilde;o <code class="function">glBegin()</code>. Este par&acirc;metro indica que cada v&eacute;rtice deve ser tratado como um ponto simples. Utilizando o algoritmo implementado, desenhe uma reta verde do ponto (x, y)=(40, 200) ao ponto (x, y)=(200, 10).</p>
+	</li><li class="listitem">
+	  <p> Implemente o algoritmo de Bresenham para tra&ccedil;ado de circunfer&ecirc;ncias, utilizando <em class="parameter"><code>GL_POINTS</code></em> como par&acirc;metro da fun&ccedil;&atilde;o <code class="function">glBegin()</code>. Utilizando o algoritmo implementado, desenhe uma circunfer&ecirc;ncia azul de raio r=50, centrada no ponto (x, y) = (128, 128).</p>
+	</li></ol></div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="conceitos-iniciais.html">&laquo;&nbsp;Cap&iacute;tulo 1. Conceitos iniciais</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="preenchimento.html">Cap&iacute;tulo 3. Preenchimento de regi&otilde;es&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>

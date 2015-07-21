@@ -1,0 +1,234 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 4. Transforma&ccedil;&otilde;es geom&eacute;tricas</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="preenchimento.html" title="Cap&iacute;tulo 3. Preenchimento de regi&otilde;es"><link rel="next" href="projecoes-geometricas.html" title="Cap&iacute;tulo 5. Proje&ccedil;&otilde;es geom&eacute;tricas"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="preenchimento.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 4. Transforma&ccedil;&otilde;es geom&eacute;tricas</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="projecoes-geometricas.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="transformacoes"></a>Cap&iacute;tulo 4. Transforma&ccedil;&otilde;es geom&eacute;tricas</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="transformacoes.html#transformacoes-descricao">4.1. Descri&ccedil;&atilde;o do programa <code class="filename">braco.c</code></a></span></dt><dt><span class="sect1"><a href="transformacoes.html#transformacoes-exercicios">4.2. Exerc&iacute;cios</a></span></dt></dl></div>
+    
+    <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; compreender como as transforma&ccedil;&otilde;es geom&eacute;tricas s&atilde;o realizadas sobre os objetos em rela&ccedil;&atilde;o a um determinado sistema de coordenadas. No OpenGL existem fun&ccedil;&otilde;es para realizar transla&ccedil;&atilde;o, rota&ccedil;&atilde;o e escalamento, bastando apenas ao usu&aacute;rio ajustar os seus par&acirc;metros para obter o efeito desejado. Ser&aacute; analisado um modelo simples de um bra&ccedil;o rob&oacute;tico, constitu&iacute;do de bra&ccedil;o e antebra&ccedil;o, como mostra a <a class="xref" href="transformacoes.html#fig-braco" title="Figura 4.1. Bra&ccedil;o rob&oacute;tico">Figura&nbsp;4.1</a></p>
+    <div class="figure"><a name="fig-braco"></a><p class="title"><b>Figura 4.1. Bra&ccedil;o rob&oacute;tico</b></p><div class="figure-contents">
+      
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/braco.jpg" src="figs/braco.jpg"></div></div>
+    </div></div><br class="figure-break">
+    <p> O programa que implementa o bra&ccedil;o rob&oacute;tico &eacute; mostrado no <a class="xref" href="transformacoes.html#example-braco" title="Exemplo 4.1. programa braco.c">Exemplo&nbsp;4.1</a>. As teclas <span class="keycap"><strong>s</strong></span> e <span class="keycap"><strong>S</strong></span> servem para girar o ombro do bra&ccedil;o rob&oacute;tico (<span class="foreignphrase"><em class="foreignphrase">shoulder</em></span>) para um lado e para o outro; as teclas <span class="keycap"><strong>e</strong></span> e <span class="keycap"><strong>E</strong></span>, por sua vez, controlam o giro do cotovelo (<span class="foreignphrase"><em class="foreignphrase">elbow</em></span>). Para finalizar o programa, basta digitar <span class="keycap"><strong>ESC</strong></span>. As teclas e suas respectivas a&ccedil;&otilde;es est&atilde;o definidas na fun&ccedil;&atilde;o <code class="function">keyboard()</code>.</p>
+    <div class="example"><a name="example-braco"></a><p class="title"><b>Exemplo 4.1. programa <a class="ulink" href="exemplos/braco.c" target="_top"><code class="filename">braco.c</code></a></b></p><div class="example-contents">
+      
+      <pre class="programlisting">#include &lt;GL/glut.h&gt;
+<span class="hl-directive" style="color: maroon">#include &lt;stdlib.h&gt;</span>
+
+<strong class="hl-keyword">static</strong> <strong class="hl-keyword">int</strong> shoulder = <span class="hl-number">0</span>, elbow = <span class="hl-number">0</span>;
+
+<strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>){
+  glClearColor (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+}
+
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+  glClear (GL_COLOR_BUFFER_BIT);
+  glPushMatrix();
+
+  <em class="hl-comment" style="color: silver">/* origem posicionada no ombro */</em>
+  glTranslatef (-<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glRotatef ((GLfloat) shoulder, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);
+
+  <em class="hl-comment" style="color: silver">/* origem posicionada no centro do bra&#65533;o */</em> 
+  glTranslatef (<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glPushMatrix();
+  glScalef (<span class="hl-number">2.0</span>, <span class="hl-number">0.4</span>, <span class="hl-number">1.0</span>);
+  glutWireCube (<span class="hl-number">1.0</span>);
+  glPopMatrix();
+   
+  <em class="hl-comment" style="color: silver">/* origem posicionada no cotovelo */</em>
+  glTranslatef (<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glRotatef ((GLfloat) elbow, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);
+  glTranslatef (<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glPushMatrix();
+  glScalef (<span class="hl-number">2.0</span>, <span class="hl-number">0.4</span>, <span class="hl-number">1.0</span>);
+  glutWireCube (<span class="hl-number">1.0</span>);
+  glPopMatrix();
+
+  <em class="hl-comment" style="color: silver">/* origem volta para o sistema de coordenadas original */</em>
+  glPopMatrix();
+  glutSwapBuffers();
+}
+
+<strong class="hl-keyword">void</strong> reshape (<strong class="hl-keyword">int</strong> w, <strong class="hl-keyword">int</strong> h){
+  glViewport (<span class="hl-number">0</span>, <span class="hl-number">0</span>, (GLsizei) w, (GLsizei) h);
+  glMatrixMode (GL_PROJECTION);
+  glLoadIdentity ();
+  gluPerspective(<span class="hl-number">65.0</span>, (GLfloat) w/(GLfloat) h, <span class="hl-number">1.0</span>, <span class="hl-number">20.0</span>);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glTranslatef (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, -<span class="hl-number">5.0</span>);
+}
+
+<strong class="hl-keyword">void</strong> keyboard (<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">switch</strong> (key) {
+  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'s'</em></strong>:
+    shoulder = (shoulder + <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    glutPostRedisplay();
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'S'</em></strong>:
+    shoulder = (shoulder - <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    glutPostRedisplay();
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'e'</em></strong>:
+    elbow = (elbow + <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    glutPostRedisplay();
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'E'</em></strong>:
+    elbow = (elbow - <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    glutPostRedisplay();
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">case</strong> <span class="hl-number">27</span>:
+    exit(<span class="hl-number">0</span>);
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">default</strong>:
+    <strong class="hl-keyword">break</strong>;
+  }
+}
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+  glutInitWindowSize (<span class="hl-number">500</span>, <span class="hl-number">500</span>); 
+  glutInitWindowPosition (<span class="hl-number">100</span>, <span class="hl-number">100</span>);
+  glutCreateWindow (argv[<span class="hl-number">0</span>]);
+  init ();
+  glutDisplayFunc(display); 
+  glutReshapeFunc(reshape);
+  glutKeyboardFunc(keyboard);
+  glutMainLoop();
+  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+}
+
+</pre>
+
+    </div></div><br class="example-break">
+
+    <p>Para compilar e executar o programa <a class="ulink" href="exemplos/braco.c" target="_top"><code class="filename">braco.c</code></a>, salve-o juntamente com o arquivo <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
+    <pre class="screen">
+<code class="prompt">$</code> <span class="command"><strong>make</strong></span> <code class="option">braco</code>
+<code class="prompt">$</code> <span class="command"><strong>braco</strong></span>
+</pre>	
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="transformacoes-descricao"></a>4.1. Descri&ccedil;&atilde;o do programa <code class="filename">braco.c</code></h2></div></div></div>
+      
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">static</strong> <strong class="hl-keyword">int</strong> shoulder = <span class="hl-number">0</span>, elbow = <span class="hl-number">0</span>;</pre>
+
+      </div>
+      <p>As vari&aacute;veis <code class="varname">shoulder</code> e  <code class="varname">elbow</code> guardam o &acirc;ngulo de rota&ccedil;&atilde;o do ombro e o &acirc;ngulo formado entre o bra&ccedil;o e o antebra&ccedil;o do rob&ocirc;, respectivamente.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>)
+{
+  glClear (GL_COLOR_BUFFER_BIT);
+  glPushMatrix();</pre>
+
+      </div>
+      <p>Uma vez que as transforma&ccedil;&otilde;es geom&eacute;tricas no espa&ccedil;o s&atilde;o representadas por matrizes, o uso de uma pilha de matrizes de transforma&ccedil;&atilde;o ajuda a lembrar a seq&uuml;&ecirc;ncia de transforma&ccedil;&otilde;es realizadas. No OpenGL, esta facilidade &eacute; provida pelas fun&ccedil;&otilde;es <code class="function">glPushMatrix()</code>, que insere a matriz de transforma&ccedil;&atilde;o corrente na pilha, e <code class="function">glPopMatrix()</code>, que retira a matriz do topo da pilha e torna esta &uacute;ltima a matriz de transforma&ccedil;&atilde;o corrente. Neste exemplo, a fun&ccedil;&atilde;o <code class="function">glPushMatrix()</code> serve para lembrar os par&acirc;metros de transla&ccedil;&atilde;o, rota&ccedil;&atilde;o e escalamento no in&iacute;cio das opera&ccedil;&otilde;es de desenho.</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glTranslatef (-<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glRotatef ((GLfloat) shoulder, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);
+  glTranslatef (<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);</pre>
+
+      </div>
+      <p>A origem do sistema de coordenadas &eacute; levado para o ponto (x,y,z)=(-1,0,0) atrav&eacute;s da fun&ccedil;&atilde;o <code class="function">glTranslatef()</code>, definindo a coordenada de origem (piv&ocirc;) para o ombro do bra&ccedil;o rob&oacute;tico. Em seguida, usando a fun&ccedil;&atilde;o <code class="function">glRotatef()</code>, o sistema de coordenadas &eacute; rotacionado de modo, definindo a orienta&ccedil;&atilde;o do bra&ccedil;o.</p>
+      <p>A fun&ccedil;&atilde;o <code class="function">glRotate()</code> possui o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <b class="fsfunc">glRotate</b>(</code></td><td><var class="pdparam">angle</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">x</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">y</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">z</var><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="paramdef-list"><code>GLfloat <var class="pdparam">angle</var></code>;<br><code>GLfloat <var class="pdparam">x</var></code>;<br><code>GLfloat <var class="pdparam">y</var></code>;<br><code>GLfloat <var class="pdparam">z</var></code>;</div><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+      <p>Quando chamada, <code class="function">glRotate()</code> efetua uma rota&ccedil;&atilde;o de <em class="parameter"><code>angle</code></em> graus no sistema de coordenadas na dire&ccedil;&atilde;o contra o sentido do rel&oacute;gio em torno de um vetor que vai da origem ao ponto (x,y,z)</p>
+      <p>A fun&ccedil;&atilde;o <code class="function">glTranslatef()</code>, por sua vez, retorna a origem do sistema de coordenadas para o centro do bra&ccedil;o. As etapas desta transforma&ccedil;&atilde;o s&atilde;o mostradas na <a class="xref" href="transformacoes.html#fig-braco-1" title="Figura 4.2. Transforma&ccedil;&atilde;o para desenho do bra&ccedil;o">Figura&nbsp;4.2</a>.</p>
+
+      <div class="figure"><a name="fig-braco-1"></a><p class="title"><b>Figura 4.2. Transforma&ccedil;&atilde;o para desenho do bra&ccedil;o</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/braco-1.jpg" src="figs/braco-1.jpg"></div></div>
+      </div></div><br class="figure-break">
+
+      <div class="informalexample">
+	<pre class="programlisting">glPushMatrix();
+  glScalef (<span class="hl-number">2.0</span>, <span class="hl-number">0.4</span>, <span class="hl-number">1.0</span>);
+  glutWireCube (<span class="hl-number">1.0</span>);
+  glPopMatrix();</pre>
+
+      </div>
+      <p>Mais uma vez, a matriz de transforma&ccedil;&atilde;o corrente &eacute; armazenada na pilha, agora para restringir o efeito da fun&ccedil;&atilde;o <code class="function">glScale()</code>. A fun&ccedil;&atilde;o <code class="function">glScale()</code> altera a escala dos eixos x, y e z. A fun&ccedil;&atilde;o <code class="function">glutWireCube()</code> desenha um cubo centrado na origem do sistema de coordenadas com aresta de tamanho unit&aacute;rio, conforme o argumento que lhe foi passado. Quando a fun&ccedil;&atilde;o <code class="function">glPopMatrix()</code> &eacute; chamada, a matriz de transforma&ccedil;&atilde;o do topo da pilha passa a vigorar, fazendo com que o cubo seja distorcido, assumindo a forma de um parelep&iacute;pedo. A origem do sistema de coordenadas volta a ser o centro do bra&ccedil;o.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glTranslatef (<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glRotatef ((GLfloat) elbow, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>);
+  glTranslatef (<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);</pre>
+
+      </div>
+      <p>A origem do sistema de coordenadas &eacute; levada agora para a ponta do bra&ccedil;o com a fun&ccedil;&atilde;o <code class="function">glTranslate()</code>, demarcando o novo piv&otilde; para rota&ccedil;&atilde;o: o cotovelo do rob&ocirc;. A rota&ccedil;&atilde;o &eacute; realizada com a fun&ccedil;&atilde;o <code class="function">glRotate()</code> e em seguida a origem do sistema de coordenadas &eacute; levada para o centro do antebra&ccedil;o, via <code class="function">glTranslate()</code>.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glPushMatrix();
+  glScalef (<span class="hl-number">2.0</span>, <span class="hl-number">0.4</span>, <span class="hl-number">1.0</span>);
+  glutWireCube (<span class="hl-number">1.0</span>);
+  glPopMatrix();</pre>
+
+      </div>
+      <p>O antebra&ccedil;o &eacute; desenhado de forma semelhante ao bra&ccedil;o: as escalas dos eixos coordenados s&atilde;o ajustadas e o cubo de aresta 1 &eacute; desenhado, sempre preservando as dimens&otilde;es do sistema de coordenadas original.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glPopMatrix();
+  glutSwapBuffers();</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o <code class="function">glPopMatrix()</code> remove a matriz de transforma&ccedil;&atilde;o do topo da pilha, fazendo-a corrente, retornando assim o sistema de coordenadas original. Quando <code class="function">glutSwapBuffers()</code> &eacute; chamada, os buffers de desenho e de apresenta&ccedil;&atilde;o s&atilde;o alternados e a nova imagem do bra&ccedil;o rob&oacute;tico &eacute; apresentada.</p>
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> reshape (<strong class="hl-keyword">int</strong> w, <strong class="hl-keyword">int</strong> h)
+{
+  glViewport (<span class="hl-number">0</span>, <span class="hl-number">0</span>, (GLsizei) w, (GLsizei) h);</pre>
+
+      </div>
+      <p>Define a &aacute;rea dentro da janela de desenho no sistema de coordenadas atual, origem (x,y), largura (w) e altura (h), que OpenGL pode utilizar para efetuar desenhos. Este trecho de c&oacute;digo permite que toda a &aacute;rea da janela possa ser utilizada quando a janela sofrer redimensionamento.</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glMatrixMode (GL_PROJECTION);
+  glLoadIdentity ();
+  gluPerspective(<span class="hl-number">65.0</span>, (GLfloat) w/(GLfloat) h, <span class="hl-number">1.0</span>, <span class="hl-number">20.0</span>);</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o <code class="function">glMatrixMode()</code> especifica a pilha de matrizes que ser&aacute; o alvo das opera&ccedil;&otilde;es matriciais subseq&uuml;entes; neste caso, a pilha de matrizes de proje&ccedil;&atilde;o. A fun&ccedil;&atilde;o <code class="function">glLoadIdentity()</code> inicia a matriz de proje&ccedil;&atilde;o corrente como a matriz identidade. A fun&ccedil;&atilde;o <code class="function">gluPerspective()</code> define a transforma&ccedil;&atilde;o de perspectiva usada no exemplo. Proje&ccedil;&otilde;es geom&eacute;tricas n&atilde;o s&atilde;o alvo desta li&ccedil;&atilde;o e por enquanto n&atilde;o ser&atilde;o estudadas.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glTranslatef (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, -<span class="hl-number">5.0</span>);</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o <code class="function">glMatrixMode()</code> especifica agora que a pilha de matrizes de <span class="foreignphrase"><em class="foreignphrase">modelview</em></span>, usadas para definir transla&ccedil;&atilde;o, rota&ccedil;&atilde;o e escalamento, ser&aacute; o alvo das transforma&ccedil;&otilde;es subseq&uuml;entes.  A fun&ccedil;&atilde;o <code class="function">glLoadIdentity()</code> inicia a matriz de  <span class="foreignphrase"><em class="foreignphrase">modelview</em></span> corrente como a matriz identidade. Finalmente, o objeto &eacute; deslocado -5 unidades para o fundo da tela, melhorando a sua visualiza&ccedil;&atilde;o.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutReshapeFunc(reshape);</pre>
+
+      </div>
+      <p>Especifica a fun&ccedil;&atilde;o de retorno para redimensionamento de janela, possuindo o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">funcao(</code></td><td><var class="pdparam">width</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">height</var><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="paramdef-list"><code>int <var class="pdparam">width</var></code>;<br><code>int <var class="pdparam">height</var></code>;</div><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+    </div>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="transformacoes-exercicios"></a>4.2. Exerc&iacute;cios</h2></div></div></div>
+      
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	  <p>Utilizando o programa <a class="ulink" href="exemplos/braco.c" target="_top"><code class="filename">braco.c</code></a> como refer&ecirc;ncia, implemente um programa <code class="filename">braco-garra.c</code>. Este programa dever&aacute; acrescente ao bra&ccedil;o rob&oacute;tico uma garra com tr&ecirc;s dedos, sendo um indicador, um m&eacute;dio e um polegar, como mostra a <a class="xref" href="transformacoes.html#fig-braco-garra" title="Figura 4.3. Bra&ccedil;o rob&oacute;tico com garra">Figura&nbsp;4.3</a>. O usu&aacute;rio dever&aacute; poder rotacionar o dedo indicador com as teclas <span class="keycap"><strong>i</strong></span> e <span class="keycap"><strong>I</strong></span>, nos sentidos hor&aacute;rio e anti-hor&aacute;rio. Da mesma forma, as teclas <span class="keycap"><strong>p</strong></span> <span class="keycap"><strong>P</strong></span> dever&atilde;o rotacionar o polegar, e teclas <span class="keycap"><strong>m</strong></span> <span class="keycap"><strong>M</strong></span>, o dedo m&eacute;dio do rob&ocirc;.</p>
+	  <div class="figure"><a name="fig-braco-garra"></a><p class="title"><b>Figura 4.3. Bra&ccedil;o rob&oacute;tico com garra</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/braco-garra.jpg" src="figs/braco-garra.jpg"></div></div>
+	  </div></div><br class="figure-break">
+	</li><li class="listitem">
+	  <p>Copie o programa <code class="filename">braco-garra.c</code> que voc&ecirc; criou com o nome <code class="filename">braco-garra-3d.c</code>. Neste novo programa, modifique o trecho da fun&ccedil;&atilde;o <code class="function">main()</code> que define o modo de apresenta&ccedil;&atilde;o no GLUT. Use a seguinte chamada para a fun&ccedil;&atilde;o de inicializa&ccedil;&atilde;o: <code class="function">glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)</code>, pois inclui o tratamento de profundidade e de superf&iacute;cies escondidas no OpenGL . Al&eacute;m disso, ao inv&eacute;s de utilizar chamadas &agrave; fun&ccedil;&atilde;o <code class="function">glutWireCube()</code>, inclua chamadas apenas &agrave; fun&ccedil;&atilde;o  <code class="function">glutSolidCube()</code>, que cont&eacute;m os mesmos argumentos. Acrescente &agrave; fun&ccedil;&atilde;o <code class="function">init()</code> as chamadas de fun&ccedil;&atilde;o <code class="function">glEnable(GL_DEPTH_TEST);</code> e <code class="function">glEnable(GL_CULL_FACE);</code>, de modo que o tratamento de superf&iacute;cies escondidas seja feito pelo OpenGL. Utilize cores diferentes para cada uma das partes do bra&ccedil;o, de modo a obter um modelo semelhante ao da <a class="xref" href="transformacoes.html#fig-braco-3d" title="Figura 4.4. Bra&ccedil;o rob&oacute;tico 3D">Figura&nbsp;4.4</a>. Possibilite tamb&eacute;m que a base do rob&ocirc; seja rotacionada em torno do eixo y, usando as teclas <span class="keycap"><strong>b</strong></span> e <span class="keycap"><strong>B</strong></span>, para girar nos sentidos hor&aacute;rio e anti-hor&aacute;rio.
+</p>
+	  <div class="figure"><a name="fig-braco-3d"></a><p class="title"><b>Figura 4.4. Bra&ccedil;o rob&oacute;tico 3D</b></p><div class="figure-contents">
+	    
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/braco-3d.jpg" src="figs/braco-3d.jpg"></div></div>
+	  </div></div><br class="figure-break">
+	</li></ol></div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="preenchimento.html">&laquo;&nbsp;Cap&iacute;tulo 3. Preenchimento de regi&otilde;es</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="projecoes-geometricas.html">Cap&iacute;tulo 5. Proje&ccedil;&otilde;es geom&eacute;tricas&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>

@@ -1,0 +1,158 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 5. Processor em Unix</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="prev" href="cha.arquivos.html" title="Cap&iacute;tulo 4. Arquivos e Diret&oacute;rios no Unix"><link rel="next" href="cha.redes.html" title="Cap&iacute;tulo 6. Unix em Redes TCP/IP"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://www.dca.ufrn.br/~ambj/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Cap&iacute;tulo 5. Processor em Unix</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="cha.arquivos.html">Anterior</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="cha.redes.html">Pr&oacute;xima</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.processos"></a>Cap&iacute;tulo 5. Processor em Unix</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="cha.processos.html#d5e612">5.1. Introdu&ccedil;&atilde;o</a></span></dt><dt><span class="sect1"><a href="cha.processos.html#d5e615">5.2. Visualizando processos em Unix</a></span></dt><dt><span class="sect1"><a href="cha.processos.html#d5e665">5.3. <span class="command"><strong><span class="foreignphrase"><em class="foreignphrase">Foreground</em></span></strong></span> e <span class="command"><strong><span class="foreignphrase"><em class="foreignphrase">Background</em></span></strong></span></a></span></dt><dt><span class="sect1"><a href="cha.processos.html#d5e696">5.4. Finalizando processos</a></span></dt><dd><dl><dt><span class="sect2"><a href="cha.processos.html#d5e713">5.4.1. <span class="foreignphrase"><em class="foreignphrase">Pipelines</em></span></a></span></dt><dt><span class="sect2"><a href="cha.processos.html#d5e726">5.4.2. Redirecionamento</a></span></dt></dl></dd></dl></div>
+    
+    <p>Neste cap&iacute;tulo ser&atilde;o mostradas os procedimentos b&aacute;sicos de visualiza&ccedil;&atilde;o e manipula&ccedil;&atilde;o de processos no Unix.</p>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e612"></a>5.1. Introdu&ccedil;&atilde;o</h2></div></div></div>
+      
+      <p>Em toda ambiente multitarefa, dentre os quais o Unix &eacute; considerado, os recursos computacionais da m&aacute;quina s&atilde;o alocados pelo kernel para todas as aplica&ccedil;&otilde;es que concorrem no sistema. Em ambientes Unix em geral, todos os programas executados na m&aacute;quina s&atilde;o denominados processos, onde cada processo possui conjuntos de par&acirc;metros associados ao mesmo.</p>      
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e615"></a>5.2. Visualizando processos em Unix</h2></div></div></div>
+      
+
+      <p>A lista dos processos ativos no sistema pode ser visualizada por interm&eacute;dio do comando <span class="command"><strong>ps</strong></span>, como mostrado a seguir:</p>
+      <div class="example"><a name="exemplo-ps"></a><p class="title"><b>Exemplo 5.1. Exemplo de utiliza&ccedil;&atilde;o do comando <span class="command">ps</span></b></p><div class="example-contents">
+	
+	<pre class="screen">
+	  maquina:~$ ps
+	  PID  TT  STAT  TIME  COMMAND
+	  <span class="hl-number">24</span>   <span class="hl-number">1</span>    S    <span class="hl-number">0</span>:<span class="hl-number">03</span>   -bash
+	  <span class="hl-number">161</span>   <span class="hl-number">1</span>    R    <span class="hl-number">0</span>:<span class="hl-number">00</span>    ps
+	  maquina:~$	
+	</pre>
+      </div></div><br class="example-break">
+
+      <p>Neste exemplo, podemos notar algumas vari&aacute;veis associadas a cada processo que identificam caracter&iacute;sticas pr&oacute;prias de cada um. Entre elas, podemos observar:</p>
+
+      <div class="glosslist"><dl><dt><span class="glossterm"><code class="prompt">PID</code></span></dt><dd class="glossdef"><p>N&uacute;mero identificador do processo.</p></dd><dt><span class="glossterm"><code class="prompt">TT</code></span></dt><dd class="glossdef"><p>Terminal de onde o processo foi iniciado.</p></dd><dt><span class="glossterm"><code class="prompt">STAT</code></span></dt><dd class="glossdef"><p>Status do processo.</p></dd><dt><span class="glossterm"><code class="prompt">TIME</code></span></dt><dd class="glossdef"><p>Tempo de CPU utilizado.</p></dd><dt><span class="glossterm"><code class="prompt">COMMAND</code></span></dt><dd class="glossdef"><p>Nome do programa em execu&ccedil;&atilde;o.</p></dd></dl></div>
+
+      <p>Dentre estes par&acirc;metros, destaca-se o n&uacute;mero identificador do processo (<span class="command"><strong>PID</strong></span>). Este n&uacute;mero &eacute; de suma import&acirc;ncia para os sistema operacional, pois &eacute; a vari&aacute;vel que possibilita a m&aacute;quina distinguir os processos em execu&ccedil;&atilde;o, e para o usu&aacute;rio, pois no caso de acontecer algum problema, como o bloqueamento de um processo, &eacute; conveniente que o mesmo seja finalizado, repercutindo assim em uma melhoria na performance da m&aacute;quina. Quando processo fica bloqueados, o tempo de uso da CPU &eacute; tomado sem realiza&ccedil;&atilde;o de tarefa &uacute;til.</p>
+
+      <p>Diversas s&atilde;o as op&ccedil;&otilde;es que podem ser passadas ao comando <span class="command"><strong>ps</strong></span>. Entretanto, as duas formas mais comuns de utiliza&ccedil;&atilde;o do comando ps s&atilde;o:</p>
+
+      <div class="glosslist"><dl><dt><span class="glossterm"><span class="command"><strong>ps</strong></span></span></dt><dd class="glossdef"><p>Mostra apenas os processos do usu&aacute;rio.</p></dd><dt><span class="glossterm"><span class="command"><strong>ps -aux</strong></span></span></dt><dd class="glossdef"><p>Mostra todos os processos da m&aacute;quina.</p></dd></dl></div>
+
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e665"></a>5.3. <span class="command"><strong><span class="foreignphrase"><em class="foreignphrase">Foreground</em></span></strong></span> e <span class="command"><strong><span class="foreignphrase"><em class="foreignphrase">Background</em></span></strong></span></h2></div></div></div>
+      
+
+      <p>Os processos podem ser executados de duas formas: em <span class="foreignphrase"><em class="foreignphrase">foreground</em></span> (primeiro plano) ou <span class="foreignphrase"><em class="foreignphrase">background</em></span> (segundo plano). Os processos executado em <span class="foreignphrase"><em class="foreignphrase">foreground</em></span> s&atilde;o aqueles que necessitam de intera&ccedil;&atilde;o direta com o usu&aacute;rio, incluindo troca de informa&ccedil;&otilde;es. Os processo em <span class="foreignphrase"><em class="foreignphrase">background</em></span> n&atilde;o necessitam desta intera&ccedil;&atilde;o com o usu&aacute;rio.</p>
+
+      <p>Muitas vezes &eacute; preciso passar um processo que est&aacute; sendo executado em <span class="foreignphrase"><em class="foreignphrase">foreground</em></span> para <span class="foreignphrase"><em class="foreignphrase">background</em></span> e vice-versa. Numa sess&atilde;o de transfer&ecirc;ncia de arquivos entre m&aacute;quinas remotas, a velocidade da linha de transmiss&atilde;o pode aumentar demasiadamente o tempo de transfer&ecirc;ncia (horas, &agrave;s vezes!). Neste caso, seria interessante passar o processo para segundo plano, liberando a <span class="foreignphrase"><em class="foreignphrase">shell</em></span> para outras atividades do usu&aacute;rio.</p>
+
+      <p>A passagem de um processo de <span class="foreignphrase"><em class="foreignphrase">foreground</em></span> para <span class="foreignphrase"><em class="foreignphrase">background</em></span> &eacute; feita primeiro suspendendo o processo, utilizando o conjunto de teclas <span class="command"><strong>&lt;CTRL&gt;+z</strong></span>, seguido do comando <span class="command"><strong>bg</strong></span>, que envia o processo para segundo plano. Deve ficar claro que suspender a execu&ccedil;&atilde;o de um processo n&atilde;o significa finaliz&aacute;-lo, apenas torn&aacute;-lo temporariamente inativo.</p>
+
+      <p>A lista dos processos executados em <span class="foreignphrase"><em class="foreignphrase">background</em></span> pode ser visualizada com o comando <span class="command"><strong>jobs</strong></span>, que mostra cada processo associado com um n&uacute;mero de <span class="foreignphrase"><em class="foreignphrase">job</em></span>. Caso o usu&aacute;rio necessite interagir novamente com o processo, deve utilizar o comando <span class="command"><strong>fg</strong></span> seguido de % n&uacute;mero de <span class="foreignphrase"><em class="foreignphrase">job</em></span>. Exemplo:</p>
+
+      <div class="example"><a name="exemplo-fg"></a><p class="title"><b>Exemplo 5.2. Exemplo de utiliza&ccedil;&atilde;o do comando <span class="command">jobs</span> e <span class="command">fg</span></b></p><div class="example-contents">
+	
+	<pre class="screen">
+	  maquina:~$ jobs
+	  [<span class="hl-number">1</span>]  - Running                       xemacs
+	  [<span class="hl-number">2</span>]  + Suspended (tty output)        vi
+	  maquina:~$ fg %<span class="hl-number">2</span>
+	</pre>
+      </div></div><br class="example-break">
+
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e696"></a>5.4. Finalizando processos</h2></div></div></div>
+      
+      
+    <p>Quando for necess&aacute;rio finalizar a execu&ccedil;&atilde;o de um processo, duas alternativas s&atilde;o poss&iacute;veis ao usu&aacute;rio: pela pr&oacute;pria interface do aplicativo, ou atrav&eacute;s do comando <span class="command"><strong>kill</strong></span>(Alguns processo em foreground tamb&eacute;m podem ser finalizado com o comando &lt;CTRL&gt;+c). No caso de um processo ficar bloqueado devido a algum erro de execu&ccedil;&atilde;o, utilizando desne\-ces\-sa\-ria\-mente tempo de CPU, o uso do comando <span class="command"><strong>kill</strong></span> se faz necess&aacute;rio. Sua sintaxe &eacute; descrita na linha a seguir:</p>
+
+    <div class="cmdsynopsis"><p>
+      <code class="command">kill</code> 
+       [-sinal]
+       [n&uacute;mero do processo]
+    </p></div>
+    
+    <p>Caso o processo n&atilde;o seja finalizado com o procedimento acima, o comando <span class="command"><strong>kill</strong></span> deve ser utilizado com o sinal <span class="command"><strong>-9</strong></span>, indicando t&eacute;rmino incondicional do processo, que ser&aacute; encerrado de forma abrupta. Uma observa&ccedil;&atilde;o importante &eacute; que s&oacute; &eacute; permitido ao usu&aacute;rio finalizar apenas os seus processos, n&atilde;o podendo intervir nos processo de outros usu&aacute;rios. Um exemplo de uso do comando <span class="command"><strong>kill</strong></span> &eacute; mostrado a seguir.</p>
+
+    <div class="example"><a name="exemplo-kill"></a><p class="title"><b>Exemplo 5.3. Exemplo de utiliza&ccedil;&atilde;o do comando <span class="command">kill</span></b></p><div class="example-contents">
+      
+      <pre class="screen">
+	maquina:~$ ps
+	PID  TTY  STAT  TIME  COMMAND
+	<span class="hl-number">24</span>   <span class="hl-number">1</span>    S    <span class="hl-number">0</span>:<span class="hl-number">03</span>   -bash
+	<span class="hl-number">60</span>   <span class="hl-number">2</span>    S    <span class="hl-number">0</span>:<span class="hl-number">03</span>   -bash     
+	<span class="hl-number">161</span>   <span class="hl-number">1</span>    R    <span class="hl-number">0</span>:<span class="hl-number">00</span>    ps
+	maquina:~$ kill <span class="hl-number">60</span>
+	maquina:~$ ps
+	PID  TTY  STAT  TIME  COMMAND
+	<span class="hl-number">24</span>   <span class="hl-number">1</span>    S    <span class="hl-number">0</span>:<span class="hl-number">03</span>   -bash
+	<span class="hl-number">161</span>   <span class="hl-number">1</span>    R    <span class="hl-number">0</span>:<span class="hl-number">00</span>    ps
+	maquina:~$ 
+      </pre>
+    </div></div><br class="example-break">
+
+    <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e713"></a>5.4.1. <span class="foreignphrase"><em class="foreignphrase">Pipelines</em></span></h3></div></div></div>
+      
+
+      <p>O <span class="foreignphrase"><em class="foreignphrase">pipeline</em></span> consiste em canalizar a sa&iacute;da de um processo para a entrada de outro processo. Isto pode ser feito atrav&eacute;s do caracter de <span class="foreignphrase"><em class="foreignphrase">pipe</em></span> "|", como mostra o exemplo a seguir, onde a sa&iacute;da de um comando <span class="command"><strong>ls -la</strong></span> &eacute; enviada para a entrada do comando <span class="command"><strong>grep txt</strong></span>. Com isto, apenas os arquivos que possu&iacute;rem o conjunto de caracteres <code class="prompt">'txt'</code> no seu nome ser&atilde;o apresentados na tela.</p>
+
+      <div class="example"><a name="exemplo-pipe"></a><p class="title"><b>Exemplo 5.4. Exemplo de utiliza&ccedil;&atilde;o do <span class="foreignphrase"><em class="foreignphrase">pipeline</em></span></b></p><div class="example-contents">
+	
+	<pre class="screen">
+	  \begin{quote}
+	  \begin{verbatim}
+	  maquina:~$ ls -la
+	  total <span class="hl-number">120</span>
+	  drwxr-xr-x   <span class="hl-number">4</span> aluno    users        <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">42</span> ./
+	  drwxr-xr-x   <span class="hl-number">7</span> root     root         <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">12</span>:<span class="hl-number">53</span> ../
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users          <span class="hl-number">26</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">08</span> .bash_history
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users          <span class="hl-number">34</span> Nov <span class="hl-number">23</span>  <span class="hl-number">1993</span> .less
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users         <span class="hl-number">114</span> Nov <span class="hl-number">23</span>  <span class="hl-number">1993</span> .lessrc
+	  drwxr-xr-x   <span class="hl-number">2</span> aluno    users        <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">43</span> documentos/
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users          <span class="hl-number">43</span> Mar <span class="hl-number">31</span> <span class="hl-number">12</span>:<span class="hl-number">58</span> exemplo1.txt
+	  drwxr-xr-x   <span class="hl-number">2</span> aluno    users        <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">58</span> financas/
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users      <span class="hl-number">108111</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">00</span> faq.txt
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users        <span class="hl-number">5041</span> Mar <span class="hl-number">31</span> <span class="hl-number">12</span>:<span class="hl-number">58</span> linux1.gif
+	  maquina:~$ ls -la |grep txt
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users          <span class="hl-number">43</span> Mar <span class="hl-number">31</span> <span class="hl-number">12</span>:<span class="hl-number">58</span> exemplo1.txt
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users      <span class="hl-number">108111</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">00</span> faq.txt
+	  maquina:~$ 
+	</pre>
+      </div></div><br class="example-break">
+    </div>
+
+    <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e726"></a>5.4.2. Redirecionamento</h3></div></div></div>
+      
+
+      <p>Redirecionar consiste em alterar a origem da entrada ou o destino da sa&iacute;da de um processo, que, em geral, s&atilde;o as entrada e sa&iacute;da padr&otilde;es do sistema. O redirecionamento pode ser feito com os caracteres &lt; e &gt;, que redirecionam a entrada e a sa&iacute;da, respectivamente.</p>
+ 
+      <div class="example"><a name="exemplo-redirecionamento"></a><p class="title"><b>Exemplo 5.5. Exemplo de utiliza&ccedil;&atilde;o do redirecionamento</b></p><div class="example-contents">
+	
+	<pre class="screen">
+	  \begin{quote}
+	  \begin{verbatim}
+	  maquina:~$ ls -la &gt; lista
+	  maquina:~$ cat lista
+	  total <span class="hl-number">120</span>
+	  drwxr-xr-x   <span class="hl-number">4</span> aluno    users        <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">42</span> ./
+	  drwxr-xr-x   <span class="hl-number">7</span> root     root         <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">12</span>:<span class="hl-number">53</span> ../
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users          <span class="hl-number">26</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">08</span> .bash_history
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users          <span class="hl-number">34</span> Nov <span class="hl-number">23</span>  <span class="hl-number">1993</span> .less
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users         <span class="hl-number">114</span> Nov <span class="hl-number">23</span>  <span class="hl-number">1993</span> .lessrc
+	  drwxr-xr-x   <span class="hl-number">2</span> aluno    users        <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">43</span> documentos/
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users          <span class="hl-number">43</span> Mar <span class="hl-number">31</span> <span class="hl-number">12</span>:<span class="hl-number">58</span> exemplo1.txt
+	  drwxr-xr-x   <span class="hl-number">2</span> aluno    users        <span class="hl-number">1024</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">58</span> financas/
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users      <span class="hl-number">108111</span> Mar <span class="hl-number">31</span> <span class="hl-number">13</span>:<span class="hl-number">00</span> faq.txt
+	  -rw-r--r--   <span class="hl-number">1</span> aluno    users        <span class="hl-number">5041</span> Mar <span class="hl-number">31</span> <span class="hl-number">12</span>:<span class="hl-number">58</span> linux1.gif
+	  maquina:~$ 
+	</pre>
+      </div></div><br class="example-break">
+
+    </div>
+
+    </div>
+
+  </div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="cha.arquivos.html">Anterior</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="cha.redes.html">Pr&oacute;xima</a></td></tr><tr><td width="40%" align="left" valign="top">Cap&iacute;tulo 4. Arquivos e Diret&oacute;rios no Unix&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td><td width="40%" align="right" valign="top">&nbsp;Cap&iacute;tulo 6. Unix em Redes TCP/IP</td></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>

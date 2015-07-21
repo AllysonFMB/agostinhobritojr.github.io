@@ -1,0 +1,280 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 2. Rudimentos de cria&ccedil;&atilde;o de interface gr&aacute;fica</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; programa&ccedil;&atilde;o em Qt"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; programa&ccedil;&atilde;o em Qt"><link rel="prev" href="cha.introducao.html" title="Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://www.dca.ufrn.br/~ambj/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Cap&iacute;tulo 2. Rudimentos de cria&ccedil;&atilde;o de interface gr&aacute;fica</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="cha.introducao.html">Anterior</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;</td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.rudimentos"></a>Cap&iacute;tulo 2. Rudimentos de cria&ccedil;&atilde;o de interface gr&aacute;fica</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="cha.rudimentos.html#sec1.rudimentos.SignalSlots">2.1. Conceituando SIGNAL e SLOTS</a></span></dt><dt><span class="sect1"><a href="cha.rudimentos.html#sec1.rudimentos.Componentes">2.2. Componentes mais comuns</a></span></dt><dd><dl><dt><span class="sect2"><a href="cha.rudimentos.html#sec2.rudimentos.Componentes.bot%C3%A3o">2.2.1. QPushButton</a></span></dt><dt><span class="sect2"><a href="cha.rudimentos.html#sec2.rudimentos.Componentes.lineEdit">2.2.2. QLineEdit</a></span></dt><dt><span class="sect2"><a href="cha.rudimentos.html#sec2.rudimentos.Componentes.label">2.2.3. QLabel</a></span></dt><dt><span class="sect2"><a href="cha.rudimentos.html#sec2.rudimentos.Componentes.radiobutton">2.2.4. QRadioButton</a></span></dt><dt><span class="sect2"><a href="cha.rudimentos.html#sec2.rudimentos.Componentes.checkbox">2.2.5. QCheckBox</a></span></dt><dt><span class="sect2"><a href="cha.rudimentos.html#sec2.rudimentos.Componentes.combobox">2.2.6. QComboBox</a></span></dt></dl></dd></dl></div>
+    
+    
+    
+    <p>Neste cap&iacute;tulo ser&aacute; demonstrado como funciona a comunica&ccedil;&atilde;o entre objetos do Qt, como conecta-los para que haja alguma intera&ccedil;&atilde;o e exemplos de objetos comumente usados em programas.</p>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec1.rudimentos.SignalSlots"></a>2.1. Conceituando SIGNAL e SLOTS</h2></div></div></div>
+      
+       
+      <p>O Qt oferece aos seus desenvolvedores uma ferramenta muito &uacute;til, com ela podemos construir a arquitetura do nosso programa, ou seja definir como o mesmo se comporta mediante a a&ccedil;&atilde;o do usu&aacute;rio do software. Tal ferramenta &eacute; o gerenciamento de Signals e Slots. No &uacute;ltimo exemplo do cap&iacute;tulo anterior quando implementamos uma a&ccedil;&atilde;o ao clique do Pushbutton tinhamos construido uma conex&atilde;o de Signal e Slot.</p>
+      <p>Signals e Slots permite de forma simples e intuitiva montar a estrutura do seu programa. Este mecanismo de comunica&ccedil;&atilde;o intra objetos &eacute; o grande diferencial do Qt em rela&ccedil;&atilde;o aos outros frameworks.</p>
+      <p>Com Signals e Slots podemos informar a um objeto A que outro objeto B alterou seu estado, por exemplo no caso do nosso primeiro programa onde ao clicarmos no PushButton o texto do QLabel era alterado, neste caso tinhamos um Signal que era emitido automaticamente ao clicar no PushButton de forma que tal Signal estava conectado com um Slot da QMainWindow onde este tinha por fun&ccedil;&atilde;o alterar o texto do QLabel.</p>
+       
+	<div class="figure"><a name="fig.rudimentos.SignalSlots.estruturaSignalSlots"></a><p class="title"><b>Figura 2.1. Diagrama de funcionamento do Signals e Slots</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_estrutura_signal_slot.svg">figuras/capitulo2/ss_estrutura_signal_slot.svg</object></div></div>
+	</div></div><br class="figure-break">
+      <p>Alguns Signals s&atilde;o padr&otilde;es para alguns objetos, no PushButton por exemplo utilizamos o Signal padr&atilde;o clicked() para ser emitido quando o bot&atilde;o for clicado, por&eacute;m podemos criar Signals e emiti-los quando desejar-mos com o comando emit. Similarmente, Slots tamb&eacute;m possuem suas inst&acirc;ncias padr&otilde;es para certos objetos, que no nosso caso foi a fun&ccedil;&atilde;o setText(QString) do objeto QLabel.</p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>&Eacute; uma pr&aacute;tica comum o programador definir os Slots visto que somente ele saber&aacute; o que dever&aacute; ocorrer quando um certo Signal for emitido.</p></td></tr></table></div>
+      <p>As conex&otilde;es Signals e Slots podem ser feitas de diversos modos. Podemos emitir um Signal do Objeto A para v&aacute;rios Slots de outros objetos, emitir v&aacute;rios Signals de v&aacute;rios objetos para um &uacute;nico Slot do objeto A e emitir um Signal de um objeto A para um Signal de um objeto B (neste caso o Signal de A ir&aacute; emitir o Signal de B sempre que o Signal de A for emitido).</p>
+      <p>Agora que sabemos a defini&ccedil;&atilde;o de Signals e Slots e como eles funcionam podemos criar nossas pr&oacute;prias conex&otilde;es e assim montar a arquitetura do programa ao pr&oacute;pio gosto. &Eacute; poss&iacute;vel criar conex&otilde;es entre dois objetos de duas formas: por comandos e editor gr&aacute;fico.</p>
+      <p>Por comando, se desejamos criar uma conex&atilde;o entre o objeto A com a Signal sinalA() e o objeto B com o Slot slotB() devemos executar a seguinte linha de c&oacute;digo.</p>
+      <pre class="screen"><span class="command"><strong>connect(Objeto A,SIGNAL(sinalA()),Objeto B,SLOT(slotB()));</strong></span></pre>
+      <p>Desta forma quando o programa executar este comando uma nova conex&atilde;o ser&aacute; criada entre os objetos e a partir de ent&atilde;o quando o sinalA() do objeto A for emitido, automaticamente o slotB() do objeto B ser&aacute; executado.</p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>Os Slots s&atilde;o fun&ccedil;&otilde;es normais, ou seja n&atilde;o necessita ser executada s&oacute; e somente s&oacute; com um Signal emitido, podemos fazer chamadas dele no c&oacute;digo como uma fun&ccedil;&atilde;o qualquer.</p></td></tr></table></div>
+      <p>Com o Qt Designer (ferramenta que &eacute; agregado ao Qt Creator SDK) podemos criar conex&otilde;es de forma gr&aacute;fica, ou seja puxando e arrastando as conex&otilde;es no sentido determinado. Para utilizar esta ferramenta crie um novo projeto e adicione a janela principal do programa os componentes Label e Push Button, clique em Editar Signals/Slots ou pressione F4.</p>
+      
+	<div class="figure"><a name="fig.rudimentos.SignalSlots.editSignalSlot"></a><p class="title"><b>Figura 2.2. Bot&atilde;o do editor de Signals e Slots.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_editsignalslot.svg">figuras/capitulo2/ss_editsignalslot.svg</object></div></div>
+	</div></div><br class="figure-break">
+      
+	<p>Feito isto podemos ent&atilde;o criar conex&otilde;es diretamente na janela do programa, clique e arraste o mouse do PushButton at&eacute; o QLabel na janela principal. Ser&aacute; exibida uma janela solicitando o Signal do PushButton e o Slot do QLabel, selecione o Signal clicked() e o Slot clear() e clique em OK. Desta forma o programa ir&aacute; apagar o texto do QLabel quando o PushButton for clicado pois o Signal clicked() ser&aacute; emitido e consequentemente o Slot clear() ser&aacute; executado.</p>
+      
+      
+      <div class="figure"><a name="fig.rudimentos.SignalSlots.conexaoSignalSlots"></a><p class="title"><b>Figura 2.3. Conex&atilde;o entre Signal e Slot estabelecida.</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_conexaosignalslots.svg">figuras/capitulo2/ss_conexaosignalslots.svg</object></div></div>
+      </div></div><br class="figure-break">
+      
+      <div class="figure"><a name="fig.rudimentos.SignalSlots.selecaoSignalSlot"></a><p class="title"><b>Figura 2.4. Definindo Signal e Slot da conex&atilde;o.</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_signalslots.svg">figuras/capitulo2/ss_signalslots.svg</object></div></div>
+      </div></div><br class="figure-break">
+      <p>Execute o programa e verifique que quando o PushButton &eacute; clicado o QLabel ficar&aacute; sem texto. Esta foi uma das conex&otilde;es poss&iacute;veis criadas por padr&atilde;o, podemos ainda criar nossos pr&oacute;prios Signals e Slots e conecta-las normalmente. Para criar uma conex&atilde;o Signal e Slot n&atilde;o padr&atilde;o do Qt via editor gr&aacute;fico devemos criar os mesmos e adiciona-los ao editor.</p>
+      <p>Agora criaremos nosso Signal e iremos emitir quando quisermos, para isso crie um novo projeto. Com o projeto criado abra o arquivo mainwindow.ui e adicione a janela do programa um QLabel e um Horizontal Slider (para encontra-los basta pesquisar no campo Filter).</p>
+      
+      <div class="figure"><a name="fig.rudimentos.SignalSlots.GoToSlotHSlider"></a><p class="title"><b>Figura 2.5. Selecionando a op&ccedil;&atilde;o <code class="option">Go To Slot...</code> do Horizontal Slider.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_nossosignal1.svg">figuras/capitulo2/ss_nossosignal1.svg</object></div></div>
+	</div></div><br class="figure-break">
+      <p>Com os objetos posicionados, clique com o bot&atilde;o direito sobre o Horizontal Slider e selecione a op&ccedil;&atilde;o Go To Slot... isto ir&aacute; disponibilizar as op&ccedil;&otilde;es poss&iacute;veis de Signals padr&otilde;es do Horizontal Slider que ser&aacute; conectado com um Slot do QMainWindow, tal Slot ser&aacute; contruido automaticamente pelo Qt SDK. Com a nova janela exibida clique na op&ccedil;&atilde;o valueChanged(int), este Signal &eacute; emitido quando o valor do Horizontal Slider &eacute; alterado e o argumento passado &eacute; um inteiro respectivo ao novo valor. Clique em OK e o Qt ir&aacute; criar o Slot automaticamente.</p>
+      <p>Agora que j&aacute; temos a conex&atilde;o para altera&ccedil;&atilde;o de valor no Horizontal Slider vamos criar o Signal do QMainWindow, este ser&aacute; ativado quando o Horizontal Slider chegar a um certo valor. Abra o arquivo mainwindow.h e no escopo da classe MainWindow adicione a seguinte defini&ccedil;&atilde;o.</p>
+      <pre class="screen">signals:
+      <strong class="hl-keyword">void</strong> valor_atingido(QString aviso);</pre>
+      <p>Isto criar&aacute; o Signal valor_atingido(QString aviso) do QMainWindow, perceba que n&atilde;o &eacute; necess&aacute;rio criar implementa&ccedil;&atilde;o desta fun&ccedil;&atilde;o Signal no arquivo .cpp por&eacute;m &eacute; poss&iacute;vel.</p>
+      <p>Com o Signal criado, volte ao arquivo Mainwindow.cpp na fun&ccedil;&atilde;o Slot criada automaticamente pelo Qt SDK implemente o seguinte c&oacute;digo.</p>
+      <pre class="screen"><strong class="hl-keyword">void</strong> MainWindow::on_horizontalSlider_valueChanged(<strong class="hl-keyword">int</strong> value)
+{
+    <strong class="hl-keyword">if</strong>(value&gt;=<span class="hl-number">70</span>){
+        emit valor_atingido(<strong class="hl-string"><em style="color:red">"Aten&ccedil;&atilde;o!"</em></strong>);
+    }
+}</pre>
+      <p>Este c&oacute;digo faz com que sempre que o valor do Horizontal Slider for alterado e o atual valor for maior que 70 o Signal valor_atingido("Aten&ccedil;&atilde;o!") ser&aacute; emitido. Executando o programa a partir deste ponto nada acontecer&aacute; mediante a altera&ccedil;&atilde;o do valor do Horizontal Slider pois o Signal &eacute; emitido entretanto nenhum Slot est&aacute; conectado a ele.</p>
+      <p>Vamos criar agora uma conex&atilde;o do Signal valor_atingido(QString) com o Slot setText(QString) do QLabel. D&ecirc; dois cliques no arquivo mainwindow.ui e abra o editor de Signals e Slots (pressionar F4). Visto que a conex&atilde;o ser&aacute; entre o Signal do QMainWindow e o Slot do QLabel clique em qualquer lugar da janela principal e arraste at&eacute; o QLabel.</p>
+      
+      <div class="figure"><a name="fig.rudimentos.SignalSlots.conexaoNossoSignal2"></a><p class="title"><b>Figura 2.6. Estabelecendo conex&atilde;o entre o Signal do QMainWindow e o Slot do QLabel.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_nossosignal2.svg">figuras/capitulo2/ss_nossosignal2.svg</object></div></div>
+	</div></div><br class="figure-break">
+      <p>Feito isso uma janela solicitando o Signal do QMainWindow e Slot do QLabel ser&aacute; exibida, percebe-se que o Signal valor_atingido(QString) n&atilde;o &eacute; exibido, para isso clique no bot&atilde;o Edit... respectivo ao QMainWindow, surgir&aacute; uma nova janela listando os Signals e Slots do QMainWindow, na parte inferior (Signals) clique no bot&atilde;o com um s&iacute;mbolo de '+', apague o que foi escrito e digite:</p>
+      <pre class="screen">valor_atingido(QString)</pre>
+      <p>Pressione Enter e clique em OK.</p>
+      
+      <div class="figure"><a name="fig.rudimentos.SignalSlots.configuracaoConexaoNossoSignal"></a><p class="title"><b>Figura 2.7. Configurando Conex&atilde;o Signal e Slot.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_nossosignal3.svg">figuras/capitulo2/ss_nossosignal3.svg</object></div></div>
+	</div></div><br class="figure-break">
+      
+      <div class="figure"><a name="fig.rudimentos.SignalSlots.criandoNossoSignal"></a><p class="title"><b>Figura 2.8. Adicionando Signal ao QMainWindow.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_nossosignal4.svg">figuras/capitulo2/ss_nossosignal4.svg</object></div></div>
+	</div></div><br class="figure-break">
+      <p>Agora o Signal valor_atingido(QString) &eacute; exibido, clique nesta op&ccedil;&atilde;o e em seguida ser&aacute; disponibilizado o Slot setText(QString), clique nesta op&ccedil;&atilde;o tamb&eacute;m e ent&atilde;o clique em OK.</p>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>Perceba que os Signals e Slots em sua maioria devem conter os mesmos par&acirc;metros e na mesma ordem, exceto os Slots sem par&acirc;metros, estes podem ser executados por qualquer Signal pois n&atilde;o necessitam de valores de entrada. Desta forma os valores que s&atilde;o emitidos junto ao Signal s&atilde;o repassados ao Slot.</p></td></tr></table></div>
+      <p>Na janela principal ser&aacute; construida a conex&atilde;o, sendo assim quando o Signal valor_atingido(QString) for emitido a fun&ccedil;&atilde;o Slot setText(QString) do QLabel ser&aacute; executada.</p>
+      <p>Este trabalho poderia ser evitado utilizando o comando connect no construtor da classe MainWindow, este comando como explicadao anteriormente faz a conex&atilde;o entre os objetos, veja o comando para conectar o Signal valor_atingido(QString) do QMainWindow e o Slot setText(QString) do QLabel.</p>
+      <pre class="screen">connect(<strong class="hl-keyword">this</strong>,SIGNAL(valor_atingido(QString)),ui-&gt;label,SLOT(setText(QString)));</pre>
+      <p>O comando conecta o atual objeto "this", no caso MainWindow, via Signal valor_atingido(QString) com o objeto "ui-&gt;label", o QLabel, atr&aacute;ves do Slot setText(QString).</p>
+      <p>Para ambos os casos, cria&ccedil;&atilde;o de conex&atilde;o via interface gr&aacute;fica ou por comando, execute o programa, perceba que quando o Horizontal Slidet atinge um valor maior ou igual a 70 o QLabel modifica o texto de "TextLabel" para "Aten&ccedil;&atilde;o!".</p> 
+      
+      <div class="figure"><a name="fig.rudimentos.SignalSlots.executandoNossoSignal"></a><p class="title"><b>Figura 2.9. Projeto com Signal criado sendo executado.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/ss_nossosignal5.svg">figuras/capitulo2/ss_nossosignal5.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>Esta foi uma leve e consistente introdu&ccedil;&atilde;o sobre Signal e Slots, existem mais detalhes n&atilde;o menos importantes para esta ferramenta fundamental a qualquer programa desenvolvido no Qt SDK. Podemos perceber que para qualquer programa &eacute; necess&aacute;rio utilizar Signals e Slots, eles s&atilde;o a base do programa, a forma como o software se comportar&aacute; mediante o usu&aacute;rio.</p>
+     
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec1.rudimentos.Componentes"></a>2.2. Componentes mais comuns</h2></div></div></div>
+      
+      
+
+      <p>O Qt SDK possui muitos componentes gr&aacute;ficos bastante &uacute;teis para softwares em geral, tais componentes s&atilde;o: Bot&otilde;es, Caixa de texto, Scroll, CheckBox, etc. Todos possuem suas fun&ccedil;&otilde;es Slots e Signal com diversas funcionalidades. Nesta se&ccedil;&atilde;o ser&atilde;o demonstrados os componentes comumentes utilizados em programas, iremos explanar sobre o que cada um faz, quais s&atilde;o os Slots e Signals mais comuns e explicar suas funcionalidades.</p> 
+
+      
+      <div class="figure"><a name="fig.rudimentos.Componentes.ListadeComponentes"></a><p class="title"><b>Figura 2.10. Alguns componentes fornecidos pelo Qt SDK.</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/componentes_listade.svg">figuras/capitulo2/componentes_listade.svg</object></div></div>
+      </div></div><br class="figure-break">
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.rudimentos.Componentes.bot%C3%A3o"></a>2.2.1. QPushButton</h3></div></div></div>
+	
+	
+	
+	<p>Push Buttons s&atilde;o os componentes mais utilizados em programas, com eles &eacute; poss&iacute;vel criar bot&otilde;es na janela do software que quando clicados executam algum comportamento pr&eacute;-estabelecido. Para adicionar um bot&atilde;o ao seu programa abra o arquivo .ui do seu projeto e adicione o componente Push Button. Clicando com o bot&atilde;o direito sobre ele e escolhendo a op&ccedil;&atilde;o Go To Slot... &eacute; poss&iacute;vel ver algumas op&ccedil;&otilde;es de Signals padr&otilde;es do componente.</p>
+
+	
+	<div class="figure"><a name="fig.rudimentos.Componentes.PushbuttonSignals"></a><p class="title"><b>Figura 2.11. Signals padr&otilde;es do QPushButton.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/componentes_pushbutton.svg">figuras/capitulo2/componentes_pushbutton.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>O PushButton n&atilde;o possui somente Signal de clique, tamb&eacute;m possui Signals para o pressionamento e libera&ccedil;&atilde;o do bot&atilde;o. Desta forma podemos fazer com que o programa tenha mais acesso as a&ccedil;&otilde;es do usu&aacute;rio.</p>
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	    <p><span class="command"><strong>QPushButton::clicked()</strong></span></p>
+	    <p>O Signal clicked() como mencionado anteriormente &eacute; emitido quando o bot&atilde;o &eacute; clicado, logo para se criar uma fun&ccedil;&atilde;o Slot para este Signal podemos usar a op&ccedil;&atilde;o Go To Slot...  ou atr&aacute;ves do comando connect.</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(clicked()),Objeto_receptor,SLOT(funcao()));</pre>
+	    <p>Sendo o objeto emissor do tipo QPushButton e o objeto receptor qualquer objeto. Desta forma quando o bot&atilde;o for clicado a fun&ccedil;&atilde;o do objeto receptor ser&aacute; executada.</p>	   
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QPushButton::pressed()</strong></span></p>
+	    <p>Este Signal &eacute; emitido quando o QPushButton &eacute; pressionado, ou seja quando um clique &eacute; iniciado e mantido. &Eacute; poss&iacute;vel criar uma conex&atilde;o deste Signal atr&aacute;ves da op&ccedil;&atilde;o Go To Slot... ou via linha de c&oacute;digo.</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(pressed()),Objeto_receptor,SLOT(funcao()));</pre>
+	    <p>Onde o objeto emissor deve ser do tipo QPushButton e o objeto receptor de qualquer tipo. Sendo isto configurado, o programa ir&aacute; executar o Slot funcao() do objeto receptor sempre que o QPushButton for pressionado.</p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QPushButton::released()</strong></span></p>
+	    <p>Ao contr&aacute;rio da fun&ccedil;&atilde;o anterior, este m&eacute;todo &eacute; emitido quando o QPushButton &eacute; liberado do clique, ou seja ap&oacute;s o momento em que foi clicado. &Eacute; poss&iacute;vel criar uma conex&atilde;o deste Signal atr&aacute;ves da op&ccedil;&atilde;o Go To Slot... ou via linha de c&oacute;digo.</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(released()),Objeto_receptor,SLOT(funcao()));</pre>
+	    <p>Considerando o objeto emissor do tipo QPushButton e o objeto receptor de qualquer tipo, o Slot funcao() do objeto receptor ser&aacute; executado a todo momento em que o QPushButton for liberado de um clique.</p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QPushButton::click()</strong></span></p>
+	    <p>Com este m&eacute;todo podemos for&ccedil;ar um clique no QPushButton e consequentemente executar todas as a&ccedil;&otilde;es pr&eacute;-estabelecidas a partir do clique do usu&aacute;rio. Para gerar uma conex&atilde;o com este m&eacute;todo podemos utilizar o seguinte comando.</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(sinal()),Objeto_receptor,SLOT(click()));</pre>
+	    <p>Sendo o objeto receptor um QPushButton, a todo momento em que o Signal sinal() do objeto emissor for emitido o QPushButton objeto receptor ser&aacute; clicado. Perceba que se existe uma conex&atilde;o de Signal e Slot do clique do QPushButton com outro Slot este ser&aacute; executado tamb&eacute;m pois o Slot click() "simula" um clique do usu&aacute;rio do software.</p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QPushButton::setText(QString)</strong></span></p>
+	    <p>Este m&eacute;todo permite alterar o texto do QPushButton. Para se utilizar este comando &eacute; necess&aacute;rio passar apenas o novo texto como parametro da fun&ccedil;&atilde;o.</p>
+	    <pre class="screen">ui-&gt;botao.setText(<strong class="hl-string"><em style="color:red">"Iniciar"</em></strong>);</pre>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QPushButton::text()</strong></span></p>
+	    <p>Esta fun&ccedil;&atilde;o retorna o atual texto escrito no bot&atilde;o.</p>
+	    <pre class="screen">QString texto = ui-&gt;botao.text();</pre>
+	  </li></ul></div>		
+      </div>
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.rudimentos.Componentes.lineEdit"></a>2.2.2. QLineEdit</h3></div></div></div>
+	
+	
+	<p>Line Edits s&atilde;o componentes muito utilizados em programas, principalmente naqueles em que se deseja obter informa&ccedil;&otilde;es do usu&aacute;rio como nome, endere&ccedil;o, n&uacute;meros e etc. Com este objeto podemos criar campos de texto que podem ser preenchidos pelo usu&aacute;rio ou definidos via c&oacute;digo. Para adicionar um line edit ao seu programa abra o arquivo .ui do seu projeto e adicione o componente Line Edit. Clicando com o bot&atilde;o direito sobre ele e escolhendo a op&ccedil;&atilde;o Go To Slot... &eacute; poss&iacute;vel ver algumas op&ccedil;&otilde;es de Signals padr&otilde;es do componente</p>
+
+	
+	<div class="figure"><a name="fig.rudimentos.Componentes.LineeditSignals"></a><p class="title"><b>Figura 2.12. Signals padr&otilde;es do QLineEdit.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/componentes_lineedit.svg">figuras/capitulo2/componentes_lineedit.svg</object></div></div>
+	</div></div><br class="figure-break">
+
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	    <p><span class="command"><strong>QLineEdit::textChanged(QString)</strong></span></p>
+	    <p>Este Signal &eacute; emitido toda vez que o texto do Line Edit &eacute; modificado, seja tal modifica&ccedil;&atilde;o proveniente do usu&aacute;rio ou por defini&ccedil;&atilde;o via programa&ccedil;&atilde;o. &Eacute; poss&iacute;vel criar uma conex&atilde;o deste Signal atr&aacute;ves da op&ccedil;&atilde;o Go To Slot... ou via linha de c&oacute;digo.</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(textChanged(QString)),Objeto_receptor,SLOT(funcao()))</pre>
+	    <p>Sendo o objeto emissor do tipo QLineEdit, sempre que o texto do QLineEdit for alterado o Signal &eacute; emitido executando o Slot funcao() do objeto receptor, o Signal tamb&eacute;m fornece ao objeto receptor o novo texto rec&eacute;m alterado.</p>
+	    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>Vale salientar que as fun&ccedil;&otilde;es Signal e Slot devem estar adquadamente pareadas em termo de par&acirc;metros, ou seja os par&acirc;metros enviados pelo Signal devem ser iguais aos recebidos pelo Slot exceto no caso em que o Slot n&atilde;o possui par&acirc;metros.</p></td></tr></table></div>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QLineEdit::textEdited(QString)</strong></span></p>
+	    <p>Similar ao Signal anterior, este m&eacute;todo tem por diferen&ccedil;a o fato que n&atilde;o &eacute; emitido a partir de qualquer altera&ccedil;&atilde;o do texto do QLineEdit. Este m&eacute;todo ser&aacute; emitido somente mediante altera&ccedil;&atilde;o do texto do QLineEdit proveniente do usu&aacute;rio do software. &Eacute; poss&iacute;vel criar uma conex&atilde;o deste Signal atr&aacute;ves da op&ccedil;&atilde;o Go To Slot... ou via linha de c&oacute;digo.</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(textEdited(QString)),Objeto_receptor,SLOT(funcao()));</pre>
+	    <p>Sendo o objeto emissor do tipo QLineEdit, sempre que o texto do QLineEdit for alterado pelo usu&aacute;rio o Signal &eacute; emitido executando o Slot funcao() do objeto receptor, o Signal tamb&eacute;m fornece ao objeto receptor o novo texto rec&eacute;m alterado.</p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QLineEdit::editingFinished()</strong></span></p>
+	    <p>Este Signal &eacute; utilizado para informar quando a edi&ccedil;&atilde;o de um determinado QLineEdit foi finalizada, ele &eacute; emitido no momento em que o usu&aacute;rio pressiona Enter, Backspace ou o retira de foco (clicando em outro QLineEdit por exemplo). &Eacute; poss&iacute;vel criar uma conex&atilde;o deste Signal atr&aacute;ves da op&ccedil;&atilde;o Go To Slot... ou via linha de c&oacute;digo</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(editingFinished()),Objeto_receptor,SLOT(funcao()));</pre>
+	    <p>Considerando o objeto emissor do tipo QLineEdit, a todo momento em que a edi&ccedil;&atilde;o de texto no QLineEdit for finalizada a fun&ccedil;&atilde;o funcao() do objeto receptor ser&aacute; executada.</p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QLineEdit::text()</strong></span></p>
+	    <p>Este m&eacute;todo retorna o atual texto escrito no QLineEdit.</p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QLineEdit::clear()</strong></span></p>
+	    <p>Este m&eacute;todo limpa qualquer texto escrito no QLineEdit.</p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QLineEdit::setText(QString)</strong></span></p>
+	    <p>Esta fun&ccedil;&atilde;o define o texto exibido no QLineEdit, podemos utilizar este m&eacute;todo em uma conex&atilde;o de Signal e Slot da seguinte forma.</p>
+	    <pre class="screen">connect(Objeto_emissor,SIGNAL(funcao(QString)),Objeto_receptor,SLOT(setText(QString)));</pre>
+	    <p>Sendo o objeto receptor do tipo QLineEdit, o texto do objeto receptor ser&aacute; modificado de acordo com a emiss&atilde;o e o argumento do Signal funcao(QString) enviado.</p>
+	  </li></ul></div>
+      </div>
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.rudimentos.Componentes.label"></a>2.2.3. QLabel</h3></div></div></div>
+	
+	
+	<p>texto</p>
+
+	
+	<div class="figure"><a name="fig.rudimentos.Componentes.LabelSignals"></a><p class="title"><b>Figura 2.13. Signals padr&otilde;es do QLabel.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/componentes_label.svg">figuras/capitulo2/componentes_label.svg</object></div></div>
+	</div></div><br class="figure-break">
+
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	    <p><span class="command"><strong>QLabel::clear()</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QLabel::setText(QString)</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QLabel::text()</strong></span></p>
+	  </li></ul></div>
+
+      </div>
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.rudimentos.Componentes.radiobutton"></a>2.2.4. QRadioButton</h3></div></div></div>
+	
+	
+	<p>texto</p> 
+	
+	
+	<div class="figure"><a name="fig.rudimentos.Componentes.RadiobuttonSignals"></a><p class="title"><b>Figura 2.14. Signals padr&otilde;es do QRadioButton.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/componentes_radiobutton.svg">figuras/capitulo2/componentes_radiobutton.svg</object></div></div>
+	</div></div><br class="figure-break">
+
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	    <p><span class="command"><strong>QRadioButton::isChecked()</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QRadioButton::setChecked(bool)</strong></span></p>
+	  </li></ul></div>
+      </div>
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.rudimentos.Componentes.checkbox"></a>2.2.5. QCheckBox</h3></div></div></div>
+	
+	
+	
+	
+
+	
+	<div class="figure"><a name="fig.rudimentos.Componentes.CheckboxSignals"></a><p class="title"><b>Figura 2.15. Signals padr&otilde;es do QCheckBox.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/componentes_checkbox.svg">figuras/capitulo2/componentes_checkbox.svg</object></div></div>
+	</div></div><br class="figure-break">
+
+	<p>texto</p>
+      </div>
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.rudimentos.Componentes.combobox"></a>2.2.6. QComboBox</h3></div></div></div>
+	
+	
+	<p>texto</p>
+
+	
+	<div class="figure"><a name="fig.rudimentos.Componentes.ComboboxSignals"></a><p class="title"><b>Figura 2.16. Signals padr&otilde;es do QComboBox.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo2/componentes_combobox.svg">figuras/capitulo2/componentes_combobox.svg</object></div></div>
+	</div></div><br class="figure-break">
+
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	    <p><span class="command"><strong>QComboBox::addItem(QString)</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QComboBox::currentIndex()</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QComboBox::currentText()</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QComboBox::setCurrentIndex(int)</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QComboBox::setCurrentText(QString)</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QComboBox::currentIndexChanged(int)</strong></span></p>
+	  </li><li class="listitem">
+	    <p><span class="command"><strong>QComboBox::currentTextChanged(QString)</strong></span></p>
+	  </li></ul></div>
+      </div>
+    </div>
+  </div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="cha.introducao.html">Anterior</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;</td></tr><tr><td width="40%" align="left" valign="top">Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td><td width="40%" align="right" valign="top">&nbsp;</td></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2014 Tiago Fernandes</p></td></tr></table></div></body></html>

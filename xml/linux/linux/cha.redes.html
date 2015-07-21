@@ -1,0 +1,243 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 6. Unix em Redes TCP/IP</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="prev" href="cha.processos.html" title="Cap&iacute;tulo 5. Processor em Unix"><link rel="next" href="cha-joe.html" title="Cap&iacute;tulo 7. Edi&ccedil;&atilde;o de textos com joe"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://www.dca.ufrn.br/~ambj/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Cap&iacute;tulo 6. Unix em Redes TCP/IP</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="cha.processos.html">Anterior</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="cha-joe.html">Pr&oacute;xima</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.redes"></a>Cap&iacute;tulo 6. Unix em Redes TCP/IP</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="cha.redes.html#d5e735">6.1. Introdu&ccedil;&atilde;o</a></span></dt><dt><span class="sect1"><a href="cha.redes.html#d5e738">6.2. TCP/IP</a></span></dt><dt><span class="sect1"><a href="cha.redes.html#d5e741">6.3. Conceitos b&aacute;sicos sobre Internet</a></span></dt><dt><span class="sect1"><a href="cha.redes.html#d5e914">6.4. Aplicativos de redes</a></span></dt><dd><dl><dt><span class="sect2"><a href="cha.redes.html#d5e916">6.4.1. Correio Eletr&ocirc;nico</a></span></dt><dt><span class="sect2"><a href="cha.redes.html#d5e947">6.4.2. Transfer&ecirc;ncia de arquivos</a></span></dt><dt><span class="sect2"><a href="cha.redes.html#d5e1023">6.4.3. Emula&ccedil;&atilde;o de Terminal Remoto</a></span></dt><dt><span class="sect2"><a href="cha.redes.html#d5e1051">6.4.4. Conversando pela Internet</a></span></dt><dt><span class="sect2"><a href="cha.redes.html#d5e1066">6.4.5. Verificando se uma m&aacute;quina est&aacute; ativa com <span class="command"><strong>ping</strong></span></a></span></dt></dl></dd></dl></div>
+    
+
+    <p>Neste cap&iacute;tulo, ser&atilde;o abordadas algumas aplica&ccedil;&otilde;es do protocolo TCP/IP, tais como acesso a terminais remotos, transfer&ecirc;ncia de arquivos e correio eletr&ocirc;nico, que est&atilde;o entre as mais utilizadas pelos usu&aacute;rios da Internet. Neste contexto, objetivo deste cap&iacute;tulo &eacute; fornecer ao usu&aacute;rio os procedimentos necess&aacute;rios para que o mesmo possa tirar proveito dos principais aplicativos de rede existente no Unix.</p>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e735"></a>6.1. Introdu&ccedil;&atilde;o</h2></div></div></div>
+      
+      <p>No sistema Unix, s&atilde;o encontrados os dois principais protocolos de redes para sistemas Unix: o UUCP e o TCP/IP. O UUCP foi desenvolvido no final da d&eacute;cada de setenta por Mike Lesk da AT&amp;T Bell Laboratories para permitir o desenvolvimento de uma rede de computadores atrav&eacute;s de acesso discado em linhas telef&ocirc;nicas p&uacute;blicas. O UUCP foi muito popular na &eacute;poca em que foi criado, pois permitia a comunica&ccedil;&atilde;o de usu&aacute;rios residenciais, utilizando um modem, com servidores de correio eletr&ocirc;nico e USENET News. Hoje, contudo, as comunica&ccedil;&otilde;es atrav&eacute;s do UUCP encontram-se cada vez mais raras, uma vez que este protocolo permite a utiliza&ccedil;&atilde;o de interfaces gr&aacute;ficas, t&atilde;o comuns nos aplicativos atuais.</p>
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e738"></a>6.2. TCP/IP</h2></div></div></div>
+      
+      <p>O TCP/IP (Transmission Control Protocol/Internet Protocol) consiste em um conjunto de paradigmas que permite grupos de m&aacute;quinas se comunicarem atrav&eacute;s de uma rede. De posse do sistema Unix em uma m&aacute;quina e fazendo uso do TCP/IP, uma conex&atilde;o desta &uacute;ltima com a Internet possibilita a comunica&ccedil;&atilde;o com quaisquer m&aacute;quinas ou usu&aacute;rios do mundo que tamb&eacute;m fa&ccedil;am parte desta rede.</p>
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e741"></a>6.3. Conceitos b&aacute;sicos sobre Internet</h2></div></div></div>
+      
+      <p>A Internet se popularizou no in&iacute;cio da d&eacute;cada de noventa com a sua libere&ccedil;&atilde;o para o setor comercial nos Estados Unidos. Com isso, milhares de empresas entraram na rede, visando um mercado em expans&atilde;o de milh&otilde;es de pessoas que estava prestes a explodir em tamanho.</p>
+
+      <p>A Internet possui atualmente uma taxa de crescimento vertiginosa e, por que n&atilde;o mensionar, assustadora, visto que o n&uacute;mero de m&aacute;quinas conectadas &agrave; mesma praticamente duplica a cada ano (ver Tabela <a class="xref" href="cha.redes.html#table-host" title="Tabela 6.1. N&uacute;mero de m&aacute;quinas, dom&iacute;nios e redes na Internet.">Tabela&nbsp;6.1</a>).</p>
+
+      <p><span class="command"><strong>Internet Domain Survey<a href="#ftn.d5e748" class="footnote" name="d5e748"><sup class="footnote">[1]</sup></a>, Julho 1996</strong></span></p>
+      <p><span class="foreignphrase"><em class="foreignphrase">Number of Hosts, Domains and Nets.</em></span></p>
+
+      <div class="table"><a name="table-host"></a><p class="title"><b>Tabela 6.1. N&uacute;mero de m&aacute;quinas, dom&iacute;nios e redes na Internet.</b></p><div class="table-contents">
+	
+
+
+	<table summary="N&uacute;mero de m&aacute;quinas, dom&iacute;nios e redes na Internet." border="1"><colgroup><col align="left" class="data" width="14%"><col align="left" class="hosts" width="14%"><col align="left" class="dominio" width="14%"><col align="left" class="ping" width="15%"><col align="left" class="A" width="14%"><col align="left" class="B" width="14%"><col align="left" class="C" width="15%"></colgroup><thead><tr><th align="center">Date</th><th align="center">Hosts</th><th align="center">Domains</th><th align="center">Replied to Ping<a href="#ftn.d5e768" class="footnote" name="d5e768"><sup class="footnote">[a]</sup></a></th><th align="center">A</th><th align="center">B</th><th align="center">C</th></tr></thead><tbody><tr><td align="center">Jul 96</td><td align="center">12,881,000</td><td align="center">488,000</td><td align="center">2,569,000</td><td align="center">95</td><td align="center">5892</td><td align="center">128378</td></tr><tr><td align="center">Jan 96</td><td align="center">9,472,000</td><td align="center">240,000</td><td align="center">1,682,000</td><td align="center">92</td><td align="center">5655</td><td align="center">87924</td></tr><tr><td align="center">Jul 95</td><td align="center">6,642,000</td><td align="center">120,000</td><td align="center">1,149,000</td><td align="center">91</td><td align="center">5390</td><td align="center">56057</td></tr><tr><td align="center">Jan 95</td><td align="center">4,852,000</td><td align="center">71,000</td><td align="center">970,000</td><td align="center">91</td><td align="center">4979</td><td align="center">34340</td></tr><tr><td align="center">Jul 94</td><td align="center">3,212,000</td><td align="center">46,000</td><td align="center">707,000</td><td align="center">89</td><td align="center">4493</td><td align="center">20628</td></tr><tr><td align="center">Jan 94</td><td align="center">2,217,000</td><td align="center">30,000</td><td align="center">576,000</td><td align="center">74</td><td align="center">4043</td><td align="center">16422</td></tr><tr><td align="center">Jul 93</td><td align="center">1,776,000</td><td align="center">26,000</td><td align="center">464,000</td><td align="center">67</td><td align="center">3728</td><td align="center">9972</td></tr><tr><td align="center">Jan 93</td><td align="center">1,313,000</td><td align="center">21,000</td><td align="center">-</td><td align="center">54</td><td align="center">3206</td><td align="center">4998</td></tr></tbody><tbody class="footnotes"><tr><td colspan="7"><div id="ftn.d5e768" class="footnote"><span class="foreignphrase"><em class="foreignphrase"><a href="#d5e768" class="foreignphrase"><sup>[a] </sup></a>Estimated by pinging 1% of all hosts. </em></span></div></td></tr></tbody></table>
+	
+      </div></div><br class="table-break">
+
+      <p>Como em toda tecnologia de rede, cada m&aacute;quina na Internet precisa ter um endere&ccedil;o &uacute;nico. A forma de endere&ccedil;amento adotada &eacute; um n&uacute;mero inteiro formado por trinta e dois bits. Convencionou-se representar esse n&uacute;mero como sendo formado de quatro octetos separados por pontos, cada um variando de 0 a 255. Um exemplo de endere&ccedil;o v&aacute;lido na Internet &eacute; 205.216.146.42. Contudo, a tarefa de memorizar um n&uacute;mero IP n&atilde;o &eacute; agrad&aacute;vel para o homem, muito menos os milhares de n&uacute;meros IP existentes na Internet.</p>
+
+      <p>Para contornar esse problema, foi criado o conceito de dom&iacute;nio, que &eacute; uma forma de transformar endere&ccedil;os n&uacute;mericos, dif&iacute;ceis de serem memorizados, em um nomes que representem as m&aacute;quinas em locais da grande rede. Para a Internet, foram adotados os chamados dom&iacute;nios hier&aacute;rquicos.</p>
+
+      <p>Os dom&iacute;nios hier&aacute;quicos s&atilde;o dividos em duas categorias: geogr&aacute;ficos e oficiais. Os dom&iacute;nios geogr&aacute;ficos possuem o c&oacute;digo do pa&iacute;s no n&iacute;vel mais alto, como em</p>
+
+      <code class="prompt">endere&ccedil;o_da_m&aacute;quina.sub_organiza&ccedil;&atilde;o.organiza&ccedil;&atilde;o.br</code>
+
+      <p>Por exemplo, o endere&ccedil;o www.yahoo.com (204.71.177.73) pertence ao dom&iacute;nio <code class="prompt">yahoo.com</code>. Os sufixos de cada pa&iacute;s foram padronizado por entidades internacionais, e com exce&ccedil;&atilde;o dos Estados Unidos, todo dom&iacute;nio na Internet termina com o sufixo do pa&iacute;s em que se encontra. Veja abaixo alguns exemplos de sufixos:</p>
+
+      <div class="glosslist"><dl><dt><span class="glossterm">[ar]</span></dt><dd class="glossdef"><p>Argentina.</p></dd><dt><span class="glossterm">[au]</span></dt><dd class="glossdef"><p>Austr&aacute;lia.</p></dd><dt><span class="glossterm">[br]</span></dt><dd class="glossdef"><p>Brasil.</p></dd><dt><span class="glossterm">[ca]</span></dt><dd class="glossdef"><p>Canad&aacute;.</p></dd><dt><span class="glossterm">[ch]</span></dt><dd class="glossdef"><p>Chile.</p></dd><dt><span class="glossterm">[fr]</span></dt><dd class="glossdef"><p>Fran&ccedil;a.</p></dd><dt><span class="glossterm">[uk]</span></dt><dd class="glossdef"><p>Reino Unido.</p></dd></dl></div>
+
+      <p>Nos Estados Unidos, ber&ccedil;o da Internet, os sufixos s&atilde;o diferentes. Foram adotados dom&iacute;nios oficiais, onde cada sufixo indica o tipo de institui&ccedil;&atilde;o &agrave; qual a m&aacute;quina pertence.</p>
+
+      <p>Os dom&iacute;nios oficiais dos Estados Unidos s&atilde;o:</p>
+
+      <div class="glosslist"><dl><dt><span class="glossterm"><span class="command"><strong>com</strong></span></span></dt><dd class="glossdef"><p>Para designar uma institui&ccedil;&atilde;o comercial.</p></dd><dt><span class="glossterm"><span class="command"><strong>edu</strong></span></span></dt><dd class="glossdef"><p>Para designar uma institui&ccedil;&atilde;o educacional.</p></dd><dt><span class="glossterm"><span class="command"><strong>gov</strong></span></span></dt><dd class="glossdef"><p>Institui&ccedil;&atilde;o governamental.</p></dd><dt><span class="glossterm"><span class="command"><strong>mil</strong></span></span></dt><dd class="glossdef"><p>Institui&ccedil;&otilde;es militares.</p></dd><dt><span class="glossterm"><span class="command"><strong>org</strong></span></span></dt><dd class="glossdef"><p>Dom&iacute;nios reservados para organiza&ccedil;&otilde;es privadas.</p></dd><dt><span class="glossterm"><span class="command"><strong>net</strong></span></span></dt><dd class="glossdef"><p><span class="foreignphrase"><em class="foreignphrase">Gateways</em></span> e outros computadores administrativos da rede.</p></dd></dl></div>
+
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e914"></a>6.4. Aplicativos de redes</h2></div></div></div>
+      
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e916"></a>6.4.1. Correio Eletr&ocirc;nico</h3></div></div></div>
+	
+	<p>Um dos aplicativos mais utilizados na Internet &eacute; o correio eletr&ocirc;nico. Com ele, usu&aacute;rios podem enviar e receber mensagens de quaisquer pessoas que possuam endere&ccedil;os eletr&ocirc;nicos na rede. O correio eletr&ocirc;nico est&aacute; diretamente relacionado ao conceito de endere&ccedil;o eletr&ocirc;nico, que prov&ecirc; todas as informa&ccedil;&otilde;es necess&aacute;rias para que uma mensagem, partindo de qualquer parte do mundo, possa chegar at&eacute; o seu destinat&aacute;rio. O endere&ccedil;o eletr&ocirc;nico pode representar tanto um indiv&iacute;duo quanto um conjunto de indiv&iacute;duos e &eacute; formado pela combina&ccedil;&atilde;o</p>
+
+	<code class="prompt"><span class="command"><strong>login_do_usu&aacute;rio@dom&iacute;nio_da_m&aacute;quina</strong></span></code>
+
+	<p>Exemplo: <span class="command"><strong>joao@engcomp.ufrn.br</strong></span></p> 
+
+	<p>Uma mensagem de correio eletr&ocirc;nico &eacute; formada basicamente de duas partes distintas:</p>
+	
+	<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	    <p>O cabe&ccedil;alho, que cont&eacute;m informa&ccedil;&otilde;es a respeito de quem esta enviando a mensagem e para quem, bem como todo o trajeto feito pela mensagem na Internet;</p>
+	  </li><li class="listitem">
+	    <p>o corpo ou conte&uacute;do da mensagem.</p>
+	  </li></ol></div>
+
+	<p>No Unix, existem v&aacute;rios programas de correio eletr&ocirc;nico, sejam eles orientados a caracteres ou a interfaces gr&aacute;ficas. A maior parte deles &eacute; original dos sistemas Unix. Como exemplos de programas de correio eletr&ocirc;nico no Unix, podemos citar o <span class="application">pine</span> e o <span class="application">mail</span>.</p>
+    
+	<p>Ao entrar em um sistema Unix gen&eacute;rico, &eacute; costumeiro que o usu&aacute;rio receba uma aviso a exist&ecirc;ncia ou n&atilde;o de mensagens para si. Um dos programas mais utilizados para leitura de correio eletr&ocirc;nico no Unix &eacute; o <span class="application">pine</span>. Ao executar o <span class="application">pine</span> o usu&aacute;rio tem acesso a uma interface de texto bastante auto-explicativa, como mostrado a seguir.</p>
+
+	<pre class="screen">
+PINE <span class="hl-number">3.96</span>   MAIN MENU                            Folder: INBOX  <span class="hl-number">93</span>  Messages  
+
+       ?     HELP               -  Get help <strong class="hl-keyword">using</strong> Pine                   
+       C     COMPOSE MESSAGE    -  Compose and send/post a message       
+       I     FOLDER INDEX       -  View messages in current folder       
+       L     FOLDER LIST        -  Select a folder OR news group to view 
+       A     ADDRESS BOOK       -  Update address book                   
+       S     SETUP              -  Configure or update Pine              
+       Q     QUIT               -  Exit the Pine program                 
+
+   Copyright <span class="hl-number">1989</span>-<span class="hl-number">1997.</span>  PINE is a trademark of the University of Washington.
+                    [Folder <strong class="hl-string"><em style="color:red">"INBOX"</em></strong> opened with <span class="hl-number">93</span> messages]
+? Help                     P PrevCmd                  R RelNotes            
+O OTHER CMDS L [ListFldrs] N NextCmd                  K KBLock 
+	</pre>
+
+	<p>Para ler as mensagens, basta selecionar a op&ccedil;&atilde;o "<code class="prompt">L</code>" do menu e selecionar a pasta <code class="prompt">INBOX</code> na tela seguinte. INBOX representa todas as mensagens existentes na caixa postal do usu&aacute;rio. Uma vez selecionada a pasta INBOX, uma tela semelhante a seguinte aparecer&aacute; no terminal.</p>
+
+<pre class="screen">
+PINE <span class="hl-number">3.96</span>   FOLDER INDEX                 Folder: INBOX  Message <span class="hl-number">1</span> of <span class="hl-number">90</span>       
+
+      <span class="hl-number">1</span> Oct <span class="hl-number">15</span> Ernesto Paulo dos   (<span class="hl-number">1</span>,<span class="hl-number">858</span>) [linux-br] Bons Livros sobre Linux e 
++     <span class="hl-number">2</span> Oct <span class="hl-number">15</span> orders@amazon.com   (<span class="hl-number">2</span>,<span class="hl-number">810</span>) Your Order with Amazon.com (#<span class="hl-number">002</span>-<span class="hl-number">0898</span>
+      <span class="hl-number">3</span> Oct <span class="hl-number">16</span> Tiago Walzer Kuhn   (<span class="hl-number">1</span>,<span class="hl-number">672</span>) [linux-br] Re: Bons Livros sobre Linu
+      <span class="hl-number">4</span> Oct <span class="hl-number">16</span> Klaus Steding-Jess  (<span class="hl-number">2</span>,<span class="hl-number">717</span>) Re: [TeX-BR] man2latex               
++     <span class="hl-number">5</span> Oct <span class="hl-number">16</span> Agostinho M. Brito    (<span class="hl-number">592</span>) ftp.icce.rug.nl                      
++     <span class="hl-number">6</span> Oct <span class="hl-number">18</span> orders@amazon.com   (<span class="hl-number">1</span>,<span class="hl-number">997</span>) Your Amazon.com order (#<span class="hl-number">002</span>-<span class="hl-number">0898723</span>-<span class="hl-number">5</span>
+      <span class="hl-number">7</span> Oct <span class="hl-number">19</span> Andr&eacute;s Ortiz Salaz  (<span class="hl-number">6</span>,<span class="hl-number">238</span>) [Fwd: Curso <strong class="hl-string"><em style="color:red">"virtual"</em></strong> de linguagem C]
+      <span class="hl-number">8</span> Oct <span class="hl-number">22</span> Ying Zhang          (<span class="hl-number">2</span>,<span class="hl-number">842</span>) [linux-br] [comp.os.linux.announce] S
+      <span class="hl-number">9</span> Oct <span class="hl-number">26</span> Tobias Gloth        (<span class="hl-number">4</span>,<span class="hl-number">136</span>) [linux-br] [comp.os.linux.announce] M
+                          [Already at start of Index]
+? Help       M Main Menu  P PrevMsg     - PrevPage    D Delete      R Reply     
+O OTHER CMDS V [ViewMsg]  N NextMsg   Spc NextPage    U Undelete    F Forward  
+</pre>
+
+<p>A mensagem pode ser selecionada com as setas do teclado. Para compor mensagens, seleciona-se a op&ccedil;&atilde;o <span class="command"><strong>C</strong></span> no menu principal do programa ou digita-se a tecla <span class="command"><strong>C</strong></span>, de <span class="foreignphrase"><em class="foreignphrase">compose</em></span>. Na tela de composi&ccedil;&atilde;o de e-mail, o usu&aacute;rio precisar&aacute; preencher os campos <code class="prompt">to</code>, indicando o endere&ccedil;o do destinat&aacute;rio, <span class="foreignphrase"><em class="foreignphrase">subject</em></span>, o assunto da mensagem e escrever a mensagem propriamente dita. Exemplo:</p>
+
+<pre class="screen">
+PINE <span class="hl-number">3.96</span>   COMPOSE MESSAGE              Folder: INBOX  <span class="hl-number">104</span> Messages  
+To      : ambj@leca.ufrn.br
+Cc      : 
+Attchmnt: 
+Subject : teste de e-mail
+----- Message Text -----
+Alo, agostinho.
+
+         Estou testando correio eletronico.
+         Abracos, Agostinho
+
+
+^G Get Help ^X Send    ^R Rich Hdr ^Y PrvPg/Top ^K Cut Line  ^O Postpone  
+^C Cancel   ^D Del Char^J Attach   ^V NxtPg/End ^U UnDel Line^T To AddrBk
+</pre>
+      </div>
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e947"></a>6.4.2. Transfer&ecirc;ncia de arquivos</h3></div></div></div>
+	
+
+
+	<p>A transfer&ecirc;ncia de arquivos &eacute; hoje um recurso mais do que conhecido pelos usu&aacute;rios da Internet. Encontram-se espalhados nas m&aacute;quinas ao redor do mundo milhares documentos ou aplica&ccedil;&otilde;es cient&iacute;ficas, demonstrativos de jogos, aplicativos para diversos sistemas operacionais, diversos artigos e dicas sobre determinados programas ou perif&eacute;ricos existentes no mercado, al&eacute;m de diversos produtos que  empresas de inform&aacute;tica est&atilde;o disponibilizando pela rede. Todos estes recursos e muitos outros n&atilde;o mencionados est&atilde;o ao alcance dos usu&aacute;rios da Internet, desde que, &eacute; claro, possuam as ferramentas adequadas para a transfer&ecirc;ncia de arquivos entre m&aacute;quinas.</p>
+
+	<p>Um dos mecanismos que surgiu junto com a Internet foi o FTP (File Transfer Protocol), cuja fun&ccedil;&atilde;o &eacute; a de possibilitar troca de arquivos entre computadores remotos. Em muitos sistemas, &eacute; tamb&eacute;m o nome do programa que implementa o protocolo.</p>
+
+	<p>O <span class="command"><strong>ftp</strong></span> &eacute; um software interativo de transfer&ecirc;ncia de arquivos e necessita de que o usu&aacute;rio insira as informa&ccedil;&otilde;es necess&aacute;rias ao gerenciamento das fun&ccedil;&otilde;es do programa.</p>
+    
+	<p>Para dar in&iacute;cio a uma sess&atilde;o de FTP, basta digitar a linha de comando a seguir:</p>
+
+	<div class="cmdsynopsis"><p>
+	  <code class="command">ftp &lt;nome da m&aacute;quina servidora de ftp&gt; </code> 
+	</p></div>
+
+	<p>Feito isso, ser&aacute; pedido ao usu&aacute;rio um login e uma senha. Caso este &uacute;ltimo n&atilde;o possua uma conta na m&aacute;quina remota conectada, poder&aacute; utilizar o login anonymous<a href="#ftn.d5e957" class="footnote" name="d5e957"><sup class="footnote">[2]</sup></a>, cuja a senha &eacute; o pr&oacute;prio endere&ccedil;o eletr&ocirc;nico do usu&aacute;rio local. O conta de usu&aacute;rio anonymous existe em muitas m&aacute;quinas como uma forma de possibilitar a usu&aacute;rios de outros sistemas o acesso a diret&oacute;rios locais que contenha informa&ccedil;&otilde;es de dom&iacute;nio p&uacute;blico.</p>
+
+	<p>Comandos b&aacute;sicos do programa <span class="command"><strong>ftp</strong></span>:</p>
+
+	<div class="table"><a name="table-ftp"></a><p class="title"><b>Tabela 6.2. Comandos b&aacute;sicos do programa <span class="command">ftp</span></b></p><div class="table-contents">
+	  
+	<table summary="Comandos b&aacute;sicos do programa ftp" border="1"><colgroup><col align="left" class="comando" width="50%"><col align="left" class="descricao" width="50%"></colgroup><thead><tr><th align="center"><span class="command"><strong>Comando</strong></span></th><th align="center">Descri&ccedil;&atilde;o</th></tr></thead><tbody><tr><td align="center"><span class="command"><strong>dir</strong></span></td><td align="center">Lista o conte&uacute;do do diret&oacute;rio da m&aacute;quina remota.</td></tr><tr><td align="center"><span class="command"><strong>binary</strong></span></td><td align="center">Informa ao FTP que os arquivos a serem transferidos s&atilde;o programas e n&atilde;o texto.</td></tr><tr><td align="center"><span class="command"><strong>ascci</strong></span></td><td align="center">Informa ao FTP que os arquivos transferidos s&atilde;o no modo texto.</td></tr><tr><td align="center"><span class="command"><strong>get &lt;arquivo&gt;</strong></span></td><td align="center">Transfere o arquivo remoto para a sua m&aacute;quina.</td></tr><tr><td align="center"><span class="command"><strong>put &lt;arquivo&gt;</strong></span></td><td align="center">Transfere o arquivo de sua m&aacute;quina para a m&aacute;quina remota.</td></tr><tr><td align="center"><span class="command"><strong>mget &lt;arquivo1&gt; [&lt;arquivo2&gt;...]</strong></span></td><td align="center">Transfere o arquivo remoto para a sua m&aacute;quina.</td></tr><tr><td align="center"><span class="command"><strong>mput &lt;arquivo1&gt; [&lt;arquivo2&gt;...]</strong></span></td><td align="center">Transfere o arquivo de sua m&aacute;quina para a m&aacute;quina remota.</td></tr><tr><td align="center"><span class="command"><strong>cd &lt;diret&oacute;rio&gt;</strong></span></td><td align="center">Muda de diret&oacute;rio na m&aacute;quina remota.</td></tr><tr><td align="center"><span class="command"><strong>lcd &lt;diret&oacute;rio&gt;</strong></span></td><td align="center">Muda de diret&oacute;rio na m&aacute;quina local.</td></tr><tr><td align="center"><span class="command"><strong>quit ou bye</strong></span></td><td align="center">Finaliza o FTP.</td></tr><tr><td align="center"><span class="command"><strong>help</strong></span></td><td align="center">Exibe informa&ccedil;&otilde;es sobre todos os comandos dispon&iacute;veis.</td></tr></tbody></table>
+	</div></div><br class="table-break">
+
+	<p>Exemplo de abertura de sess&atilde;o <span class="command"><strong>ftp</strong></span>:</p>
+
+	<div class="example"><a name="exemplo-ftp"></a><p class="title"><b>Exemplo 6.1. Exemplo de utiliza&ccedil;&atilde;o do <span class="command">ftp</span></b></p><div class="example-contents">
+	  
+	  <pre class="screen">
+	    maquina:~$ ftp ftp.engcomp.ufrn.br
+	    Connected to ftp.engcomp.ufrn.br.
+	    <span class="hl-number">220</span> ribeira FTP server (Version wu-<span class="hl-number">2.4</span>(<span class="hl-number">1</span>) Tue Dec <span class="hl-number">5</span> <span class="hl-number">20</span>:<span class="hl-number">51</span>:<span class="hl-number">15</span> CST <span class="hl-number">1995</span>) 
+	    ready.
+	    Name (ribeira.engcomp.ufrn.br:aluno): anonymous
+	    <span class="hl-number">331</span> Guest login ok, send your complete e-mail address as password.
+	    Password:
+	    <span class="hl-number">230</span>-Welcome, archive user!  This is an experimental FTP server. If have
+	    <span class="hl-number">230</span>-any unusual problems, please report them via e-mail to root
+	    <span class="hl-number">230</span>-If you <strong class="hl-keyword">do</strong> have problems, please <strong class="hl-keyword">try</strong> <strong class="hl-keyword">using</strong> a dash (-) as the first
+	    <span class="hl-number">230</span>-character of your password -- <strong class="hl-keyword">this</strong> will turn off the continuation 
+	    <span class="hl-number">230</span>-messages that may be confusing your ftp client.
+	    <span class="hl-number">230</span>-
+	    <span class="hl-number">230</span> Guest login ok, access restrictions apply.
+	    Remote system type is UNIX.
+	    Using binary mode to transfer files.
+	    ftp&gt; 
+	  </pre>
+	</div></div><br class="example-break">	
+      </div>
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1023"></a>6.4.3. Emula&ccedil;&atilde;o de Terminal Remoto</h3></div></div></div>
+	
+
+	<p>Uma das facilidades provenientes dos ambientes de redes, dentre os quais destaca-se a Internet, &eacute; a possibilidade de executar comandos em uma m&aacute;quina atrav&eacute;s de um acesso remoto &agrave; mesma. O ambiente no qual um determinado usu&aacute;rio executa os comandos remotos &eacute; conhecido no jarg&atilde;o de redes como <span class="foreignphrase"><em class="foreignphrase">terminal remoto</em></span>. Em outras palavras, um usu&aacute;rio logado em uma m&aacute;quina X realiza uma conex&atilde;o de terminal remoto com uma m&aacute;quina Y e, a partir da&iacute;, realiza comandos na m&aacute;quina X que ser&atilde;o executados na m&aacute;quina Y.</p>
+
+	<p>Este recurso de execu&ccedil;&atilde;o remota de comandos permite, por exemplo, que pesquisadores de um laborat&oacute;rio utilizem o poder computacional de processamento de um outro computador, localizado em um outro laborat&oacute;rio de qualquer parte do mundo.</p>
+
+	<p>Para utilizar o terminal remoto &eacute; necess&aacute;rio que o usu&aacute;rio possua uma conta no sistema remoto. Em algumas ocasi&otilde;es, pode existir uma conta de dom&iacute;nio p&uacute;blico, semelhante ao usu&aacute;rio anonymous do aplicativo <span class="command"><strong>ftp</strong></span>. Entretanto, isto n&atilde;o &eacute; costumeiro em se tratando de acesso remoto, por quest&otilde;es de seguran&ccedil;a do sistema.</p>
+
+	<p>Os dois comandos mais utilizados para iniciar uma sess&atilde;o de terminal remoto s&atilde;o <span class="command"><strong>telnet</strong></span> e <span class="command"><strong>rlogin</strong></span>:</p>
+
+	<div class="glosslist"><dl><dt><span class="glossterm"><span class="command"><strong>Telnet</strong></span></span></dt><dd class="glossdef"><p>Sintaxe: <span class="command"><strong>telnet endere&ccedil;o_da_m&aacute;quina</strong></span></p></dd><dt><span class="glossterm"><span class="command"><strong>Rlogin</strong></span></span></dt><dd class="glossdef"><p>Sintaxe: <span class="command"><strong>rlogin endere&ccedil;o_da_m&aacute;quina</strong></span></p></dd></dl></div>
+
+	<p>O comando <span class="command"><strong>rlogin</strong></span> inicia uma sess&atilde;o de terminal remoto em uma m&aacute;quina Y, na mesma conta de usu&aacute;rio da m&aacute;quina X (mesmo <span class="foreignphrase"><em class="foreignphrase">login name</em></span>). A diferen&ccedil;a b&aacute;sica do <span class="command"><strong>rlogin</strong></span> em rela&ccedil;&atilde;o ao <span class="command"><strong>telnet</strong></span> &eacute; que o primeiro n&atilde;o requisita a identifica&ccedil;&atilde;o do usu&aacute;rio (login), apenas a sua senha.</p>
+      </div>
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1051"></a>6.4.4. Conversando pela Internet</h3></div></div></div>
+	
+
+	<p>O Unix implementa uma aplica&ccedil;&atilde;o muito interessante do Unix: o <span class="command"><strong>talk</strong></span>. O <span class="command"><strong>talk</strong></span> &eacute; um programa interativo e permite que um usu&aacute;rio possa conversar em tempo real com outro via Internet. Para iniciar uma sess&atilde;o de <span class="foreignphrase"><em class="foreignphrase">talk</em></span>, &eacute; necess&aacute;rio confirmar se a pessoa com a qual se deseja conversar est&aacute; logada no momento e em alguma m&aacute;quina.</p>
+
+	<p>O estabelecimento de uma chamada de <span class="foreignphrase"><em class="foreignphrase">talk</em></span> &eacute; feita executando o comando com os argumentos adequados:</p>
+     
+	<div class="cmdsynopsis"><p>
+	  <code class="command">talk login_do_usu&aacute;rio_remoto@m&aacute;quina_remota</code> 
+	</p></div>
+
+	<p>Uma vez executado esse comando, ser&aacute; preciso que o usu&aacute;rio remoto para qual a chamada de <span class="foreignphrase"><em class="foreignphrase">talk</em></span> foi solicitada confirme o pedido. Esta confirma&ccedil;&atilde;o &eacute; feita quando o usu&aacute;rio remoto executa o comando <span class="command"><strong>talk</strong></span> passando como argumentos o endere&ccedil;o do usu&aacute;rio que iniciou a conex&atilde;o. Uma vez confirmada a solicita&ccedil;&atilde;o de <span class="foreignphrase"><em class="foreignphrase">talk</em></span>, a tela &eacute; dividida em duas janelas, onde na janela de cima s&atilde;o escritas as mensagens do usu&aacute;rio local, e na de baixo s&atilde;o apresentadas as mensagens enviadas pelo usu&aacute;rio remoto. Uma sess&atilde;o de <span class="foreignphrase"><em class="foreignphrase">talk</em></span> pode ser finalizada com o comando &lt;CTRL&gt;+c.</p>
+
+      </div>
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="d5e1066"></a>6.4.5. Verificando se uma m&aacute;quina est&aacute; ativa com <span class="command"><strong>ping</strong></span></h3></div></div></div>
+	
+
+	<p>O comando <span class="command"><strong>ping</strong></span>, serve para saber se determinada m&aacute;quina na Internet est&aacute; funcionando. A sua sintaxe &eacute;:</p>
+
+	<div class="cmdsynopsis"><p>
+	  <code class="command">ping endere&ccedil;o_da_m&aacute;quina</code> 
+	</p></div>
+
+	<p>Uma vez executado o comando, mensagens de retorno ser&atilde;o apresentadas na tela, indicando se a m&aacute;quina est&aacute; ligada e funcionando ou que o seu endere&ccedil;o n&atilde;o &eacute; reconhecido. Neste &uacute;ltimo caso, tr&ecirc;s hip&oacute;teses podem ser consideradas:</p>
+
+	<div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	    <p>N&atilde;o existe uma m&aacute;quina na Internet com o nome ou o n&uacute;mero passado como argumento.</p>
+	  </li><li class="listitem">
+	    <p>A m&aacute;quina est&aacute; desligada.</p>
+	  </li><li class="listitem">
+	    <p>Alguma m&aacute;quina que entremeia o caminho para a m&aacute;quina de destino encontra-se fora do ar.</p>
+	  </li></ol></div>
+      </div>
+
+    </div>
+  <div class="footnotes"><br><hr style="width:100; text-align:left;margin-left: 0"><div id="ftn.d5e748" class="footnote"><p><a href="#d5e748" class="para"><sup class="para">[1] </sup></a>Produzido por Network Wizards (dispon&iacute;vel em http://www.nw.com)</p></div><div id="ftn.d5e957" class="footnote"><p><a href="#d5e957" class="para"><sup class="para">[2] </sup></a>&Eacute; necess&aacute;rio que a m&aacute;quina remota possibilite o acesso do usu&aacute;rio anonymous</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="cha.processos.html">Anterior</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="cha-joe.html">Pr&oacute;xima</a></td></tr><tr><td width="40%" align="left" valign="top">Cap&iacute;tulo 5. Processor em Unix&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td><td width="40%" align="right" valign="top">&nbsp;Cap&iacute;tulo 7. Edi&ccedil;&atilde;o de textos com <span class="command"><strong>joe</strong></span></td></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>

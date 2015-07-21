@@ -1,0 +1,3 @@
+Exemplo de um arquivo em Linux
+que mostra a utilidade do
+programa grep.

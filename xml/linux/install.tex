@@ -1,0 +1,313 @@
+\chapter{Instalação do Linux}
+
+\section{Introdução}
+
+	Sendo  o  Linux  um  software do  tipo  freeware,  qualquer
+organização é livre para organizá-lo e distribuí-lo.
+      
+	Diversas  são  as  distribuições de  Linux  encontradas  na
+Internet (slackware, Red Hat, Debian etc). A mais comum delas é a
+slackware,  que  consiste em conjuntos de discos,  onde  cada  um
+destes  conjuntos  contêm um tipo particular de  software.  Deste
+modo,  o usuário pode instalar em seu sistema apenas aqueles  que
+são do seu interesse. Esta distribuição encontra-se disponível na
+rede   para  cópia  via  ftp  em  diversos  endereços,  como   em
+sunsite.unc.edu1,  ou  pode ser adquirida em  CD-ROM  em  algumas
+lojas na Internet2.
+	Além das séries de discos, são necessários mais dois discos:
+um  de  boot,  para inicializar o sistema e outro  de  root,  que
+contém   o  programa  de  instalação  do  slackware  (setup).   A
+instalação é feita iniciando o sistema com os discos  de  boot  e
+root e, posteriormente, instalando os conjuntos de discos através
+do programa setup, como resumem os passos a seguir:
+	Iniciar o sistema com os discos de boot e root.
+	Definir as partições de root e de swap a serem utilizadas.
+	Executar o programa setup.
+	Formatar as partições root e swap.
+	Instalar as séries de discos.
+	Realizar configurações básicas.
+	Reiniciar o sistema.
+
+\section{Preparação da máquina e dos discos de instalação}
+      
+	Realizamos a instalação do Linux a partir de um conjunto de
+4 CDs vendidos pela Wallnut Creek  (os  discos  incluem a
+distribuição  slackware do Linux versão  2.4  com  kernel  versão
+2.0),  sendo  necessária a disponibilidade  de  um  acionador  de
+CD-ROM  na  máquina para possibilitar a leitura dos CDs.  Geramos
+dos  discos de boot e root no sistema operacional MS-DOS  através
+de um programa de instalação disponível nos CDs.
+
+3.1  Instalação dos dispositivos físicos
+      Colocarmos um disco rígido IDE Maxtor de 1.3GB e um  leitor
+de  CD-ROM  8x Creative Labs nos 1o e 2o slots IDE da placa  mãe,
+respectivamente,   tomando  alguns   cuidados   no   momento   da
+instalação. Entre eles, encontram-se:
+      alterar  posição  do jump atrás do leitor  de  CD-ROM  para
+ permitir que o mesmo funcione corretamente com slave.
+     verificar se os jumps no HD estão posicionados de modo que o
+ mesmo funcione como master.
+     observar nos manuais de cada dispositivo a posição dos pinos
+ no  momento  do encaixe dos conectores. Em geral, os  cabos  que
+ fazem  a conexão entre os dispositivos possuem uma tarja lateral
+ colorida indicando a posição do pino 1.
+     configurar o setup da máquina para o reconhecimento do HD.
+      Optamos por conectar o leitor de CD-ROM à interface IDE  da
+placa  mãe  para  facilitar a sua instalação e  evitar  possíveis
+transtornos com a manipulação da placa Sound Blaster.
+
+3.2  Instalação do driver do leitor de CDROM no DOS
+      Para  possibilitar o acesso ao leitor de CD-ROM via  MS-DOS
+foi  necessária  a instalação do driver disponível  no  disco  de
+instalação  que  acompanha o kit multimídia  (CD-ROM  instalation
+disk). Para isto, executamos o programa install.exe e seguimos as
+instruções  descritas  na  tela. Ao  término  da  instalação,  os
+arquivos   config.sys   e   autoexec.bat  foram   automáticamente
+modificados  pelo  programa  install.exe.  Entretanto,   como   a
+configuração do driver especificada no arquivo config.sys permite
+o  acesso  ao  leitor  de  CD-ROM via a interface  IDE  da  placa
+SoundBlaster,  modificamos a linha de  configuração  que  carrega
+este  driver  de  modo a permitir o acesso ao leitor  através  da
+interface  da  placa  mãe. Em resumo, as linhas  a  seguir  devem
+constar nos arquivos autoexec.bat e config.sys, respectivamente:
+em config.sys:    device=dir1\sbide.sys /D:MSCD001 /P:170,15 /V
+em autoexec.bat:  dir2\mscdex.exe /D:MSCD001 /M:8 /V
+onde  dir1 e dir2 são os diretórios onde se localizam os arquivos
+sbide.sys e mscdex.exe, respectivamente.
+      Atualizados  os arquivos de configuração e de autoexecução,
+reinicializamos o sistema e o driver para acesso  do  CD-ROM  foi
+carregado.   Daí,  procedemos  com  a  geração  dos   discos   de
+inicialização do Linux.
+
+3.3  Geração dos discos de boot e root
+      Realizamos a geração dos discos de boot e root  através  do
+programa  view.exe,  disponível no diretório  raiz  do  disco  de
+instalação (DISCO 1), de acordo com os passos a seguir:
+Disco de boot
+     ir para a tela inicial do programa.
+      selecionar  a opção bootdsks.144 (gerar disco  de  boot  em
+ disco de 1.44MB).
+     inserir disco formatado no drive A.
+      escolher  o  driver adequado para o tipo de controlador  de
+ dispositivos existente na máquina. No caso tratado, selecionamos
+ a opção bare.i.
+     iniciar a geração do disco.
+Disco de root
+     ir para a tela inicial do programa.
+     selecionar a opção rootdsks.
+     inserir disco formatado no drive A:.
+     selecionar a opção color.gz (iniciar sistema operacional da
+própria partição Linux).
+     iniciar a geração do disco.
+
+4.   Instalando Linux
+      Para iniciar o sistema Linux, inserimos o disco de boot  no
+drive  A:   e  o  reinicializamos o. Ao ler o disco  de  boot,  o
+sistema  inicia  a  carga do kernel para a  memória  e  requisita
+parâmetros  adicionais  ao  usuário, como  mostrado  na  linha  a
+seguir:
+  boot:
+      Na  inexistência destes parâmetros, digitamos <ENTER>  e  o
+sistema  continuou  a  leitura  do  disco  de  boot.   Durante  o
+procedimento  de boot, algumas informações sobre  o  sistema  são
+exibidas  na tela, tais como dispositivos instalados e  partições
+lógicas  existentes  no  disco  rígido.  Em  seguida,  o  sistema
+solicita  a  inserção do disco de root no drive A: . Após  a  sua
+leitura,  a  solicitação  de login é  apresentada  na  tela.  Nos
+registramos  no  sistema  como root e um  sinal  de  prontidão  é
+imediatamente apresentado.
+  login: root
+  #
+     A partir deste ponto o usuário root estará apto a realizar o
+particionamento do disco.
+
+4.1  particionamento do Disco Rígido
+      O  primeiro  passo para a instalação do Linux em  um  disco
+rígido  consiste  em particionar o disco em setores  lógicos,  de
+acordo  com  o tipo de sistema e espaço a ser utilizado  em  cada
+partição (DOS, OS/2, Linux native, Linux swap etc).
+      Geramos estas partições através do programa fdisk. O  fdisk
+permite ao usuário definir todas as partições lógicas (com opções
+para  diferentes sistemas operacionais) e posteriormente escrevê-
+las  no disco rígido. Assim, após o entrar no sistema como  root,
+executamos o seguinte comando:
+  # fdisk /dev/hda
+      Ao  iniciar  a  execução do programa fdisk,  verificamos  o
+estado  atual da tabela de partição através da opção "p", estando
+organizada da seguinte forma3:
+  Command (m for help): p
+  Disk /dev/hda: 64 heads, 63 sectors, 648 cylinders
+  Units = cylinders of 4032* 512 bytes
+     Device   Boot Begin  Start  End  Blocks  Id      System
+   /dev/hda1    *    1      1    648  130633   6  DOS 16-bit>=32M
+                                         6
+  
+      Visto  que  não serão utilizadas partições DOS na  máquina,
+excluímos da tabela a partição inicialmente existente através  da
+opção "d", sendo o procedimento decorrido da seguinte forma:
+  Command (m for help): d
+  Partition number (1-4): 1
+      Para verificar se a partição DOS foi excluída, selecionamos
+a opção "p" novamente.
+  Command (m for help): p
+  Disk /dev/hda: 64 heads, 63 sectors, 648 cylinders
+  Units = cylinders of 4032* 512 bytes
+     Device   Boot Begin  Start  End  Blocks  Id      System
+      Para  adicionar uma nova partição lógica (partição de root)
+selecionamos a opção "n" (add new partition).
+  Command (m for help):  n
+  Command action
+       e extended
+       p primary (1-4)
+  p
+  Partition number(1-4): 1
+  First cilinder (1-648): 1
+  Last cilinder (1-648): 637
+      Para  adicionar partição de swap selecionamos  novamente  a
+opção "n" (add new partition).
+  Command (m for help): n
+  Command action
+       e extended
+       p primary (1-4)
+  p
+  Partition number(1-4): 2
+  First cilinder (638-648): 638
+  Last cilinder (638-648): 648
+      Após  estes procedimentos a situação da tabela de  partição
+encontrou-se como segue:
+  Command (m for help): p
+  Disk /dev/hda: 64 heads, 63 sectors, 648 cylinders
+  Units = cylinders of 4032 * 512
+     Device   Boo  Begi  Star  End   Blocks  Id     System
+               t     n     t
+   /dev/hda1         1     1   637  1284160  83  Linux native
+   /dev/hda2        638   638  648   22176   83  Linux native
+      A  segunda partição criada deve ser definida como sendo  do
+tipo Linux swap. Para isto, selecionanmos a opção "t" e mudamos o
+tipo de partição para 82 (Linux swap).
+  Command (m for help): t
+  Partition number (1-4): 2
+  Hex code (type L to list codes): 82
+      Para  especificar por qual partição o sistema dará o  boot,
+selecionamos a opção "a" (toggle a bootable flag) e  definimos  a
+partição de boot em /dev/hda1.
+  Command (m for help): a
+  Partition number (1-4): 1
+      Estando  as partições corretamente especificadas (native  e
+swap), escrevemos as mudanças efetuadas na tabela de partição  do
+disco  através  da  opção "w" (write table to disk  and  exit)  e
+reinicializamos sistema.
+
+4.2  Instalando o Linux com setup
+      Realizamos  a instalação do slackware através  do  programa
+setup,  que consiste em uma interface baseada em menu com  vários
+itens  que  permitem ao usuário realizar os passos de instalação.
+Em   geral,   quando  uma  opção  é  escolhida,  as  demais   são
+automaticamente selecionadas na ordem correta.
+      O  primeiro  item  que selecionamos  foi  o  Addswap,  para
+preparar  a  partição de swap e deixá-la disponível para  uso  do
+sistema.
+      Terminada  a  preparação da partição  de  swap,  o  sistema
+pergunta  se  o  usuário deseja continuar  a  instalação.  Quando
+confirmamos  a  pergunta,  o setup selecionou  automaticamente  a
+opção  Target,  que permite ao usuário definir em  qual  partição
+será  instalado  o Linux. Escolhemos a partição /dev/hda1.  Feito
+isto,  o  setup pergunta o número de bytes/inode a ser utilizado,
+sendo  escolhida  a  opção 4096 bytes per  inode,  sugerida  pelo
+próprio  setup. Daí, procedemos a formatação da partição de  root
+com a opção por chegagem de blocos ruins.
+      Formatado o disco rígido, o setup seleciona a opção Source,
+que  permite  ao  usuário especificar de onde  o  slackware  será
+instalado.  No caso de o Linux ser instalado de um  CD,  o  setup
+pergunta  que tipo de dispositivo de CD-ROM está sendo utilizado.
+Foi  escolhida  a  opção  scan, permitindo  ao  sistema  procurar
+automaticamente onde o drive está localizado.
+     Quando o setup localiza o diretório \slakware no CD, a opção
+Disk  sets  é selecionada automaticamente, permitindo ao  usuário
+escolher as séries de aplicativos que a serem instaladas no disco
+rígido. Selecionamos e instalamos todas as elas, com exceção  das
+séries CUA e Games.
+      Quando  todas  as séries são instaladas, o setup  seleciona
+automaticamente   a  opção  Configure,  para   realizar   algumas
+configurações do sistema.
+      A  primeira  delas  é  definir qual  o  kernel  deverá  ser
+utilizado  pelo  Linux. Dentre as várias fontes disponíveis  para
+aquisição do kernel (CD, rede, disco de boot etc) foi utilizado o
+próprio arquivo vmlinuz encontrado no disco de boot.
+      Copiado  o  vmlinuz  para  o  diretório  raiz  da  partição
+/dev/hda1,  o  setup procedeu com a instalação do  programa  LILO
+(Linux Loader).
+      A  instalação do LILO inicia com a criação de um  disco  de
+boot com o LILO colocado no mesmo4. A criação deste disco de boot
+especial, que consiste na formatação de um disco de 3,5” e  cópia
+do  LILO  para  o  disco, é feita como medida  preventiva  contra
+eventuais  problemas  que possam acontecer na  execução  do  LILO
+através  do disco rígido, permitindo que o usuário possa realizar
+o boot no sistema através de um disco flexível.
+       Quando o LILO bootdisk é criado, o setup pergunta  onde  o
+usuário deseja instalar o LILO. A opção escolhida foi instalar  o
+LILO no Master Boot Record. Assim, o boot no sistema será dado  a
+partir  do  próprio  disco  rígido.  Daí,  o  setup  solicita  um
+identificador (label) para o kernel utilizado e instala o LILO no
+MBR. O identificador utilizado foi a palavra ‘linux’.
+      O  item  configure também permite ao usuário especificar  o
+dispositivo apontador (mouse), modem e o fuso horário  local.  No
+caso abordado, selecionamos as seguintes opções:
+·    tipo de mouse - Microsoft compatible mouse ;
+·    modem - não foi especificado;
+·    fuso horário local selecionado - Brazil/East.
+     O setup finaliza com a determinação de alguns parâmetros, no
+que  tange às características da máquina e da rede local  à  qual
+está conectada. Entre eles, encontram-se:
+·    utilizar somente loopback?     <no>
+·    nome da máquina:
+·    nome do domínio:   por-rn.rnp.br
+·    número IP da máquina:
+·    número IP do gateway:    200.137.0.1
+·     número  IP  do  servidor  de DNS:  200.137.0.40  (zeus.pop-
+ rn.rnp.br).
+     Quanto aos nomes e números IP das máquinas nas quais o Linux
+foi instalado, foram utilizadas as seguintes combinações:
+  Nome da         Número IP
+  máquina      correspondente
+ ganimedes      200.137.0.43
+  himalia       200.137.0.53
+   carme        200.137.0.54
+   elara        200.137.0.55
+
+5.   Compilando o kernel
+       O   kernel  original  utilizado  pelo  disco  de  boot  da
+distribuição slackware normalmente não inclui suporte para placas
+de  rede,  de modo que é necessário compilar o seu código  fonte5
+para adicionar suporte para placas de rede Ethernet.
+      A  compilação do kernel é simples, mas demanda  de  quem  a
+realiza  um  conhecimento razoável do sistema. É indispensável  o
+conhecimento acerca do hardware existente na máquina e também  de
+configurações  tais  como IRQs ou endereços de  I/O  para  alguns
+dispositivos.
+      Para compilar o kernel, executamos a seguinte sequência  de
+comandos no diretório /usr/src/linux.
+  make config
+  make dep
+  make clean
+  make zImage
+      Durante  a execução do primeiro comando, o sistema pergunta
+ao  usuário  diversas   configurações  do  sistema.  Terminada  a
+execução  do  comando make config, um arquivo chamado  .config  é
+gerado. Quando todos os outros comandos são executados, o arquivo
+zImage,  que  consiste no kernel compilado é gerado no  diretório
+/usr/src/linux/arch/i386/boot.
+      Para  atualizar  o kernel antigo, é necessário  realizar  o
+seguinte procedimento:
+      copiar  o arquivo zImage para o diretório raiz com  o  nome
+ linux1.
+      adicionar arquivo lilo.conf uma seção indicando  o  caminho
+ para  o novo kernel instalado. O arquivo lilo.conf utilizado  em
+ todas as máquinas
+      copiar  arquivo de configuração (.config) para o  diretório
+ raiz renomeado para .config1.
+     executar o programa lilo.
+      Quando  o  sistema foi reinicializado, o  novo  kernel  foi
+carregado para a memória e os serviços de rede (telnet, ftp  etc)
+ficaram disponíveis.
+

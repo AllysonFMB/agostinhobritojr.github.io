@@ -1,0 +1,264 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5-alpha5 -->
+<!-- CreationDate: Mon Jun  6 06:41:35 2005 -->
+<!-- Magnification: 1.575 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="3.8in" height="3.7in" viewBox="1540 798 4604 4469">
+<g style="stroke-width:.025in; stroke:black; fill:none">
+<!-- Line -->
+<polyline points="2125,2551
+2125,4677
+4251,4677
+4251,3259
+3543,2551
+2125,2551
+" style="stroke:#ff0000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="4251,3259
+4606,2196
+5102,1700
+5102,3826
+4251,4677
+" style="stroke:#ff0000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="2976,1700
+5102,1700
+4606,2196
+3543,2551
+2125,2551
+2976,1700
+" style="stroke:#ff0000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="2905" y="5244" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="152" text-anchor="start" >
+34</text>
+<!-- Text -->
+<text xml:space="preserve" x="3188" y="5173" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="189" text-anchor="start" >
+= D</text>
+<!-- Text -->
+<text xml:space="preserve" x="3543" y="5244" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="152" text-anchor="start" >
+69</text>
+<!-- Text -->
+<text xml:space="preserve" x="3826" y="5173" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="189" text-anchor="start" >
+= D</text>
+<!-- Text -->
+<text xml:space="preserve" x="4181" y="5244" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="152" text-anchor="start" >
+12</text>
+<!-- Text -->
+<text xml:space="preserve" x="4464" y="5173" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="189" text-anchor="start" >
+= 20</text>
+<!-- Text -->
+<text xml:space="preserve" x="2692" y="5173" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="189" text-anchor="start" >
+D</text>
+<!-- Line -->
+<polyline points="5102,3826
+2976,3826
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+stroke-dasharray:50 50;
+"/>
+<!-- Line -->
+<polyline points="5102,3826
+5834,3826
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polygon points="5784 3874
+5973 3826
+5784 3779
+5784 3874
+
+" style="stroke:#000000;stroke-width:24;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="2976,1700
+2976,1181
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polygon points="3023 1231
+2976 1042
+2929 1231
+3023 1231
+
+" style="stroke:#000000;stroke-width:24;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="2125,4677
+1692,5110
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polygon points="1694 5039
+1595 5207
+1762 5107
+1694 5039
+
+" style="stroke:#000000;stroke-width:24;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="2125,4677
+2976,3826
+2976,1700
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:round; stroke-linecap:butt;
+stroke-dasharray:50 50;
+"/>
+<!-- Line -->
+<polyline points="3826,1417
+3023,1417
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polyline points="3217 1370
+3028 1417
+3217 1464
+" style="stroke:#000000;stroke-width:24;
+"/>
+<!-- Line -->
+<polyline points="1771,3401
+1771,2598
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polyline points="1818 2792
+1771 2603
+1724 2792
+" style="stroke:#000000;stroke-width:24;
+"/>
+<!-- Line -->
+<polyline points="4251,1417
+5055,1417
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polyline points="4861 1464
+5050 1417
+4861 1370
+" style="stroke:#000000;stroke-width:24;
+"/>
+<!-- Line -->
+<polyline points="1771,3826
+1771,4629
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polyline points="1724 4436
+1771 4625
+1818 4436
+" style="stroke:#000000;stroke-width:24;
+"/>
+<!-- Line -->
+<polyline points="4568,4644
+4889,4322
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polyline points="4670 4472
+4571 4640
+4738 4540
+" style="stroke:#000000;stroke-width:24;
+"/>
+<!-- Line -->
+<polyline points="5352,3859
+5102,4110
+" style="stroke:#000000;stroke-width:24;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint -->
+<polyline points="5248 4029
+5349 3862
+5181 3962
+" style="stroke:#000000;stroke-width:24;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="1842" y="5244" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+z</text>
+<!-- Text -->
+<text xml:space="preserve" x="3047" y="992" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+y</text>
+<!-- Text -->
+<text xml:space="preserve" x="5952" y="3755" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+x</text>
+<!-- Text -->
+<text xml:space="preserve" x="4677" y="2409" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+9</text>
+<!-- Text -->
+<text xml:space="preserve" x="3047" y="1984" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+5</text>
+<!-- Text -->
+<text xml:space="preserve" x="3047" y="3755" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+8</text>
+<!-- Text -->
+<text xml:space="preserve" x="5173" y="1984" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+6</text>
+<!-- Text -->
+<text xml:space="preserve" x="5173" y="3755" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+7</text>
+<!-- Text -->
+<text xml:space="preserve" x="3897" y="1488" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="189" text-anchor="start" >
+30</text>
+<!-- Text -->
+<text xml:space="preserve" x="1629" y="3685" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="189" text-anchor="start" >
+30</text>
+<!-- Text -->
+<text xml:space="preserve" x="4889" y="4322" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="189" text-anchor="start" >
+30</text>
+<!-- Text -->
+<text xml:space="preserve" x="1913" y="2834" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+0</text>
+<!-- Text -->
+<text xml:space="preserve" x="4039" y="3472" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+2</text>
+<!-- Text -->
+<text xml:space="preserve" x="3330" y="2834" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+1</text>
+<!-- Text -->
+<text xml:space="preserve" x="4039" y="4606" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+3</text>
+<!-- Text -->
+<text xml:space="preserve" x="1913" y="4677" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="227" text-anchor="start" >
+4</text>
+<!-- Circle -->
+<circle cx="2125" cy="2551" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="2125" cy="4677" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="4251" cy="4677" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="4251" cy="3259" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="4606" cy="2196" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="2976" cy="1700" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="5102" cy="1700" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="5102" cy="3826" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+<!-- Circle -->
+<circle cx="3543" cy="2551" r="47"
+ style="fill:#ffffff;stroke:#000000;stroke-width:24;"/>
+</g>
+</svg>

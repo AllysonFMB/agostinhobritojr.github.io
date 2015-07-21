@@ -1,0 +1,381 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 7. Curvas no plano</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="modelagem-solidos.html" title="Cap&iacute;tulo 6. Modelagem de S&oacute;lidos"><link rel="next" href="superficies-espaco.html" title="Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="modelagem-solidos.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 7. Curvas no plano</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="superficies-espaco.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="curvas-plano"></a>Cap&iacute;tulo 7. Curvas no plano</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="curvas-plano.html#curvas-plano-descricao">7.1. Descri&ccedil;&atilde;o do programa <code class="filename">splines2d.c</code></a></span></dt><dt><span class="sect1"><a href="curvas-plano.html#curvas-plano-exercicios">7.2. Exerc&iacute;cios</a></span></dt></dl></div>
+    
+    <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; mostrar como gerar em um plano as curvas param&eacute;tricas mais comuns no OpenGL: as curvas de B&eacute;zier e as NURBS (<span class="foreignphrase"><em class="foreignphrase">Non Uniform Rational B-Splines</em></span>). A forma destas curvas &eacute; controlada pelo posicionamento dos v&eacute;rtices de um pol&iacute;gono caracter&iacute;stico, cuja influ&ecirc;ncia ser&aacute; estudada de forma interativa no programa exemplo. Ser&aacute; estudada tamb&eacute;m a influ&ecirc;ncia dos vetores de n&oacute;s sobre as NURBS, vetores estes que servem para definir a regi&atilde;o de influ&ecirc;ncia de cada v&eacute;rtice do pol&iacute;gono caracter&iacute;stico na forma da curva.</p>
+    <p>&Eacute; introduzido tamb&eacute;m o uso de uma nova fun&ccedil;&atilde;o do GLUT: <code class="function">glutMotionFunc()</code>, ativada quando o mouse &eacute; movimentado pela janela enquanto um ou mais bot&otilde;es s&atilde;o pressionados.</p>
+    <p>O programa utilizado nesta li&ccedil;&atilde;o permite que o usu&aacute;rio controle a forma de uma curva atrav&eacute;s da sele&ccedil;&atilde;o e movimenta&ccedil;&atilde;o dos v&eacute;rtices (destacados em vermelho) de um pol&iacute;gono (em amarelo), como mostra a <a class="xref" href="curvas-plano.html#fig-curvas-plano-splines" title="Figura 7.1. Tra&ccedil;ado interativo de splines.">Figura&nbsp;7.1</a>.</p>
+    <div class="figure"><a name="fig-curvas-plano-splines"></a><p class="title"><b>Figura 7.1. Tra&ccedil;ado interativo de splines.</b></p><div class="figure-contents">
+      
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/curvas-plano-splines.jpg" src="figs/curvas-plano-splines.jpg"></div></div>
+    </div></div><br class="figure-break">
+    <p> O programa usado para modelar as splines &eacute; mostrado no <a class="xref" href="curvas-plano.html#example-curvas-plano" title="Exemplo 7.1. programa splines2d.c">Exemplo&nbsp;7.1</a>. As teclas <span class="keycap"><strong>b</strong></span> e <span class="keycap"><strong>n</strong></span> definem o tipo de curva que ser&aacute; desenhada: B&eacute;zier ou NURBS, respectivamente. </p>
+
+    <div class="example"><a name="example-curvas-plano"></a><p class="title"><b>Exemplo 7.1. programa <a class="ulink" href="exemplos/splines2d.c" target="_top"><code class="filename">splines2d.c</code></a></b></p><div class="example-contents">
+      
+      <pre class="programlisting">#include &lt;stdlib.h&gt;
+<span class="hl-directive" style="color: maroon">#include &lt;GL/glut.h&gt;</span>
+<span class="hl-directive" style="color: maroon">#include &lt;math.h&gt;</span>
+
+GLint nVertices=<span class="hl-number">6</span>;
+GLfloat vertices[<span class="hl-number">6</span>][<span class="hl-number">3</span>] = {
+  {-<span class="hl-number">4.0</span>,  <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>}, 
+  {-<span class="hl-number">4.0</span>, +<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {+<span class="hl-number">4.0</span>, -<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {-<span class="hl-number">4.0</span>, -<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {+<span class="hl-number">4.0</span>, +<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {+<span class="hl-number">4.0</span>,  <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>}
+};
+
+GLint largura, altura;
+GLint mudaCurva=<span class="hl-number">0</span>;
+GLint verticeCorrente=<span class="hl-number">0</span>;
+
+GLfloat esquerda=-<span class="hl-number">5</span>;
+GLfloat direita =+<span class="hl-number">5</span>;
+GLfloat fundo   =-<span class="hl-number">5</span>;
+GLfloat topo    =+<span class="hl-number">5</span>;
+GLfloat longe   =+<span class="hl-number">5</span>;
+GLfloat perto   =-<span class="hl-number">5</span>;
+
+<strong class="hl-keyword">enum</strong> {BEZIER, NURBS};
+GLint spline;
+GLUnurbsObj *nc;
+GLfloat nos[<span class="hl-number">10</span>]={<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">2.5</span>, <span class="hl-number">3.0</span>, <span class="hl-number">3.0</span>, <span class="hl-number">3.0</span>, <span class="hl-number">6.0</span>};
+GLint nNos=<span class="hl-number">10</span>;
+
+GLint matrizViewport[<span class="hl-number">4</span>];
+GLdouble matrizModelview[<span class="hl-number">16</span>], matrizProjecao[<span class="hl-number">16</span>];
+GLint yreal;  <em class="hl-comment" style="color: silver">/*  posi&#65533;&#65533;o da coordenada y no OpenGL */</em>
+GLdouble wx, wy, wz;  <em class="hl-comment" style="color: silver">/*  coordenadas no mundo real: x, y, z  */</em>
+
+<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+  <strong class="hl-keyword">int</strong> i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  <strong class="hl-keyword">switch</strong>(spline){
+  <strong class="hl-keyword">case</strong> BEZIER:
+    glMap1f(GL_MAP1_VERTEX_<span class="hl-number">3</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">3</span>, nVertices, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>]);
+    glBegin(GL_LINE_STRIP);
+    <strong class="hl-keyword">for</strong> (i = <span class="hl-number">0</span>; i &lt;= <span class="hl-number">30</span>; i++){
+      glEvalCoord1f((GLfloat) i/<span class="hl-number">30.0</span>);
+    }
+    glEnd();
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">case</strong> NURBS:
+    gluBeginCurve(nc);
+    gluNurbsCurve(nc, nNos, nos, <span class="hl-number">3</span>, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>], <span class="hl-number">4</span>, GL_MAP1_VERTEX_<span class="hl-number">3</span>);
+    gluEndCurve(nc);
+    <strong class="hl-keyword">break</strong>;
+  }
+  glPointSize(<span class="hl-number">5.0</span>);
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);
+  glBegin(GL_LINE_STRIP);
+  <strong class="hl-keyword">for</strong> (i = <span class="hl-number">0</span>; i &lt; nVertices; i++) 
+    glVertex3fv(&amp;vertices[i][<span class="hl-number">0</span>]);
+  glEnd();
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glBegin(GL_POINTS);
+  <strong class="hl-keyword">for</strong> (i = <span class="hl-number">0</span>; i &lt; nVertices; i++) 
+    glVertex3fv(&amp;vertices[i][<span class="hl-number">0</span>]);
+  glEnd();
+  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>);
+  glFlush();
+  glutSwapBuffers();
+}
+
+<strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>){
+  glClearColor(<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  spline=BEZIER;
+  nc= gluNewNurbsRenderer();
+  gluNurbsProperty(nc, GLU_SAMPLING_TOLERANCE, <span class="hl-number">5.0</span>);
+  glEnable(GL_MAP1_VERTEX_<span class="hl-number">3</span>);
+  display();
+}
+
+<strong class="hl-keyword">void</strong> reshape(<strong class="hl-keyword">int</strong> w, <strong class="hl-keyword">int</strong> h)
+{
+  glViewport(<span class="hl-number">0</span>, <span class="hl-number">0</span>, (GLsizei) w, (GLsizei) h);
+  glMatrixMode(GL_PROJECTION);
+  largura=w;
+  altura=h;
+  glLoadIdentity();
+  glOrtho(esquerda,direita, fundo, topo, perto, longe);
+  glMatrixMode(GL_MODELVIEW);
+  glGetIntegerv(GL_VIEWPORT, matrizViewport);
+  glGetDoublev(GL_MODELVIEW_MATRIX, matrizModelview);
+  glGetDoublev(GL_PROJECTION_MATRIX, matrizProjecao);
+  glLoadIdentity();
+  glutSwapBuffers();
+}
+
+<em class="hl-comment" style="color: silver">/* ARGSUSED1 */</em>
+<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y)
+{
+  <strong class="hl-keyword">switch</strong> (key) {
+  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'b'</em></strong>:
+    spline = BEZIER;
+    glutPostRedisplay();
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'n'</em></strong>:
+    spline = NURBS;
+    glutPostRedisplay();
+    <strong class="hl-keyword">break</strong>;
+  <strong class="hl-keyword">case</strong> <span class="hl-number">27</span>:
+    exit(<span class="hl-number">0</span>);
+    <strong class="hl-keyword">break</strong>;
+  }
+}
+
+<strong class="hl-keyword">void</strong> proximidade(){
+  <strong class="hl-keyword">int</strong> i;
+  <strong class="hl-keyword">double</strong> tam=<span class="hl-number">0</span>, tamin=<span class="hl-number">32000</span>;
+  verticeCorrente=<span class="hl-number">0</span>;
+  <strong class="hl-keyword">for</strong>(i=<span class="hl-number">0</span>; i&lt;nVertices; i++){
+    tam = (wx-vertices[i][<span class="hl-number">0</span>])*(wx-vertices[i][<span class="hl-number">0</span>])+
+      (wy-vertices[i][<span class="hl-number">1</span>])*(wy-vertices[i][<span class="hl-number">1</span>]);
+    <strong class="hl-keyword">if</strong>(tam &lt; tamin){
+      tamin=tam;
+      verticeCorrente=i;
+    }
+  }
+  tamin=sqrt(tamin);
+  <strong class="hl-keyword">if</strong>(tamin &gt; <span class="hl-number">0.5</span>){
+    mudaCurva=<span class="hl-number">0</span>;
+  }
+}
+
+<strong class="hl-keyword">void</strong> mouse(<strong class="hl-keyword">int</strong> button, <strong class="hl-keyword">int</strong> state, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">switch</strong> (button) {
+  <strong class="hl-keyword">case</strong> GLUT_LEFT_BUTTON:
+    <strong class="hl-keyword">if</strong> (state == GLUT_DOWN) {
+      yreal = matrizViewport[<span class="hl-number">3</span>] - (GLint) y - <span class="hl-number">1</span>;
+      gluUnProject ((GLdouble) x, (GLdouble) yreal, <span class="hl-number">0.0</span>, 
+		    matrizModelview, matrizProjecao, matrizViewport, 
+		    &amp;wx, &amp;wy, &amp;wz); 
+      mudaCurva=<span class="hl-number">1</span>;
+      proximidade();
+    }
+    <strong class="hl-keyword">if</strong> (state == GLUT_UP) {
+      mudaCurva=<span class="hl-number">0</span>;
+    }
+    <strong class="hl-keyword">break</strong>;
+  }
+}
+
+<strong class="hl-keyword">void</strong> motion(<strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">if</strong>(mudaCurva){
+    yreal = matrizViewport[<span class="hl-number">3</span>] - (GLint) y - <span class="hl-number">1</span>;
+    gluUnProject ((GLdouble) x, (GLdouble) yreal, <span class="hl-number">0.0</span>, 
+		  matrizModelview, matrizProjecao, matrizViewport, 
+		  &amp;wx, &amp;wy, &amp;wz); 
+    vertices[verticeCorrente][<span class="hl-number">0</span>]=wx;
+    vertices[verticeCorrente][<span class="hl-number">1</span>]=wy;
+    glutPostRedisplay();
+  }
+}
+
+<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+  glutInitWindowSize(<span class="hl-number">500</span>, <span class="hl-number">500</span>);
+  glutInitWindowPosition(<span class="hl-number">100</span>, <span class="hl-number">100</span>);
+  glutCreateWindow(argv[<span class="hl-number">0</span>]);
+  init();
+  glutDisplayFunc(display);
+  glutReshapeFunc(reshape);
+  glutKeyboardFunc(keyboard);
+  glutMotionFunc(motion);
+  glutMouseFunc(mouse);
+  glutMainLoop();
+  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+}
+
+</pre>
+
+    </div></div><br class="example-break">
+
+    <p>Para compilar e executar o programa <a class="ulink" href="exemplos/splines2d.c" target="_top"><code class="filename">splines2d.c</code></a>, salve-o juntamente com o arquivo <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
+    <pre class="screen">
+<code class="prompt">$</code> <span class="command"><strong>make</strong></span> <code class="option">splines2d</code>
+<code class="prompt">$</code> <span class="command"><strong>splines2d</strong></span>
+</pre>	
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="curvas-plano-descricao"></a>7.1. Descri&ccedil;&atilde;o do programa <code class="filename">splines2d.c</code></h2></div></div></div>
+      
+      
+      <div class="informalexample">
+	<pre class="programlisting">GLint nVertices=<span class="hl-number">6</span>;
+GLfloat vertices[<span class="hl-number">6</span>][<span class="hl-number">3</span>] = {
+  {-<span class="hl-number">4.0</span>,  <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>}, 
+  {-<span class="hl-number">4.0</span>, +<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {+<span class="hl-number">4.0</span>, -<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {-<span class="hl-number">4.0</span>, -<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {+<span class="hl-number">4.0</span>, +<span class="hl-number">4.0</span>, <span class="hl-number">0.0</span>}, 
+  {+<span class="hl-number">4.0</span>,  <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>}
+};</pre>
+
+      </div>
+      <p>Define o n&uacute;mero de v&eacute;rtices do pol&iacute;gono caracter&iacute;stico (vari&aacute;vel <code class="varname">nVertices</code>) e as posi&ccedil;&otilde;es no espa&ccedil;o dos seus respectivos v&eacute;rtices (vetor <code class="varname">vertices</code>).</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">GLint largura, altura;
+GLint mudaCurva=<span class="hl-number">0</span>;
+GLint verticeCorrente=<span class="hl-number">0</span>;</pre>
+
+      </div>
+      <p>As vari&aacute;veis <code class="varname">largura</code> e <code class="varname">altura</code> armazenam a largura e a altura da janela corrente, em pixels. <code class="varname">mudaCurva</code> grava o estado da curva; quando <code class="varname">mudaCurva</code>=1, a posi&ccedil;&atilde;o dos v&eacute;rtices pode ser alterada; quando <code class="varname">mudaCurva</code>=0, a curva permanece inalterada com o movimento do mouse. A vari&aacute;vel <code class="varname">verticeCorrente</code> indica o v&eacute;rtice cuja posi&ccedil;&atilde;o poder&aacute; ser alterada atrav&eacute;s da movimenta&ccedil;&atilde;o do mouse.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">GLfloat esquerda=-<span class="hl-number">5</span>;
+GLfloat direita =+<span class="hl-number">5</span>;
+GLfloat fundo   =-<span class="hl-number">5</span>;
+GLfloat topo    =+<span class="hl-number">5</span>;
+GLfloat longe   =+<span class="hl-number">5</span>;
+GLfloat perto   =-<span class="hl-number">5</span>;</pre>
+
+      </div>
+      <p>Define as coordenadas do volume de recorte a ser utilizado na proje&ccedil;&atilde;o ortogr&aacute;fica.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">GLUnurbsObj *nc;
+GLfloat nos[<span class="hl-number">10</span>]={<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">2.5</span>, <span class="hl-number">3.0</span>, <span class="hl-number">3.0</span>, <span class="hl-number">3.0</span>, <span class="hl-number">6.0</span>};
+GLint nNos=<span class="hl-number">10</span>;</pre>
+
+      </div>
+      <p>A vari&aacute;vel <code class="varname">nc</code> cont&eacute;m a refer&ecirc;ncia para a spline que ir&aacute; modelar a curva usando NURBS. <code class="varname">nos</code> e <code class="varname">nNos</code> s&atilde;o o vetor de n&oacute;s e o n&uacute;mero de n&oacute;s neste vetor, respectivamente.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">GLint matrizViewport[<span class="hl-number">4</span>];
+GLdouble matrizModelview[<span class="hl-number">16</span>], matrizProjecao[<span class="hl-number">16</span>];</pre>
+
+      </div>
+      <p>Define as matrizes de viewport, de modelo e de proje&ccedil;&atilde;o para a cena. Estas matrizes ser&atilde;o usadas no c&aacute;lculo da posi&ccedil;&atilde;o do mouse no mundo real.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glMap1f(GL_MAP1_VERTEX_<span class="hl-number">3</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">3</span>, nVertices, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>]);</pre>
+
+      </div>
+      <p>Caso a spline seja do tipo B&eacute;zier, o tra&ccedil;ado da curva se com o uso de avaliadores. Tais <span class="foreignphrase"><em class="foreignphrase">evaluators</em></span> proporcionam uma forma de utilizar o mapeamento de polin&ocirc;mios para produzir v&eacute;rtices, coordenadas de texturas e cores, baseados em fun&ccedil;&otilde;es de base de Bernstein, ou de B&eacute;zier.</p>
+      <p>A fun&ccedil;&atilde;o <code class="function">glMap1f()</code> define um avaliador (<span class="foreignphrase"><em class="foreignphrase">evaluator</em></span>) unidimesional. Neste caso, os valores gerados por esta fun&ccedil;&atilde;o s&atilde;o utilizados pelos est&aacute;gios posteriores do processamento como se houvessem sido gerados utilizando a fun&ccedil;&atilde;o <code class="function">glVertex*()</code>.</p>
+      <p>A fun&ccedil;&atilde;o <code class="function">glMap1f()</code> possui o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <b class="fsfunc">glMap1f</b>(</code></td><td><var class="pdparam">target</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">u1</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">u2</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">stride</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">order</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">*points</var><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="paramdef-list"><code>GLenum <var class="pdparam">target</var></code>;<br><code>GLfloat<var class="pdparam">u1</var></code>;<br><code>GLfloat<var class="pdparam">u2</var></code>;<br><code>GLint <var class="pdparam">stride</var></code>;<br><code>GLint <var class="pdparam">order</var></code>;<br><code>const GLfloat <var class="pdparam">*points</var></code>;</div><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+      <p>O par&acirc;metro <em class="parameter"><code>target</code></em> especifica o tipo de valores gerados pelo <span class="foreignphrase"><em class="foreignphrase">evaluator</em></span>; neste caso, especifica que cada ponto de controle &eacute; usado para mapear tr&ecirc;s valores x, y e z. Comandos internos <code class="function">glVertex*()</code> s&atilde;o gerados quando este mapeamento &eacute; realizado. <em class="parameter"><code>u1</code></em> e <em class="parameter"><code>u2</code></em> especificam a faixa de mapeamento linear para u, ou seja, a faixa de varia&ccedil;&atilde;o do par&acirc;metro que define a curva; neste caso [0,1]. <em class="parameter"><code>stride</code></em> especifica o n&uacute;mero de elementos entre o in&iacute;cio de um ponto de controle e o in&iacute;cio do ponto de controle seguinte; como cada ponto de controle possui tr&ecirc;s coordenadas, <em class="parameter"><code>stride=</code></em>3 para este exemplo. O par&acirc;metro <em class="parameter"><code>order</code></em> especifica o n&uacute;mero de pontos de controle para a curva (6 pontos). Finalmente, o par&acirc;metro <em class="parameter"><code>*points</code></em> deve conter a posi&ccedil;&atilde;o do primeiro ponto do pol&iacute;gono de controle.</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glBegin(GL_LINE_STRIP);
+    <strong class="hl-keyword">for</strong> (i = <span class="hl-number">0</span>; i &lt;= <span class="hl-number">30</span>; i++){
+      glEvalCoord1f((GLfloat) i/<span class="hl-number">30.0</span>);
+    }
+    glEnd();</pre>
+
+      </div>
+      <p>Neste la&ccedil;o, quando a fun&ccedil;&atilde;o <code class="function">glEvalCoord1f()</code> &eacute; chamada, o valor do ponto a ser tra&ccedil;ado na spline &eacute; calculado (ou avaliado) para o valor passado como refer&ecirc;ncia para esta fun&ccedil;&atilde;o. Quando o la&ccedil;o terminar, um conjunto de pontos interligados (via <em class="parameter"><code>GL_LINE_STRIP</code></em>) ir&aacute; compor a forma da curva de B&eacute;zier, usando o pol&iacute;gono de controle especificado a priorio com a fun&ccedil;&atilde;o <code class="function">glMap1f()</code>.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">gluBeginCurve(nc);
+    gluNurbsCurve(nc, nNos, nos, <span class="hl-number">3</span>, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>], <span class="hl-number">4</span>, GL_MAP1_VERTEX_<span class="hl-number">3</span>);
+    gluEndCurve(nc);</pre>
+
+      </div>
+      <p>Se a curva a ser desenhada for do tipo NURBS, ent&atilde;o as fun&ccedil;&otilde;es <code class="function">gluBeginCurve()</code> e <code class="function">gluEndCurve()</code> ser&atilde;o utilizadas para demarcar o in&iacute;cio e o fim do seu tra&ccedil;ado. A fun&ccedil;&atilde;o usada para desenhar esta classe de curvas &eacute; <code class="function">gluNurbsCurve</code>, cujos par&acirc;metros s&atilde;o bastante semelhantes aos da fun&ccedil;&atilde;o <code class="function">glMap1f()</code>, acrescentando apenas a refer&ecirc;ncia para a curva, <code class="varname">nc</code> e os dados do vetor de n&oacute;s (<code class="varname">nos</code> e <code class="varname">nNos</code>). A vari&aacute;vel <code class="varname">nc</code> &eacute; iniciada na fun&ccedil;&atilde;o <code class="function">init()</code>.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glPointSize(<span class="hl-number">5.0</span>);</pre>
+
+      </div>
+      <p>O di&acirc;metro dos pontos rasterizados &eacute; mudado para facilitar a visualiza&ccedil;&atilde;o dos v&eacute;rtices do pol&iacute;gono de controle (5 pixels).</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">nc= gluNewNurbsRenderer();
+  gluNurbsProperty(nc, GLU_SAMPLING_TOLERANCE, <span class="hl-number">5.0</span>);
+  glEnable(GL_MAP1_VERTEX_<span class="hl-number">3</span>);</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o <code class="function">gluNewNurbsRenderer()</code> cria um objeto NURBS, que pode ser referenciado durante a chamada para o tra&ccedil;ado de curvas desta caterogia. A fun&ccedil;&atilde;o <code class="function">gluNurbsProperty()</code> aqui colocada define o espa&ccedil;amento m&aacute;ximo, em pixels, usado na amostragem de pontos, durante o tra&ccedil;ado da curva, geralmente tra&ccedil;ada por aproxima&ccedil;&atilde;o poligonal. Neste exemplo, pontos adjacentes do pol&iacute;gono que aproxima a curva t&ecirc;m espacamento m&aacute;ximo de 5 pixels.</p>
+      
+      <div class="informalexample">
+	<pre class="programlisting">glGetIntegerv(GL_VIEWPORT, matrizViewport);
+  glGetDoublev(GL_MODELVIEW_MATRIX, matrizModelview);
+  glGetDoublev(GL_PROJECTION_MATRIX, matrizProjecao);</pre>
+
+      </div>
+      <p>As chamadas &agrave;s fun&ccedil;&otilde;es <code class="function">glGetIntergerv</code> e <code class="function">glGetDoublev</code> gravam em <code class="varname">matrizViewport</code>, <code class="varname">matrizModelview</code> e <code class="varname">matrizProjecao</code> as matrizes de viewport, de modelo e de proje&ccedil;&atilde;o. Na matriz de viewport ficam armazenadas as coordenadas da origem da janela, seguidas pela sua altura e largura.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> proximidade(){
+  <strong class="hl-keyword">int</strong> i;
+  <strong class="hl-keyword">double</strong> tam=<span class="hl-number">0</span>, tamin=<span class="hl-number">32000</span>;
+  verticeCorrente=<span class="hl-number">0</span>;
+  <strong class="hl-keyword">for</strong>(i=<span class="hl-number">0</span>; i&lt;nVertices; i++){
+    tam = (wx-vertices[i][<span class="hl-number">0</span>])*(wx-vertices[i][<span class="hl-number">0</span>])+
+      (wy-vertices[i][<span class="hl-number">1</span>])*(wy-vertices[i][<span class="hl-number">1</span>]);
+    <strong class="hl-keyword">if</strong>(tam &lt; tamin){
+      tamin=tam;
+      verticeCorrente=i;
+    }
+  }
+  tamin=sqrt(tamin);
+  <strong class="hl-keyword">if</strong>(tamin &gt; <span class="hl-number">0.5</span>){
+    mudaCurva=<span class="hl-number">0</span>;
+  }
+}</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o <code class="function">proximidade()</code> compara os valores das dist&acirc;ncias entre a posi&ccedil;&atilde;o do mouse em coordenadas do mundo real, (wx, wy), com as coordenadas de cada v&eacute;rtice do pol&iacute;gono de controle, em busca do v&eacute;rtice mais pr&oacute;ximo. Caso a dist&acirc;ncia entre a posi&ccedil;&atilde;o do mouse e o v&eacute;rtice mais pr&oacute;ximo seja maior que uma dada toler&acirc;ncia, o v&eacute;rtice n&atilde;o ser&aacute; selecionado para altera&ccedil;&atilde;o.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">yreal = matrizViewport[<span class="hl-number">3</span>] - (GLint) y - <span class="hl-number">1</span>;
+      gluUnProject ((GLdouble) x, (GLdouble) yreal, <span class="hl-number">0.0</span>, 
+		    matrizModelview, matrizProjecao, matrizViewport, 
+		    &amp;wx, &amp;wy, &amp;wz);</pre>
+
+      </div>
+      <p> A vari&aacute;vel <code class="varname">yreal</code> armazena a coordenada y (em pixels) da posi&ccedil;&atilde;o do cursor, assumindo origem na parte inferior esquerda da janela.</p>
+      <p>A fun&ccedil;&atilde;o <code class="function">gluUnProject()</code> serve para mapear as coordenadas da janela para as coordenadas do mundo real. Com base nas coordenadas do mouse na janela, <code class="varname">x</code> e <code class="varname">yreal</code>, nas matrizes de modelo, de proje&ccedil;&atilde;o e de viewport, e assumindo a posi&ccedil;&atilde;o z=0, a fun&ccedil;&atilde;o <code class="function">gluUnProject()</code> calcula as respectivas coordenadas wx, wy e wz da posi&ccedil;&atilde;o do mouse no mundo real, possibilitando a compara&ccedil;&atilde;o das dist&acirc;ncias para cada v&eacute;rtice do pol&iacute;gono caracter&iacute;stico.</p>
+      <div class="informalexample">
+	<pre class="programlisting"><strong class="hl-keyword">void</strong> motion(<strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
+  <strong class="hl-keyword">if</strong>(mudaCurva){
+    yreal = matrizViewport[<span class="hl-number">3</span>] - (GLint) y - <span class="hl-number">1</span>;
+    gluUnProject ((GLdouble) x, (GLdouble) yreal, <span class="hl-number">0.0</span>, 
+		  matrizModelview, matrizProjecao, matrizViewport, 
+		  &amp;wx, &amp;wy, &amp;wz); 
+    vertices[verticeCorrente][<span class="hl-number">0</span>]=wx;
+    vertices[verticeCorrente][<span class="hl-number">1</span>]=wy;
+    glutPostRedisplay();
+  }
+}</pre>
+
+      </div>
+      <p>A fun&ccedil;&atilde;o <code class="function">motion()</code> &eacute; chamada cada vez que o mouse &eacute; movimentado na janela e um ou mais bot&otilde;es encontra-se pressionado. Caso a altera&ccedil;&atilde;o dos v&eacute;rtices esteja habilitada, as coordenadas da posi&ccedil;&atilde;o do mouse s&atilde;o mapeadas para o mundo real e atribu&iacute;das ao v&eacute;rtice a ser modificado.</p>
+
+      <div class="informalexample">
+	<pre class="programlisting">glutMotionFunc(motion);</pre>
+
+      </div>
+      <p>Define a fun&ccedil;&atilde;o de movimenta&ccedil;&atilde;o do mouse para a janela corrente. A fun&ccedil;&atilde;o passada como par&acirc;metro deve possuir o seguinte prot&oacute;tipo:</p>
+      <div class="funcsynopsis">
+	<table border="0" class="funcprototype-table" summary="Function synopsis" style="cellspacing: 0; cellpadding: 0;"><tr><td><code class="funcdef">void <b class="fsfunc">funcao()</b>(</code></td><td><var class="pdparam">x</var>, </td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td><var class="pdparam">y</var><code>)</code>;</td><td>&nbsp;</td></tr></table><div class="paramdef-list"><code>int <var class="pdparam">x</var></code>;<br><code>int <var class="pdparam">y</var></code>;</div><div class="funcprototype-spacer">&nbsp;</div>
+      </div>
+      <p>Os par&acirc;metros <em class="parameter"><code>x</code></em> e <em class="parameter"><code>y</code></em> passados para esta fun&ccedil;&atilde;o indicam a posi&ccedil;&atilde;o do mouse em coordenadas relativas &agrave; janela.</p>
+      <p>Caso seja necess&aacute;rio, a fun&ccedil;&atilde;o <code class="function">glutPassiveMotionFunc</code> pode ser utilizada para monitorar o movimento do mouse quando n&atilde;o h&aacute; bot&otilde;es pressionados, e possui o mesmo prot&oacute;tipo da fun&ccedil;&atilde;o <code class="function">glutMotionFunc</code></p>
+    </div>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="curvas-plano-exercicios"></a>7.2. Exerc&iacute;cios</h2></div></div></div>
+      
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	  <p> Comente as funcionalidades das curvas de B&eacute;zier e NURBS utilizadas neste exemplo.</p>
+	</li><li class="listitem">
+	  <p> Utilizando o programa <a class="ulink" href="exemplos/splines2d.c" target="_top"><code class="filename">splines2d.c</code></a> como refer&ecirc;ncia, implemente um programa <code class="filename">splinesnurbs.c</code>. Quando a tecla <span class="keycap"><strong>u</strong></span> for pressionada, a NURBS dever&aacute; ser desenhada utilizando um vetor de n&oacute;s uniforme. Quando a tecla <span class="keycap"><strong>o</strong></span> for pressionada, a NURBS dever&aacute; ser desenhada utilizando um vetor de n&oacute;s uniforme aberto. Quando a tecla <span class="keycap"><strong>n</strong></span> for pressionada, a NURBS dever&aacute; ser desenhada utilizando um vetor de n&oacute;s n&atilde;o uniforme.</p>
+	</li><li class="listitem">
+	  <p>Qual a influ&ecirc;ncia do vetor de n&oacute;s foi utilizado sobre o comportamento das curvas tipo NURBS? Comente o resultado que obteve para curvas de ordens 3 e 5.</p>
+	</li><li class="listitem">
+	  <p>Compare curvas de Bezi&eacute;r com NURBS considerando ordens iguais para ambas as curvas.</p>
+	</li></ol></div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="modelagem-solidos.html">&laquo;&nbsp;Cap&iacute;tulo 6. Modelagem de S&oacute;lidos</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="superficies-espaco.html">Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>
