@@ -1,4 +1,0 @@
-0.001 primeiro
-23.42 segundo
-2.342 terceiro
-4.03  quarto

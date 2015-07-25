@@ -1,9 +1,0 @@
-\ifx\@Hxfloat\@Hundef\else\expandafter\endinput\fi
-\let\@Hxfloat\@xfloat
-\def\@xfloat#1[{\@ifnextchar{H}{\@HHfloat{#1}[}{\@Hxfloat{#1}[}}
-\def\@HHfloat#1[H]{%
-\expandafter\let\csname end#1\endcsname\end@Hfloat
-\vskip\intextsep\def\@captype{#1}\parindent\z@
-\ignorespaces}
-\def\end@Hfloat{\vskip \intextsep}
-
