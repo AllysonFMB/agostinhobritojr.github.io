@@ -1,24 +1,37 @@
 <html>
-<head>
-<title></title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script> 
-$(function(){
-  $("#header").load("/header.html"); 
-  $("#footer").load("/footer.html"); 
-});
-</script> 
-</head>
-<body>
-<div id="header"></div>
-<!--Remaining section-->
-
-<a href="cg/" > Computação Gráfica </a><br>
-<a href="progav/" >Paradigmas de programação</a>
-
-
-<div id="footer"></div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Cursos</title>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script> 
+      $(function(){
+      $("#header").load("/header.html"); 
+      $("#footer").load("/footer.html"); 
+      });
+    </script> 
+  </head>
+  <body>
+    <div id="header"></div>
+    <!----8<---- Body starts here ----8<----->
+    <div class="container marketing">
+      <div class="row">
+	<div class="span6">
+	  <img src="/images/cg-propaganda.png" alt="">
+	  <h2>Computação gráfica</h2>
+	  <p>Informações acerca do curso de computacao gráfica</p>
+	  <p><a class="btn" href="/cursos/cg">Ver detalhes &raquo;</a></p>
+	</div>
+	<div class="span6">
+	  <img src="/images/progav-propaganda.png" alt="">
+	  <h2>Paradigmas de programação</h2>
+	  <p>Informações acerca do curso de paradigmas de programação</p>
+	  <p><a class="btn" href="/cursos/progav">Ver detalhes &raquo;</a></p>
+	</div>
+      </div>
+    </div>
+    <!----8<---- Body ends here ------8<----->    
+    <div id="footer"></div>
+  </body>
 </html>
 
 
