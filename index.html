@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Cursos</title>
+    <title>Agostinho Brito Jr.</title>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script> 
       $(function(){
@@ -10,34 +10,32 @@
       });
     </script> 
   </head>
-  <body>
-    <div id="header"></div>
+  <div id="header"></div>
     <!----8<---- Body starts here ----8<----->
     
     <!-- Subhead
 	 ================================================== -->
-    <header class="jumbotron subhead" id="overview">
+    <header class="jumbotron">
       <div class="container">
 	<table><tr>
 	    <td>
 	      <object type="image/svg+xml" data="images/logo.svg"></object>
 	    </td>
 	    <td>
-	      <h1>Area 8</h1>
-	      <p class="lead">Um espaço para o fomento do ensino e do aprendizado de engenharia.</p>
+	      <h1 class="myheader">Area 8</h1>
+	      <p class="lead myheader">Um espaço para o fomento do ensino e do aprendizado de engenharia.</p>
 	    </td>
 	</tr></table>
       </div>
     </header>
-
 
     <div class="container">
 
       <!-- Docs nav
 	   ================================================== -->
       <div class="row">
-	<div class="span3 bs-docs-sidebar">
-          <ul class="nav nav-list bs-docs-sidenav">
+	<div class="col-lg-3">
+          <ul class="nav nav-pills nav-stacked">
             <li><a href="#nossa-meta"><i class="icon-chevron-right"></i> Nossa meta</a></li>
             <li><a href="#conteudos-disponiveis"><i class="icon-chevron-right"></i> Conteúdos disponíveis</a></li>
             <li><a href="#como-participar"><i class="icon-chevron-right"></i> Como participar</a></li>
@@ -45,9 +43,7 @@
             <li><a href="#contribuidores"><i class="icon-chevron-right"></i> Contribuidores</a></li>
           </ul>
 	</div>
-	<div class="span9">
-
-
+	<div class="col-lg-9">
 
           <!-- Download
                ================================================== -->
@@ -66,7 +62,7 @@
               <div class="lead">
 		<h2>Tutoriais</h2>
 		<p>Alguns tutoriais estão em desenvolvimento, nas áreas de programação de computadores, editoração de texto e uso do sistema operacional Linux.</p>
-		<p><a class="btn btn-large btn-primary" href="tutoriais/" onclick="_gaq.push(['_trackEvent', 'Tutoriais']);">Tutoriais</a></p>
+		<p><a class="btn btn-large btn-primary" href="tutoriais/" role="button" onclick="_gaq.push(['_trackEvent', 'Tutoriais']);">Tutoriais</a></p>
               </div>
               <div class="lead">
 		<h2>Artigos técnicos</h2>
@@ -99,7 +95,6 @@
     
     <!----8<---- Body ends here ------8<----->
     <div id="footer"></div>
-  </body>
 </html>
 
 
