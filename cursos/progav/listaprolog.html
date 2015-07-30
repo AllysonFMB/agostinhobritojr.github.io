@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="AsciiDoc 8.6.9">
-<title>DCA0114</title>
+<title></title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -836,9 +836,6 @@ asciidoc.install(2);
 </head>
 <body class="article">
 <div id="header">
-<h1>DCA0114</h1>
-<span id="author">Agostinho Brito</span><br>
-<span id="email" class="monospaced">&lt;<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>&gt;</span><br>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -846,313 +843,128 @@ asciidoc.install(2);
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_ementa">Ementa</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Introdução. Dispositivos de exibição. Fundamentos de cor. Projeções
-geométricas. Transformações geométricas. Transformações para
-visualização. Clipping. Tratamento de superfícies
-escondidas. Rasterização. Modelos de iluminação. Algoritmos de
-Rendering. Conceitos de Ray tracing. Manipulação de imagens.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_objetivo_geral">Objetivo geral</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Apresentar para o aluno as técnicas tradicionais de desenho de objetos
-gráficos, utilizando uma ferramenta de programação para fixação de
-conceitos, a biblioteca OpenGL.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia">Metodologia</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Aulas expositivas e práticas, no laboratório, utilizando programas
-específicos.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_programa_do_curso">Programa do curso</h2>
+<h2 id="_lista_de_programação_em_prolog">Lista de programação em Prolog</h2>
 <div class="sectionbody">
 <div class="ulist"><ul>
 <li>
 <p>
-Primeira unidade
+Crie uma regra para encontrar o último elemento de uma lista. Exemplo:
+</p>
+</li>
+</ul></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre> ?- ultimo(X,[a,b,c,d]).
+ X = d</pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Crie uma regra para encontrar o penúltimo elemento de uma lista.
+</p>
+</li>
+<li>
+<p>
+Crie uma regra para encontrar o k-ésimo elemento de uma lista.
+</p>
+</li>
+<li>
+<p>
+Crie uma regra para determinar se uma lista é um palíndromo. Palíndromos podem ser lidos para trás e para frente. Ex: <span class="monospaced">$[s,o,p,a,p,o,s]$</span>.
+</p>
+</li>
+<li>
+<p>
+Resolva o seguinte criptograma, sabendo que as letras podem assumir um dos algarismos de 0 a 9, todos diferentes.
+</p>
+</li>
+</ul></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>    N O V E
+  + T R E S
+  =========
+    D O Z E</pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Crie uma base de regras para representar relações familiares, incluindo as relações de cunhado(a), concunhado(a) e tio(a)_torto(a) (casado com a(o) tia(o) legítimo)
+</p>
+</li>
+<li>
+<p>
+Considere uma representação de conjuntos como listas e defina os seguintes predicados:
 </p>
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-Apresentação do curso (27/07)
+<span class="monospaced">membro(X,L)</span>, que indica se um elemento X pertence ao conjunto L.
 </p>
 </li>
 <li>
 <p>
-Introdução / Dispositivos de exibição (<a href="intro.pdf">intro.pdf</a>) (29/07)
+<span class="monospaced">subconjunto(L,K)</span>, que indica se o conjunto L é subconjunto de K.
 </p>
 </li>
 <li>
 <p>
-Fundamentos de cor (<a href="cor.pdf">cor.pdf</a>) (3/08)
+<span class="monospaced">disjunto(L,K)</span>, que indica se L and K não possuem elementos em comum.
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (introdução ao OpenGL) (<a href="/tutoriais/opengl/">tutorial</a>) (5/08)
+<span class="monospaced">uniao(L,K,M)</span>, que indica se is a união de L e K.
 </p>
 </li>
 <li>
 <p>
-Algoritmos de traçado de linhas e circunferências (10/08)
+<span class="monospaced">intersecao(L,K,M)</span>, que indica se M é a interseção de L e K.
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (manipulação de linhas e circunferências) (12/08)
-</p>
-</li>
-<li>
-<p>
-Algoritmos de preenchimento (17/08)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (preenchimento de regiões) (19/08)
-</p>
-</li>
-<li>
-<p>
-Recortes (clipping) (24/08)
-</p>
-</li>
-<li>
-<p>
-Transformações geométricas 2D e 3D (26/08)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeções geométricas) (31/08)
-</p>
-</li>
-<li>
-<p>
-1a. Avaliação (2/09)
+<span class="monospaced">differenca(L,K,M)</span>, que indica se M é a diferença de L e K.
 </p>
 </li>
 </ol></div>
 </li>
 <li>
 <p>
-Segunda unidade
-</p>
-<div class="olist arabic"><ol class="arabic">
-<li>
-<p>
-Projeções geométricas (9/09)
+Pesquise na Internet soluções em prolog para realizar colorização de maps geográficos. O objetivo da colorização é representar mapas cartográficos com regiões coloridas, de forma que duas regiões adjacentes não tenham a mesma cor. Use os resultados da sua pesquisa para propor uma colorização para o mapa do Brasil.
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (projeções geométricas) (14/09)
+Defina os predicados and/2, or/2, nand/2 e xor/2 que irão funcionar ou falhar de acordo com os resultados das suas operações. Espressões lógicas poderão ser escritas da forma and(or(A,B),nand(A,B)).
 </p>
 </li>
 <li>
 <p>
-Projeções geométricas (16/09)
+Escreva um predicado tabela/3 que mostra a tabela verdade para uma dada espressão lógica de duas variáveis. Exemplo:
 </p>
-</li>
-<li>
-<p>
-Modelagem geométrica (21/09)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (modelagem de sólidos) (23/09)
-</p>
-</li>
-<li>
-<p>
-Modelagem geométrica (28/09)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (modelagem de sólidos 2) (30/09)
-</p>
-</li>
-<li>
-<p>
-Representação de curvas no plano (7/10)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (curvas no plano) (9/10)
-</p>
-</li>
-<li>
-<p>
-Representação de superfícies no espaço (14/10)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (superfícies no espaço) (16/10)
-</p>
-</li>
-<li>
-<p>
-2a. Avaliação (21/10)
-</p>
-</li>
-</ol></div>
-</li>
-<li>
-<p>
-Terceira unidade
-</p>
-<div class="olist arabic"><ol class="arabic">
-<li>
-<p>
-Tratamento de linhas e superfícies escondidas (23/10)
-</p>
-</li>
-<li>
-<p>
-Modelos de iluminação (28/10)
-</p>
-</li>
-<li>
-<p>
-Shading (4/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (modelos de iluminação e sombreamento) (6/11)
-</p>
-</li>
-<li>
-<p>
-Ray tracing (11/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (ray-tracing) (13/11)
-</p>
-</li>
-<li>
-<p>
-Radiosidade (18/11)
-</p>
-</li>
-<li>
-<p>
-Tratamento de imagens e texturas (20/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (25/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (27/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (02/12)
-</p>
-</li>
-<li>
-<p>
-3a. Avaliação  (04/12)
-</p>
-</li>
-</ol></div>
 </li>
 </ul></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia_de_avaliação">Metodologia de avaliação</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Prova escrita (50%) e Exercícios (50%)</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_datas_das_avaliações">Datas das avaliações</h2>
-<div class="sectionbody">
+<div class="literalblock">
+<div class="content monospaced">
+<pre>?- tabela(A,B,and(A,or(A,B))).
+true true true
+true fail true
+fail true fail
+fail fail fail</pre>
+</div></div>
 <div class="ulist"><ul>
 <li>
 <p>
-1a Avaliação: 09/09/2015
-</p>
-</li>
-<li>
-<p>
-2a Avaliação: 21/10/2015
-</p>
-</li>
-<li>
-<p>
-3a Avaliação: 04/12/2015
-</p>
-</li>
-<li>
-<p>
-reposicao: 11/12/2015
+Defina um predicado ehprimo/1 para determinar se um número é primo. Exemplo:
 </p>
 </li>
 </ul></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_submissão_de_exercícios">Submissão de exercícios</h2>
-<div class="sectionbody">
-<div class="ulist"><ul>
-<li>
-<p>
-Cada aluno deverá submeter seus exercícios em uma homepage com as modificações realizadas no programa pdi fornecido como referência, os testes realizados, imagens obtidas, ambos devidamente comentados. Logo que sua página web estiver pronta, envie um e-mail para seu instrutor (<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>) com a URL de referência, que a mesma será incluída na página do curso. Se necessário, inclua as instruções de compilação do seu programa.
-</p>
-</li>
-<li>
-<p>
-O prazo para entrega das atividades encerra-se ao fim de cada avaliação. Atividades entregues após este prazo não serão aceitas.
-</p>
-</li>
-</ul></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bibliografia">Bibliografia</h2>
-<div class="sectionbody">
-<div class="ulist bibliography"><ul>
-<li>
-<p>
-Foley et al. <em>Computer Graphics: Principles and Practice</em>. Addison-Wesley. 1990. 2 ed.
-</p>
-</li>
-<li>
-<p>
-David Rogers. <em>Mathematical Elements for Computer Graphics</em>. McGraw-Hill. 1990.
-</p>
-</li>
-<li>
-<p>
-David Rogers. <em>Procedural Elements for Computer Graphics</em>. McGraw-Hill. 1997.
-</p>
-</li>
-<li>
-<p>
-<em>http://www.opengl.org</em>. Principal portal de desenvolvimento e referência para a linguagem OpenGL.
-</p>
-</li>
-</ul></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>?- ehprimo(7).
+true</pre>
+</div></div>
 </div>
 </div>
 </div>
@@ -1160,7 +972,7 @@ David Rogers. <em>Procedural Elements for Computer Graphics</em>. McGraw-Hill. 1
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2015-07-30 08:12:15 BRT
+ 2015-07-30 15:18:12 BRT
 </div>
 </div>
 </body>

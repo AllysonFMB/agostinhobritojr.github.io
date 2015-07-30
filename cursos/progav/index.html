@@ -6,7 +6,8 @@
     <script> 
       $(function(){
       $("#header").load("/header.html"); 
-      $("#footer").load("/footer.html"); 
+      $("#footer").load("/footer.html");
+      $("#plano").load("plano.html");
       });
     </script> 
   </head>
@@ -19,17 +20,8 @@
     </div>
   </header>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-	<h2> Material didático</h2>
-      <div class="list-group">
-	<a href="http://www.ic.unicamp.br/~meidanis/courses/mc346/2015s2/logica/apostila-prolog.pdf" class="list-group-item"> Apostila de prolog (prof. João Meidanis) </a>
-	<a href="http://www.dca.ufrn.br/~adelardo/lisp/" class="list-group-item"> Apostila de LISP (tradução prof. Adelardo)</a>
-      </div>
-      </div>
-    </div>
-  </div>
+  <div id="plano">
+
   <!----8<---- Body ends here ------8<----->    
   <div id="footer"></div>
 </html>

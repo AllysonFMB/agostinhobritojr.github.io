@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="AsciiDoc 8.6.9">
-<title>DCA0114</title>
+<title>DCA0201: Paradigmas de programação</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -836,31 +836,37 @@ asciidoc.install(2);
 </head>
 <body class="article">
 <div id="header">
-<h1>DCA0114</h1>
-<span id="author">Agostinho Brito</span><br>
-<span id="email" class="monospaced">&lt;<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>&gt;</span><br>
+<h1>DCA0201: Paradigmas de programação</h1>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>Agostinho Brito &lt;<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>&gt;</p></div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_ementa">Ementa</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Introdução. Dispositivos de exibição. Fundamentos de cor. Projeções
-geométricas. Transformações geométricas. Transformações para
-visualização. Clipping. Tratamento de superfícies
-escondidas. Rasterização. Modelos de iluminação. Algoritmos de
-Rendering. Conceitos de Ray tracing. Manipulação de imagens.</p></div>
+<div class="paragraph"><p>Principais paradigmas de programação. Estudo comparativo de
+linguagens. Conceitos de orientação a objetos: exemplificação,
+encapsulamento, herança, classes abstratas, polimorfismo,
+interfaces. Linguagens de programação orientada a objetos: sintaxe,
+operadores, estruturas de controle, tratamento de exceções,
+características avançadas. Prática de programação.</p></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_objetivo_geral">Objetivo geral</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Apresentar para o aluno as técnicas tradicionais de desenho de objetos
-gráficos, utilizando uma ferramenta de programação para fixação de
-conceitos, a biblioteca OpenGL.</p></div>
+<div class="paragraph"><p>Conhecer os principais paradigmas de programação existentes:
+imperativo, funcional, lógico e orientado a objetos. Conhecer e
+aplicar recursos de linguagens de programação para cada um destes
+paradigmas, visando desenvolver senso crítico na escolha da linguagem
+adequada em problemas de engenharia.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -881,62 +887,77 @@ Primeira unidade
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-Apresentação do curso (27/07)
+Apresentação do Curso
 </p>
 </li>
 <li>
 <p>
-Introdução / Dispositivos de exibição (<a href="intro.pdf">intro.pdf</a>) (29/07)
+Introdução ao prolog (<a href="http://www.ic.unicamp.br/~meidanis/courses/mc346/2015s2/logica/apostila-prolog.pdf">Apostila de Prolog</a> : prof. João Meidanis)
 </p>
 </li>
 <li>
 <p>
-Fundamentos de cor (<a href="cor.pdf">cor.pdf</a>) (3/08)
+Prolog - aritmética, listas
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (introdução ao OpenGL) (<a href="/tutoriais/opengl/">tutorial</a>) (5/08)
+Prolog - listas, recursão (<a href="listaprolog.html">lista de prolog</a>)
 </p>
 </li>
 <li>
 <p>
-Algoritmos de traçado de linhas e circunferências (10/08)
+Introdução ao LISP (<a href="http://www.dca.ufrn.br/~adelardo/lisp/">Apostila de LISP</a>: tradução prof. Adelardo)
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (manipulação de linhas e circunferências) (12/08)
+Lisp - funções e variáveis - impressão - forms e forms especiais, ateamento
 </p>
 </li>
 <li>
 <p>
-Algoritmos de preenchimento (17/08)
+Lisp - conses e listas
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (preenchimento de regiões) (19/08)
+Lisp - booleanos, iteração, tratamento de arquivos, estruturas de controle
 </p>
 </li>
 <li>
 <p>
-Recortes (clipping) (24/08)
+Lisp - arrays, strings, estruturas
 </p>
 </li>
 <li>
 <p>
-Transformações geométricas 2D e 3D (26/08)
+Lisp+Prolog - aula de exercícios
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (projeções geométricas) (31/08)
+Manipulação de ponteiros
 </p>
 </li>
 <li>
 <p>
-1a. Avaliação (2/09)
+Alocação dinâmica de memória para vetores
+</p>
+</li>
+<li>
+<p>
+Alocação dinâmica de memória para matrizes
+</p>
+</li>
+<li>
+<p>
+Exercícios de programação
+</p>
+</li>
+<li>
+<p>
+1a. avaliação
 </p>
 </li>
 </ol></div>
@@ -948,62 +969,62 @@ Segunda unidade
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-Projeções geométricas (9/09)
+Introdução à Programação orientada a objetos (abstração, encapsulamento, compartilhamento, identidade)
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (projeções geométricas) (14/09)
+Construtores e destrutores
 </p>
 </li>
 <li>
 <p>
-Projeções geométricas (16/09)
+Ponteiros e referências, alocação de memória
 </p>
 </li>
 <li>
 <p>
-Modelagem geométrica (21/09)
+Sobrecarga de operadores, funções amigas
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (modelagem de sólidos) (23/09)
+Herança
 </p>
 </li>
 <li>
 <p>
-Modelagem geométrica (28/09)
+Streams - fluxo
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (modelagem de sólidos 2) (30/09)
+Gabaritos de funções e classes
 </p>
 </li>
 <li>
 <p>
-Representação de curvas no plano (7/10)
+A biblioteca padrão de gabaritos
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (curvas no plano) (9/10)
+Tratamento de exceções
 </p>
 </li>
 <li>
 <p>
-Representação de superfícies no espaço (14/10)
+Classes Abstratas
 </p>
 </li>
 <li>
 <p>
-LABORATÓRIO (superfícies no espaço) (16/10)
+Aula de exercícios
 </p>
 </li>
 <li>
 <p>
-2a. Avaliação (21/10)
+2a. avaliação
 </p>
 </li>
 </ol></div>
@@ -1015,62 +1036,17 @@ Terceira unidade
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-Tratamento de linhas e superfícies escondidas (23/10)
+Apresentação do projeto da 3a avaliação
 </p>
 </li>
 <li>
 <p>
-Modelos de iluminação (28/10)
+Programação em Qt
 </p>
 </li>
 <li>
 <p>
-Shading (4/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (modelos de iluminação e sombreamento) (6/11)
-</p>
-</li>
-<li>
-<p>
-Ray tracing (11/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (ray-tracing) (13/11)
-</p>
-</li>
-<li>
-<p>
-Radiosidade (18/11)
-</p>
-</li>
-<li>
-<p>
-Tratamento de imagens e texturas (20/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (25/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (27/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (02/12)
-</p>
-</li>
-<li>
-<p>
-3a. Avaliação  (04/12)
+Acompanhamento de projetos da 3a avaliação
 </p>
 </li>
 </ol></div>
@@ -1081,7 +1057,18 @@ LABORATÓRIO (projeto) (02/12)
 <div class="sect1">
 <h2 id="_metodologia_de_avaliação">Metodologia de avaliação</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Prova escrita (50%) e Exercícios (50%)</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+1a e 2a. unidades: Prova escrita (40%) e Exercícios (60%)
+</p>
+</li>
+<li>
+<p>
+3a. unidade: Projeto de programação
+</p>
+</li>
+</ul></div>
 </div>
 </div>
 <div class="sect1">
@@ -1117,7 +1104,12 @@ reposicao: 11/12/2015
 <div class="ulist"><ul>
 <li>
 <p>
-Cada aluno deverá submeter seus exercícios em uma homepage com as modificações realizadas no programa pdi fornecido como referência, os testes realizados, imagens obtidas, ambos devidamente comentados. Logo que sua página web estiver pronta, envie um e-mail para seu instrutor (<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>) com a URL de referência, que a mesma será incluída na página do curso. Se necessário, inclua as instruções de compilação do seu programa.
+A submissão dos exercícios será feita via SIGAA.
+</p>
+</li>
+<li>
+<p>
+A apresentação dos projetos será feita em sala de aula.
 </p>
 </li>
 <li>
@@ -1134,22 +1126,12 @@ O prazo para entrega das atividades encerra-se ao fim de cada avaliação. Ativi
 <div class="ulist bibliography"><ul>
 <li>
 <p>
-Foley et al. <em>Computer Graphics: Principles and Practice</em>. Addison-Wesley. 1990. 2 ed.
+Stephen Prata. <em>C++ Primer Plus</em>. Addison-Wesley. 1990. 2 ed.
 </p>
 </li>
 <li>
 <p>
-David Rogers. <em>Mathematical Elements for Computer Graphics</em>. McGraw-Hill. 1990.
-</p>
-</li>
-<li>
-<p>
-David Rogers. <em>Procedural Elements for Computer Graphics</em>. McGraw-Hill. 1997.
-</p>
-</li>
-<li>
-<p>
-<em>http://www.opengl.org</em>. Principal portal de desenvolvimento e referência para a linguagem OpenGL.
+<a href="http://www.cplusplus.com">http://www.cplusplus.com</a>. <em>Principal portal de desenvolvimento e referência para programação em C++</em>.
 </p>
 </li>
 </ul></div>
@@ -1160,7 +1142,7 @@ David Rogers. <em>Procedural Elements for Computer Graphics</em>. McGraw-Hill. 1
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2015-07-30 08:12:15 BRT
+ 2015-07-30 15:25:09 BRT
 </div>
 </div>
 </body>
