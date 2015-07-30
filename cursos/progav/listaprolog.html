@@ -602,6 +602,68 @@ div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock
 div.verseblock { border-left-width: 0; margin-left: 3em; }
 div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
 div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 
 
 @media screen {
@@ -850,14 +912,11 @@ asciidoc.install(2);
 <p>
 Crie uma regra para encontrar o último elemento de uma lista. Exemplo:
 </p>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="s-Atom">?-</span> <span class="nf">ultimo</span><span class="p">(</span><span class="nv">X</span><span class="p">,[</span><span class="s-Atom">a</span><span class="p">,</span><span class="s-Atom">b</span><span class="p">,</span><span class="s-Atom">c</span><span class="p">,</span><span class="s-Atom">d</span><span class="p">]).</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="s-Atom">d</span>
+</pre></div></div></div>
 </li>
-</ul></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre> ?- ultimo(X,[a,b,c,d]).
- X = d</pre>
-</div></div>
-<div class="ulist"><ul>
 <li>
 <p>
 Crie uma regra para encontrar o penúltimo elemento de uma lista.
@@ -870,23 +929,20 @@ Crie uma regra para encontrar o k-ésimo elemento de uma lista.
 </li>
 <li>
 <p>
-Crie uma regra para determinar se uma lista é um palíndromo. Palíndromos podem ser lidos para trás e para frente. Ex: <span class="monospaced">$[s,o,p,a,p,o,s]$</span>.
+Crie uma regra para determinar se uma lista é um palíndromo. Palíndromos podem ser lidos para trás e para frente. Ex: <span class="monospaced">[s,o,p,a,p,o,s]</span>.
 </p>
 </li>
 <li>
 <p>
 Resolva o seguinte criptograma, sabendo que as letras podem assumir um dos algarismos de 0 a 9, todos diferentes.
 </p>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre>  N O V E
++ T R E <span class="nv">S</span>
+<span class="o">=========</span>
+  D O Z E
+</pre></div></div></div>
 </li>
-</ul></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>    N O V E
-  + T R E S
-  =========
-    D O Z E</pre>
-</div></div>
-<div class="ulist"><ul>
 <li>
 <p>
 Crie uma base de regras para representar relações familiares, incluindo as relações de cunhado(a), concunhado(a) e tio(a)_torto(a) (casado com a(o) tia(o) legítimo)
@@ -943,28 +999,24 @@ Defina os predicados and/2, or/2, nand/2 e xor/2 que irão funcionar ou falhar d
 <p>
 Escreva um predicado tabela/3 que mostra a tabela verdade para uma dada espressão lógica de duas variáveis. Exemplo:
 </p>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="s-Atom">?-</span> <span class="nf">tabela</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">,</span><span class="nf">and</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nf">or</span><span class="p">(</span><span class="nv">A</span><span class="p">,</span><span class="nv">B</span><span class="p">))).</span>
+<span class="s-Atom">true</span> <span class="s-Atom">true</span> <span class="s-Atom">true</span>
+<span class="s-Atom">true</span> <span class="s-Atom">fail</span> <span class="s-Atom">true</span>
+<span class="s-Atom">fail</span> <span class="s-Atom">true</span> <span class="s-Atom">fail</span>
+<span class="s-Atom">fail</span> <span class="s-Atom">fail</span> <span class="s-Atom">fail</span>
+</pre></div></div></div>
 </li>
-</ul></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>?- tabela(A,B,and(A,or(A,B))).
-true true true
-true fail true
-fail true fail
-fail fail fail</pre>
-</div></div>
-<div class="ulist"><ul>
 <li>
 <p>
 Defina um predicado ehprimo/1 para determinar se um número é primo. Exemplo:
 </p>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="s-Atom">?-</span> <span class="nf">ehprimo</span><span class="p">(</span><span class="mi">7</span><span class="p">).</span>
+<span class="s-Atom">true</span>
+</pre></div></div></div>
 </li>
 </ul></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>?- ehprimo(7).
-true</pre>
-</div></div>
 </div>
 </div>
 </div>
@@ -972,7 +1024,7 @@ true</pre>
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2015-07-30 15:18:12 BRT
+ 2015-07-30 15:41:25 BRT
 </div>
 </div>
 </body>
