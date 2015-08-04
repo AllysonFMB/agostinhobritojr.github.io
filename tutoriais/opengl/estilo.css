@@ -20,6 +20,14 @@ A.navheader{
     font-size: 14pt;
 }
 
+tr:nth-child(even).alternate {
+    background-color: #00ff00;
+}
+
+tr:nth-child(odd).alternate {
+    background-color: #0000ff;
+}
+
 p.copyright,
 A.navfoot{
     color: #808080;
@@ -59,6 +67,16 @@ div.example-output {
 /*.prompt{
     margin-left:-30px;
 }*/
+
+.code {
+  padding: 5px;
+  line-height: 20px;
+  color: inherit;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
 
 .programlisting {
   padding: 10px;
@@ -308,6 +326,13 @@ div.book {
     margin-top: 5px;
 }
 
+div.table{
+    text-align: center;
+}
+
+div.informaltable{
+    text-align: center;
+}
 thead {
     background-color: black;
     color: white;

@@ -3,10 +3,19 @@
    <title>Cap&iacute;tulo 1. Conceitos iniciais</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="introducao.html" title="Introdu&ccedil;&atilde;o"><link rel="next" href="desenhando-linhas-pontos.html" title="Cap&iacute;tulo 2. Desenhando linhas e pontos"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
     MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
+    jax: ["input/TeX","output/SVG"],
     tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
     });
-  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="introducao.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 1. Conceitos iniciais</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="desenhando-linhas-pontos.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="conceitos-iniciais"></a>Cap&iacute;tulo 1. Conceitos iniciais</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="conceitos-iniciais.html#sobre-opengl">1.1. O que &eacute; OpenGL</a></span></dt><dt><span class="sect1"><a href="conceitos-iniciais.html#operacao-normal">1.2. Opera&ccedil;&atilde;o normal</a></span></dt><dt><span class="sect1"><a href="conceitos-iniciais.html#compilando-programas">1.3. Compilando programas que utilizam OpenGL</a></span></dt></dl></div>
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script><script xmlns:fo="http://www.w3.org/1999/XSL/Format">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-41839650-1', 'area8.dca.ufrn.br');
+      ga('send', 'pageview');
+      
+    </script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="introducao.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 1. Conceitos iniciais</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="desenhando-linhas-pontos.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="conceitos-iniciais"></a>Cap&iacute;tulo 1. Conceitos iniciais</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="conceitos-iniciais.html#sobre-opengl">1.1. O que &eacute; OpenGL</a></span></dt><dt><span class="sect1"><a href="conceitos-iniciais.html#operacao-normal">1.2. Opera&ccedil;&atilde;o normal</a></span></dt><dt><span class="sect1"><a href="conceitos-iniciais.html#compilando-programas">1.3. Compilando programas que utilizam OpenGL</a></span></dt><dt><span class="sect1"><a href="conceitos-iniciais.html#desenhando-exercicios">1.4. Exerc&iacute;cios</a></span></dt></dl></div>
     
     <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sobre-opengl"></a>1.1. O que &eacute; OpenGL</h2></div></div></div>
       
@@ -14,7 +23,7 @@
       
       <p>A biblioteca OpenGL (<span class="foreignphrase"><em class="foreignphrase">Open Graphics Library</em></span>) foi introduzida em 1992 pela Silicon Graphics (<a class="ulink" href="http://www.sgi.com" target="_top">www.sgi.com</a>), no intuito de conceber uma API (Interface de Programa&ccedil;&atilde;o de Aplica&ccedil;&atilde;o) gr&aacute;fica independente de dispositivos de exibi&ccedil;&atilde;o. Com isto, seria estabelecida uma ponte entre o processo de modelagem geom&eacute;trica de objetos, situadas em um n&iacute;vel de abstra&ccedil;&atilde;o mais elevado, e as rotinas de exibi&ccedil;&atilde;o e de processamento de imagens implementadas em dispositivos (hardware) e sistemas operacionais espec&iacute;ficos. As fun&ccedil;&atilde;o utilizada pelo OpenGL para desenhar um ponto na tela, por exemplo, possui os mesmos nome e par&acirc;metros em todos os sistemas operacionais nos quais OpenGL foi implementada, e produz o mesmo efeito de exibi&ccedil;&atilde;o em cada um destes sistemas.</p>
       
-      <p>Diante das funcionalidades providas pelo OpenGL, tal biblioteca tem se tornado um padr&atilde;o amplamente adotado na ind&uacute;stria de desenvolvimento de aplica&ccedil;&otilde;es. Este fato tem sido encorajado tamb&eacute;m pela facilidade de aprendizado, pela estabilidade das rotinas, pela boa documenta&ccedil;&atilde;o dispon&iacute;vel [<a class="citation" href="bibliografia.html#d5e1678"><span class="citation">Neider2000</span></a>] e pelos resultados visuais consistentes para qualquer sistema de exibi&ccedil;&atilde;o concordante com este padr&atilde;o. &Eacute; poss&iacute;vel encontrar na Internet diversos <span class="foreignphrase"><em class="foreignphrase">sites</em></span> que tratam sobre OpenGL; o mais popular &eacute; a sua p&aacute;gina oficial: <a class="ulink" href="http://www.opengl.org" target="_top">www.opengl.org</a>. Neste endere&ccedil;o encontram-se dispon&iacute;veis diversos artigos e <span class="foreignphrase"><em class="foreignphrase">links</em></span> sobre o assunto, f&oacute;runs de discuss&atilde;o, informa&ccedil;&otilde;es sobre a evolu&ccedil;&atilde;o desse padr&atilde;o, al&eacute;m de uma s&eacute;rie de programas utilit&aacute;rios.</p>
+      <p>Diante das funcionalidades providas pelo OpenGL, tal biblioteca tem se tornado um padr&atilde;o amplamente adotado na ind&uacute;stria de desenvolvimento de aplica&ccedil;&otilde;es. Este fato tem sido encorajado tamb&eacute;m pela facilidade de aprendizado, pela estabilidade das rotinas, pela boa documenta&ccedil;&atilde;o dispon&iacute;vel [<a class="citation" href="bibliografia.html#d5e1696"><span class="citation">Neider2000</span></a>] e pelos resultados visuais consistentes para qualquer sistema de exibi&ccedil;&atilde;o concordante com este padr&atilde;o. &Eacute; poss&iacute;vel encontrar na Internet diversos <span class="foreignphrase"><em class="foreignphrase">sites</em></span> que tratam sobre OpenGL; o mais popular &eacute; a sua p&aacute;gina oficial: <a class="ulink" href="http://www.opengl.org" target="_top">www.opengl.org</a>. Neste endere&ccedil;o encontram-se dispon&iacute;veis diversos artigos e <span class="foreignphrase"><em class="foreignphrase">links</em></span> sobre o assunto, f&oacute;runs de discuss&atilde;o, informa&ccedil;&otilde;es sobre a evolu&ccedil;&atilde;o desse padr&atilde;o, al&eacute;m de uma s&eacute;rie de programas utilit&aacute;rios.</p>
       
       <p>Diversos jogos, aplica&ccedil;&otilde;es cient&iacute;ficas e comerciais tem utilizado OpenGL como ferramenta de apresenta&ccedil;&atilde;o de recursos visuais, principalmente com a ado&ccedil;&atilde;o deste padr&atilde;o por parte dos fabricantes de placas de v&iacute;deo destinadas aos consumidores dom&eacute;sticos. </p>
       
@@ -80,19 +89,18 @@
 
       <p>As tarefas de compila&ccedil;&atilde;o foram automatizadas com o utilit&aacute;rio <span class="command"><strong>make</strong></span>. O <span class="command"><strong>make</strong></span> determina automaticamente que partes de um grande programa necessitam ser recompiladas e os comandos necess&aacute;rios para recompil&aacute;-las, a partir da leitura das regras definidas em um arquivo <code class="filename">Makefile</code>. Assim, para efetuar a compila&ccedil;&atilde;o do programa, basta executar o comando <span class="command"><strong>make</strong></span>, ao inv&eacute;s de digitar dezenas de comandos no prompt do Unix.</p>
 
-      <p>O <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> da <a class="xref" href="conceitos-iniciais.html#fig-Makefile" title="Figura 1.1. arquivo Makefile">Figura&nbsp;1.1</a> foi utilizado para compilar os exemplos desse curso. Para obter uma c&oacute;pia deste arquivo clique <a class="ulink" href="exemplos/Makefile" target="_top">aqui</a>.</p>
-      <div class="figure"><a name="fig-Makefile"></a><p class="title"><b>Figura 1.1. arquivo Makefile</b></p><div class="figure-contents">
+      <p>O <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> do <a class="xref" href="conceitos-iniciais.html#exa.Makefile" title="Exemplo 1.1. arquivo Makefile">Exemplo&nbsp;1.1</a> foi utilizado para compilar os exemplos desse curso. Para obter uma c&oacute;pia deste arquivo clique <a class="ulink" href="exemplos/Makefile" target="_top">aqui</a>.</p>
+      <div class="example"><a name="exa.Makefile"></a><p class="title"><b>Exemplo 1.1. arquivo Makefile</b></p><div class="example-contents">
 	
-	<pre class="programlisting">
-	    # Compila programas <strong class="hl-keyword">do</strong> curso de OpenGL
-<span class="hl-directive" style="color: maroon"># digite: make programa.c</span>
-<span class="hl-directive" style="color: maroon">#</span>
+	<pre class="programlisting"># Compila programas do curso de OpenGL
+# digite: make programa.c
+#
 
 CC = gcc
-CFLAGS = -O2 -funroll-loops -ansi -pedantic -ffast-math -D_SVID_SOURCE -D_BSD_SOURCE -DSHM -I/usr/X11R6/include
-XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 -lXext -lXmu -lXt -lXi -lSM -lICE
+CFLAGS = -O2
+XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 
 
-<span class="hl-directive" style="color: maroon">##### MACROS #####</span>
+##### MACROS #####
 
 INCDIR = /usr/include
 LIBDIR = /usr/lib
@@ -101,25 +109,24 @@ GL_LIBS = -L$(LIBDIR) -lglut -lGLU -lGL -lm $(XLIBS)
 
 LIB_DEP = $(LIBDIR)/$(GL_LIB)
 
-<span class="hl-directive" style="color: maroon">##### RULES #####</span>
+##### RULES #####
 
 .SUFFIXES:
 .SUFFIXES: .c
 
 .c: $(LIB_DEP)
-	$(CC) -I$(INCDIR) $(CFLAGS) $&lt; $(GL_LIBS) -o $@
+	$(CC) -I$(INCDIR) $(CFLAGS) $&lt; -o $@ $(GL_LIBS)
 
-<span class="hl-directive" style="color: maroon">##### TARGETS ######</span>
+##### TARGETS ######
 
 clean:
 	-rm *.o *~
-
-	  </pre>
-      </div></div><br class="figure-break">
+</pre>
+      </div></div><br class="example-break">
 
       <p>As regras contidas neste arquivo Makefile incluem op&ccedil;&otilde;es de compila&ccedil;&atilde;o tais como <span class="command"><strong>-lglut</strong></span>, referente &agrave; biblioteca auxiliar GLUT, e <span class="command"><strong>-lGLU -lGL</strong></span>, referentes &agrave;s bibliotecas padr&atilde;o do OpenGL para o Mesa3d, possibilitando que programas simples possam ser f&aacute;cilmente compilados.</p>
 
-      <p>Para testar se esse arquivo funciona no seu sistema, copie-o com o nome "<code class="filename">Makefile</code>" para um diret&oacute;rio, juntamente com o programa <a class="ulink" href="exemplos/teste-make.c" target="_top"><code class="filename">teste-make.c</code></a>, mostrado na <a class="xref" href="conceitos-iniciais.html#fig-teste-make" title="Figura 1.2. programa teste-make.c">Figura&nbsp;1.2</a>. Dentro deste diret&oacute;rio, execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
+      <p>Para testar se esse arquivo funciona no seu sistema, copie-o com o nome "<code class="filename">Makefile</code>" para um diret&oacute;rio, juntamente com o programa <a class="ulink" href="exemplos/teste-make.c" target="_top"><code class="filename">teste-make.c</code></a>, mostrado na <a class="xref" href="conceitos-iniciais.html#exa.teste.make" title="Exemplo 1.2. programa teste-make.c">Exemplo&nbsp;1.2</a>. Dentro deste diret&oacute;rio, execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
       <pre class="screen">
 <code class="prompt">$</code> <span class="command"><strong>make</strong></span> <code class="option">teste-make</code>
 <code class="prompt">$</code> <span class="command"><strong>teste-make</strong></span>
@@ -127,45 +134,52 @@ clean:
 
       <p>Caso apare&ccedil;a um quadrado branco dentro de uma janela com fundo preto, &eacute; sinal de que ocorreu tudo bem.</p>
 
-      <div class="figure"><a name="fig-teste-make"></a><p class="title"><b>Figura 1.2. programa <code class="filename">teste-make.c</code></b></p><div class="figure-contents">
+      <div class="example"><a name="exa.teste.make"></a><p class="title"><b>Exemplo 1.2. programa <code class="filename">teste-make.c</code></b></p><div class="example-contents">
 	
-	<pre class="programlisting"><em class="hl-comment" style="color: silver">/* programa teste-make.c */</em>
+	<pre class="programlisting">/* programa teste-make.c */
 
-<span class="hl-directive" style="color: maroon">#include &lt;GL/glut.h&gt;</span>
-<span class="hl-directive" style="color: maroon">#include &lt;stdlib.h&gt;</span>
+#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
 
-<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>);
-<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y);
+void display(void);
+void keyboard(unsigned char key, int x, int y);
 
-<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){
+int main(int argc, char** argv){
   glutInit(&amp;argc, argv);
   glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
-  glutInitWindowSize (<span class="hl-number">256</span>, <span class="hl-number">256</span>); 
-  glutInitWindowPosition (<span class="hl-number">100</span>, <span class="hl-number">100</span>); 
-  glutCreateWindow (argv[<span class="hl-number">0</span>]);
-  glClearColor(<span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>);
+  glutInitWindowSize (256, 256); 
+  glutInitWindowPosition (100, 100); 
+  glutCreateWindow (argv[0]);
+  glClearColor(1.0, 1.0, 1.0, 0.0);
   glShadeModel (GL_FLAT);
-  glOrtho (<span class="hl-number">0</span>, <span class="hl-number">1</span>, <span class="hl-number">0</span>, <span class="hl-number">1</span>, -<span class="hl-number">1</span> ,<span class="hl-number">1</span>);
+  glOrtho (0, 1, 0, 1, -1 ,1);
   glutDisplayFunc(display);
   glutMainLoop();
-  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+  return 0;
 }
 
 
-<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
-  <strong class="hl-keyword">int</strong> i;
+void display(void){
+  int i;
   glClear(GL_COLOR_BUFFER_BIT);
-  glColor3f (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glColor3f (0.0, 0.0, 0.0);
   glBegin(GL_POLYGON);
-  glVertex2f(<span class="hl-number">0.25</span>,<span class="hl-number">0.25</span>);
-  glVertex2f(<span class="hl-number">0.75</span>,<span class="hl-number">0.25</span>);
-  glVertex2f(<span class="hl-number">0.75</span>,<span class="hl-number">0.75</span>);
-  glVertex2f(<span class="hl-number">0.25</span>,<span class="hl-number">0.75</span>);
+  glVertex2f(0.25,0.25);
+  glVertex2f(0.75,0.25);
+  glVertex2f(0.75,0.75);
+  glVertex2f(0.25,0.75);
   glEnd();
   glFlush();
 }
-
 </pre>
-      </div></div><br class="figure-break">
+      </div></div><br class="example-break">
     </div>
-  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="introducao.html">&laquo;&nbsp;Introdu&ccedil;&atilde;o</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="desenhando-linhas-pontos.html">Cap&iacute;tulo 2. Desenhando linhas e pontos&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="desenhando-exercicios"></a>1.4. Exerc&iacute;cios</h2></div></div></div>
+      
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+	  <p> Utilizando o programa <a class="ulink" href="exemplos/teste-make.c" target="_top"><code class="filename">teste-make.c</code></a> como refer&ecirc;ncia, implemente um programa <code class="filename">quadrados4.c</code>. Este programa dever&aacute; desenhar numa janela com fundo branco, de dimens&otilde;es 256x256 pixels, e quatro quadrados de cores diferentes arranjados na janela.</p>
+	</li><li class="listitem">
+	  <p> Utilizando o programa <a class="ulink" href="exemplos/teste-make.c" target="_top"><code class="filename">teste-make.c</code></a> como refer&ecirc;ncia, implemente um programa <code class="filename">quadradoscolor.c</code>. Este programa dever&aacute; desenhar numa janela com fundo branco, de dimens&otilde;es 256x256 pixels, um quadrado com as mesmas dimens&otilde;es do quadrado original. Entretanto, cada uma das cores determinadas para os quatro v&eacute;rtices do quadrado dever&atilde;o ser determinadas a partir de valores calculados via modelo HSI. Implemente um temporizador para os valores de H mudarem com o tempo para os v&eacute;rtices, produzindo uma pequena anima&ccedil;&atilde;o. Comente a linha <em class="parameter"><code>glShadeModel(GL_FLAT)</code></em> para que o feito de degrad&ecirc; possa ser visualizado.</p>
+	</li></ol></div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="introducao.html">&laquo;&nbsp;Introdu&ccedil;&atilde;o</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="desenhando-linhas-pontos.html">Cap&iacute;tulo 2. Desenhando linhas e pontos&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>

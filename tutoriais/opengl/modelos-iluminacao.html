@@ -3,131 +3,140 @@
    <title>Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="superficies-espaco.html" title="Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o"><link rel="next" href="submissao-exercicios.html" title="Cap&iacute;tulo 10. Instru&ccedil;&otilde;es para submiss&atilde;o dos exerc&iacute;cios"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
     MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
+    jax: ["input/TeX","output/SVG"],
     tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
     });
-  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="superficies-espaco.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="submissao-exercicios.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="modelos-iluminacao"></a>Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="modelos-iluminacao.html#modelos-iluminacao-descricao">9.1. Descri&ccedil;&atilde;o do programa <code class="filename">iluminacao.c</code></a></span></dt><dt><span class="sect1"><a href="modelos-iluminacao.html#modelos-iluminacao-exercicios">9.2. Exerc&iacute;cios</a></span></dt></dl></div>
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script><script xmlns:fo="http://www.w3.org/1999/XSL/Format">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-41839650-1', 'area8.dca.ufrn.br');
+      ga('send', 'pageview');
+      
+    </script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="superficies-espaco.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="submissao-exercicios.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="modelos-iluminacao"></a>Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="modelos-iluminacao.html#modelos-iluminacao-descricao">9.1. Descri&ccedil;&atilde;o do programa <code class="filename">iluminacao.c</code></a></span></dt><dt><span class="sect1"><a href="modelos-iluminacao.html#modelos-iluminacao-exercicios">9.2. Exerc&iacute;cios</a></span></dt></dl></div>
     
     <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; ilustrar para o usu&aacute;rio os principais conceitos envolvidos na ilumina&ccedil;&atilde;o de uma cena e na defini&ccedil;&atilde;o das propriedades luminosas de um material, geralmente representadas pelos coeficientes de reflex&atilde;o difusa e especular.</p>
     <p>Ser&aacute; mostrado com definir caracter&iacute;sticas b&aacute;sicas de uma fonte de luz, tais como a intensidade da luz gerada, para as componentes de luz ambiente, difusa e especular (no OpenGL, &eacute; poss&iacute;vel separar as contribui&ccedil;&otilde;es). Al&eacute;m disso, ser&aacute; mostrado tamb&eacute;m o uso do canal alfa para gera&ccedil;&atilde;o de transpar&ecirc;ncias e a constru&ccedil;&atilde;o de <span class="foreignphrase"><em class="foreignphrase">spots</em></span> de luz.</p>
     <p>A cena gerada pelo programa utilizado nesta li&ccedil;&atilde;o &eacute; mostrado na <a class="xref" href="modelos-iluminacao.html#fig-modelos-iluminacao-cena" title="Figura 9.1. Esferas sob um plano.">Figura&nbsp;9.1</a>. Consiste de duas esferas (nomeadas A e B) sob um plano. A esfera "A" &eacute; s&oacute;lida, e os valores das suas constantes de reflex&atilde;o difusa e especular pode ser modificados atrav&eacute;s de sele&ccedil;&atilde;o de op&ccedil;&otilde;es em um menu. A esfera "B" &eacute; transl&uacute;cida, e sua translucidez pode ser ajustada atrav&eacute;s do canal alfa.</p>
     <p> At&eacute; o momento, o canal alfa tem sido ignorado (alfa &eacute; o A em RGBA). Os valores do canal alfa variam de 0 a 1, e s&atilde;o especificados com as fun&ccedil;&otilde;es <code class="function">glColor*()</code>. Quando os efeitos de composi&ccedil;&atilde;o (<span class="foreignphrase"><em class="foreignphrase">blending</em></span>) s&atilde;o utilizados, o valor de alfa &eacute; utilizado para combinar a cor do fragmento que est&aacute; sendo processado com a cor j&aacute; presente no <span class="foreignphrase"><em class="foreignphrase">framebuffer</em></span>. De modo geral, a composi&ccedil;&atilde;o de imagens utilando o canal alfa &eacute; dada pela seguinte express&atilde;o:</p>
     <pre class="screen">
-         IT = IP * alfa + (<span class="hl-number">1</span>-alfa)* IFB  
+         IT = IP * alfa + (1-alfa)* IFB  
 </pre>
     <p>onde: IT &eacute; a imagem total resultante, IP &eacute; a imagem que est&aacute; sendo processada, e IFB &eacute; a imagem anteriormente presente no <span class="foreignphrase"><em class="foreignphrase">framebuffer</em></span>.</p>
 
     <div class="figure"><a name="fig-modelos-iluminacao-cena"></a><p class="title"><b>Figura 9.1. Esferas sob um plano.</b></p><div class="figure-contents">
       
-	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/modelos-iluminacao-cena.jpg" src="figs/modelos-iluminacao-cena.jpg"></div></div>
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/modelos-iluminacao-cena.jpg" src="figs/modelos-iluminacao-cena.jpg"></div></div>
     </div></div><br class="figure-break">
     <p> O programa usado para modelar esta cena &eacute; mostrado no <a class="xref" href="modelos-iluminacao.html#example-modelos-iluminacao" title="Exemplo 9.1. programa iluminacao.c">Exemplo&nbsp;9.1</a>. As teclas <span class="keycap"><strong>LEFT</strong></span> e <span class="keycap"><strong>RIGHT</strong></span> servem para rotacionar a posi&ccedil;&atilde;o do observador em torno do eixo y contra e a favor do sentido dos ponteiros do rel&oacute;gio, respectivamente. A dist&acirc;ncia entre o observador e o centro de rota&ccedil;&atilde;o (raio de observa&ccedil;&atilde;o) &eacute; alterado pelas teclas <span class="keycap"><strong>r</strong></span> e <span class="keycap"><strong>R</strong></span>, que aumentam o diminuem o seu valor, respectivamente. As teclas <span class="keycap"><strong>UP</strong></span> e <span class="keycap"><strong>DOWN</strong></span>, controlam a altitude do observador (no eixo y). &Eacute; poss&iacute;vel modificar os graus de reflex&atilde;o difusa e especular da esfera maci&ccedil;a atrav&eacute;s do menu <span class="foreignphrase"><em class="foreignphrase">popup</em></span> dispon&iacute;vel pelo pressionamento do bot&atilde;o direito do mouse. A tecla <span class="keycap"><strong>t</strong></span> habilita ou desabilita o uso de texturas. Para finalizar o programa, basta digitar <span class="keycap"><strong>ESC</strong></span>. </p>
 
     <div class="example"><a name="example-modelos-iluminacao"></a><p class="title"><b>Exemplo 9.1. programa <a class="ulink" href="exemplos/iluminacao.c" target="_top"><code class="filename">iluminacao.c</code></a></b></p><div class="example-contents">
       
-      <pre class="programlisting">#include &lt;stdio.h&gt;
-<span class="hl-directive" style="color: maroon">#include &lt;stdlib.h&gt;</span>
-<span class="hl-directive" style="color: maroon">#include &lt;math.h&gt;</span>
-<span class="hl-directive" style="color: maroon">#include &lt;GL/glut.h&gt;</span>
-<span class="hl-directive" style="color: maroon">#include "image.h"</span>
+      <pre class="programlisting"> #include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;GL/glut.h&gt;
+#include "image.h"
 
-<span class="hl-directive" style="color: maroon">#define PI 3.1415</span>
+#define PI 3.1415
 
-GLint WIDTH =<span class="hl-number">320</span>;
-GLint HEIGHT=<span class="hl-number">240</span>;
+GLint WIDTH =320;
+GLint HEIGHT=240;
 
-GLint fatias=<span class="hl-number">30</span>;
-GLint pilhas=<span class="hl-number">30</span>;
-GLint raioEsfera=<span class="hl-number">1.5</span>;
+GLint fatias=30;
+GLint pilhas=30;
+GLint raioEsfera=1.5;
 
-GLfloat obs[<span class="hl-number">3</span>]={<span class="hl-number">0.0</span>,<span class="hl-number">7.0</span>,<span class="hl-number">0.0</span>};
-GLfloat olho[<span class="hl-number">3</span>]={<span class="hl-number">0.0</span>,<span class="hl-number">3.0</span>,<span class="hl-number">0.0</span>};
+GLfloat obs[3]={0.0,7.0,0.0};
+GLfloat olho[3]={0.0,3.0,0.0};
 
-GLfloat plano_difusa[]    = { <span class="hl-number">0.5</span>, <span class="hl-number">0.5</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span> };
-GLfloat plano_especular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-GLfloat plano_brilho[]    = { <span class="hl-number">50.0</span> };
+GLfloat plano_difusa[]    = { 0.5, 0.5, 0.0, 1.0 };
+GLfloat plano_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat plano_brilho[]    = { 50.0 };
 
-GLfloat mat_a_difusa[]    = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-GLfloat mat_a_especular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-GLfloat mat_a_brilho[]    = { <span class="hl-number">50.0</span> };
+GLfloat mat_a_difusa[]    = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_brilho[]    = { 50.0 };
 
-GLfloat mat_b_difusa[]    = { <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">0.5</span> };
-GLfloat mat_b_especular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.5</span> };
-GLfloat mat_b_brilho[]    = { <span class="hl-number">50.0</span> };
+GLfloat mat_b_difusa[]    = { 0.7, 0.7, 0.7, 0.5 };
+GLfloat mat_b_especular[] = { 1.0, 1.0, 1.0, 0.5 };
+GLfloat mat_b_brilho[]    = { 50.0 };
 
-GLfloat posicao_luz0[]    = { <span class="hl-number">0.0</span>, <span class="hl-number">10.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>};
-GLfloat cor_luz0[]        = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>};
-GLfloat cor_luz0_amb[]    = { <span class="hl-number">0.3</span>, <span class="hl-number">0.3</span>, <span class="hl-number">0.3</span>, <span class="hl-number">1.0</span>};
+GLfloat posicao_luz0[]    = { 0.0, 10.0, 0.0, 1.0};
+GLfloat cor_luz0[]        = { 1.0, 1.0, 1.0, 1.0};
+GLfloat cor_luz0_amb[]    = { 0.3, 0.3, 0.3, 1.0};
 
-GLfloat posicao_luz1[]    = { <span class="hl-number">0.0</span>, <span class="hl-number">10.0</span>, <span class="hl-number">5.0</span>, <span class="hl-number">1.0</span>};
-GLfloat cor_luz1[]        = { <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>};
-GLfloat direcao_luz1[]    = { <span class="hl-number">0.0</span>, -<span class="hl-number">10.0</span>, -<span class="hl-number">5.0</span>, <span class="hl-number">1.0</span>};
-GLint   spot_luz1         = <span class="hl-number">30</span>;
+GLfloat posicao_luz1[]    = { 0.0, 10.0, 5.0, 1.0};
+GLfloat cor_luz1[]        = { 0.0, 0.0, 1.0, 1.0};
+GLfloat direcao_luz1[]    = { 0.0, -10.0, -5.0, 1.0};
+GLint   spot_luz1         = 30;
 
-GLfloat sem_cor[]         = { <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>};
+GLfloat sem_cor[]         = { 0.0, 0.0, 0.0, 1.0};
   
-GLint gouraud=<span class="hl-number">0</span>;
+GLint gouraud=0;
 
-GLfloat tetaxz=<span class="hl-number">0</span>;
-GLfloat raioxz=<span class="hl-number">6</span>;
+GLfloat tetaxz=0;
+GLfloat raioxz=6;
 
-<strong class="hl-keyword">void</strong> reshape(<strong class="hl-keyword">int</strong> width, <strong class="hl-keyword">int</strong> height){
+void reshape(int width, int height){
   WIDTH=width;
   HEIGHT=height;
-  glViewport(<span class="hl-number">0</span>,<span class="hl-number">0</span>,(GLint)width,(GLint)height);
+  glViewport(0,0,(GLint)width,(GLint)height);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(<span class="hl-number">70.0</span>,width/(<strong class="hl-keyword">float</strong>)height,<span class="hl-number">0.1</span>,<span class="hl-number">30.0</span>);
+  gluPerspective(70.0,width/(float)height,0.1,30.0);
   glMatrixMode(GL_MODELVIEW);
 }
 
-<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
+void display(void){
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_LIGHTING);
 
   glDepthMask(GL_TRUE);
-  glClearColor(<span class="hl-number">1.0</span>,<span class="hl-number">1.0</span>,<span class="hl-number">1.0</span>,<span class="hl-number">1.0</span>);
+  glClearColor(1.0,1.0,1.0,1.0);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
-  <strong class="hl-keyword">if</strong>(gouraud){
+  if(gouraud){
     glShadeModel(GL_SMOOTH);
   }
-  <strong class="hl-keyword">else</strong>{
+  else{
     glShadeModel(GL_FLAT);
   }    
   
   glPushMatrix();
 
-  <em class="hl-comment" style="color: silver">/* calcula a posicao do observador */</em>
-  obs[<span class="hl-number">0</span>]=raioxz*cos(<span class="hl-number">2</span>*PI*tetaxz/<span class="hl-number">360</span>);
-  obs[<span class="hl-number">2</span>]=raioxz*sin(<span class="hl-number">2</span>*PI*tetaxz/<span class="hl-number">360</span>);
-  gluLookAt(obs[<span class="hl-number">0</span>],obs[<span class="hl-number">1</span>],obs[<span class="hl-number">2</span>],olho[<span class="hl-number">0</span>],olho[<span class="hl-number">1</span>],olho[<span class="hl-number">2</span>],<span class="hl-number">0.0</span>,<span class="hl-number">1.0</span>,<span class="hl-number">0.0</span>);
+  /* calcula a posicao do observador */
+  obs[0]=raioxz*cos(2*PI*tetaxz/360);
+  obs[2]=raioxz*sin(2*PI*tetaxz/360);
+  gluLookAt(obs[0],obs[1],obs[2],olho[0],olho[1],olho[2],0.0,1.0,0.0);
   
-  <em class="hl-comment" style="color: silver">/* propriedades do material do plano */</em>
+  /* propriedades do material do plano */
   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, plano_difusa);
   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, plano_especular);
   glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, plano_brilho);
   
-  <em class="hl-comment" style="color: silver">/* desenha o plano */</em>
-  glNormal3f(<span class="hl-number">0</span>,<span class="hl-number">1</span>,<span class="hl-number">0</span>); 
+  /* desenha o plano */
+  glNormal3f(0,1,0); 
   glBegin(GL_QUADS);
-  glVertex3f(-<span class="hl-number">10</span>,<span class="hl-number">0</span>,<span class="hl-number">10</span>);
-  glVertex3f(<span class="hl-number">10</span>,<span class="hl-number">0</span>,<span class="hl-number">10</span>);
-  glVertex3f(<span class="hl-number">10</span>,<span class="hl-number">0</span>,-<span class="hl-number">10</span>);
-  glVertex3f(-<span class="hl-number">10</span>,<span class="hl-number">0</span>,-<span class="hl-number">10</span>);
+  glVertex3f(-10,0,10);
+  glVertex3f(10,0,10);
+  glVertex3f(10,0,-10);
+  glVertex3f(-10,0,-10);
   glEnd();
 
   glPushMatrix();
-  glTranslatef(posicao_luz0[<span class="hl-number">0</span>],posicao_luz0[<span class="hl-number">1</span>],posicao_luz0[<span class="hl-number">2</span>]);
-  glColor3f(<span class="hl-number">1</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);
+  glTranslatef(posicao_luz0[0],posicao_luz0[1],posicao_luz0[2]);
+  glColor3f(1,0,0);
   glMaterialfv(GL_FRONT, GL_EMISSION, cor_luz0);
-  glutSolidSphere(<span class="hl-number">0.3</span>,<span class="hl-number">5</span>,<span class="hl-number">5</span>);
+  glutSolidSphere(0.3,5,5);
   glPopMatrix();
 
   glPushMatrix();
-  glTranslatef(posicao_luz1[<span class="hl-number">0</span>],posicao_luz1[<span class="hl-number">1</span>],posicao_luz1[<span class="hl-number">2</span>]);
+  glTranslatef(posicao_luz1[0],posicao_luz1[1],posicao_luz1[2]);
   glMaterialfv(GL_FRONT, GL_EMISSION, cor_luz1);
-  glutSolidSphere(<span class="hl-number">0.3</span>,<span class="hl-number">5</span>,<span class="hl-number">5</span>);
+  glutSolidSphere(0.3,5,5);
   glPopMatrix();
 
   glMaterialfv(GL_FRONT, GL_EMISSION, sem_cor);
@@ -137,7 +146,7 @@ GLfloat raioxz=<span class="hl-number">6</span>;
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_a_brilho);
 
   glPushMatrix();
-  glTranslatef(<span class="hl-number">0.0</span>,<span class="hl-number">3.0</span>,-<span class="hl-number">3.0</span>);
+  glTranslatef(0.0,3.0,-3.0);
   glutSolidSphere(raioEsfera,fatias,pilhas);
   glPopMatrix();
 
@@ -145,7 +154,7 @@ GLfloat raioxz=<span class="hl-number">6</span>;
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_b_especular);
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_b_brilho);
   
-  glTranslatef(<span class="hl-number">0.0</span>,+<span class="hl-number">3.0</span>,+<span class="hl-number">3.0</span>);
+  glTranslatef(0.0,+3.0,+3.0);
 
   glutSolidSphere(raioEsfera,fatias,pilhas);
 
@@ -153,52 +162,52 @@ GLfloat raioxz=<span class="hl-number">6</span>;
   glutSwapBuffers();
 }
 
-<strong class="hl-keyword">void</strong> special(<strong class="hl-keyword">int</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
-  <strong class="hl-keyword">switch</strong> (key) {
-  <strong class="hl-keyword">case</strong> GLUT_KEY_UP:
-    obs[<span class="hl-number">1</span>]=obs[<span class="hl-number">1</span>]+<span class="hl-number">1</span>;
+void special(int key, int x, int y){
+  switch (key) {
+  case GLUT_KEY_UP:
+    obs[1]=obs[1]+1;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> GLUT_KEY_DOWN:
-    obs[<span class="hl-number">1</span>] =obs[<span class="hl-number">1</span>]-<span class="hl-number">1</span>;
+    break;
+  case GLUT_KEY_DOWN:
+    obs[1] =obs[1]-1;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> GLUT_KEY_LEFT:
-    tetaxz=tetaxz+<span class="hl-number">2</span>;
+    break;
+  case GLUT_KEY_LEFT:
+    tetaxz=tetaxz+2;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> GLUT_KEY_RIGHT:
-    tetaxz=tetaxz-<span class="hl-number">2</span>;
+    break;
+  case GLUT_KEY_RIGHT:
+    tetaxz=tetaxz-2;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
+    break;
   }
 }
 
-<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
-  <strong class="hl-keyword">switch</strong> (key) {
-  <strong class="hl-keyword">case</strong> <span class="hl-number">27</span>:
-    exit(<span class="hl-number">0</span>);
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'g'</em></strong>:
+void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+  case 27:
+    exit(0);
+    break;
+  case 'g':
     gouraud = !gouraud;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'r'</em></strong>:
-    raioxz=raioxz+<span class="hl-number">1</span>;
+    break;
+  case 'r':
+    raioxz=raioxz+1;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'R'</em></strong>:
-    <strong class="hl-keyword">if</strong>(raioxz&gt;<span class="hl-number">1</span>){
-      raioxz=raioxz-<span class="hl-number">1</span>;
+    break;
+  case 'R':
+    if(raioxz&gt;1){
+      raioxz=raioxz-1;
       glutPostRedisplay();
     }
-    <strong class="hl-keyword">break</strong>;
+    break;
   }
 }
 
 
-<strong class="hl-keyword">void</strong> init(){
-  gouraud=<span class="hl-number">1</span>;
+void init(){
+  gouraud=1;
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -222,40 +231,40 @@ GLfloat raioxz=<span class="hl-number">6</span>;
   glEnable(GL_NORMALIZE);
 }
 
-<strong class="hl-keyword">void</strong> menu(<strong class="hl-keyword">int</strong> value){
-  <strong class="hl-keyword">switch</strong> (value) {
-  <strong class="hl-keyword">case</strong> <span class="hl-number">0</span>:
-    mat_a_especular[<span class="hl-number">0</span>]=mat_a_especular[<span class="hl-number">1</span>]=mat_a_especular[<span class="hl-number">2</span>]=<span class="hl-number">0.0</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">1</span>: 
-    mat_a_especular[<span class="hl-number">0</span>]=mat_a_especular[<span class="hl-number">1</span>]=mat_a_especular[<span class="hl-number">2</span>]=<span class="hl-number">0.5</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">2</span>:
-    mat_a_especular[<span class="hl-number">0</span>]=mat_a_especular[<span class="hl-number">1</span>]=mat_a_especular[<span class="hl-number">2</span>]=<span class="hl-number">1.0</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">3</span>:
-    mat_a_difusa[<span class="hl-number">0</span>]=mat_a_difusa[<span class="hl-number">1</span>]=mat_a_difusa[<span class="hl-number">2</span>]=<span class="hl-number">0.0</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">4</span>: 
-    mat_a_difusa[<span class="hl-number">0</span>]=mat_a_difusa[<span class="hl-number">1</span>]=mat_a_difusa[<span class="hl-number">2</span>]=<span class="hl-number">0.5</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">5</span>:
-    mat_a_difusa[<span class="hl-number">0</span>]=mat_a_difusa[<span class="hl-number">1</span>]=mat_a_difusa[<span class="hl-number">2</span>]=<span class="hl-number">1.0</span>;
-    <strong class="hl-keyword">break</strong>;
+void menu(int value){
+  switch (value) {
+  case 0:
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=0.0;
+    break;
+  case 1: 
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=0.5;
+    break;
+  case 2:
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=1.0;
+    break;
+  case 3:
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=0.0;
+    break;
+  case 4: 
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=0.5;
+    break;
+  case 5:
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=1.0;
+    break;
   }
   glutPostRedisplay();
 }
 
 
-<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc,<strong class="hl-keyword">char</strong> **argv){
-  glutInitWindowPosition(<span class="hl-number">0</span>,<span class="hl-number">0</span>);
+int main(int argc,char **argv){
+  glutInitWindowPosition(0,0);
   glutInitWindowSize(WIDTH,HEIGHT);
   glutInit(&amp;argc,argv);
   glutInitDisplayMode(GLUT_RGB|GLUT_DEPTH|GLUT_DOUBLE);
 
-  <strong class="hl-keyword">if</strong>(!glutCreateWindow(<strong class="hl-string"><em style="color:red">"Modelos de iluminacao"</em></strong>)) {
-    fprintf(stderr,<strong class="hl-string"><em style="color:red">"Error opening a window.\n"</em></strong>);
-    exit(-<span class="hl-number">1</span>);
+  if(!glutCreateWindow("Modelos de iluminacao")) {
+    fprintf(stderr,"Error opening a window.\n");
+    exit(-1);
   }
 
   init();
@@ -266,20 +275,19 @@ GLfloat raioxz=<span class="hl-number">6</span>;
   glutReshapeFunc(reshape);
 
   glutCreateMenu(menu);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-sem spec"</em></strong>, <span class="hl-number">0</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-spec m&#65533;dia"</em></strong>, <span class="hl-number">1</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-spec alta"</em></strong>, <span class="hl-number">2</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-sem difusa"</em></strong>, <span class="hl-number">3</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-difusa m&#65533;dia"</em></strong>, <span class="hl-number">4</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-difusa alta"</em></strong>, <span class="hl-number">5</span>);
+  glutAddMenuEntry("-sem spec", 0);
+  glutAddMenuEntry("-spec m&#65533;dia", 1);
+  glutAddMenuEntry("-spec alta", 2);
+  glutAddMenuEntry("-sem difusa", 3);
+  glutAddMenuEntry("-difusa m&#65533;dia", 4);
+  glutAddMenuEntry("-difusa alta", 5);
   glutAttachMenu(GLUT_RIGHT_BUTTON);
 
   glutMainLoop();
-  <strong class="hl-keyword">return</strong>(<span class="hl-number">0</span>);
+  return(0);
 }
 
-</pre>
-
+	</pre>
     </div></div><br class="example-break">
 
     <p>Para compilar e executar o programa <a class="ulink" href="exemplos/iluminacao.c" target="_top"><code class="filename">iluminacao.c</code></a>, salve-o juntamente com o arquivo <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
@@ -292,96 +300,88 @@ GLfloat raioxz=<span class="hl-number">6</span>;
       
       
       <div class="informalexample">
-	<pre class="programlisting">GLint fatias=<span class="hl-number">30</span>;
-GLint pilhas=<span class="hl-number">30</span>;
-GLint raioEsfera=<span class="hl-number">1.5</span>;</pre>
-
+	<pre class="programlisting">GLint fatias=30;
+GLint pilhas=30;
+GLint raioEsfera=1.5;</pre>
       </div>
       <p>Define o n&uacute;mero de fatias (longitude), o n&uacute;mero de pilhas (latitude) e o raio das esferas da cena.</p>
       
       <div class="informalexample">
-	<pre class="programlisting">GLfloat plano_difusa[]    = { <span class="hl-number">0.5</span>, <span class="hl-number">0.5</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span> };
-GLfloat plano_especular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-GLfloat plano_brilho[]    = { <span class="hl-number">50.0</span> };
+	<pre class="programlisting">GLfloat plano_difusa[]    = { 0.5, 0.5, 0.0, 1.0 };
+GLfloat plano_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat plano_brilho[]    = { 50.0 };
 
-GLfloat mat_a_difusa[]    = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-GLfloat mat_a_especular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-GLfloat mat_a_brilho[]    = { <span class="hl-number">50.0</span> };
+GLfloat mat_a_difusa[]    = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_brilho[]    = { 50.0 };
 
-GLfloat mat_b_difusa[]    = { <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">0.5</span> };
-GLfloat mat_b_especular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">0.5</span> };
-GLfloat mat_b_brilho[]    = { <span class="hl-number">50.0</span> };</pre>
-
+GLfloat mat_b_difusa[]    = { 0.7, 0.7, 0.7, 0.5 };
+GLfloat mat_b_especular[] = { 1.0, 1.0, 1.0, 0.5 };
+GLfloat mat_b_brilho[]    = { 50.0 };</pre>
       </div>
       <p>Define os coeficientes de reflex&atilde;o difusa (<code class="varname">*_difusa</code>) e especular (<code class="varname">*_especular</code>) para os tr&ecirc;s objetos da cena. As componentes destes vetores s&atilde;o do tipo R,G,B e A(lfa) e ser&atilde;o utilizados para as compor cores do plano, da esfera A e da esfera B. Observe que a esfera B possui valor de alfa igual a 0.5, proporcionando assim a sua apar&ecirc;ncia transl&uacute;cida.</p>
       <p>O brilho do material, que pode assumir valores entre 1 e 128, &eacute; um expoente que modela a fun&ccedil;&atilde;o de distribui&ccedil;&atilde;o espacial da componente de luz refletida especularmente. &Agrave; medida em que o valor do brilho aumenta, diminui o espalhamento da luz refletida.</p>
 
       <div class="informalexample">
-	<pre class="programlisting">GLfloat posicao_luz0[]    = { <span class="hl-number">0.0</span>, <span class="hl-number">10.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>};
-GLfloat cor_luz0[]        = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>};
-GLfloat cor_luz0_amb[]    = { <span class="hl-number">0.3</span>, <span class="hl-number">0.3</span>, <span class="hl-number">0.3</span>, <span class="hl-number">1.0</span>};</pre>
-
+	<pre class="programlisting">GLfloat posicao_luz0[]    = { 0.0, 10.0, 0.0, 1.0};
+GLfloat cor_luz0[]        = { 1.0, 1.0, 1.0, 1.0};
+GLfloat cor_luz0_amb[]    = { 0.3, 0.3, 0.3, 1.0};</pre>
       </div>
       <p>Indica a posi&ccedil;&atilde;o (posicao_luz0) e as componentes de luz para reflex&atilde;o difusa e especular (<code class="varname">cor_luz0</code>), e a componente de luz para reflex&atilde;o ambiente (cor_luz0_amb). </p>
 
       <div class="informalexample">
-	<pre class="programlisting">GLfloat posicao_luz1[]    = { <span class="hl-number">0.0</span>, <span class="hl-number">10.0</span>, <span class="hl-number">5.0</span>, <span class="hl-number">1.0</span>};
-GLfloat cor_luz1[]        = { <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>};
-GLfloat direcao_luz1[]    = { <span class="hl-number">0.0</span>, -<span class="hl-number">10.0</span>, -<span class="hl-number">5.0</span>, <span class="hl-number">1.0</span>};
-GLint   spot_luz1         = <span class="hl-number">30</span>;</pre>
-
+	<pre class="programlisting">GLfloat posicao_luz1[]    = { 0.0, 10.0, 5.0, 1.0};
+GLfloat cor_luz1[]        = { 0.0, 0.0, 1.0, 1.0};
+GLfloat direcao_luz1[]    = { 0.0, -10.0, -5.0, 1.0};
+GLint   spot_luz1         = 30;</pre>
       </div>
       <p>&Eacute; apresentado aqui o exemplo de uma luz tipo spot. &Eacute; necess&aacute;rio que seja definidos, al&eacute;m da cor da luz e da posi&ccedil;&atilde;o do spot, a sua orienta&ccedil;&atilde;o e o seu &acirc;ngulo de corte, mostrado na <a class="xref" href="modelos-iluminacao.html#modelos-iluminacao-spot" title="Figura 9.2. Spot de luz">Figura&nbsp;9.2</a>. Para este exemplo, o &acirc;ngulo de corte &eacute; igual a 30 graus.</p>
       <div class="figure"><a name="modelos-iluminacao-spot"></a><p class="title"><b>Figura 9.2. Spot de luz</b></p><div class="figure-contents">
 	
-	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/modelos-iluminacao-spot.jpg" src="figs/modelos-iluminacao-spot.jpg"></div></div>
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/modelos-iluminacao-spot.jpg" src="figs/modelos-iluminacao-spot.jpg"></div></div>
       </div></div><br class="figure-break">
 
       <div class="informalexample">
-	<pre class="programlisting"><strong class="hl-keyword">if</strong>(gouraud){
+	<pre class="programlisting">if(gouraud){
     glShadeModel(GL_SMOOTH);
   }
-  <strong class="hl-keyword">else</strong>{
+  else{
     glShadeModel(GL_FLAT);
   }</pre>
-
       </div>
       <p>Atrav&eacute;s da vari&aacute;vel <code class="varname">gouraud</code> a fun&ccedil;&atilde;o <code class="function">display</code> decide se o modelo de sombreamento (<span class="foreignphrase"><em class="foreignphrase">shading</em></span>) para os objetos ser&aacute; o de Gouraud (GL_SMOOTH) ou <span class="foreignphrase"><em class="foreignphrase">flat shading</em></span>, tornando os objetos com apar&ecirc;ncia faceteada.</p>
 
       <div class="informalexample">
-	<pre class="programlisting"><em class="hl-comment" style="color: silver">/* propriedades do material do plano */</em>
+	<pre class="programlisting">/* propriedades do material do plano */
   glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, plano_difusa);
   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, plano_especular);
   glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, plano_brilho);
   
-  <em class="hl-comment" style="color: silver">/* desenha o plano */</em>
-  glNormal3f(<span class="hl-number">0</span>,<span class="hl-number">1</span>,<span class="hl-number">0</span>); 
+  /* desenha o plano */
+  glNormal3f(0,1,0); 
   glBegin(GL_QUADS);
-  glVertex3f(-<span class="hl-number">10</span>,<span class="hl-number">0</span>,<span class="hl-number">10</span>);
-  glVertex3f(<span class="hl-number">10</span>,<span class="hl-number">0</span>,<span class="hl-number">10</span>);
-  glVertex3f(<span class="hl-number">10</span>,<span class="hl-number">0</span>,-<span class="hl-number">10</span>);
-  glVertex3f(-<span class="hl-number">10</span>,<span class="hl-number">0</span>,-<span class="hl-number">10</span>);
+  glVertex3f(-10,0,10);
+  glVertex3f(10,0,10);
+  glVertex3f(10,0,-10);
+  glVertex3f(-10,0,-10);
   glEnd();</pre>
-
       </div>
       <p>A fun&ccedil;&atilde;o <code class="function">glMaterialfv()</code> define as propriedades de reflex&atilde;o difusa e especular, e brilho do material que ser&aacute; utilizado para compor o objeto imediatamente desenhado, neste caso um plano, via GL_QUADS. Observer a chamada &agrave; fun&ccedil;&atilde;o <code class="function">glNormal3f()</code> antes de o plano ser desenhado. Isto &eacute; necess&aacute;rio porque, por <span class="foreignphrase"><em class="foreignphrase">default</em></span>, o vetor normal encontra-se na dire&ccedil;&atilde;o (x,y,z)=(0,0,1) e para que a normal &agrave; superf&iacute;cie encontra-se orientada com eixo y, ou seja, na dire&ccedil;&atilde;o (x,y,z)=(0,1,0).</p>
       <p>Um procedimento semelhante a esse &eacute; utilizado para definir as caracter&iacute;sticas do material das esferas presentes na cena.</p>
       
       <div class="informalexample">
 	<pre class="programlisting">glPushMatrix();
-  glTranslatef(posicao_luz0[<span class="hl-number">0</span>],posicao_luz0[<span class="hl-number">1</span>],posicao_luz0[<span class="hl-number">2</span>]);
-  glColor3f(<span class="hl-number">1</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);
+  glTranslatef(posicao_luz0[0],posicao_luz0[1],posicao_luz0[2]);
+  glColor3f(1,0,0);
   glMaterialfv(GL_FRONT, GL_EMISSION, cor_luz0);
-  glutSolidSphere(<span class="hl-number">0.3</span>,<span class="hl-number">5</span>,<span class="hl-number">5</span>);
+  glutSolidSphere(0.3,5,5);
   glPopMatrix();</pre>
-
       </div>
       <p>Para facilitar a identifica&ccedil;&atilde;o das fontes de luz, s&atilde;o desenhadas duas esferas nas posi&ccedil;&otilde;es destas fontes. Na chamada &agrave; fun&ccedil;&atilde;o <code class="function">glMaterialfv()</code>, o par&acirc;metro <em class="parameter"><code>GL_EMISSION</code></em> define a intensidade luminosa emitida pelo material como sendo a pr&oacute;pria cor da fonte de luz, dando a apar&ecirc;ncia de que a esfera brilha, assim como brilharia uma l&acirc;mpada.</p>
       
       <div class="informalexample">
 	<pre class="programlisting">glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);</pre>
-
       </div>
       <p>Habilita a composi&ccedil;&atilde;o (<span class="foreignphrase"><em class="foreignphrase">blending</em></span>) de imagens dos valores RGBA correntes com aqueles presentes no <span class="foreignphrase"><em class="foreignphrase">framebuffer</em></span>. A fun&ccedil;&atilde;o <code class="function">glBlendFunc()</code> define os pesos para a imagem que est&aacute; sendo processada (IP) e a presente no <span class="foreignphrase"><em class="foreignphrase">framebuffer</em></span>. Neste caso, os pesos s&atilde;o o pr&oacute;prio valor do canal alfa (<em class="parameter"><code>GL_SRC_ALPHA</code></em>) e 1-alfa (<em class="parameter"><code>GL_ONE_MINUS_SRC_ALPHA</code></em>).</p>
       
@@ -390,7 +390,6 @@ GLint   spot_luz1         = <span class="hl-number">30</span>;</pre>
   glLightfv(GL_LIGHT0, GL_SPECULAR, cor_luz0);
   glLightfv(GL_LIGHT0, GL_AMBIENT, cor_luz0_amb);
   glLightfv(GL_LIGHT0, GL_POSITION, posicao_luz0);</pre>
-
       </div>
       <p>Define a posi&ccedil;&atilde;o e as componentes de cor da fonte de luz GL_LIGHT0.</p>
       
@@ -400,48 +399,45 @@ GLint   spot_luz1         = <span class="hl-number">30</span>;</pre>
   glLightf (GL_LIGHT1, GL_SPOT_CUTOFF, spot_luz1);
   glLightfv(GL_LIGHT1, GL_POSITION, posicao_luz1);
   glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direcao_luz1);</pre>
-
       </div>
       <p>Define a posi&ccedil;&atilde;o, orienta&ccedil;&atilde;o, &acirc;ngulo de corte e as componentes de cor para a fonte de luz GL_LIGHT1.</p>
 
       <div class="informalexample">
-	<pre class="programlisting"><strong class="hl-keyword">void</strong> menu(<strong class="hl-keyword">int</strong> value){
-  <strong class="hl-keyword">switch</strong> (value) {
-  <strong class="hl-keyword">case</strong> <span class="hl-number">0</span>:
-    mat_a_especular[<span class="hl-number">0</span>]=mat_a_especular[<span class="hl-number">1</span>]=mat_a_especular[<span class="hl-number">2</span>]=<span class="hl-number">0.0</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">1</span>: 
-    mat_a_especular[<span class="hl-number">0</span>]=mat_a_especular[<span class="hl-number">1</span>]=mat_a_especular[<span class="hl-number">2</span>]=<span class="hl-number">0.5</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">2</span>:
-    mat_a_especular[<span class="hl-number">0</span>]=mat_a_especular[<span class="hl-number">1</span>]=mat_a_especular[<span class="hl-number">2</span>]=<span class="hl-number">1.0</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">3</span>:
-    mat_a_difusa[<span class="hl-number">0</span>]=mat_a_difusa[<span class="hl-number">1</span>]=mat_a_difusa[<span class="hl-number">2</span>]=<span class="hl-number">0.0</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">4</span>: 
-    mat_a_difusa[<span class="hl-number">0</span>]=mat_a_difusa[<span class="hl-number">1</span>]=mat_a_difusa[<span class="hl-number">2</span>]=<span class="hl-number">0.5</span>;
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">5</span>:
-    mat_a_difusa[<span class="hl-number">0</span>]=mat_a_difusa[<span class="hl-number">1</span>]=mat_a_difusa[<span class="hl-number">2</span>]=<span class="hl-number">1.0</span>;
-    <strong class="hl-keyword">break</strong>;
+	<pre class="programlisting">void menu(int value){
+  switch (value) {
+  case 0:
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=0.0;
+    break;
+  case 1: 
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=0.5;
+    break;
+  case 2:
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=1.0;
+    break;
+  case 3:
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=0.0;
+    break;
+  case 4: 
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=0.5;
+    break;
+  case 5:
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=1.0;
+    break;
   }
   glutPostRedisplay();
 }</pre>
-
       </div>
       <p>A fun&ccedil;&atilde;o menu &eacute; ativada quando o bot&atilde;o direito do mouse &eacute; pressionado. De acordo com o valor da vari&aacute;vel <code class="varname">value</code>, determinadas propriedades do material que comp&otilde;e a esfera A s&atilde;o modificadas.</p>
 
       <div class="informalexample">
 	<pre class="programlisting">glutCreateMenu(menu);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-sem spec"</em></strong>, <span class="hl-number">0</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-spec m&eacute;dia"</em></strong>, <span class="hl-number">1</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-spec alta"</em></strong>, <span class="hl-number">2</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-sem difusa"</em></strong>, <span class="hl-number">3</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-difusa m&eacute;dia"</em></strong>, <span class="hl-number">4</span>);
-  glutAddMenuEntry(<strong class="hl-string"><em style="color:red">"-difusa alta"</em></strong>, <span class="hl-number">5</span>);
+  glutAddMenuEntry("-sem spec", 0);
+  glutAddMenuEntry("-spec m&eacute;dia", 1);
+  glutAddMenuEntry("-spec alta", 2);
+  glutAddMenuEntry("-sem difusa", 3);
+  glutAddMenuEntry("-difusa m&eacute;dia", 4);
+  glutAddMenuEntry("-difusa alta", 5);
   glutAttachMenu(GLUT_RIGHT_BUTTON);</pre>
-
       </div>
       <p>Aqui, a fun&ccedil;&atilde;o <code class="function">glutCreateMenu()</code>, em conjunto com a fun&ccedil;&atilde;o <code class="function">glutAddMenuEntry()</code>, habilita um menu <span class="foreignphrase"><em class="foreignphrase">popup</em></span> com seis op&ccedil;&otilde;es que permitir&atilde;o ativar entradas presentes na fun&ccedil;&atilde;o <code class="function">menu</code>, de acordo com os valores passados nos segundos argumentos das fun&ccedil;&otilde;es <code class="function">glutAddMenuEntry()</code>. Finalmente, a fun&ccedil;&atilde;o <code class="function">glutAttachMenu()</code> associa o aparecimento deste menu ao pressionamento do bot&atilde;o direito do mouse.</p>
     </div>
@@ -453,4 +449,4 @@ GLint   spot_luz1         = <span class="hl-number">30</span>;</pre>
 	</li></ol></div>
     </div>
     
-  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="superficies-espaco.html">&laquo;&nbsp;Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="submissao-exercicios.html">Cap&iacute;tulo 10. Instru&ccedil;&otilde;es para submiss&atilde;o dos exerc&iacute;cios&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="superficies-espaco.html">&laquo;&nbsp;Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="submissao-exercicios.html">Cap&iacute;tulo 10. Instru&ccedil;&otilde;es para submiss&atilde;o dos exerc&iacute;cios&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>

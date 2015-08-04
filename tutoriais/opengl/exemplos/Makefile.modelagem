@@ -7,7 +7,7 @@ GLU_LIB = libGLU.a
 GLUT_LIB = libglut.a
 CC = gcc
 CFLAGS = -I/usr/X11R6/include
-XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 -lXext -lXmu -lXt -lXi -lSM -lICE
+XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 
 
 ##### MACROS #####
 
