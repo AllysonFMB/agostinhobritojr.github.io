@@ -96,7 +96,7 @@
 # digite: make programa.c
 #
 
-CC = gcc
+CC = g++
 CFLAGS = -O2
 XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 
 
@@ -112,7 +112,7 @@ LIB_DEP = $(LIBDIR)/$(GL_LIB)
 ##### RULES #####
 
 .SUFFIXES:
-.SUFFIXES: .c
+.SUFFIXES: .c .cpp
 
 .c: $(LIB_DEP)
 	$(CC) -I$(INCDIR) $(CFLAGS) $&lt; -o $@ $(GL_LIBS)
@@ -140,9 +140,14 @@ clean:
 
 #include &lt;GL/glut.h&gt;
 #include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
 
 void display(void);
+void timer(int);
 void keyboard(unsigned char key, int x, int y);
+
+/* cores do quadrado */
+GLfloat r=1.0, g=0.5, b=0.0;
 
 int main(int argc, char** argv){
   glutInit(&amp;argc, argv);
@@ -150,6 +155,8 @@ int main(int argc, char** argv){
   glutInitWindowSize (256, 256); 
   glutInitWindowPosition (100, 100); 
   glutCreateWindow (argv[0]);
+  // inicia um temporizador. ap&oacute;s 33ms ativa a funcao timer
+  glutTimerFunc(33, timer, 1);
   glClearColor(1.0, 1.0, 1.0, 0.0);
   glShadeModel (GL_FLAT);
   glOrtho (0, 1, 0, 1, -1 ,1);
@@ -158,11 +165,21 @@ int main(int argc, char** argv){
   return 0;
 }
 
+void timer(int value){
+  r=r+0.01;
+  g=g+0.01;
+  b=b+0.01;
+  if(r&gt;1) r=0;
+  if(g&gt;1) g=0;
+  if(b&gt;1) b=0;
+  glutPostRedisplay();
+  glutTimerFunc(33, timer, 1);
+}
 
 void display(void){
   int i;
   glClear(GL_COLOR_BUFFER_BIT);
-  glColor3f (0.0, 0.0, 0.0);
+  glColor3f (r, g, b);
   glBegin(GL_POLYGON);
   glVertex2f(0.25,0.25);
   glVertex2f(0.75,0.25);
