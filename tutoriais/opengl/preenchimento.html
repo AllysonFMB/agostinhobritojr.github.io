@@ -20,7 +20,12 @@
     <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; aprender fun&ccedil;&otilde;es b&aacute;sicas do OpenGL que tratam do preenchimento de regi&otilde;es. Ser&aacute; mostrado um programa de desenho de pol&iacute;gonos com preenchimento interno com cores s&oacute;lidas, padr&otilde;es e combina&ccedil;&otilde;es de cores. O programa analisado, <a class="ulink" href="exemplos/preenchimento.c" target="_top"><code class="filename">preenchimento.c</code></a>, &eacute; mostrado no <a class="xref" href="preenchimento.html#example-preenchimento" title="Exemplo 3.1. programa preenchimento.c">Exemplo&nbsp;3.1</a>.</p>
     <div class="example"><a name="example-preenchimento"></a><p class="title"><b>Exemplo 3.1. programa <a class="ulink" href="exemplos/preenchimento.c" target="_top"><code class="filename">preenchimento.c</code></a></b></p><div class="example-contents">
       
+<<<<<<< HEAD
       <pre class="programlisting">#include &lt;GL/glut.h&gt;
+=======
+      <pre class="programlisting">
+	#include &lt;GL/glut.h&gt;
+>>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
 #include &lt;stdlib.h&gt;
 
 GLubyte tux[] = {
@@ -70,7 +75,11 @@ int main(int argc, char** argv){
   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
   glutInitWindowSize (256, 256); 
   glutInitWindowPosition (100, 100); 
+<<<<<<< HEAD
   glutCreateWindow ("Preenchendo regi&otilde;es");
+=======
+  glutCreateWindow ("Preenchendo regi&#65533;es");
+>>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
   init();
   glutDisplayFunc(display); 
   glutKeyboardFunc(keyboard);
@@ -142,7 +151,12 @@ void mouse(int button, int state, int x, int y){
 	break;
   }
 }
+<<<<<<< HEAD
 </pre>
+=======
+
+	</pre>
+>>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
     </div></div><br class="example-break">
     <p>Para compilar e executar o programa <a class="ulink" href="exemplos/preenchimento.c" target="_top"><code class="filename">preenchimento.c</code></a>, salve-o juntamente com o arquivo <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
     <pre class="screen">
