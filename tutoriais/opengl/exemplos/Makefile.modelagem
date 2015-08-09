@@ -5,16 +5,16 @@
 GL_LIB = libGL.a
 GLU_LIB = libGLU.a
 GLUT_LIB = libglut.a
-CC = gcc
+CC = g++
 CFLAGS = -I/usr/X11R6/include
-XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 -lXext -lXmu -lXt -lXi -lSM -lICE
+XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 
 
 ##### MACROS #####
 
 INCDIR = /usr/include
 LIBDIR = /usr/lib
 
-GL_LIBS = -L$(LIBDIR) -lglut -lGLU -lGL -lm $(XLIBS)
+GL_LIBS = -L$(LIBDIR) -lglut -lGLU -lGL -lm -lpng $(XLIBS)
 
 LIB_DEP = $(LIBDIR)/$(GL_LIB) $(LIBDIR)/$(GLU_LIB) $(LIBDIR)/$(GLUT_LIB)
 
@@ -28,14 +28,15 @@ PROGS = lines
 .c: $(LIB_DEP)
 	$(CC) -I$(INCDIR) $(CFLAGS) $< $(GL_LIBS) -o $@
 
-jato: jato.o image.o
-	$(CC) -I$(INCDIR) $(CFLAGS) image.o jato.o $(GL_LIBS) -o jato
+jato: jato.o png_texture.o
+	$(CC) -I$(INCDIR) $(CFLAGS) png_texture.o jato.o $(GL_LIBS) -o jato
 
 jato.o: jato.c
 	$(CC) -I$(INCDIR) -c $(CFLAGS) jato.c
 
-image.o: image.c
-	$(CC) -I$(INCDIR) -c $(CFLAGS) image.c
+png_texture.o: png_texture.c
+	$(CC) -I$(INCDIR) -c $(CFLAGS) png_texture.c
+	
 ##### TARGETS ######
 
 default:

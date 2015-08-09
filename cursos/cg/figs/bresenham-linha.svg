@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5e -->
+
+<!-- CreationDate: Sun Aug  2 16:55:24 2015 -->
+
+<!-- Magnification: 1.050 -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="5.0in"
+   height="2.4in"
+   viewBox="409 507 5992 2901"
+   id="svg4155"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="bresenham-linha.svg">
+  <metadata
+     id="metadata4223">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4221" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1871"
+     inkscape:window-height="1056"
+     id="namedview4219"
+     showgrid="false"
+     inkscape:zoom="2.6088889"
+     inkscape:cx="225"
+     inkscape:cy="108"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4155" />
+  <g
+     style="stroke-width:.025in; fill:none"
+     id="g4157">
+    <!-- Line -->
+    <polyline
+       points="944,3307 3511,3307 "
+       style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; "
+       id="polyline4159" />
+    <!-- Arrowhead on XXXpoint 944 3307 - 3653 3307-->
+    <polygon
+       points="3510 3338 3636 3307 3510 3275 3510 3338  "
+       style="stroke:#000000;stroke-width:8;stroke-miterlimit:8; fill:#000000;"
+       id="polygon4161" />
+    <!-- Line -->
+    <polyline
+       points="944,3307 944,644 "
+       style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; "
+       id="polyline4163" />
+    <!-- Arrowhead on XXXpoint 944 3307 - 944 503-->
+    <polygon
+       points="976 646 944 520 913 646 976 646  "
+       style="stroke:#000000;stroke-width:8;stroke-miterlimit:8; fill:#000000;"
+       id="polygon4165" />
+    <!-- Line -->
+    <polyline
+       points="944,944 3307,944 3307,3307 "
+       style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; "
+       id="polyline4167" />
+    <!-- Line -->
+    <polyline
+       points="944,3307 3307,1795 "
+       style="stroke:#000000;stroke-width:32; stroke-linejoin:round; stroke-linecap:butt; stroke-dasharray:52 52;"
+       id="polyline4169" />
+    <!-- Line -->
+    <polyline
+       points="3212,2125 3401,2125 "
+       style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; "
+       id="polyline4171" />
+    <!-- Line -->
+    <polyline
+       points="944,3307 3309,2507 "
+       style="stroke:#000000;stroke-width:32; stroke-linejoin:round; stroke-linecap:butt; stroke-dasharray:52 52;"
+       id="polyline4173" />
+    <!-- Line -->
+    <polyline
+       points="3307,1795 5952,1795 "
+       style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; stroke-dasharray:10 31;"
+       id="polyline4175" />
+    <!-- Line -->
+    <polyline
+       points="3307,3307 5952,3307 "
+       style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; stroke-dasharray:10 31;"
+       id="polyline4177" />
+    <!-- Line -->
+    <polyline
+       points="5905,1921 5905,3181 "
+       style="stroke:#000000;stroke-width:8; stroke-linejoin:miter; stroke-linecap:butt; "
+       id="polyline4179" />
+    <!-- Arrowhead on XXXpoint 5905 1795 - 5905 3322-->
+    <polygon
+       points="5874 3180 5905 3306 5937 3180 5874 3180  "
+       style="stroke:#000000;stroke-width:8;stroke-miterlimit:8; fill:#000000;"
+       id="polygon4181" />
+    <!-- Arrowhead on XXXpoint 5905 3307 - 5905 1779-->
+    <polygon
+       points="5937 1922 5905 1796 5874 1922 5937 1922  "
+       style="stroke:#000000;stroke-width:8;stroke-miterlimit:8; fill:#000000;"
+       id="polygon4183" />
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="2125"
+       y="2314"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       text-anchor="start"
+       id="text4185">(1,0)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="425"
+       y="992"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       text-anchor="start"
+       id="text4187">(0, 1)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="425"
+       y="3165"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       text-anchor="start"
+       id="text4189">(0, 0)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3496"
+       y="944"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       text-anchor="start"
+       id="text4191">(1, 1)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="6047"
+       y="2551"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       text-anchor="start"
+       id="text4193">erro</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3496"
+       y="1370"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="126"
+       text-anchor="start"
+       id="text4195">setPixel(1, 1)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3401"
+       y="3165"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="126"
+       text-anchor="start"
+       id="text4197">setPixel(1,0)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3496"
+       y="1181"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="126"
+       text-anchor="start"
+       id="text4199">1/2 &lt;= dy/dx &lt;=1 (erro - 1/2 &gt;= 0)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3496"
+       y="2173"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       text-anchor="start"
+       id="text4201">(1, 1/2)</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3401"
+       y="2976"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="126"
+       text-anchor="start"
+       id="text4203">0 &lt;= dy/dx &lt; 1/2 (erro - 1/2 &lt; 0)</text>
+    <!-- Circle -->
+    <circle
+       cx="3307"
+       cy="3307"
+       r="94"
+       style="fill:#ffffff;stroke:#000000;stroke-width:8;"
+       id="circle4205" />
+    <!-- Circle -->
+    <circle
+       cx="3307"
+       cy="944"
+       r="94"
+       style="fill:#ffffff;stroke:#000000;stroke-width:8;"
+       id="circle4207" />
+    <!-- Circle -->
+    <circle
+       cx="944"
+       cy="3307"
+       r="94"
+       style="fill:#000000;stroke:#000000;stroke-width:8;"
+       id="circle4209" />
+    <!-- Circle -->
+    <circle
+       cx="3307"
+       cy="1795"
+       r="47"
+       style="fill:#000000;stroke:#000000;stroke-width:8;"
+       id="circle4211" />
+    <!-- Circle -->
+    <circle
+       cx="3307"
+       cy="2503"
+       r="47"
+       style="fill:#000000;stroke:#000000;stroke-width:8;"
+       id="circle4213" />
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3275"
+       y="3361"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="126"
+       text-anchor="start"
+       id="text4215">?</text>
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3275"
+       y="999"
+       fill="#000000"
+       font-family="Times"
+       font-style="normal"
+       font-weight="normal"
+       font-size="126"
+       text-anchor="start"
+       id="text4217">?</text>
+  </g>
+</svg>

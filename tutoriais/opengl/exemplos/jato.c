@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <GL/glut.h>
-#include "image.h"
+#include "png_texture.h"
 
 #define PI 3.1415
 
@@ -10,8 +10,9 @@
 #define COORD_TEXTURA_AVIAO 1.0
 #define COR_DO_PLANO 0.52,0.52,0.78,1.0
 #define COR_DO_AVIAO 0.3,0.52,0.18,1.0
-#define TEXTURA_DO_PLANO "montanhas.rgb"
-#define TEXTURA_DO_AVIAO "camuflagem.rgb"
+#define TEXTURA_DO_PLANO "montanhas.png"
+#define TEXTURA_DO_AVIAO "camuflagem.png"
+
 
 GLint WIDTH =800;
 GLint HEIGHT=600;
@@ -103,7 +104,7 @@ void compoe_jato(void){
   glPushMatrix();
   glScalef(0.7,0.7,2.0);
   quadric=gluNewQuadric();
-  glColor3f(0.3,0.5,1);
+  glColor4f(0.3,0.5,1,0.5);
   glDisable(GL_TEXTURE_2D);
   gluSphere(quadric,0.5,12,12);
   glPopMatrix();
@@ -114,11 +115,11 @@ void compoe_jato(void){
 
 void display(void){
   glEnable(GL_DEPTH_TEST);
-  
-  glDepthMask(GL_TRUE);
+
+  //glDepthMask(GL_TRUE);
   glClearColor(1.0,1.0,1.0,1.0);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-  
+
   glPushMatrix();
 
   /* calcula a posicao do observador */
@@ -133,9 +134,31 @@ void display(void){
   else{
     glDisable(GL_TEXTURE_2D);
   }
-
-  glColor4f(COR_DO_PLANO);
   glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+
+  // grava a transformacao atual
+  glPushMatrix();
+  glColor4f(COR_DO_PLANO);
+  glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+  glBindTexture(GL_TEXTURE_2D,textura_plano);
+  glBegin(GL_QUADS);
+  glTexCoord2fv(ctp[0]);  glVertex3f(-10,0,10);
+  glTexCoord2fv(ctp[1]);  glVertex3f(10,0,10);
+  glTexCoord2fv(ctp[2]);  glVertex3f(10,0,-10);
+  glTexCoord2fv(ctp[3]);  glVertex3f(-10,0,-10);
+  glEnd();
+
+  glTranslatef(0.0,2.0,-3.0);
+  glColor4f(COR_DO_AVIAO);
+  glBindTexture(GL_TEXTURE_2D,textura_aviao);
+  glCallList(jato);
+  glPopMatrix();
+  // volta para a ultima transformacao
+
+  // grava a transformacao atual
+  glPushMatrix();
+  glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+  glColor4f(COR_DO_PLANO);
   glBindTexture(GL_TEXTURE_2D,textura_plano);
    
   glBegin(GL_QUADS);
@@ -145,11 +168,12 @@ void display(void){
   glTexCoord2fv(ctp[3]);  glVertex3f(-10,0,-10);
   glEnd();
   glTranslatef(0.0,2.0,-3.0);
-
   glColor4f(COR_DO_AVIAO);
   glBindTexture(GL_TEXTURE_2D,textura_aviao);
   glCallList(jato);
-
+  glPopMatrix();
+  // volta para a ultima transformacao
+  
   glPopMatrix();
   glutSwapBuffers();
 }
@@ -200,67 +224,18 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void carregar_texturas(void){
-  IMAGE *img;
-  GLenum gluerr;
-
-  /* textura do plano */
-  glGenTextures(1, &textura_plano);
-  glBindTexture(GL_TEXTURE_2D, textura_plano);
-  
-  if(!(img=ImageLoad(TEXTURA_DO_PLANO))) {
-    fprintf(stderr,"Error reading a texture.\n");
-    exit(-1);
-  }
-
-  gluerr=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
-			   img->sizeX, img->sizeY, 
-			   GL_RGB, GL_UNSIGNED_BYTE, 
-			   (GLvoid *)(img->data));
-  if(gluerr){
-    fprintf(stderr,"GLULib%s\n",gluErrorString(gluerr));
-    exit(-1);
-  }
-
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
-
-  /* textura do aviao */
-  glGenTextures(1, &textura_aviao);
-  glBindTexture(GL_TEXTURE_2D, textura_aviao);
-
-  
-  if(!(img=ImageLoad(TEXTURA_DO_AVIAO))) {
-    fprintf(stderr,"Error reading a texture.\n");
-    exit(-1);
-  }
-
-  gluerr=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
-			   img->sizeX, img->sizeY, 
-			   GL_RGB, GL_UNSIGNED_BYTE, 
-			   (GLvoid *)(img->data));
-  if(gluerr){
-    fprintf(stderr,"GLULib%s\n",gluErrorString(gluerr));
-    exit(-1);
-  }
-
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
-  
+  textura_plano = png_texture_load(TEXTURA_DO_PLANO, NULL, NULL);
+  textura_aviao = png_texture_load(TEXTURA_DO_AVIAO, NULL, NULL);
 }
 
 void init(){
-  carregar_texturas();
-  compoe_jato();
-  glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
+  
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+  carregar_texturas();
+  compoe_jato();
+  //  glShadeModel(GL_FLAT);
   glEnable(GL_TEXTURE_2D);
 }
 
@@ -268,7 +243,7 @@ int main(int argc,char **argv){
   glutInitWindowPosition(0,0);
   glutInitWindowSize(WIDTH,HEIGHT);
   glutInit(&argc,argv);
-  glutInitDisplayMode(GLUT_RGB|GLUT_DEPTH|GLUT_DOUBLE);
+  glutInitDisplayMode(GLUT_RGBA|GLUT_DEPTH|GLUT_DOUBLE|GLUT_ALPHA);
 
   if(!glutCreateWindow("Avião a jato")) {
     fprintf(stderr,"Error opening a window.\n");

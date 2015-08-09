@@ -2,9 +2,9 @@
 # digite: make programa.c
 #
 
-CC = gcc
-CFLAGS = -O2 -funroll-loops -ansi -pedantic -ffast-math -D_SVID_SOURCE -D_BSD_SOURCE -DSHM -I/usr/X11R6/include
-XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 -lXext -lXmu -lXt -lXi -lSM -lICE
+CC = g++
+CFLAGS = -O2
+XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11 
 
 ##### MACROS #####
 
@@ -18,10 +18,10 @@ LIB_DEP = $(LIBDIR)/$(GL_LIB)
 ##### RULES #####
 
 .SUFFIXES:
-.SUFFIXES: .c
+.SUFFIXES: .c .cpp
 
 .c: $(LIB_DEP)
-	$(CC) -I$(INCDIR) $(CFLAGS) $< $(GL_LIBS) -o $@
+	$(CC) -I$(INCDIR) $(CFLAGS) $< -o $@ $(GL_LIBS)
 
 ##### TARGETS ######
 

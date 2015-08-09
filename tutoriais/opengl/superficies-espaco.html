@@ -3,109 +3,118 @@
    <title>Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; computa&ccedil;&atilde;o gr&aacute;fica com OpenGL"><link rel="prev" href="curvas-plano.html" title="Cap&iacute;tulo 7. Curvas no plano"><link rel="next" href="modelos-iluminacao.html" title="Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
     MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
+    jax: ["input/TeX","output/SVG"],
     tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
     });
-  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="curvas-plano.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="modelos-iluminacao.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="superficies-espaco"></a>Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="superficies-espaco.html#superficies-espaco-descricao">8.1. Descri&ccedil;&atilde;o do programa <code class="filename">splines3d.c</code></a></span></dt><dt><span class="sect1"><a href="superficies-espaco.html#superficies-espaco-exercicios">8.2. Exerc&iacute;cios</a></span></dt></dl></div>
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script><script xmlns:fo="http://www.w3.org/1999/XSL/Format">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-41839650-1', 'area8.dca.ufrn.br');
+      ga('send', 'pageview');
+      
+    </script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="curvas-plano.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="modelos-iluminacao.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="superficies-espaco"></a>Cap&iacute;tulo 8. Superf&iacute;cies no espa&ccedil;o</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="superficies-espaco.html#superficies-espaco-descricao">8.1. Descri&ccedil;&atilde;o do programa <code class="filename">splines3d.c</code></a></span></dt><dt><span class="sect1"><a href="superficies-espaco.html#superficies-espaco-exercicios">8.2. Exerc&iacute;cios</a></span></dt></dl></div>
     
     <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; mostrar como gerar no espa&ccedil;o as superf&iacute;cies param&eacute;tricas de B&eacute;zier e NURBS utilizando OpenGL. De modo semelhante &agrave;s curvas descritas no <a class="xref" href="curvas-plano.html" title="Cap&iacute;tulo 7. Curvas no plano">Cap&iacute;tulo&nbsp;7</a>, a forma destas superf&iacute;cies &eacute; controlada pelo posicionamento de v&eacute;rtices, desta vez componentes de um malha caracter&iacute;stica. Com a resolu&ccedil;&atilde;o dos exerc&iacute;cios propostos no final da li&ccedil;&atilde;o, o aluno poder&aacute; notar a utilidade das superf&iacute;cies apresentadas, associando-as a uma situa&ccedil;&atilde;o pr&aacute;tica, atrav&eacute;s da modelagem interativa de uma superf&iacute;cie.</p>
     <p>Ser&aacute; mostrado tamb&eacute;m como introduzir ilumina&ccedil;&atilde;o na cena, de modo a tornar a apresenta&ccedil;&atilde;o da superf&iacute;cie mais real&iacute;stica.</p>
     <p>A superf&iacute;cie gerada pelo programa utilizado nesta li&ccedil;&atilde;o &eacute; mostrado na <a class="xref" href="superficies-espaco.html#fig-superficies-espaco-splines" title="Figura 8.1. Tra&ccedil;ado de superf&iacute;cies.">Figura&nbsp;8.1</a>.</p>
     <div class="figure"><a name="fig-superficies-espaco-splines"></a><p class="title"><b>Figura 8.1. Tra&ccedil;ado de superf&iacute;cies.</b></p><div class="figure-contents">
       
-	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/superficies-espaco-splines.jpg" src="figs/superficies-espaco-splines.jpg"></div></div>
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/superficies-espaco-splines.jpg" src="figs/superficies-espaco-splines.jpg"></div></div>
     </div></div><br class="figure-break">
     <p> O programa usado para modelar as splines &eacute; mostrado no <a class="xref" href="superficies-espaco.html#example-superficies-espaco" title="Exemplo 8.1. programa splines3d.c">Exemplo&nbsp;8.1</a>. As teclas <span class="keycap"><strong>b</strong></span> e <span class="keycap"><strong>n</strong></span> definem o tipo de curva que ser&aacute; desenhada: B&eacute;zier ou NURBS, respectivamente. As teclas <span class="keycap"><strong>x</strong></span> e <span class="keycap"><strong>X</strong></span>, rotacionam a superf&iacute;cie em torno do eixo x. As teclas <span class="keycap"><strong>y</strong></span> e <span class="keycap"><strong>Y</strong></span>, rotacionam a superf&iacute;cie em torno do eixo y. As teclas <span class="keycap"><strong>z</strong></span> e <span class="keycap"><strong>Z</strong></span>, rotacionam a superf&iacute;cie em torno do eixo z.</p>
 
     <div class="example"><a name="example-superficies-espaco"></a><p class="title"><b>Exemplo 8.1. programa <a class="ulink" href="exemplos/splines3d.c" target="_top"><code class="filename">splines3d.c</code></a></b></p><div class="example-contents">
       
-      <pre class="programlisting">#include &lt;stdlib.h&gt;
-<span class="hl-directive" style="color: maroon">#include &lt;math.h&gt;</span>
-<span class="hl-directive" style="color: maroon">#include &lt;GL/glut.h&gt;</span>
+      <pre class="programlisting"> #include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;GL/glut.h&gt;
 
 GLint eixox, eixoy, eixoz;
 
-GLint nVertices=<span class="hl-number">4</span>;
-GLfloat vertices[<span class="hl-number">4</span>][<span class="hl-number">4</span>][<span class="hl-number">3</span>];
+GLint nVertices=4;
+GLfloat vertices[4][4][3];
 
 GLint largura, altura;
 
-<strong class="hl-keyword">enum</strong> {BEZIER, NURBS};
+enum {BEZIER, NURBS};
 GLint spline;
 GLUnurbsObj *nc;
-GLfloat nos[<span class="hl-number">8</span>]={<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>};
-GLint nNos=<span class="hl-number">8</span>;
+GLfloat nos[8]={0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
+GLint nNos=8;
 
-<strong class="hl-keyword">void</strong> gera_superficie(<strong class="hl-keyword">void</strong>){
-  <strong class="hl-keyword">int</strong> i,j;
-  <strong class="hl-keyword">for</strong>(i=<span class="hl-number">0</span>; i&lt;<span class="hl-number">4</span>; i++){
-    <strong class="hl-keyword">for</strong>(j=<span class="hl-number">0</span>; j&lt;<span class="hl-number">4</span>; j++){
-      vertices[i][j][<span class="hl-number">0</span>] = <span class="hl-number">2.0</span>*((GLfloat)i - <span class="hl-number">1.5</span>);
-      vertices[i][j][<span class="hl-number">1</span>] = <span class="hl-number">2.0</span>*((GLfloat)j - <span class="hl-number">1.5</span>);
+void gera_superficie(void){
+  int i,j;
+  for(i=0; i&lt;4; i++){
+    for(j=0; j&lt;4; j++){
+      vertices[i][j][0] = 2.0*((GLfloat)i - 1.5);
+      vertices[i][j][1] = 2.0*((GLfloat)j - 1.5);
       
-      <strong class="hl-keyword">if</strong> ( (i == <span class="hl-number">1</span> || i == <span class="hl-number">2</span>) &amp;&amp; (j == <span class="hl-number">1</span> || j == <span class="hl-number">2</span>))
-	vertices[i][j][<span class="hl-number">2</span>] = <span class="hl-number">7.0</span>;
-      <strong class="hl-keyword">else</strong>
-	vertices[i][j][<span class="hl-number">2</span>] = -<span class="hl-number">3.0</span>;
+      if ( (i == 1 || i == 2) &amp;&amp; (j == 1 || j == 2))
+	vertices[i][j][2] = 7.0;
+      else
+	vertices[i][j][2] = -3.0;
     }
   }
 }
-<strong class="hl-keyword">void</strong> display(<strong class="hl-keyword">void</strong>){
-  <strong class="hl-keyword">int</strong> i,j;
+void display(void){
+  int i,j;
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glPushMatrix();
-  glRotatef(eixox, <span class="hl-number">1</span> ,<span class="hl-number">0</span> ,<span class="hl-number">0</span>);
-  glRotatef(eixoy, <span class="hl-number">0</span> ,<span class="hl-number">1</span> ,<span class="hl-number">0</span>);
-  glRotatef(eixoz, <span class="hl-number">0</span> ,<span class="hl-number">0</span> ,<span class="hl-number">1</span>);
-  glScalef(<span class="hl-number">0.25</span>, <span class="hl-number">0.25</span>, <span class="hl-number">0.25</span>);
+  glRotatef(eixox, 1 ,0 ,0);
+  glRotatef(eixoy, 0 ,1 ,0);
+  glRotatef(eixoz, 0 ,0 ,1);
+  glScalef(0.25, 0.25, 0.25);
 
   glDisable(GL_LIGHTING);
   glPushMatrix();
-  glTranslatef(-<span class="hl-number">5</span>,-<span class="hl-number">5</span>,-<span class="hl-number">5</span>);
-  glColor3f(<span class="hl-number">1</span>,<span class="hl-number">1</span>,<span class="hl-number">1</span>);
+  glTranslatef(-5,-5,-5);
+  glColor3f(1,1,1);
   glBegin(GL_LINES);
-  glVertex3f(<span class="hl-number">0</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);  glVertex3f(<span class="hl-number">1</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);
+  glVertex3f(0,0,0);  glVertex3f(1,0,0);
   glEnd();
-  glRasterPos3f(<span class="hl-number">1.5</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);
-  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_<span class="hl-number">10</span>, <strong class="hl-string"><em style="color:red">'x'</em></strong>);
+  glRasterPos3f(1.5,0,0);
+  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, 'x');
 
   glBegin(GL_LINES);
-  glVertex3f(<span class="hl-number">0</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);  glVertex3f(<span class="hl-number">0</span>,<span class="hl-number">1</span>,<span class="hl-number">0</span>);
+  glVertex3f(0,0,0);  glVertex3f(0,1,0);
   glEnd();
-  glRasterPos3f(<span class="hl-number">0</span>,<span class="hl-number">1.5</span>,<span class="hl-number">0</span>);
-  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_<span class="hl-number">10</span>, <strong class="hl-string"><em style="color:red">'y'</em></strong>);
+  glRasterPos3f(0,1.5,0);
+  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, 'y');
 
   glBegin(GL_LINES);
-  glVertex3f(<span class="hl-number">0</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);  glVertex3f(<span class="hl-number">0</span>,<span class="hl-number">0</span>,<span class="hl-number">1</span>);
+  glVertex3f(0,0,0);  glVertex3f(0,0,1);
   glEnd();
-  glRasterPos3f(<span class="hl-number">0</span>,<span class="hl-number">0</span>,<span class="hl-number">1.5</span>);
-  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_<span class="hl-number">10</span>, <strong class="hl-string"><em style="color:red">'z'</em></strong>);
+  glRasterPos3f(0,0,1.5);
+  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, 'z');
 
   glPopMatrix();
   glEnable(GL_LIGHTING);
 
-  <strong class="hl-keyword">switch</strong>(spline){
-  <strong class="hl-keyword">case</strong> BEZIER:
-    glMap2f(GL_MAP2_VERTEX_<span class="hl-number">3</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">3</span>, <span class="hl-number">4</span>, <span class="hl-number">0</span>, <span class="hl-number">1</span>, <span class="hl-number">3</span>*nVertices, <span class="hl-number">4</span>, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>][<span class="hl-number">0</span>]);
+  switch(spline){
+  case BEZIER:
+    glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 4, 0, 1, 3*nVertices, 4, &amp;vertices[0][0][0]);
     glEnable(GL_AUTO_NORMAL);
-    glMapGrid2f(<span class="hl-number">20</span>, <span class="hl-number">0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">20</span>, <span class="hl-number">0</span>, <span class="hl-number">1.0</span>);
-    glEvalMesh2(GL_FILL, <span class="hl-number">0</span>, <span class="hl-number">20</span>, <span class="hl-number">0</span>, <span class="hl-number">20</span>);
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> NURBS:
+    glMapGrid2f(20, 0, 1.0, 20, 0, 1.0);
+    glEvalMesh2(GL_FILL, 0, 20, 0, 20);
+    break;
+  case NURBS:
     gluBeginSurface(nc);
-    gluNurbsSurface(nc, nNos, nos, nNos, nos, <span class="hl-number">4</span>*<span class="hl-number">3</span>, <span class="hl-number">3</span>, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>][<span class="hl-number">0</span>], <span class="hl-number">4</span>, <span class="hl-number">4</span>, GL_MAP2_VERTEX_<span class="hl-number">3</span>);
+    gluNurbsSurface(nc, nNos, nos, nNos, nos, 4*3, 3, &amp;vertices[0][0][0], 4, 4, GL_MAP2_VERTEX_3);
     gluEndSurface(nc);
-    <strong class="hl-keyword">break</strong>;
+    break;
   }
-  glPointSize(<span class="hl-number">5.0</span>);
-  glColor3f(<span class="hl-number">1.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glPointSize(5.0);
+  glColor3f(1.0, 0.0, 0.0);
   glDisable(GL_LIGHTING);
   glBegin(GL_POINTS);
-  <strong class="hl-keyword">for</strong>(i=<span class="hl-number">0</span>; i&lt;<span class="hl-number">4</span>; i++){
-    <strong class="hl-keyword">for</strong>(j=<span class="hl-number">0</span>; j&lt;<span class="hl-number">4</span>; j++){
-      glVertex3fv(&amp;vertices[i][j][<span class="hl-number">0</span>]);
+  for(i=0; i&lt;4; i++){
+    for(j=0; j&lt;4; j++){
+      glVertex3fv(&amp;vertices[i][j][0]);
     }
   }
   glEnable(GL_LIGHTING);
@@ -117,10 +126,10 @@ GLint nNos=<span class="hl-number">8</span>;
   glutSwapBuffers();
 }
 
-<strong class="hl-keyword">void</strong> init(<strong class="hl-keyword">void</strong>){
-  GLfloat mat_diffuse[] = { <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">1.0</span> };
-  GLfloat mat_specular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-  GLfloat mat_shininess[] = { <span class="hl-number">100.0</span> };
+void init(void){
+  GLfloat mat_diffuse[] = { 0.7, 0.7, 0.7, 1.0 };
+  GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+  GLfloat mat_shininess[] = { 100.0 };
   
   glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
@@ -136,84 +145,82 @@ GLint nNos=<span class="hl-number">8</span>;
   gera_superficie();
   
   nc= gluNewNurbsRenderer();
-  gluNurbsProperty(nc, GLU_SAMPLING_TOLERANCE, <span class="hl-number">5.0</span>);
+  gluNurbsProperty(nc, GLU_SAMPLING_TOLERANCE, 5.0);
   gluNurbsProperty(nc, GLU_DISPLAY_MODE, GLU_FILL);
   
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  glTranslatef (<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, -<span class="hl-number">5.0</span>);
+  glTranslatef (0.0, 0.0, -5.0);
 
   spline=NURBS;
-  glClearColor(<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>);
+  glClearColor(0.0, 0.0, 0.0, 0.0);
   glShadeModel(GL_SMOOTH);
-  glEnable(GL_MAP2_VERTEX_<span class="hl-number">3</span>);
+  glEnable(GL_MAP2_VERTEX_3);
   display();
 }
 
-<strong class="hl-keyword">void</strong> reshape(<strong class="hl-keyword">int</strong> w, <strong class="hl-keyword">int</strong> h){
-  glViewport(<span class="hl-number">0</span>, <span class="hl-number">0</span>, w, h);
+void reshape(int w, int h){
+  glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective (<span class="hl-number">45.0</span>, (GLdouble)w/(GLdouble)h, <span class="hl-number">3.0</span>, <span class="hl-number">8.0</span>);
+  gluPerspective (45.0, (GLdouble)w/(GLdouble)h, 3.0, 8.0);
   glMatrixMode(GL_MODELVIEW);
 }
 
-<em class="hl-comment" style="color: silver">/* ARGSUSED1 */</em>
-<strong class="hl-keyword">void</strong> keyboard(<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong> key, <strong class="hl-keyword">int</strong> x, <strong class="hl-keyword">int</strong> y){
-  <strong class="hl-keyword">switch</strong> (key) {
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'x'</em></strong>:
-    eixox = (eixox + <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+/* ARGSUSED1 */
+void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+  case 'x':
+    eixox = (eixox + 5) % 360;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'y'</em></strong>:
-    eixoy = (eixoy + <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    break;
+  case 'y':
+    eixoy = (eixoy + 5) % 360;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'z'</em></strong>:
-    eixoz = (eixoz + <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    break;
+  case 'z':
+    eixoz = (eixoz + 5) % 360;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'X'</em></strong>:
-    eixox = (eixox - <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    break;
+  case 'X':
+    eixox = (eixox - 5) % 360;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'Y'</em></strong>:
-    eixoy = (eixoy - <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    break;
+  case 'Y':
+    eixoy = (eixoy - 5) % 360;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'Z'</em></strong>:
-    eixoz = (eixoz - <span class="hl-number">5</span>) % <span class="hl-number">360</span>;
+    break;
+  case 'Z':
+    eixoz = (eixoz - 5) % 360;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'b'</em></strong>:
+    break;
+  case 'b':
     spline = BEZIER;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <strong class="hl-string"><em style="color:red">'n'</em></strong>:
+    break;
+  case 'n':
     spline = NURBS;
     glutPostRedisplay();
-    <strong class="hl-keyword">break</strong>;
-  <strong class="hl-keyword">case</strong> <span class="hl-number">27</span>:
-    exit(<span class="hl-number">0</span>);
-    <strong class="hl-keyword">break</strong>;
+    break;
+  case 27:
+    exit(0);
+    break;
   }
 }
-<strong class="hl-keyword">int</strong> main(<strong class="hl-keyword">int</strong> argc, <strong class="hl-keyword">char</strong>** argv){
+int main(int argc, char** argv){
   glutInit(&amp;argc, argv);
   glutInitDisplayMode(GLUT_DEPTH| GLUT_DOUBLE | GLUT_RGB);
-  glutInitWindowSize(<span class="hl-number">500</span>, <span class="hl-number">500</span>);
-  glutInitWindowPosition(<span class="hl-number">100</span>, <span class="hl-number">100</span>);
-  glutCreateWindow(argv[<span class="hl-number">0</span>]);
+  glutInitWindowSize(500, 500);
+  glutInitWindowPosition(100, 100);
+  glutCreateWindow(argv[0]);
   init();
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
   glutKeyboardFunc(keyboard);
   glutMainLoop();
-  <strong class="hl-keyword">return</strong> <span class="hl-number">0</span>;
+  return 0;
 }
-
 </pre>
-
     </div></div><br class="example-break">
 
     <p>Para compilar e executar o programa <a class="ulink" href="exemplos/splines3d.c" target="_top"><code class="filename">splines3d.c</code></a>, salve-o juntamente com o arquivo <a class="ulink" href="exemplos/Makefile" target="_top">Makefile</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
@@ -225,45 +232,39 @@ GLint nNos=<span class="hl-number">8</span>;
       
       
       <div class="informalexample">
-	<pre class="programlisting">GLint nVertices=<span class="hl-number">4</span>;
-GLfloat vertices[<span class="hl-number">4</span>][<span class="hl-number">4</span>][<span class="hl-number">3</span>];</pre>
-
+	<pre class="programlisting">GLint nVertices=4;
+GLfloat vertices[4][4][3];</pre>
       </div>
       <p>Define o n&uacute;mero de v&eacute;rtices da malha caracter&iacute;stica (vari&aacute;vel <code class="varname">nVertices</code>) e as posi&ccedil;&otilde;es no espa&ccedil;o dos seus respectivos v&eacute;rtices (matriz <code class="varname">vertices</code>).</p>
 
       <div class="informalexample">
 	<pre class="programlisting">GLint largura, altura;</pre>
-
       </div>
       <p>As vari&aacute;veis <code class="varname">largura</code> e <code class="varname">altura</code> armazenam a largura e a altura da janela corrente, em pixels.</p>
 
       <div class="informalexample">
 	<pre class="programlisting">GLUnurbsObj *nc;
-GLfloat nos[<span class="hl-number">8</span>]={<span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>};
-GLint nNos=<span class="hl-number">8</span>;</pre>
-
+GLfloat nos[8]={0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
+GLint nNos=8;</pre>
       </div>
       <p>A vari&aacute;vel <code class="varname">nc</code> cont&eacute;m a refer&ecirc;ncia para a spline que ir&aacute; modelar a superf&iacute;cie tipo NURBS. <code class="varname">nos</code> e <code class="varname">nNos</code> s&atilde;o o vetor de n&oacute;s e o n&uacute;mero de n&oacute;s neste vetor, respectivamente.</p>
 
       <div class="informalexample">
-	<pre class="programlisting"><strong class="hl-keyword">void</strong> gera_superficie(<strong class="hl-keyword">void</strong>);</pre>
-
+	<pre class="programlisting">void gera_superficie(void);</pre>
       </div>
       <p>Cria as coordenadas x, y e z dos pontos da malha de controle. </p>
 
       <div class="informalexample">
 	<pre class="programlisting">glBegin(GL_LINES);
-  glVertex3f(<span class="hl-number">0</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);  glVertex3f(<span class="hl-number">1</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);
+  glVertex3f(0,0,0);  glVertex3f(1,0,0);
   glEnd();
-  glRasterPos3f(<span class="hl-number">1.5</span>,<span class="hl-number">0</span>,<span class="hl-number">0</span>);
-  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_<span class="hl-number">10</span>, <strong class="hl-string"><em style="color:red">'x'</em></strong>);</pre>
-
+  glRasterPos3f(1.5,0,0);
+  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, 'x');</pre>
       </div>
       <p>Cria um segmento de reta representando o eixo x. A fun&ccedil;&atilde;o <code class="function"> glRasterPos3f()</code> define a posi&ccedil;&atilde;o do rasterizador para opera&ccedil;&otilde;es com pixels (desenho de bitmaps). Neste caso, o rasterizador &eacute; posicionado na ponta do eixo x. Em seguida, a fun&ccedil;&atilde;o <code class="function">glutBitmapCharacter()</code> &eacute; utilizada para desenhar um mapa de bits do caracter 'x' com a fonte especificada. Outras duas opera&ccedil;&otilde;es semelhantes s&atilde;o realizadas para os eixos y e z.</p>
 
       <div class="informalexample">
-	<pre class="programlisting">glMap2f(GL_MAP2_VERTEX_<span class="hl-number">3</span>, <span class="hl-number">0.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">3</span>, <span class="hl-number">4</span>, <span class="hl-number">0</span>, <span class="hl-number">1</span>, <span class="hl-number">3</span>*nVertices, <span class="hl-number">4</span>, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>][<span class="hl-number">0</span>]);</pre>
-
+	<pre class="programlisting">glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 4, 0, 1, 3*nVertices, 4, &amp;vertices[0][0][0]);</pre>
       </div>
 
       <p>Caso a superf&iacute;cie seja do tipo B&eacute;zier, o seu tra&ccedil;ado tamb&eacute;m se com o uso de avaliadores (semelhante ao caso bidimensional). A fun&ccedil;&atilde;o <code class="function">glMap2f()</code> define um avaliador bididimesional.</p>
@@ -275,9 +276,8 @@ GLint nNos=<span class="hl-number">8</span>;</pre>
       
       <div class="informalexample">
 	<pre class="programlisting">glEnable(GL_AUTO_NORMAL);
-    glMapGrid2f(<span class="hl-number">20</span>, <span class="hl-number">0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">20</span>, <span class="hl-number">0</span>, <span class="hl-number">1.0</span>);
-    glEvalMesh2(GL_FILL, <span class="hl-number">0</span>, <span class="hl-number">20</span>, <span class="hl-number">0</span>, <span class="hl-number">20</span>);</pre>
-
+    glMapGrid2f(20, 0, 1.0, 20, 0, 1.0);
+    glEvalMesh2(GL_FILL, 0, 20, 0, 20);</pre>
       </div>
       <p>As fun&ccedil;&otilde;es <code class="function">glMapGrid2f()</code> e <code class="function">glEvalMesh2()</code> s&atilde;o utilizadas em conjunto para gerar uma s&eacute;rie valores de 'u' e 'v' e avaliar as coordenadas x, y e z do pontos da superf&iacute;cie, para cada um dos pares de par&acirc;metros (u,v). Foi definido 20 subdivis&otilde;es para as faixas de cada par&acirc;metro, [0,1]. </p>
       <p>Na fun&ccedil;&atilde;o <code class="function">glEvalMesh2()</code> foi especificado que a superf&iacute;cie deveria ser preenchida (GL_FILL), mas poderia tamb&eacute;m ser tra&ccedil;ada utilizando linhas (GL_LINES) ou pontos (GL_POINTS). Os par&acirc;metros seguintes passados para essa fun&ccedil;&atilde;o indicam os primeiros e &uacute;ltimos valores inteiros utilizados para as posi&ccedil;&otilde;es do grid de desenho. </p>
@@ -285,36 +285,32 @@ GLint nNos=<span class="hl-number">8</span>;</pre>
 
       <div class="informalexample">
 	<pre class="programlisting">gluBeginSurface(nc);
-    gluNurbsSurface(nc, nNos, nos, nNos, nos, <span class="hl-number">4</span>*<span class="hl-number">3</span>, <span class="hl-number">3</span>, &amp;vertices[<span class="hl-number">0</span>][<span class="hl-number">0</span>][<span class="hl-number">0</span>], <span class="hl-number">4</span>, <span class="hl-number">4</span>, GL_MAP2_VERTEX_<span class="hl-number">3</span>);
+    gluNurbsSurface(nc, nNos, nos, nNos, nos, 4*3, 3, &amp;vertices[0][0][0], 4, 4, GL_MAP2_VERTEX_3);
     gluEndSurface(nc);</pre>
-
       </div>
       <p>Se a curva a ser desenhada for do tipo NURBS, ent&atilde;o as fun&ccedil;&otilde;es <code class="function">gluBeginSurface()</code> e <code class="function">gluEndSurface()</code> ser&atilde;o utilizadas para demarcar o in&iacute;cio e o fim do seu tra&ccedil;ado. A fun&ccedil;&atilde;o usada para desenhar esta classe de superf&iacute;cies &eacute; <code class="function">gluNurbsSurface</code>, cujos par&acirc;metros s&atilde;o semelhantes aos da fun&ccedil;&atilde;o <code class="function">gluNurbsCurve()</code>, acrescentando o vetor de n&oacute;s e o n&uacute;mero de n&oacute;s na dire&ccedil;&atilde;o y (<code class="varname">nos</code> e <code class="varname">nNos</code>), os deslocamentos entre sucessivos pontos de controle (<span class="foreignphrase"><em class="foreignphrase">stride</em></span>) nas duas dire&ccedil;&otilde;es (4*3 e 3), e as ordens da superf&iacute;cie em ambas as dire&ccedil;&otilde;es (4 e 4). A vari&aacute;vel <code class="varname">nc</code> &eacute; iniciada na fun&ccedil;&atilde;o <code class="function">init()</code>.</p>
       <p>Neste exemplo o valor do deslocamento na dire&ccedil;&atilde;o x &eacute; 12 (4*3) porque existem tr&ecirc;s coordenadas para cada v&eacute;rtice (<em class="parameter"><code>GL_MAP2_VERTEX_3</code></em>) e quatro pontos de controle na dire&ccedil;&atilde;o v. O valor do deslocamento na dire&ccedil;&atilde;o v &eacute; 3 porque cada v&eacute;rtice tem tr&ecirc;s coordenadas, e os pontos de controle v s&atilde;o adjacentes uns aos outros na mem&oacute;ria.</p>
 
       <div class="informalexample">
-	<pre class="programlisting">GLfloat mat_diffuse[] = { <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">0.7</span>, <span class="hl-number">1.0</span> };
-  GLfloat mat_specular[] = { <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span>, <span class="hl-number">1.0</span> };
-  GLfloat mat_shininess[] = { <span class="hl-number">100.0</span> };
+	<pre class="programlisting">GLfloat mat_diffuse[] = { 0.7, 0.7, 0.7, 1.0 };
+  GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+  GLfloat mat_shininess[] = { 100.0 };
   
   glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);</pre>
-
       </div>
       <p>Define as caracter&iacute;sticas do material que ser&atilde;o utilizadas pelo modelo de ilumina&ccedil;&atilde;o, atrav&eacute;s da fun&ccedil;&atilde;o <code class="function">glMaterialfv()</code>. Por enquanto estes recursos s&atilde;o apenas ilustrativos, pois ser&atilde;o abordados em uma li&ccedil;&atilde;o posterior.</p>
 
       <div class="informalexample">
 	<pre class="programlisting">glShadeModel(GL_SMOOTH);
-  glEnable(GL_MAP2_VERTEX_<span class="hl-number">3</span>);</pre>
-
+  glEnable(GL_MAP2_VERTEX_3);</pre>
       </div>
       <p>A fun&ccedil;&atilde;o <code class="function">glShadeModel()</code> define o modelo de sombreamento usado na superf&iacute;cie. O par&acirc;metro <em class="parameter"><code>GL_SMOOTH</code></em> torna a superf&iacute;cie suave, mais real&iacute;stica. Da mesma forma que a fun&ccedil;&atilde;o <code class="function">glMaterialfv()</code>, a presen&ccedil;a desta tamb&eacute;m &eacute; ilustrativa, pois tamb&eacute;m ser&aacute; abordada em uma li&ccedil;&atilde;o posterior.</p>
       <p>Se o par&acirc;metro <em class="parameter"><code>GL_MAP2_VERTEX_3</code></em> for hatilitado, chamadas &agrave;s fun&ccedil;&otilde;es <code class="function">glEvalCoord2()</code>, <code class="function">glEvalMesh2</code> e <code class="function">glEvalPoint2</code> ir&atilde;o gerar v&eacute;rtices com coordenadas x, y e z, necess&aacute;rias ao tra&ccedil;ado das superf&iacute;cies. </p>
       <div class="informalexample">
 	<pre class="programlisting">glEnable(GL_AUTO_NORMAL);
   glEnable(GL_NORMALIZE);</pre>
-
       </div>
       <p>Aqui, a gera&ccedil;&atilde;o autom&aacute;tica de vetores normais &agrave; superf&iacute;cie &eacute; habilitado via <em class="parameter"><code>GL_AUTO_NORMAL</code></em>. Ap&oacute;s gerados, os vetores normais s&atilde;o escalados de modo a ficarem com m&oacute;dulo igual a 1, melhorando a exibi&ccedil;&atilde;o da superf&iacute;cie.</p>
     </div>
@@ -332,4 +328,4 @@ GLint nNos=<span class="hl-number">8</span>;</pre>
 	  <p>Nesta equa&ccedil;&atilde;o, P_o &eacute; obtida da equa&ccedil;&atilde;o que define a reta, P(t) = P_o + V t. V &eacute; o vetor que d&aacute; a dire&ccedil;&atilde;o da reta, e 'dot' representa a opera&ccedil;&atilde;o de produto interno. </p>
 	</li></ol></div>
     </div>
-  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="curvas-plano.html">&laquo;&nbsp;Cap&iacute;tulo 7. Curvas no plano</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="modelos-iluminacao.html">Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="curvas-plano.html">&laquo;&nbsp;Cap&iacute;tulo 7. Curvas no plano</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="modelos-iluminacao.html">Cap&iacute;tulo 9. Modelos de ilumina&ccedil;&atilde;o e sombreamento&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>
