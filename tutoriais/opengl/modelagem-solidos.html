@@ -38,11 +38,7 @@
 #include &lt;stdlib.h&gt;
 #include &lt;math.h&gt;
 #include &lt;GL/glut.h&gt;
-<<<<<<< HEAD
 #include "png_texture.h"
-=======
-#include "image.h"
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
 
 #define PI 3.1415
 
@@ -50,14 +46,9 @@
 #define COORD_TEXTURA_AVIAO 1.0
 #define COR_DO_PLANO 0.52,0.52,0.78,1.0
 #define COR_DO_AVIAO 0.3,0.52,0.18,1.0
-<<<<<<< HEAD
 #define TEXTURA_DO_PLANO "montanhas.png"
 #define TEXTURA_DO_AVIAO "camuflagem.png"
 
-=======
-#define TEXTURA_DO_PLANO "montanhas.rgb"
-#define TEXTURA_DO_AVIAO "camuflagem.rgb"
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
 
 GLint WIDTH =800;
 GLint HEIGHT=600;
@@ -149,11 +140,7 @@ void compoe_jato(void){
   glPushMatrix();
   glScalef(0.7,0.7,2.0);
   quadric=gluNewQuadric();
-<<<<<<< HEAD
   glColor4f(0.3,0.5,1,0.5);
-=======
-  glColor3f(0.3,0.5,1);
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
   glDisable(GL_TEXTURE_2D);
   gluSphere(quadric,0.5,12,12);
   glPopMatrix();
@@ -164,13 +151,8 @@ void compoe_jato(void){
 
 void display(void){
   glEnable(GL_DEPTH_TEST);
-<<<<<<< HEAD
 
   //glDepthMask(GL_TRUE);
-=======
-  
-  glDepthMask(GL_TRUE);
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
   glClearColor(1.0,1.0,1.0,1.0);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
@@ -193,24 +175,14 @@ void display(void){
   // grava a transformacao atual
   glPushMatrix();
   glColor4f(COR_DO_PLANO);
-<<<<<<< HEAD
   glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
   glBindTexture(GL_TEXTURE_2D,textura_plano);
-=======
-  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
-  glBindTexture(GL_TEXTURE_2D,textura_plano);
-   
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
   glBegin(GL_QUADS);
   glTexCoord2fv(ctp[0]);  glVertex3f(-10,0,10);
   glTexCoord2fv(ctp[1]);  glVertex3f(10,0,10);
   glTexCoord2fv(ctp[2]);  glVertex3f(10,0,-10);
   glTexCoord2fv(ctp[3]);  glVertex3f(-10,0,-10);
   glEnd();
-<<<<<<< HEAD
-=======
-  glTranslatef(0.0,2.0,-3.0);
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
 
   glTranslatef(0.0,2.0,-3.0);
   glColor4f(COR_DO_AVIAO);
@@ -288,82 +260,18 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 void carregar_texturas(void){
-<<<<<<< HEAD
   textura_plano = png_texture_load(TEXTURA_DO_PLANO, NULL, NULL);
   textura_aviao = png_texture_load(TEXTURA_DO_AVIAO, NULL, NULL);
 }
 
 void init(){
-=======
-  IMAGE *img;
-  GLenum gluerr;
-
-  /* textura do plano */
-  glGenTextures(1, &amp;textura_plano);
-  glBindTexture(GL_TEXTURE_2D, textura_plano);
-  
-  if(!(img=ImageLoad(TEXTURA_DO_PLANO))) {
-    fprintf(stderr,"Error reading a texture.\n");
-    exit(-1);
-  }
-
-  gluerr=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
-			   img-&gt;sizeX, img-&gt;sizeY, 
-			   GL_RGB, GL_UNSIGNED_BYTE, 
-			   (GLvoid *)(img-&gt;data));
-  if(gluerr){
-    fprintf(stderr,"GLULib%s\n",gluErrorString(gluerr));
-    exit(-1);
-  }
-
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
-
-  /* textura do aviao */
-  glGenTextures(1, &amp;textura_aviao);
-  glBindTexture(GL_TEXTURE_2D, textura_aviao);
-
-  
-  if(!(img=ImageLoad(TEXTURA_DO_AVIAO))) {
-    fprintf(stderr,"Error reading a texture.\n");
-    exit(-1);
-  }
-
-  gluerr=gluBuild2DMipmaps(GL_TEXTURE_2D, 3, 
-			   img-&gt;sizeX, img-&gt;sizeY, 
-			   GL_RGB, GL_UNSIGNED_BYTE, 
-			   (GLvoid *)(img-&gt;data));
-  if(gluerr){
-    fprintf(stderr,"GLULib%s\n",gluErrorString(gluerr));
-    exit(-1);
-  }
-
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
-  
-}
-
-void init(){
-  carregar_texturas();
-  compoe_jato();
-  glShadeModel(GL_FLAT);
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
   glEnable(GL_DEPTH_TEST);
   
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-<<<<<<< HEAD
   carregar_texturas();
   compoe_jato();
   //  glShadeModel(GL_FLAT);
-=======
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
   glEnable(GL_TEXTURE_2D);
 }
 
@@ -388,12 +296,7 @@ int main(int argc,char **argv){
 
   return(0);
 }
-<<<<<<< HEAD
 </pre>
-=======
-
-	</pre>
->>>>>>> 5aefc6bd21a356a32f426d94c0fb1f403730bab6
     </div></div><br class="example-break">
 
     <p>Para compilar e executar o programa <a class="ulink" href="exemplos/jato.c" target="_top"><code class="filename">jato.c</code></a>, salve-o juntamente com os arquivo <a class="ulink" href="exemplos/Makefile.modelagem" target="_top">Makefile.modelagem</a>, <a class="ulink" href="exemplos/image.c" target="_top">image.c</a>, <a class="ulink" href="exemplos/image.h" target="_top">image.h</a>, <a class="ulink" href="exemplos/montanhas.rgb" target="_top">montanhas.rgb</a> e <a class="ulink" href="exemplos/camuflagem.rgb" target="_top">camuflagem.rgb</a> em um diret&oacute;rio e execute a seguinte seq&uuml;&ecirc;ncia de comandos:</p>
