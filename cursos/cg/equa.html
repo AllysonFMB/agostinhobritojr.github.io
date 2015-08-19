@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.9">
-<title>DCA0114</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
+<title>Asciidoc test</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -86,9 +87,15 @@ ul, ol, li > p {
 ul > li     { color: #aaa; }
 ul > li > * { color: black; }
 
-pre {
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
   padding: 0;
   margin: 0;
+}
+pre {
+  white-space: pre-wrap;
 }
 
 #author {
@@ -178,7 +185,7 @@ div.quoteblock, div.verseblock {
   margin-left: 1.0em;
   margin-right: 10%;
   border-left: 5px solid #f0f0f0;
-  color: #777777;
+  color: #888;
 }
 
 div.quoteblock > div.attribution {
@@ -218,7 +225,7 @@ div.exampleblock > div.content {
 }
 
 div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; }
+span.image img { border-style: none; vertical-align: text-bottom; }
 a.image:visited { color: white; }
 
 dl {
@@ -348,7 +355,7 @@ div.colist td img {
   margin-bottom: 0.1em;
 }
 
-div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -406,17 +413,13 @@ span.underline { text-decoration: underline; }
 span.overline { text-decoration: overline; }
 span.line-through { text-decoration: line-through; }
 
+div.unbreakable { page-break-inside: avoid; }
+
 
 /*
  * xhtml11 specific
  *
  * */
-
-tt {
-  font-family: monospace;
-  font-size: inherit;
-  color: navy;
-}
 
 div.tableblock {
   margin-top: 1.0em;
@@ -450,12 +453,6 @@ div.tableblock > table[frame="vsides"] {
  * html5 specific
  *
  * */
-
-.monospaced {
-  font-family: monospace;
-  font-size: inherit;
-  color: navy;
-}
 
 table.tableblock {
   margin-top: 1.0em;
@@ -538,168 +535,6 @@ body.manpage div.sectionbody {
 }
 
 
-/*
- * Theme specific overrides of the preceding (asciidoc.css) CSS.
- *
- */
-body {
-  font-family: Garamond, Georgia, serif;
-  font-size: 17px;
-  color: #3E4349;
-  line-height: 1.3em;
-}
-h1, h2, h3, h4, h5, h6,
-div.title, caption.title,
-thead, p.table.header,
-#toctitle,
-#author, #revnumber, #revdate, #revremark,
-#footer {
-  font-family: Garmond, Georgia, serif;
-  font-weight: normal;
-  border-bottom-width: 0;
-  color: #3E4349;
-}
-div.title, caption.title { color: #596673; font-weight: bold; }
-h1 { font-size: 240%; }
-h2 { font-size: 180%; }
-h3 { font-size: 150%; }
-h4 { font-size: 130%; }
-h5 { font-size: 115%; }
-h6 { font-size: 100%; }
-#header h1 { margin-top: 0; }
-#toc {
-  color: #444444;
-  line-height: 1.5;
-  padding-top: 1.5em;
-}
-#toctitle {
-  font-size: 20px;
-}
-#toc a {
-    border-bottom: 1px dotted #999999;
-    color: #444444 !important;
-    text-decoration: none !important;
-}
-#toc a:hover {
-    border-bottom: 1px solid #6D4100;
-    color: #6D4100 !important;
-    text-decoration: none !important;
-}
-div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
-div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
-em, dt, td.hdlist1 { color: black; }
-strong { color: #3E4349; }
-a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
-a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
-a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
-div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
-th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
-ul > li > * { color: #3E4349; }
-pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
-tt, .monospaced { font-size: 0.9em; color: black;
-}
-div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
-div.verseblock { border-left-width: 0; margin-left: 3em; }
-div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
-div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
-.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #A00000 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
-.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #808080 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0040D0 } /* Generic.Traceback */
-.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
-.highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #19177C } /* Name.Variable.Class */
-.highlight .vg { color: #19177C } /* Name.Variable.Global */
-.highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-
-
-@media screen {
-  body {
-    max-width: 50em; /* approximately 80 characters wide */
-    margin-left: 16em;
-  }
-
-  #toc {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 13em;
-    padding: 0.5em;
-    padding-bottom: 1.5em;
-    margin: 0;
-    overflow: auto;
-    border-right: 3px solid #f8f8f8;
-    background-color: white;
-  }
-
-  #toc .toclevel1 {
-    margin-top: 0.5em;
-  }
-
-  #toc .toclevel2 {
-    margin-top: 0.25em;
-    display: list-item;
-    color: #aaaaaa;
-  }
-
-  #toctitle {
-    margin-top: 0.5em;
-  }
-}
 </style>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -892,337 +727,51 @@ install: function(toclevels) {
 }
 
 }
-asciidoc.install(2);
+asciidoc.install();
 /*]]>*/
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
 </head>
 <body class="article">
 <div id="header">
-<h1>DCA0114</h1>
-<span id="author">Agostinho Brito</span><br>
-<span id="email" class="monospaced">&lt;<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>&gt;</span><br>
-<div id="toc">
-  <div id="toctitle">Table of Contents</div>
-  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
-</div>
+<h1>Asciidoc test</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_ementa">Ementa</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Introdução. Dispositivos de exibição. Fundamentos de cor. Projeções
-geométricas. Transformações geométricas. Transformações para
-visualização. Clipping. Tratamento de superfícies
-escondidas. Rasterização. Modelos de iluminação. Algoritmos de
-Rendering. Conceitos de Ray tracing. Manipulação de imagens.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_objetivo_geral">Objetivo geral</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Apresentar para o aluno as técnicas tradicionais de desenho de objetos
-gráficos, utilizando uma ferramenta de programação para fixação de
-conceitos, a biblioteca OpenGL.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia">Metodologia</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Aulas expositivas e práticas, no laboratório, utilizando programas
-específicos.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_programa_do_curso">Programa do curso</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="ulist"><ul>
 <li>
 <p>
-Primeira unidade
+Seção 1
 </p>
-<div class="olist arabic"><ol class="arabic">
-<li>
-<p>
-Apresentação do curso (<a href="equa.asc">equa.asc</a> - documento em asciidoc. observar comentário no início do arquivo ensinando o processo de compilação)(27/07)
-</p>
-</li>
-<li>
-<p>
-Introdução / Dispositivos de exibição (<a href="intro.pdf">intro.pdf</a>) (29/07)
-</p>
-</li>
-<li>
-<p>
-Fundamentos de cor (<a href="cor.pdf">cor.pdf</a>) (3/08)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (introdução ao OpenGL) (<a href="/tutoriais/opengl/">tutorial</a>) (5/08)
-</p>
-</li>
-<li>
-<p>
-Algoritmos de traçado de linhas e circunferências (<a href="linhas.html">linhas.html</a>) (10/08)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (manipulação de linhas e circunferências) (12/08)
-</p>
-</li>
-<li>
-<p>
-Algoritmos de preenchimento (<a href="quadradosColor.c">quadradosColor.c</a>)(17/08)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (preenchimento de regiões) (19/08)
-</p>
-</li>
-<li>
-<p>
-Recortes (clipping) (24/08)
-</p>
-</li>
-<li>
-<p>
-Transformações geométricas 2D e 3D (26/08)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeções geométricas) (31/08)
-</p>
-</li>
-<li>
-<p>
-1a. Avaliação (2/09)
-</p>
-</li>
-</ol></div>
-</li>
-<li>
-<p>
-Segunda unidade
-</p>
-<div class="olist arabic"><ol class="arabic">
-<li>
-<p>
-Projeções geométricas (9/09)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeções geométricas) (14/09)
-</p>
-</li>
-<li>
-<p>
-Projeções geométricas (16/09)
-</p>
-</li>
-<li>
-<p>
-Modelagem geométrica (21/09)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (modelagem de sólidos) (23/09)
-</p>
-</li>
-<li>
-<p>
-Modelagem geométrica (28/09)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (modelagem de sólidos 2) (30/09)
-</p>
-</li>
-<li>
-<p>
-Representação de curvas no plano (5/10)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (curvas no plano) (7/10)
-</p>
-</li>
-<li>
-<p>
-Representação de superfícies no espaço (12/10)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (superfícies no espaço) (14/10)
-</p>
-</li>
-<li>
-<p>
-2a. Avaliação (19/10)
-</p>
-</li>
-</ol></div>
-</li>
-<li>
-<p>
-Terceira unidade
-</p>
-<div class="olist arabic"><ol class="arabic">
-<li>
-<p>
-Tratamento de linhas e superfícies escondidas (21/10)
-</p>
-</li>
-<li>
-<p>
-Modelos de iluminação (26/10)
-</p>
-</li>
-<li>
-<p>
-Shading (28/10)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (modelos de iluminação e sombreamento) (2/11)
-</p>
-</li>
-<li>
-<p>
-Ray tracing (4/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (ray-tracing) (9/11)
-</p>
-</li>
-<li>
-<p>
-Radiosidade (11/11)
-</p>
-</li>
-<li>
-<p>
-Tratamento de imagens e texturas (16/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto)   (18/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (23/11)
-</p>
-</li>
-<li>
-<p>
-LABORATÓRIO (projeto) (25/11)
-</p>
-</li>
-<li>
-<p>
-3a. Avaliação  (30/11)
-</p>
-</li>
-</ol></div>
-</li>
-</ul></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia_de_avaliação">Metodologia de avaliação</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Prova escrita (50%) e Exercícios (50%)</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_datas_das_avaliações">Datas das avaliações</h2>
-<div class="sectionbody">
 <div class="ulist"><ul>
 <li>
 <p>
-1a Avaliação: 09/09/2015
-</p>
-</li>
-<li>
-<p>
-2a Avaliação: 21/10/2015
-</p>
-</li>
-<li>
-<p>
-3a Avaliação: 04/12/2015
-</p>
-</li>
-<li>
-<p>
-reposicao: 11/12/2015
+Lah vai uma equacao $x^2$
 </p>
 </li>
 </ul></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_submissão_de_exercícios">Submissão de exercícios</h2>
-<div class="sectionbody">
-<div class="ulist"><ul>
-<li>
-<p>
-Cada aluno deverá submeter seus exercícios em uma homepage com as modificações realizadas no programa pdi fornecido como referência, os testes realizados, imagens obtidas, ambos devidamente comentados. Logo que sua página web estiver pronta, envie um e-mail para seu instrutor (<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>) com a URL de referência, que a mesma será incluída na página do curso. Se necessário, inclua as instruções de compilação do seu programa.
-</p>
-</li>
-<li>
-<p>
-O prazo para entrega das atividades encerra-se ao fim de cada avaliação. Atividades entregues após este prazo não serão aceitas.
-</p>
-</li>
-</ul></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bibliografia">Bibliografia</h2>
-<div class="sectionbody">
-<div class="ulist bibliography"><ul>
-<li>
-<p>
-Foley et al. <em>Computer Graphics: Principles and Practice</em>. Addison-Wesley. 1990. 2 ed.
-</p>
-</li>
-<li>
-<p>
-David Rogers. <em>Mathematical Elements for Computer Graphics</em>. McGraw-Hill. 1990.
-</p>
-</li>
-<li>
-<p>
-David Rogers. <em>Procedural Elements for Computer Graphics</em>. McGraw-Hill. 1997.
-</p>
-</li>
-<li>
-<p>
-<em>http://www.opengl.org</em>. Principal portal de desenvolvimento e referência para a linguagem OpenGL.
-</p>
 </li>
 </ul></div>
 </div>
 </div>
 </div>
-<div id="footnotes"><hr></div>
+<div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated
- 2015-08-19 10:43:10 BRT
+Last updated 2015-08-19 10:40:10 BRT
 </div>
 </div>
 </body>
