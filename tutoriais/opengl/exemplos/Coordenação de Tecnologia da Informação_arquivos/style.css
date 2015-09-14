@@ -1,0 +1,341 @@
+BODY {
+	background-color:#ffffff;
+	overflow: auto
+}
+
+FONT		{ font-family : Verdana; font-size: 8pt; color: #FFFFFF;}
+  .atencao	{ font-family : Verdana; font-size: 10pt; color: #FF0000; font-weight: bold;}
+  .diadasemana	{ font-family : Verdana; font-size: 8pt; color: #000000; font-weight: normal;}
+  .mesano	{ font-family : Verdana; font-size: 8pt; color: #000000; font-weight: normal;}
+  .titulo	{ font-family : Verdana; font-size: 9pt; color: #000080; font-weight: bold;}
+  .config	{ font-family : Times New Roman; font-size: 10pt; color: #000000;}
+  .pagina	{ font-family : Verdana; font-size: 09pt; color: #000080; font-weight: bold;}
+  .referencia	{ font-family : Verdana; font-size: 09pt; color: #FF0000; font-weight: bold;}
+  .referencia1	{ font-family : Verdana; font-size: 09pt; color: #000000; font-weight: bold;}
+  .referencia2	{ font-family : Verdana; font-size: 09pt; color: #FF6600; font-weight: bold;}
+  .subtitulo	{ font-family : Verdana; font-size: 8pt; color: #000080; font-weight: bold;}
+  .tituloPreto	{ font-family : Verdana; font-size: 8pt; color: #000000; font-weight: bold;}
+  .tituloPreto1	{ font-family : Verdana; font-size: 8pt; color: #000000;}
+  .tituloPreto2	{ font-family : Verdana; font-size: 7pt; color: #000000;}
+  .tituloPreto3	{ font-family : Verdana; font-size: 12pt; color: #000000; font-weight: bold;}
+  .campoVermelho{ font-family : Verdana; font-size: 7pt; color: #FF0000; font-weight: bold;}
+  .campoVerde	{ font-family : Verdana; font-size: 7pt; color: #008000; font-weight: bold;}
+  .campoAzul	{ font-family : Verdana; font-size: 7pt; color: #000080; font-weight: bold;}
+  .campoLaranja	{ font-family : Verdana; font-size: 7pt; color: #FF9900; font-weight: bold;}
+  .legenda	{ font-family : Verdana; font-size: 7pt; color: #000000; font-weight: normal;}
+  .tituloOrgao  { font-family : Verdana; font-size: 12px; color: #000066; font-weight: bold;}
+  .tituloSistema{ font-family : Verdana; font-size: 15px; color: #000000; font-weight: bold;}
+  .tituloBranco	{ font-family : Verdana; font-size: 9pt; color: #FFFFFF; font-weight: bold;}
+  .tituloBranco1{ font-family : Verdana; font-size: 10pt; color: #FFFFFF; font-weight: bold;}
+  .inclusao		{ font-family : Verdana; font-size: 10pt; color: navy; font-weight: bold; background-color:#FFFF99; layer-background-color:#FFFF66}
+  .label		{ font-family : Verdana; font-size: 8pt; color: #000080;}
+  .labelBranco	{ font-family : Verdana; font-size: 8pt; color: #FFFFFF; font-weight: normal;}
+  .labelBrancoPeq{ font-family : Verdana; font-size: 7pt; color: #FFFFFF;}
+  .normal{ font-family : Verdana; font-size: 7pt; color: #000080;}
+  .normalBranco{ font-family : Verdana; font-size: 7pt; color: #FFFFFF;}
+  .campo{ font-family : Verdana; font-size: 7,5pt; color: #000080;}
+  .campo1{ font-family : Verdana; font-size: 8pt; color: #000000;}
+  .campo2{ font-family : Verdana; font-size: 8pt; color: #FF0000; font-weight:bold;}
+  .campo3{ font-family : Verdana; font-size: 8pt; color: #000080; font-weight:bold;}
+  .campoAzulBack{ font-family : Verdana; font-size: 8pt; color: #000080; font-weight:bold; background-color:#dfe9fe;layer-background-color:#FFFF66}
+  .campoPretoBack{ font-family : Verdana; font-size: 8pt; color: #000000; font-weight:normal; background-color:#dfe9fe;layer-background-color:#FFFF66}
+  .campo4{ font-family : Verdana; font-size: 7pt; color: #000000;}
+  .criterio{ font-family : Verdana; font-size: 9pt; color: #FFFFFF;}
+  .clique{ font-family : Verdana; font-size: 8pt; color: #FF0000;}
+  .asterisco{ font-family : Verdana; font-size: 8pt; color: #FF0000;}
+  .simboloObrigatorio{ font-family : Verdana; font-size: 8pt; color: #FF0000;}
+  .fixo{ font-family : Verdana; font-size: 7pt; color: #000000; font-weight: bold;text-shadow: #c0c0c0 10pt 10pt, #ff00ff -10pt;}
+  .fixo1{ font-family : Verdana; font-size: 7pt; color: #000000; text-shadow: #c0c0c0 10pt 10pt, #ff00ff -10pt;}
+  .nome{ font-family : Verdana; font-size: 8pt; color: #FFFF00; font-weight: bold;}
+  .erro{ font-family : Verdana; font-size: 7pt; color: #FF0000;font-weight:lighter ;}
+  .erroGrande{ font-family : Verdana; font-size: 9pt; color: #FF0000;font-weight:lighter ;}
+  .legenda{ font-family : Verdana; font-size: 7pt; color: #000000;text-shadow: #c0c0c0 10pt 10pt, #ff00ff -10pt;}
+  .legendaPagina{ font-family : Verdana; font-size: 8pt; color:  #000080;text-shadow: #c0c0c0 10pt 10pt, #ff00ff -10pt;font-weight: bold;}
+  .cb{ font-family : Verdana; font-size: 8pt; color: #000000;text-shadow: #c0c0c0 10pt 10pt, #ff00ff -10pt;}
+  .mensagem    { font-family : Verdana; font-size: 8pt; color: Navy; font-weight:lighter ;font-weight: bold;}
+  .mensagemErro{ font-family : Verdana; font-size: 8pt; color: #FF0000;font-weight:lighter ;font-weight: bold;}
+  .mensagemSucesso{ font-family : Verdana; font-size: 8pt; color: #669966;font-weight:lighter ;font-weight: bold;}
+  .status{ font-family : Verdana; font-size: 8pt; color: #000080;font-weight: bolder;}
+  .statusClaro{ font-family : Verdana; font-size: 8pt; color: #dfe9fe;font-weight: bolder;}
+  .auto{ font-family : Verdana; font-size: 8pt; color: #030303;}
+  .dado{ font-family : Verdana; font-size: 8pt; color: #000000; font-weight: bold;}
+  .dado1{ font-family : Verdana; font-size: 9pt; color: #000000;}
+TD { font-family : Arial; font-size : 12px; color : Navy; padding: 0px; }
+TR { font-family : Arial; font-size : 12px; text-align:justify;}
+INPUT {	BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: trebuchet ms; BACKGROUND-COLOR: white; font-weight: bolder; background : fffffa;}
+  .imagem { BORDER-RIGHT: #dfe9fe 1px solid; BORDER-TOP: #dfe9fe 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #dfe9fe 1px solid;  COLOR: #000000; BORDER-BOTTOM: #dfe9fe 1px solid; FONT-FAMILY: trebuchet ms; BACKGROUND-COLOR: white; font-weight: bolder; background : fffffa;}
+  .checkbox { BORDER-RIGHT: #dfe9fe 1px solid; BORDER-TOP: #dfe9fe 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #dfe9fe 1px solid;  COLOR: #000000; BORDER-BOTTOM: #dfe9fe 1px solid; BACKGROUND-COLOR: #dfe9fe;  background : #dfe9fe;}
+  .radio { BORDER-RIGHT: #dfe9fe 1px solid; BORDER-TOP: #dfe9fe 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #dfe9fe 1px solid;  COLOR: #000000; BORDER-BOTTOM: #dfe9fe 1px solid; BACKGROUND-COLOR: #dfe9fe;  background : #dfe9fe;}
+  .alinhadoADireita { text-align: Right; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa;}
+  .alinhadoAEsquerda { text-align: Left; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa;}
+  .alinhadoAoCentro { text-align: Center; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa;}
+  .text { text-align: Left; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa; text-transform:uppercase;}
+  .textSemUpper { text-align: Left; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa;}
+  .valor { text-align: Right; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa;}
+  .data { text-align: Right; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 8px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: bold; background : fffffa;}
+SELECT { text-align: Left; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa;}
+TEXTAREA { text-align: Left; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa; }
+  .texto { text-align: justify; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #bbbbbb 1px solid; COLOR: #000000; BORDER-BOTTOM: #bbbbbb 1px solid; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white; font-weight: normal; background : fffffa; text-transform:uppercase;}	
+A {text-decoration: underline; color: #000080;}
+  .link {font-family : Verdana; font-size: 8pt; color: #4d4dff;}
+A.menu1 {
+	COLOR: navy; FONT-WEIGHT: bold; TEXT-DECORATION: none; font-family:Verdana; font-size:8pt;
+}
+A.menu1:link {
+	TEXT-DECORATION: none
+}
+A.menu1:visited {
+	
+}
+A.menu1:active {
+	
+}
+A.menu1:hover {
+	COLOR: #0033ff; TEXT-DECORATION: underline
+}
+
+A.menu2 {
+	COLOR: navy; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.menu2:link {
+	TEXT-DECORATION: none
+}
+A.menu2:visited {
+	
+}
+A.menu2:active {
+	
+}
+A.menu2:hover {
+	COLOR: #758EBD; TEXT-DECORATION: underline
+}
+
+A.menu3 {
+	COLOR: #FFFFFF; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.menu3:link {
+	TEXT-DECORATION: none
+}
+A.menu3:visited {
+	
+}
+A.menu3:active {
+	
+}
+A.menu3:hover {
+	COLOR: navy; TEXT-DECORATION: underline
+}
+
+A.menu4 {
+	COLOR: #FF0000; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.menu4:link {
+	TEXT-DECORATION: none
+}
+A.menu4:visited {
+	
+}
+A.menu4:active {
+	
+}
+A.menu4:hover {
+	COLOR: navy; TEXT-DECORATION: none
+}
+
+A.menu5 {
+	COLOR: navy; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.menu5:link {
+	TEXT-DECORATION: none
+}
+A.menu5:visited {
+	
+}
+A.menu5:active {
+	
+}
+A.menu5:hover {
+	COLOR: #FF0000; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+
+A.menuPrincipal {
+	COLOR: #FFFFFF;
+	FONT-WEIGHT: bold;
+	font-size: 9pt;
+	text-decoration: none;
+
+
+}
+A.menuPrincipal:link {
+	TEXT-DECORATION: none
+}
+A.menuPrincipal:visited {
+	
+}
+A.menuPrincipal:active {
+
+	
+}
+A.menuPrincipal:hover {
+	COLOR: #FFFFFF; TEXT-DECORATION: underline
+}
+
+.button {
+ font-family: Verdana;
+ font-size: 10px;
+ border: 1px solid #333333;
+ filter: Wave(Freq=1,LightStrength=20, Phase=10);
+ font-weight: bold;
+ width:90px;
+ background-color: #DFE9FE;
+}
+
+.button2 {
+ font-family: Verdana;
+ font-size: 10px;
+ border: 1px solid #333333;
+ filter: Wave(Freq=1,LightStrength=20, Phase=10);
+ font-weight: bold;
+ width:120px;
+ background-color: #DFE9FE;
+}
+
+.button3 {
+ font-family: Verdana;
+ font-size: 10px;
+ border: 1px solid #333333;
+ filter: Wave(Freq=1,LightStrength=20, Phase=10);
+ font-weight: bold;
+ width:150px;
+ background-color: #DFE9FE;
+}
+
+.buttonEdicao {
+ font-family: Verdana;
+ font-size: 10px;
+ border: 1px solid #333333;
+ filter: Wave(Freq=1,LightStrength=20, Phase=10);
+ font-weight: bold;
+ width:70px;
+ background-color: #DFE9FE;
+}
+
+.inputbox {
+	background-color: #FFFFFF;
+	border: 1px solid #333333;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+
+
+
+}
+.box {
+	background-color: #DFE9FE;
+	filter: Wave(Freq=100, LightStrength=20, Phase=10);
+}
+.listbox {
+	background-color: #FFFFFF;
+	border: 1px solid #333333;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+}
+.labelBrancoNegrito {
+	font-family: verdana;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+div.tabArea {
+	font-size: 80%;
+	font-weigth: bold;
+	padding: 0px 0px 3px 0px;
+	width: 100%;
+}
+
+a.tab {
+	background-color: #ABC5E5;
+	border: 5px SOLID #ABC5E5;
+	border-bottom-width: 0px;
+	border-color: #ABC5E5 #ABC5E5 #ABC5E5 #ABC5E5;
+	-moz-border-radius: .75em .75em 0em 0em;
+	border-radius-topleft: .75em;
+	border-radius-topright: .75em;
+	padding: 2px 0em 2px 0em;
+	position: relative;
+	text-decoration: none;
+	top: 3px;
+	z-index: 100;
+	min-width: 50%;
+}
+
+a.tab:visited {
+	color: #ABC5E5;
+	background-color: #ABC5E5;
+}
+    
+a.tab:hover {
+	background-color: #E3E7ED;
+}
+    
+a.tab.activeTab {
+	background-color: #E3E7ED;
+	border-color: #E3E7ED #E3E7ED #E3E7ED #E3E7ED;
+	color: #b090e0;
+}
+    
+a.tab.activeTab:hover {
+	background-color: #E3E7ED;
+	border-color: #E3E7ED #E3E7ED #E3E7ED #E3E7ED;
+	color: #b090e0;
+}
+    
+a.tab.activeTab:visited {
+	background-color: #E3E7ED;
+	border-color: #E3E7ED #E3E7ED #E3E7ED #E3E7ED;
+	color: #b090e0;
+}
+    
+a.tab.activeTab {
+	padding-bottom: 4px;
+	top: 1px;
+	z-index: 105;
+}
+    
+div.tabMain {
+	background-color: #ABC5E5;
+	border: 2px solid #ABC5E5;
+	border-color: #ABC5E5 #ABC5E5 #ABC5E5 #ABC5E5;
+	-moz-border-radius: 0em .5em .5em 0em;
+	border-radius-topright: .5em;
+	border-radius-bottomright: .5em;
+	padding: .5em;
+	position: relative;
+	z-index: 101;
+	width: 97%;
+}
+    
+iframe.tabContent {
+	background-color: #CCCCCC ;
+	border: 1px solid #111111 ;
+	border-color: #EEEEEE #EEEEEE #EEEEEE #EEEEEE;
+	width: 100%;
+	height: 360ex;
+}
+    
+font.fontePretaNegrito {
+	color: black;
+	font-weight: bold;
+}    
+    
+tr.caminhoMenus {      
+	background-color: #B4C5D4;
+}
+    
+td.caminho {
+	color: #757576;
+	font-family: verdana;
+}
