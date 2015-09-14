@@ -3863,7 +3863,7 @@ Operação que transforma pontes de um sistema de coordenadas <em>n</em>
 <li>
 <span>
 A projeção de um objeto 3D é definida pela interseção de um feixe de
-  projetoes passando pelo objeto e um plano de projeção.
+  projetores passando pelo objeto e um plano de projeção.
 </span>
 </li>
 </ul>
@@ -4394,6 +4394,7 @@ $T =
 1 &amp; 0 &amp; 0 &amp; 0 \\
 0 &amp; 1 &amp; 0 &amp; 0 \\
 -a &amp; -b &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
 \end{bmatrix}$
 </span>
 </li>
@@ -4550,7 +4551,7 @@ $
 <span>
 Realizar uma projeção em perspectiva no plano z=0 com centro de
   projeção em $z=-2$ para os pontos $A =
-  \begin{bmatrix} 3&amp; 2&amp; 4 &amp; 1\end{bmatrix}$ e $B = \begin{bmatrix} 3 &amp; 2 &amp; 8 &amp; 1\end{bmatrix}$
+  \begin{bmatrix} 3&amp; 2&amp; 4 &amp; 1\end{bmatrix}$ e $B = \begin{bmatrix} 3 &amp; 2 &amp; 8 &amp; 1\end{bmatrix}$.
 </span>
 <ul class="">
 <li>
@@ -4578,6 +4579,25 @@ $
 1 &amp; 0.667 &amp; 1.333 &amp; 1 \\
 0.6 &amp; 0.4 &amp; 1.6 &amp; 1 \\
 \end{bmatrix}$
+</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1 slide">
+<h1 id="_projeções_de_perspectiva_com_mais_de_um_ponto_de_fuga">Projeções de perspectiva com mais de um ponto de fuga</h1>
+<div class="sectionbody">
+<ul class="">
+<li>
+<span>
+$P_{pqr} =
+P_p = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; p \\
+0 &amp; 1 &amp; 0 &amp; q \\
+0 &amp; 0 &amp; 0 &amp; r \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{bmatrix}
+$
 </span>
 </li>
 </ul>
