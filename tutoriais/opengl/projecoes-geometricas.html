@@ -20,10 +20,10 @@
     <p>O prop&oacute;sito desta li&ccedil;&atilde;o &eacute; entender o funcionamento dos principais tipos de proje&ccedil;&otilde;es geom&eacute;tricas: paralelas e de perspectiva. O objeto utilizado nesta li&ccedil;&atilde;o ser&aacute; um cubo com um dos cantos cortado, como mostra a <a class="xref" href="projecoes-geometricas.html#fig-projecoes-cubo" title="Figura 5.1. Cubo sem canto">Figura&nbsp;5.1</a>. </p>
     <div class="figure"><a name="fig-projecoes-cubo"></a><p class="title"><b>Figura 5.1. Cubo sem canto</b></p><div class="figure-contents">
       
-            <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/projecoes-cubo.jpg" src="figs/projecoes-cubo.jpg"></div></div>
+            <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/cubo-sem-canto.svg">figs/cubo-sem-canto.svg</object></div></div>
 
     </div></div><br class="figure-break">
-    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/cubo-sem-canto.svg">figs/cubo-sem-canto.svg</object></div></div>
+
     <p> O programa que apresenta este cubo &eacute; mostrado no <a class="xref" href="transformacoes.html#example-braco" title="Exemplo 4.1. programa braco.c">Exemplo&nbsp;4.1</a>. As teclas <span class="keycap"><strong>y</strong></span> e <span class="keycap"><strong>Y</strong></span> servem para girar o cubo em torno do eixo y contra e a favor do sentido dos ponteiros do rel&oacute;gio, respectivamente; as teclas <span class="keycap"><strong>x</strong></span> e <span class="keycap"><strong>X</strong></span>, controlam o giro em torno do eixo x. As teclas <span class="keycap"><strong>o</strong></span> e <span class="keycap"><strong>p</strong></span> define que os tipos de proje&ccedil;&otilde;es ser&atilde;o ortogr&aacute;ficas ou de perspectiva, respectivamente. Para finalizar o programa, basta digitar <span class="keycap"><strong>ESC</strong></span>. As teclas e suas respectivas a&ccedil;&otilde;es est&atilde;o definidas na fun&ccedil;&atilde;o <code class="function">keyboard()</code>.</p>
     <div class="example"><a name="example-projecoes"></a><p class="title"><b>Exemplo 5.1. programa <a class="ulink" href="exemplos/projecoes.c" target="_top"><code class="filename">projecoes.c</code></a></b></p><div class="example-contents">
       
@@ -222,7 +222,7 @@ static GLubyte trianguloIndices[] = {1,2,9};</pre>
 
       <div class="figure"><a name="fig-projecoes-indices"></a><p class="title"><b>Figura 5.2. Seq&uuml;&ecirc;ncia de v&eacute;rtices defininindo a frente do pol&iacute;gono.</b></p><div class="figure-contents">
 	
-      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><img alt="figs/projecoes-indices.jpg" src="figs/projecoes-indices.jpg"></div></div>
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figs/projecoes-indices.svg">figs/projecoes-indices.svg</object></div></div>
       </div></div><br class="figure-break">
 
       <div class="informalexample">
@@ -264,7 +264,7 @@ int largura, altura;</pre>
 
       <div class="informalexample">
 	<pre class="programlisting">glEnableClientState(GL_VERTEX_ARRAY);
-  glVertexPointer(3, GL_FLOAT, 0, vertices);</pre>
+glVertexPointer(3, GL_FLOAT, 0, vertices);</pre>
       </div>
       <p>Aqui entra uma caracter&iacute;stica nova do OpenGL: a possibilidade de desenhar objetos utilizando &iacute;ndices para referenciar as coordenadas dos seus v&eacute;rtices. Entretanto, esta caracter&iacute;stica deve ser habilitada com a chamada &agrave; fun&ccedil;&atilde;o <code class="function">glEnableClientState()</code>, caso contr&aacute;rio nada ser&aacute; desenhado. Os v&eacute;rtices do cubo s&atilde;o indexados atrav&eacute;s da chamada &agrave; fun&ccedil;&atilde;o <code class="function">glVertexPointer()</code>, que possui o seguinte prot&oacute;tipo:</p>
       <div class="funcsynopsis">
