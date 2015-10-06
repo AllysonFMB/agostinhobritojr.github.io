@@ -1,0 +1,2782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="author" content="Agostinho Brito">
+<title>Introdução à computação gráfica com OpenGL</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove the comments around the @import statement below when using this as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+#map_canvas img,#map_canvas embed,#map_canvas object,.map_canvas img,.map_canvas embed,.map_canvas object{max-width:none!important}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+.antialiased,body{-webkit-font-smoothing:antialiased}
+img{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{display:inline-block;color:rgba(0,0,0,.8);font-size:.75em;line-height:1.4;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:-.15em .15em 0 .15em;padding:.2em .6em .2em .5em;vertical-align:middle;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.05em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.spread{width:100%}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1{padding-right:.75em;font-weight:bold}
+td.hdlist1,td.hdlist2{vertical-align:top}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none}
+span.footnote,span.footnoteref{vertical-align:super;font-size:.875em}
+span.footnote a,span.footnoteref a{text-decoration:none}
+span.footnote a:active,span.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em;line-height:1.3;font-size:.875em;margin-left:1.2em;text-indent:-1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+h1,h2{letter-spacing:-.01em}
+dt,th.tableblock,td.content{text-rendering:optimizeLegibility}
+p,td.content{letter-spacing:-.01em}
+p strong,td.content strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img{page-break-inside:avoid}
+thead{display:table-header-group}
+img{max-width:100%!important}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.4.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</head>
+<body class="book">
+<div id="header">
+<h1>Introdução à computação gráfica com OpenGL</h1>
+<div class="details">
+<span id="author" class="author">Agostinho Brito</span><br>
+<span id="revnumber">version 0.9,</span>
+<span id="revdate">(c)2006-15</span>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_prefácio">Prefácio</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Este tutorial visa ensinar os conceitos de Computação gráfica
+utilizando uma das APIs de progração gráfica mais populares, o
+OpenGL. Foi concebido como material acessório para uma disciplina de
+computação gráfica e, assim sendo, assume que o aluno possui os
+fundamentos teóricos necessários para acompanhar cada
+lição. Entretanto, grande parte destes fundamentos é bastante
+intuitivo, encorajando àqueles interessados no assunto a acompanharem
+as práticas e realizarem os exercícios.</p>
+</div>
+<div class="paragraph">
+<p>Toda e qualquer sugestão e/ou contribuição visando melhorar e evoluir
+este tutorial será bemvinda. Pode mandá-la diretamente via e-mail para
+ambj_at_dca.ufrn.br</p>
+</div>
+</div>
+</div>
+<h1 id="conceitos" class="sect0">Conceitos iniciais</h1>
+<div class="sect1">
+<h2 id="_o_que_é_opengl">O que é OpenGL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenGL é uma interface de 'software' para dispositivos de
+'hardware'. É uma biblioteca gráfica de modelagem e exibição
+tridimensional, bastante rápida e portável para vários sistemas
+operacionais. Seus recursos permitem ao usuário criar objetos gráficos
+com qualidade próxima à de um 'raytracer', de modo mais rápido que
+este último, além de incluir recursos avançados de animação,
+tratamento de imagens e texturas.</p>
+</div>
+<div class="paragraph">
+<p>A biblioteca OpenGL ('Open Graphics Library') foi introduzida em 1992
+pela Silicon Graphics (<a href="http://www.sgi.com" class="bare">http://www.sgi.com</a>) no intuito de
+conceber uma API (Interface de Programação de Aplicação) gráfica
+independente de dispositivos de exibição. Com isto, seria estabelecida
+uma ponte entre o processo de modelagem geométrica de objetos,
+situadas em um nível de abstração mais elevado, e as rotinas de
+exibição e de processamento de imagens implementadas em dispositivos
+('hardware') e sistemas operacionais específicos. As função utilizada
+pelo OpenGL para desenhar um ponto na tela, por exemplo, possui os
+mesmos nome e parâmetros em todos os sistemas operacionais nos quais
+OpenGL foi implementada, e produz o mesmo efeito de exibição em cada
+um destes sistemas.</p>
+</div>
+<div class="paragraph">
+<p>Diante das funcionalidades providas pelo OpenGL, tal biblioteca tem se
+tornado um padrão amplamente adotado na indústria de desenvolvimento
+de aplicações. Este fato tem sido encorajado também pela facilidade de
+aprendizado, pela estabilidade das rotinas, pela boa documentação
+disponível <a href="#Neider2000">[Neider2000]</a> e pelos resultados visuais consistentes para
+qualquer sistema de exibição concordante com este padrão. É possível
+encontrar na Internet diversos 'sites' que tratam sobre OpenGL; o mais
+popular é a sua página oficial: <a href="http://www.opengl.org" class="bare">http://www.opengl.org</a>. Neste
+endereço encontram-se disponíveis diversos artigos e 'links' sobre o
+assunto, fóruns de discussão, informações sobre a evolução desse
+padrão, além de uma série de programas utilitários.</p>
+</div>
+<div class="paragraph">
+<p>Diversos jogos, aplicações científicas e comerciais tem utilizado
+OpenGL como ferramenta de apresentação de recursos visuais,
+principalmente com a adoção deste padrão por parte dos fabricantes de
+placas de vídeo destinadas aos consumidores domésticos.</p>
+</div>
+<div class="paragraph">
+<p>Todas as rotinas do OpenGL são implementadas em C, tornando fácil sua
+utilização em qualquer programa escrito em C ou C++.</p>
+</div>
+<div class="paragraph">
+<p>Entre os recursos gráficos disponíveis pelo OpenGL, podem ser
+destacados os seguintes:
+- Modos de desenho de pontos (escrita/xor/transparência);
+- Ajuste de largura de linhas;
+- Aplicação de transparência;
+- Ativação/desativação de serrilhamento ('aliasing');
+- Mapeamento de superfícies com textura;
+- Seleção de janela de desenho;
+- Manipulação de fontes/tipos de iluminação e sombreamento;
+- Transformação de sistemas de coordenadas.
+- Transformações em perspectiva
+- Combinação de imagens ('blending')</p>
+</div>
+<div class="paragraph">
+<p>Diversos desenvolvedores de software possuem suas próprias
+implementações do OpenGL. Entre as implementações mais populares,
+destacam-se aquelas providas pela Microsoft, a biblioteca
+compartilhada dinâmica 'opengl32.dll', pela própria SGI, 'opengl.dll',
+e o pacote Mesa3D <a href="http://www.mesa3d.org" class="bare">http://www.mesa3d.org</a>. Esta última é uma
+implementação 'Opengl conformant', ou seja, possui funcionalidades
+semelhantes às do OpenGL, além de ser completamente gratuita e
+funcionar nos sistemas operacionais Windows 9x/NT, MS-DOS e Unix,
+facilitando ainda mais a portabilidade de aplicações.</p>
+</div>
+<div class="paragraph">
+<p>As implementações do OpenGL geralmente provêem bibliotecas auxiliares,
+tais como a GLU ('OpenGL Utility library'), utilizada para realizar
+tarefas comuns, tais como manipulação de matrizes, geração de
+superfícies e construção de objetos por composição.</p>
+</div>
+<div class="paragraph">
+<p>As especificações do OpenGL não descrevem as interações entre OpenGL e
+o sistema de janelas utilizado (Windows, X Window etc). Assim, tarefas
+comuns em uma aplicação, tais como criar janelas gráficas, gerenciar
+eventos provenientes de mouse e teclado, e apresentação de menus ficam
+a cargo de bibliotecas próprias de cada sistema operacional. Neste
+contexto, merece destaque a 'OpenGL Utility Toolkit' (GLUT), uma
+biblioteca que permite criar janelas, menus, manipular eventos, entre
+outras coisas, independentemente do sistema operacional
+utilizado. Aplicações escritas em OpenGL/GLUT podem ser compiladas em
+Windows ou Unix, sem necessidade de alterações em seus códigos. GLUT
+também foi desenvolvida pela SGI. No 'site' oficial da GLUT
+<a href="http://reality.sgi.com/mjk/glut3" class="bare">http://reality.sgi.com/mjk/glut3</a> estão disponíveis o código fonte
+dessa biblioteca, versões pré-compiladas para alguns sistemas
+operacionais, e toda a documentação incluída.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operação_normal_programas_criados_com_opengl_podem_se_tornar">Operação normal == Programas criados com OpenGL podem se tornar</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>bastante complicados, diante do volume de operações que podem ser
+realizadas. Entretanto, a estrutura básica de vários programas é
+relativamente simples, geralmente possuindo a seguinte seqüência de
+operações:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Abra uma janela gráfica</strong></dt>
+<dd>
+<p>Lembre-se que as funções do OpenGL são
+independentes do sistema operacional utilizado. Logo, você terá que
+utilizar uma ou mais bibliotecas auxiliares que permitam abrir uma
+janelas na tela do computador, tais como GLUT, WGL (para Windows),
+glX (para o sistema XWindow), AGL (para Apple) ou PGL (para OS/2).</p>
+</dd>
+<dt class="hdlist1"><strong>Prepare OpenGL para desenhar na janela</strong></dt>
+<dd>
+<p>Defina como OpenGL irá
+desenhar nesta janela, por exemplo, se será utilizado 'double
+buffering' ou 'single buffering', e se as imagens serão geradas
+utilizando mapa de cores indexado ou diretamente no formato RGB.</p>
+</dd>
+<dt class="hdlist1"><strong>Defina o sistema de coordenadas e o estado inicial do OpenGL</strong></dt>
+<dd>
+<p>Indique as características do sistema de coordenadas a ser
+utilizado, por exemplo, os limites inferior e superior dos eixos
+coordenados. Defina as fontes de luz existentes, cores para desenho
+de polígonos, modos de preenchimento de superfícies etc.</p>
+</dd>
+<dt class="hdlist1"><strong>Loop</strong></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Trate os eventos de mouse e teclado</p>
+</li>
+<li>
+<p>Mude a cena com base nos eventos ocorridos;</p>
+</li>
+<li>
+<p>Redesenhe a cena com OpenGL.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compilando_programas_que_utilizam_opengl">Compilando programas que utilizam OpenGL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Todos os programas deste curso foram criados e testados em um ambiente
+Linux e utilizando FreeGLUT como biblioteca auxiliar para manipular
+janelas e tratar eventos. Esta escolha pode ser justificada por duas
+razões principais:
+- O Linux é um sistema operacional confiável. Um programa escrito em C
+  padrão, compilado e testado no Linux, também funcionará a contento
+  em outros sistemas, principalmente se for compilado com a mesma
+  ferramenta utilizada para compilar os exemplos deste curso, o 'gcc',
+  da GNU (<a href="http://www.gnu.org" class="bare">http://www.gnu.org</a>). Além de ser gratuito, este
+  compilador é bastante otimizado e possui versões disponíveis para a
+  maioria dos sistemas operacionais existentes.
+- O GLUT está implementado em diversos sistemas operacionais,
+  facilitando a portabilidade de programas.</p>
+</div>
+<div class="paragraph">
+<p>As tarefas de compilação foram automatizadas com o utilitário
+'make'. O 'make' determina automaticamente que partes de um grande
+programa necessitam ser recompiladas e os comandos necessários para
+recompilá-las, a partir da leitura das regras definidas em um arquivo
+'Makefile'. Assim, para efetuar a compilação do programa, basta
+executar o comando 'make', ao invés de digitar dezenas de comandos no
+prompt do Unix.</p>
+</div>
+<div class="paragraph">
+<p>O <a href="exemplos/Makefile">Makefile</a> do <a href="#exemplo_Makefile">Exemplo</a> foi
+utilizado para compilar os exemplos desse curso. Para obter uma cópia
+deste arquivo clique <a href="exemplos/Makefile">aqui</a>.</p>
+</div>
+<div id="exemplo_makefile" class="listingblock">
+<div class="title">Makefile</div>
+<div class="content">
+<pre class="highlight"><code class="language-Makefile" data-lang="Makefile"># Compila programas do curso de OpenGL
+# digite: make programa.c
+#
+
+CC = g++
+CFLAGS = -O2
+XLIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lX11
+
+##### MACROS #####
+
+INCDIR = /usr/include
+LIBDIR = /usr/lib
+
+GL_LIBS = -L$(LIBDIR) -lglut -lGLU -lGL -lm $(XLIBS)
+
+LIB_DEP = $(LIBDIR)/$(GL_LIB)
+
+##### RULES #####
+
+.SUFFIXES:
+.SUFFIXES: .c .cpp
+
+.c: $(LIB_DEP)
+	$(CC) -I$(INCDIR) $(CFLAGS) $&lt; -o $@ $(GL_LIBS)
+
+##### TARGETS ######
+
+clean:
+	-rm *.o *~</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As regras contidas neste arquivo Makefile incluem opções de compilação
+tais como '-lglut', referente à biblioteca auxiliar GLUT, e '-lGLU
+-lGL', referentes às bibliotecas padrão do OpenGL para o Mesa3d,
+possibilitando que programas simples possam ser fácilmente compilados.</p>
+</div>
+<div class="paragraph">
+<p>Para testar se esse arquivo funciona no seu sistema, copie-o para um
+diretório, juntamente com o programa
+<a href="exemplos/teste-make.c">teste-make.c</a>. Dentro deste diretório,
+execute a seguinte seqüência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ make teste-make
+$ ./teste-make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Caso apareça um quadrado com cores variáveis dentro de uma janela com
+fundo branco, é sinal de que ocorreu tudo bem.</p>
+</div>
+<div class="listingblock">
+<div class="title">teste-make.c</div>
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">/* programa teste-make.c */
+
+#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+void display(void);
+void timer(int);
+void keyboard(unsigned char key, int x, int y);
+
+/* cores do quadrado */
+GLfloat r=1.0, g=0.5, b=0.0;
+
+int main(int argc, char** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+  glutInitWindowSize (256, 256);
+  glutInitWindowPosition (100, 100);
+  glutCreateWindow (argv[0]);
+  // inicia um temporizador. após 33ms ativa a funcao timer
+  glutTimerFunc(33, timer, 1);
+  glClearColor(1.0, 1.0, 1.0, 0.0);
+  glShadeModel (GL_FLAT);
+  glOrtho (0, 1, 0, 1, -1 ,1);
+  glutDisplayFunc(display);
+  glutMainLoop();
+  return 0;
+}
+
+void timer(int value){
+  r=r+0.01;
+  g=g+0.01;
+  b=b+0.01;
+  if(r&gt;1) r=0;
+  if(g&gt;1) g=0;
+  if(b&gt;1) b=0;
+  glutPostRedisplay();
+  glutTimerFunc(33, timer, 1);
+}
+
+void display(void){
+  int i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glColor3f (r, g, b);
+  glBegin(GL_POLYGON);
+  glVertex2f(0.25,0.25);
+  glVertex2f(0.75,0.25);
+  glVertex2f(0.75,0.75);
+  glVertex2f(0.25,0.75);
+  glEnd();
+  glFlush();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exercícios">Exercícios</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Utilizando o programa <a href="exemplos/teste-make.c" class="bare">exemplos/teste-make.c</a> como referência,
+implemente um programa 'quadrados4.c'. Este programa deverá desenhar
+numa janela com fundo branco, de dimensões 256x256 pixels, e quatro
+quadrados de cores diferentes arranjados na janela.</p>
+</li>
+<li>
+<p>Utilizando o programa <a href="exemplos/teste-make.c" class="bare">exemplos/teste-make.c</a> como referência,
+implemente um programa 'quadradoscolor.c'. Este programa deverá
+desenhar numa janela com fundo branco, de dimensões 256x256
+pixels, um quadrado com as mesmas dimensões do quadrado
+original. Entretanto, cada uma das cores determinadas para os
+quatro vértices do quadrado deverão ser determinadas a partir de
+valores calculados via modelo HSI. Implemente um temporizador
+para os valores de H mudarem com o tempo para os vértices,
+produzindo uma pequena animação. Comente a linha
+'glShadeModel(GL_FLAT)' para que o feito de degradê possa ser
+visualizado.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_desenhando_linhas_e_pontos" class="sect0">Desenhando linhas e pontos</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>O propósito desta lição é entender recursos fundamentais da biblioteca
+    OpenGL e da biblioteca auxiliar GLUT, tais como abrir uma janela,
+    definir sistemas de coordenadas, limpar a tela e especificar cores
+    de desenho. Este propósito será alcançado através da análise do
+    programa <a href="exemplos/linha.c" class="bare">exemplos/linha.c</a> , mostrado no
+    <a href="#exa_linha">Exemplo</a>, cuja única funcionalidade desenhar uma reta
+    entre dois pontos de uma janela gráfica.</p>
+</div>
+<div id="exa_linha" class="listingblock">
+<div class="title">linha.c</div>
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;
+
+void init(void);
+void display(void);
+void keyboard(unsigned char key, int x, int y);
+
+int main(int argc, char** argv){
+  glutInit(&amp;argc, argv);
+  glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+  glutInitWindowSize (256, 256);
+  glutInitWindowPosition (100, 100);
+  glutCreateWindow ("Desenhando uma linha");
+  init();
+  glutDisplayFunc(display);
+  glutKeyboardFunc(keyboard);
+  glutMainLoop();
+  return 0;
+}
+
+void init(void){
+  glClearColor(1.0, 1.0, 1.0, 1.0);
+  glOrtho (0, 256, 0, 256, -1 ,1);
+}
+
+void display(void){
+  int i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glColor3f (0.0, 0.0, 0.0);
+  glBegin(GL_LINES);
+  glVertex2i(40,200);  glVertex2i(200,10);
+  glEnd();
+  glFlush();
+}
+
+void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+  case 27:
+	exit(0);
+	break;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="exemplos/linha.c">linha.c</a>,
+salve-o juntamente com o arquivo <a href="exemplos/Makefile">Makefile</a>
+em um diretório e execute a seguinte seqüência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ make linha
+$ ./linha</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A saída do programa 'linha' é mostrado na figura <a href="#fig_linha">Saída do programa linha</a></p>
+</div>
+<div id="fig_linha" class="paragraph">
+<div class="title">Saída do programa linha</div>
+<p><span class="image"><img src="data:image/jpg;base64,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" alt="Saida do programa linha" title="Saída do programa linha"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_descrição_do_programa_code_linha_c_code">Descrição do programa <code>linha.c</code></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">#include &lt;GL/glut.h&gt;
+#include &lt;stdlib.h&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Estes includes definem os protótipos das funções utilizadas pelo
+programa. <code>stdlib.h</code> contém o protótipo da função <code>exit()</code>. O arquivo
+de cabeçalho <code>glut.h</code> inclui, além dos protótipos das funções GLUT, os
+arquivos <code>gl.h</code> e <code>glu.h</code>, que contém os protótipos das funções
+principais e auxiliares do OpenGL.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void init(void);
+void display(void);
+void keyboard(unsigned char key, int x, int y);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Funções implementadas após a função <code>main()</code> devem ser prototipadas
+aqui, de modo a evitar erros de compilação.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glutInit(&amp;argc, argv);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Inicializa a biblioteca GLUT e negocia uma seção com o gerenciador de
+janelas. É possível passar argumentos para a função glutInit
+provenientes da linha de execução, tais como a variável de ambiente
+<code>DISPLAY</code>, ou informações sobre a geometria da tela.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Informa à biblioteca GLUT o modo do display a ser utilizado quando a
+janela gráfica for criada. O 'flag' <code>GLUT_SINGLE</code> força o uso de uma
+janela com 'buffer' simples, significando que todos os desenhos serão
+feitos diretamente nesta janela. O 'flag' <code>GLUT_RGB</code> determina que o
+modelo de cor utilizado será o modelo RGB.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glutInitWindowSize (256, 256);
+glutInitWindowPosition (100, 100);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define o tamanho inicial da janela, 256x256 pixels, e a posição
+inicial do seu canto superior esquerdo na tela, (x, y)=(100, 100).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glutCreateWindow ("Desenhando uma linha");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cria uma janela e define seu título.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">init();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nesta função é definido o estado inicial do OpenGL. Ajustes podem ser
+feitos para o usuário nessa função.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glutDisplayFunc(display);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define <code>display()</code> como a função de desenho ('display callback') para
+a janela corrente. Quando GLUT determina que esta janela deve ser
+redesenhada, a função de desenho é chamada. A função de desenho deve
+possuir o seguinte protótipo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void funcao(void);
+----
+
+[source,c]
+----
+glutKeyboardFunc(keyboard);
+----
+
+Indica que sempre que uma tecla for pressionada no teclado, GLUT
+deverá chama a função &lt;function&gt;keyboard()&lt;/function&gt; para tratar
+eventos de teclado ('keyboard callback'). A função de teclado deve
+possuir o seguinte protótipo:
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void funcao(int x, int y);</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glutMainLoop();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Inicia o 'loop' de processamento de desenhos com GLUT. Esta rotina
+deve ser chamada pelo menos uma vez em um programa que utilize a
+biblioteca GLUT.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void init(void){
+  glClearColor(1.0, 1.0, 1.0, 1.0);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Especifica as intensidade de vermelho ('RED'), verde ('GREEN') e azul
+('BLUE') utilizadas para limpar a janela. Cada parâmetro pode varia de
+0 a 1, o equivalente a uma variação de 0 a 255, usada convecionalmente
+no sistema de janelas. O último argumento é o canal alfa, usado para
+compor superfícies transparentes ou translucentes. Assume valores
+entre 0 (totalmente transparente) e 1(totalmente opaco). Neste
+exemplo, o canal alfa é mantido com valor igual a 1.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glOrtho (0, 256, 0, 256, -1 ,1);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função glOrtho define as coordenadas do volume de recorte ('clipping
+volume'), possuindo o seguinte protótipo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void glOrtho(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Os parâmetros <code>left</code> e <code>right</code> especificam as coordenadas esquerda e
+direita, respectivamente, dos planos de corte verticais. Os parâmetros
+<code>bottom</code> e <code>top</code> especificam as coordenadas inferior e superior,
+respectivamente, dos planos de corte horizontais. <code>zNear</code> e <code>zFar</code>,
+por sua vez, especificam a coordenada mais próxima e mais distante do
+observador, respectivamente, no eixo de profundidade. Assim, o volume
+de recorte definido no exemplo será x<sub>min</sub>=0 e x<sub>max</sub>=256; y<sub>min</sub>=0 e
+y<sub>max</sub>=256; z<sub>min</sub>=-1 e z<sub>max</sub>=1.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void display(void){
+  int i;
+  glClear(GL_COLOR_BUFFER_BIT);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>glClear()</code> serve para limpar 'buffers' utilizados pelo
+OpenGL com valores pré-definidos. A máscara utilizada neste exemplo, o
+parâmetro <code>GL_COLOR_BUFFER_BIT</code>, diz à função <code>glClear()</code> que apenas o
+'buffer' de desenho deve ser limpo. Após a execução desta função, a
+tela ficará branca, uma vez que a <code>init()</code> define (R, G, B)=(1.0, 1.0,
+1.0) como cor de limpeza de tela.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glColor3f (0.0, 0.0, 0.0);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Especifica (R, G, B)=(0, 0, 0), preto, como a cor de desenho. Todos os
+objetos desenhados a partir daqui terão cor preta.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glBegin(GL_LINES);
+  glVertex2i(40,200);  glVertex2i(200,10);
+  glEnd();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As funções <code>glBegin()</code> e <code>glEnd()</code> delimitam os vértices de uma
+primitiva de desenho ou de um grupo de primitivas. O parâmetro passado
+para a função especifica o tipo de primitiva a ser desenhado. Neste
+exemplo, o parâmetro <code>GL_LINES</code> indica que os vértices especificados
+devem ser tratados como pares de pontos que comporão segmentos de reta
+independentes. A função <code>glVertex2i()</code> define as coordenadas de um
+vértice.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void keyboard(unsigned char key, int x, int y){
+  switch (key) {
+  case 27:
+	exit(0);
+	break;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Conforme mencionado, a função <code>keyboard()</code> serve para tratar eventos
+de teclado. Sua implementação especifica que quando a tecla <kbd>ESC</kbd>
+'keycode'=<code>27</code> for pressionada o programa deverá ser finalizado.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exercícios_2">Exercícios</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Utilizando o programa  <a href="exemplos/linha.c" class="bare">exemplos/linha.c</a> como
+referência, implemente um programa <code>quadrado.c</code>. Este programa deverá desenhar numa
+janela com fundo branco, de dimensões 256x256 pixels, um quadrado
+vermelho, com vértice superior esquerdo de coordenadas (x, y)= (30,
+226) e vértice inferior direito de coordenadas (x, y) = (226,
+30). Quando a tecla <kbd>a</kbd> for pressionada, o quadrado deverá
+ficar com a cor azul. Quando a tecla <kbd>v</kbd> for pressionada, o quadrado
+deverá voltar à cor vermelha.</p>
+</li>
+<li>
+<p>Implemente o algoritmo de Bresenham para traçado de linhas,
+utilizando <code>GL_POINTS</code> como parâmetro da função <code>glBegin()</code>. Este
+parâmetro indica que cada vértice deve ser tratado como um ponto
+simples. Utilizando o algoritmo implementado, desenhe uma reta verde
+do ponto (x, y)=(40, 200) ao ponto (x, y)=(200, 10).</p>
+</li>
+<li>
+<p>Implemente o algoritmo de Bresenham para traçado de circunferências,
+utilizando <code>GL_POINTS</code> como parâmetro da função
+<code>glBegin()</code>. Utilizando o algoritmo implementado, desenhe uma
+circunferência azul de raio r=50, centrada no ponto (x, y) =
+(128, 128).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="preenchimento" class="sect0">Preenchimento de regiões ==</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>    O propósito desta lição é aprender funções básicas do OpenGL que tratam do preenchimento de regiões. Será mostrado um programa de desenho de polígonos com preenchimento interno com cores sólidas, padrões e combinações de cores. O programa analisado, link:exemplos/preenchimento.c"&gt;&lt;filename&gt;preenchimento.c&lt;/filename&gt;&lt;/link&gt;, é mostrado no &lt;xref linkend="example-preenchimento"/&gt;.
+    &lt;example xml:id="example-preenchimento"&gt;
+      &lt;title&gt;programa link:exemplos/preenchimento.c"&gt;&lt;filename&gt;preenchimento.c&lt;/filename&gt;&lt;/link&gt;&lt;/title&gt;
+      &lt;programlisting&gt;
+	&lt;textobject&gt;&lt;textdata fileref="&amp;caminho;/exemplos/preenchimento.c" format="linespecific"/&gt;&lt;/textobject&gt;
+      &lt;/programlisting&gt;
+    &lt;/example&gt;
+    Para compilar e executar o programa link:exemplos/preenchimento.c"&gt;&lt;filename&gt;preenchimento.c&lt;/filename&gt;&lt;/link&gt;, salve-o juntamente com o arquivo link:exemplos/Makefile"&gt;Makefile&lt;/link&gt; em um diretório e execute a seguinte seqüência de comandos:
+    &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;preenchimento&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;preenchimento&lt;/command&gt;
+&lt;/screen&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A saída do programa &lt;command&gt;preenchimento&lt;/command&gt; é mostrado na &lt;xref linkend="fig-preenchimento"/&gt;.
+&lt;figure xml:id="fig-preenchimento"&gt;
+  &lt;title&gt;Saída do programa &lt;command&gt;preenchimento&lt;/command&gt;.&lt;/title&gt;
+  &lt;mediaobject&gt;
+&lt;imageobject&gt;
+  &lt;imagedata fileref="figs/preenchimento.jpg" format="JPG"/&gt;
+&lt;/imageobject&gt;
+  &lt;/mediaobject&gt;
+&lt;/figure&gt;
+&lt;sect1&gt;
+  &lt;title&gt;Descrição do programa &lt;filename&gt;preenchimento.c&lt;/filename&gt;&lt;/title&gt;
+  Serão descritas aqui apenas as partes do programa que acrescentam conceitos novos em relação aos exemplos anteriores.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLubyte tux[] = {
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x7f,  0xfe,  0x0,
+ 0x0,  0xc4,  0x23,  0x0,
+ 0x1,  0x83,  0x21,  0x80,
+ 0x1,  0x7,  0xe0,  0x80,
+ 0x1,  0x7,  0xf0,  0x80,
+ 0x1,  0x8f,  0xf9,  0x80,
+ 0x0,  0xff,  0xff,  0x0,
+ 0x0,  0x4f,  0xf1,  0x0,
+ 0x0,  0x6f,  0xf1,  0x0,
+ 0x0,  0x2f,  0xf3,  0x0,
+ 0x0,  0x27,  0xe2,  0x0,
+ 0x0,  0x30,  0x66,  0x0,
+ 0x0,  0x1b,  0x1c,  0x0,
+ 0x0,  0xb,  0x88,  0x0,
+ 0x0,  0xb,  0x98,  0x0,
+ 0x0,  0x8,  0x18,  0x0,
+ 0x0,  0xa,  0x90,  0x0,
+ 0x0,  0x8,  0x10,  0x0,
+ 0x0,  0xc,  0x30,  0x0,
+ 0x0,  0x6,  0x60,  0x0,
+ 0x0,  0x3,  0xc0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0,
+ 0x0,  0x0,  0x0,  0x0
+};
+----      Define o vetor &lt;varname&gt;tux[]&lt;/varname&gt;, do tipo &lt;type&gt;GLubyte&lt;/type&gt;, para representar o padrão de preenchimento de polígonos utilizado neste exemplo.
+      Existem dois métodos principais para preencher regiões utilizando padrões. O mais comum utiliza texturas, mas não será abordado nesta lição. O outro método consiste em definir um mapa de bits monocromático de 32x32 pixels, representando a máscara para o padrão que se deseja desenhar. O padrão utilizado neste exemplo é mostrado na &lt;xref linkend="fig-tuxfig"/&gt;.
+      &lt;figure xml:id="fig-tuxfig"&gt;
+	&lt;title&gt;Padrão de desenho "tux".&lt;/title&gt;
+	&lt;mediaobject&gt;
+	  &lt;imageobject role="html"&gt;
+	    &lt;imagedata align="center" format="SVG" fileref="figs/tuxfig.jpg" scale="100"/&gt;
+	  &lt;/imageobject&gt;
+	&lt;/mediaobject&gt;
+      &lt;/figure&gt;
+      A máscara de desenho (vetor &lt;varname&gt;tux[]&lt;/varname&gt;) é formada por um conjunto de números representados na forma hexadecimal. Para construir este vetor, toma-se cada linha do mapa de bits de baixo para cima. Cada 8 pixels de uma linha da figura equivalem aos bits componentes de um elemento do vetor. Os bits mais significativos ficam à esquerda e os menos significativos à direita. Seguindo esta receita, então a linha 8 da &lt;xref linkend="fig-tuxfig"/&gt;, representada pela seqüência de bits &lt;emphasis&gt;00000000110001000010001100000000&lt;/emphasis&gt;, equivalerá à seqüência "0x0,  0xc4,  0x23,  0x0" do array &lt;varname&gt;tux[]&lt;/varname&gt;.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+----       A função `glutInitDisplayMode()` avisa GLUT para utilizar dois 'buffers' no desenho de cenas: um principal e outro auxiliar. Todos os objetos deverão desenhados no buffer auxiliar. Quando a função `glutSwapBuffers()` for chamada, o buffer auxiliar passa a ser o principal, e o principal toma o lugar do auxiliar. Assim, a imagem gerada é apresentada de uma só vez na tela, evitando cintilações e a visualização do processo de desenho, efeitos indesejáveis principalmente em animações.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glutMouseFunc(mouse);
+----      Define que função GLUT deverá chamar quando ocorrerem eventos de mouse. Quando o usuário pressiona ou solta uma dos botões do mouse, cada pressionamento ou soltura gera uma chamada de mouse. A função de chamada passada como argumento para `glutMouseFunc()` deve possuir o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `funcao()`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;int button&lt;/paramdef&gt;
+	  &lt;paramdef&gt;int state&lt;/paramdef&gt;
+	  &lt;paramdef&gt;int x&lt;/paramdef&gt;
+	  &lt;paramdef&gt;int y&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void display(void){
+  int i;
+  glClear(GL_COLOR_BUFFER_BIT);
+  glDisable(GL_POLYGON_STIPPLE);
+----      As funções <code>glDisable()</code> e <code>glEnable()</code> permitem habilitar diversas habilidades do OpenGL. O parâmetro &lt;parameter&gt;GL_POLYGON_STIPPLE` passado para essa função desabilita o desenho de polígonos utilizando padrões de desenho. Quando &lt;parameter&gt;GL_POLYGON_STIPPLE` é habilitado, OpenGL usa o padrão corrente para desenhar.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glPolygonMode(GL_BACK, GL_LINE);
+  glColor3f(1.0, 0.0, 0.0);
+  glBegin(GL_POLYGON);
+  glVertex2i(30,226);  glVertex2i(113,226);
+  glVertex2i(113,143); glVertex2i(30,143);
+  glEnd();
+----      Neste trecho, a função `glPolygonMode()` indica que a parte de trás dos polígonos (&lt;parameter&gt;GL_BACK`) será desenhada apenas com a linha de contorno externo (&lt;parameter&gt;GL_LINE`), de cor vermelha, conforme especificado pela função `glColor3f()`. As funções `glBegin()`/`glEnd()` são usadas agora para iniciar o traçado de um polígono (&lt;parameter&gt;GL_POLYGON`) de coordenadas especificadas pela função `glVertex2i()`. O resultado é o contorno retangular vermelho mostrado na &lt;xref linkend="fig-tuxfig"/&gt;.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glPolygonMode(GL_BACK, GL_FILL);
+  glColor3f(0.0, 1.0, 0.0);
+  glBegin(GL_POLYGON);
+  glVertex2i(143,226); glVertex2i(226,226);
+  glVertex2i(226,143); glVertex2i(143,143);
+  glEnd();
+----      A função `glPolygonMode()` indica agora que a parte de trás dos polígonos será desenhada apenas com preenchimento sólido (&lt;parameter&gt;GL_FULL`). A cor de desenho agora é (R, G, B) = (0, 1, 0), de modo que o resultado da execução desse trecho de código é o retângulo verde mostrado na &lt;xref linkend="fig-tuxfig"/&gt;.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glBegin(GL_POLYGON);
+  glColor3f(1.0, 0.0, 0.0);  glVertex2i(30,113);
+  glColor3f(0.0, 1.0, 0.0);  glVertex2i(113,113);
+  glColor3f(0.0, 0.0, 1.0);  glVertex2i(113,30);
+  glColor3f(1.0, 1.0, 0.0);  glVertex2i(30,30);
+  glEnd();
+----      Este trecho de código demonstra uma característica peculiar de preenchimento. Como cada vértice é desenhado com uma cor diferente, OpenGL interpola estas cores para compor as tonalidades do interior do polígono, gerando um preenchimento bastante colorido.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glEnable(GL_POLYGON_STIPPLE);
+  glColor3f(1.0, 0.0, 1.0);
+  glPolygonStipple(tux);
+  glBegin(GL_POLYGON);
+  glVertex2i(143,113); glVertex2i(226,113);
+  glVertex2i(226,30); glVertex2i(143,30);
+  glEnd();
+----       O preenchimento com padrões é agora habilitado pela função `glEnable()`. A função `glColor3f()` define magenta, combinação das tonalidades puras vermelho (R=1) e azul (B=1), como a nova cor de desenho. A função `glPolygonStipple()` define o novo padrão de preenchimento de polígonos, representado pelo vetor &lt;varname&gt;tux[]&lt;/varname&gt;. Em seguida, o par `glBegin()`/`glEnd()` desenha o último polígono, preenchindo com o padrão "tux".</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glFlush();
+----       A função `glFlush()` faz com que qualquer comando OpenGL ainda não executado seja executado o mais rápido possível pelo mecanismo de exibição. OpenGL freqüentemente executa comandos aos lotes, de modo a tornar mais eficiente o processo de exibição, principalmente quando os programas são executados via rede. Neste caso, quando os comandos executados um a um, o programa pode se tornar ineficiente, considerando as sobrecargas existentes em um barramento de rede. Caso o programa desenvolvido seja destinado ao uso somente local, a função `glFlush()` torna-se desnecessária. Entretanto, se o programa é feito para funcionar bem tanto localmente quanto em rede, deve ser incluída uma chamada à função `glFlush()` no final de cada quadro ou cena.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void mouse(int button, int state, int x, int y){
+  switch (button) {
+  case GLUT_LEFT_BUTTON:
+	if (state == GLUT_DOWN) {
+	  r=(GLfloat)rand()/(RAND_MAX+1.0);
+	  g=(GLfloat)rand()/(RAND_MAX+1.0);
+	  b=(GLfloat)rand()/(RAND_MAX+1.0);
+	  glutPostRedisplay();
+	}
+	break;
+  }
+}
+----       A função de tratamento de eventos de mouse verifica se algum botão é pressionado. Caso o botão esquerdo (&lt;parameter&gt;GLUT_LEFT_BUTTON`) seja pressionado (&lt;parameter&gt;GLUT_DOWN`), serão gerados três valores aleatórios para as variáveis &lt;varname&gt;r&lt;/varname&gt;, &lt;varname&gt;g&lt;/varname&gt; e &lt;varname&gt;b&lt;/varname&gt;, na faixa [0,1]. Quando a função <code>glutPostRedisplay()</code> é executada, a função <code>display</code> é chamada novamente, fazendo com que a janela corrente seja redesenhada e o polígono no canto superior esquerdo dessa janela mude de cor.
+    &lt;/sect1&gt;
+    &lt;sect1 xml:id="preenchimento-exercicios"&gt;
+      &lt;title&gt;Exercícios&lt;/title&gt;
+      &lt;orderedlist&gt;
+	-Utilizando o programa link:exemplos/preenchimento.c"&gt;&lt;filename&gt;preenchimento.c&lt;/filename&gt;&lt;/link&gt; como referência, implemente um programa &lt;filename&gt;selecao.c&lt;/filename&gt;. Este programa deverá desenhar numa janela com fundo branco, de dimensões 256x256 pixels, quatro polígonos com as mesmas coordenadas dos polígonos do programa de referência. Todos os polígonos devem estar inicialmente preenchidos de amarelo e com bordas pretas. Quando o usuário clicar com o botão esquerdo do mouse dentro de um dos polígonos, a cor de preechimento deste polígono deverá mudar para uma cor aleatória. Quando a tecla &lt;keycap&gt;b&lt;/keycap&gt; ('keycode'=&lt;keycode&gt;98&lt;/keycode&gt;) for pressionada, o programa passará a mudar as cores das bordas e não mais dos fundos dos polígonos. Quando a tecla &lt;keycap&gt;f&lt;/keycap&gt; ('keycode'=&lt;keycode&gt;102&lt;/keycode&gt;) for pressionada, o programa passará a mudar as cores dos fundos dos polígonos e não mais das bordas.
+	-Repita o item anterior utilizando 'buffer' simples e comente os resultados obtidos.
+	-Crie um padrão de preenchimento com as iniciais dos seu nome e sobre nome, por exemplo, AB, para Agostinho Brito. Implemente um programa que desenhe em uma janela de fundo branco de dimensões 300x300 pixels um hexágono com 'bounding box' de dimensões 200x200 pixels. O hexágono deve estar centrado na tela e preenchido com cor azul, utilize este padrão de preenchimento criado.
+      &lt;/orderedlist&gt;
+    &lt;/sect1&gt;
+  &lt;/chapter&gt;
+  &lt;chapter xml:id="transformacoes"&gt;
+    &lt;title&gt;Transformações geométricas&lt;/title&gt;
+    O propósito desta lição é compreender como as transformações geométricas são realizadas sobre os objetos em relação a um determinado sistema de coordenadas. No OpenGL existem funções para realizar translação, rotação e escalamento, bastando apenas ao usuário ajustar os seus parâmetros para obter o efeito desejado. Será analisado um modelo simples de um braço robótico, constituído de braço e antebraço, como mostra a &lt;xref linkend="fig-braco"/&gt;
+    &lt;figure xml:id="fig-braco"&gt;
+      &lt;title&gt;Braço robótico&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject role="html"&gt;
+	  &lt;imagedata fileref="figs/braco.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+	&lt;textobject&gt;&lt;phrase&gt;Braço robótico&lt;/phrase&gt;&lt;/textobject&gt;
+      &lt;/mediaobject&gt;
+    &lt;/figure&gt;
+     O programa que implementa o braço robótico é mostrado no &lt;xref linkend="example-braco"/&gt;. As teclas &lt;keycap&gt;s&lt;/keycap&gt; e &lt;keycap&gt;S&lt;/keycap&gt; servem para girar o ombro do braço robótico ('shoulder') para um lado e para o outro; as teclas &lt;keycap&gt;e&lt;/keycap&gt; e &lt;keycap&gt;E&lt;/keycap&gt;, por sua vez, controlam o giro do cotovelo ('elbow'). Para finalizar o programa, basta digitar &lt;keycap&gt;ESC&lt;/keycap&gt;. As teclas e suas respectivas ações estão definidas na função <code>keyboard()</code>.
+    &lt;example xml:id="example-braco"&gt;
+      &lt;title&gt;programa link:exemplos/braco.c"&gt;&lt;filename&gt;braco.c&lt;/filename&gt;&lt;/link&gt;&lt;/title&gt;
+      &lt;programlisting&gt;
+	&lt;textobject&gt; &lt;textdata fileref="&caminho;/exemplos/braco.c" format="linespecific"/&gt;&lt;/textobject&gt;
+      &lt;/programlisting&gt;
+    &lt;/example&gt;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    Para compilar e executar o programa link:exemplos/braco.c"&gt;&lt;filename&gt;braco.c&lt;/filename&gt;&lt;/link&gt;, salve-o juntamente com o arquivo link:exemplos/Makefile"&gt;Makefile&lt;/link&gt; em um diretório e execute a seguinte seqüência de comandos:
+    &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;braco&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;braco&lt;/command&gt;
+&lt;/screen&gt;
+    &lt;sect1 xml:id="transformacoes-descricao"&gt;
+      &lt;title&gt;Descrição do programa &lt;filename&gt;braco.c&lt;/filename&gt;&lt;/title&gt;</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">static int shoulder = 0, elbow = 0;
+----      As variáveis &lt;varname&gt;shoulder&lt;/varname&gt; e  &lt;varname&gt;elbow&lt;/varname&gt; guardam o ângulo de rotação do ombro e o ângulo formado entre o braço e o antebraço do robô, respectivamente.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void display(void)
+{
+  glClear (GL_COLOR_BUFFER_BIT);
+  glPushMatrix();
+----      Uma vez que as transformações geométricas no espaço são representadas por matrizes, o uso de uma pilha de matrizes de transformação ajuda a lembrar a seqüência de transformações realizadas. No OpenGL, esta facilidade é provida pelas funções <code>glPushMatrix()</code>, que insere a matriz de transformação corrente na pilha, e <code>glPopMatrix()</code>, que retira a matriz do topo da pilha e torna esta última a matriz de transformação corrente. Neste exemplo, a função <code>glPushMatrix()</code> serve para lembrar os parâmetros de translação, rotação e escalamento no início das operações de desenho.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glTranslatef (-1.0, 0.0, 0.0);
+  glRotatef ((GLfloat) shoulder, 0.0, 0.0, 1.0);
+  glTranslatef (1.0, 0.0, 0.0);
+----      A origem do sistema de coordenadas é levado para o ponto (x,y,z)=(-1,0,0) através da função `glTranslatef()`, definindo a coordenada de origem (pivô) para o ombro do braço robótico. Em seguida, usando a função `glRotatef()`, o sistema de coordenadas é rotacionado de modo, definindo a orientação do braço.
+      A função `glRotate()` possui o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `glRotate`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;GLfloat &lt;parameter&gt;angle`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLfloat &lt;parameter&gt;x`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLfloat &lt;parameter&gt;y`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLfloat &lt;parameter&gt;z`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      Quando chamada, `glRotate()` efetua uma rotação de &lt;parameter&gt;angle` graus no sistema de coordenadas na direção contra o sentido do relógio em torno de um vetor que vai da origem ao ponto (x,y,z)
+      A função `glTranslatef()`, por sua vez, retorna a origem do sistema de coordenadas para o centro do braço. As etapas desta transformação são mostradas na &lt;xref linkend="fig-braco-1"/&gt;.
+
+      &lt;figure xml:id="fig-braco-1"&gt;
+	&lt;title&gt;Transformação para desenho do braço&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/braco-1.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+      &lt;/figure&gt;
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glPushMatrix();
+  glScalef (2.0, 0.4, 1.0);
+  glutWireCube (1.0);
+  glPopMatrix();
+----      Mais uma vez, a matriz de transformação corrente é armazenada na pilha, agora para restringir o efeito da função `glScale()`. A função `glScale()` altera a escala dos eixos x, y e z. A função `glutWireCube()` desenha um cubo centrado na origem do sistema de coordenadas com aresta de tamanho unitário, conforme o argumento que lhe foi passado. Quando a função `glPopMatrix()` é chamada, a matriz de transformação do topo da pilha passa a vigorar, fazendo com que o cubo seja distorcido, assumindo a forma de um parelepípedo. A origem do sistema de coordenadas volta a ser o centro do braço.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glTranslatef (1.0, 0.0, 0.0);
+  glRotatef ((GLfloat) elbow, 0.0, 0.0, 1.0);
+  glTranslatef (1.0, 0.0, 0.0);
+----      A origem do sistema de coordenadas é levada agora para a ponta do braço com a função `glTranslate()`, demarcando o novo pivõ para rotação: o cotovelo do robô. A rotação é realizada com a função `glRotate()` e em seguida a origem do sistema de coordenadas é levada para o centro do antebraço, via `glTranslate()`.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glPushMatrix();
+  glScalef (2.0, 0.4, 1.0);
+  glutWireCube (1.0);
+  glPopMatrix();
+----      O antebraço é desenhado de forma semelhante ao braço: as escalas dos eixos coordenados são ajustadas e o cubo de aresta 1 é desenhado, sempre preservando as dimensões do sistema de coordenadas original.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glPopMatrix();
+  glutSwapBuffers();
+----      A função `glPopMatrix()` remove a matriz de transformação do topo da pilha, fazendo-a corrente, retornando assim o sistema de coordenadas original. Quando `glutSwapBuffers()` é chamada, os buffers de desenho e de apresentação são alternados e a nova imagem do braço robótico é apresentada.
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void reshape (int w, int h)
+{
+  glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+----      Define a área dentro da janela de desenho no sistema de coordenadas atual, origem (x,y), largura (w) e altura (h), que OpenGL pode utilizar para efetuar desenhos. Este trecho de código permite que toda a área da janela possa ser utilizada quando a janela sofrer redimensionamento.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glMatrixMode (GL_PROJECTION);
+  glLoadIdentity ();
+  gluPerspective(65.0, (GLfloat) w/(GLfloat) h, 1.0, 20.0);
+----      A função `glMatrixMode()` especifica a pilha de matrizes que será o alvo das operações matriciais subseqüentes; neste caso, a pilha de matrizes de projeção. A função `glLoadIdentity()` inicia a matriz de projeção corrente como a matriz identidade. A função `gluPerspective()` define a transformação de perspectiva usada no exemplo. Projeções geométricas não são alvo desta lição e por enquanto não serão estudadas.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glTranslatef (0.0, 0.0, -5.0);
+----      A função `glMatrixMode()` especifica agora que a pilha de matrizes de 'modelview', usadas para definir translação, rotação e escalamento, será o alvo das transformações subseqüentes.  A função `glLoadIdentity()` inicia a matriz de  'modelview' corrente como a matriz identidade. Finalmente, o objeto é deslocado -5 unidades para o fundo da tela, melhorando a sua visualização.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glutReshapeFunc(reshape);
+----      Especifica a função de retorno para redimensionamento de janela, possuindo o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;funcao&lt;/funcdef&gt;
+	  &lt;paramdef&gt;int &lt;parameter&gt;width`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;int &lt;parameter&gt;height`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+    &lt;/sect1&gt;
+    &lt;sect1 xml:id="transformacoes-exercicios"&gt;
+      &lt;title&gt;Exercícios&lt;/title&gt;
+      &lt;orderedlist&gt;
+ 	-Utilizando o programa link:exemplos/braco.c"&gt;&lt;filename&gt;braco.c&lt;/filename&gt;&lt;/link&gt; como referência, implemente um programa &lt;filename&gt;braco-garra.c&lt;/filename&gt;. Este programa deverá acrescente ao braço robótico uma garra com três dedos, sendo um indicador, um médio e um polegar, como mostra a &lt;xref linkend="fig-braco-garra"/&gt;. O usuário deverá poder rotacionar o dedo indicador com as teclas &lt;keycap&gt;i&lt;/keycap&gt; e &lt;keycap&gt;I&lt;/keycap&gt;, nos sentidos horário e anti-horário. Da mesma forma, as teclas &lt;keycap&gt;p&lt;/keycap&gt; &lt;keycap&gt;P&lt;/keycap&gt; deverão rotacionar o polegar, e teclas &lt;keycap&gt;m&lt;/keycap&gt; &lt;keycap&gt;M&lt;/keycap&gt;, o dedo médio do robô.
+	  &lt;figure xml:id="fig-braco-garra"&gt;
+	    &lt;title&gt;Braço robótico com garra&lt;/title&gt;
+	          &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/braco-garra.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+
+	  &lt;/figure&gt;
+ 	-Copie o programa &lt;filename&gt;braco-garra.c&lt;/filename&gt; que você criou com o nome &lt;filename&gt;braco-garra-3d.c&lt;/filename&gt;. Neste novo programa, modifique o trecho da função `main()` que define o modo de apresentação no GLUT. Use a seguinte chamada para a função de inicialização: `glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH)`, pois inclui o tratamento de profundidade e de superfícies escondidas no OpenGL . Além disso, ao invés de utilizar chamadas à função `glutWireCube()`, inclua chamadas apenas à função  `glutSolidCube()`, que contém os mesmos argumentos. Acrescente à função `init()` as chamadas de função `glEnable(GL_DEPTH_TEST);` e `glEnable(GL_CULL_FACE);`, de modo que o tratamento de superfícies escondidas seja feito pelo OpenGL. Utilize cores diferentes para cada uma das partes do braço, de modo a obter um modelo semelhante ao da &lt;xref linkend="fig-braco-3d"/&gt;. Possibilite também que a base do robô seja rotacionada em torno do eixo y, usando as teclas &lt;keycap&gt;b&lt;/keycap&gt; e &lt;keycap&gt;B&lt;/keycap&gt;, para girar nos sentidos horário e anti-horário.
+
+	  &lt;figure xml:id="fig-braco-3d"&gt;
+	    &lt;title&gt;Braço robótico 3D&lt;/title&gt;
+	          &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/braco-3d.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+
+	  &lt;/figure&gt;
+      &lt;/orderedlist&gt;
+    &lt;/sect1&gt;
+  &lt;/chapter&gt;
+
+  &lt;!-- projeçoes geométricas --&gt;
+  &lt;chapter xml:id="projecoes-geometricas"&gt;
+    &lt;title&gt;Projeções geométricas&lt;/title&gt;
+    O propósito desta lição é entender o funcionamento dos principais tipos de projeções geométricas: paralelas e de perspectiva. O objeto utilizado nesta lição será um cubo com um dos cantos cortado, como mostra a &lt;xref linkend="fig-projecoes-cubo"/&gt;.
+    &lt;figure xml:id="fig-projecoes-cubo"&gt;
+      &lt;title&gt;Cubo sem canto&lt;/title&gt;
+            &lt;mediaobject&gt;
+      &lt;imageobject&gt;
+	&lt;imagedata fileref="figs/cubo-sem-canto.svg" format="SVG"/&gt;
+      &lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+
+    &lt;/figure&gt;
+
+     O programa que apresenta este cubo é mostrado no &lt;xref linkend="example-braco"/&gt;. As teclas &lt;keycap&gt;y&lt;/keycap&gt; e &lt;keycap&gt;Y&lt;/keycap&gt; servem para girar o cubo em torno do eixo y contra e a favor do sentido dos ponteiros do relógio, respectivamente; as teclas &lt;keycap&gt;x&lt;/keycap&gt; e &lt;keycap&gt;X&lt;/keycap&gt;, controlam o giro em torno do eixo x. As teclas &lt;keycap&gt;o&lt;/keycap&gt; e &lt;keycap&gt;p&lt;/keycap&gt; define que os tipos de projeções serão ortográficas ou de perspectiva, respectivamente. Para finalizar o programa, basta digitar &lt;keycap&gt;ESC&lt;/keycap&gt;. As teclas e suas respectivas ações estão definidas na função `keyboard()`.
+    &lt;example xml:id="example-projecoes"&gt;
+      &lt;title&gt;programa link:exemplos/projecoes.c"&gt;&lt;filename&gt;projecoes.c&lt;/filename&gt;&lt;/link&gt;&lt;/title&gt;
+      &lt;programlisting&gt;
+	&lt;textobject&gt;&lt;textdata fileref="&amp;caminho;/exemplos/projecoes.c" format="linespecific"/&gt;&lt;/textobject&gt;
+      &lt;/programlisting&gt;
+    &lt;/example&gt;
+
+    Para compilar e executar o programa link:exemplos/projecoes.c"&gt;&lt;filename&gt;projecoes.c&lt;/filename&gt;&lt;/link&gt;, salve-o juntamente com o arquivo link:exemplos/Makefile"&gt;Makefile&lt;/link&gt; em um diretório e execute a seguinte seqüência de comandos:
+    &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;projecoes&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;projecoes&lt;/command&gt;
+&lt;/screen&gt;
+    &lt;sect1 xml:id="projecoes-descricao"&gt;
+      &lt;title&gt;Descrição do programa &lt;filename&gt;projecoes.c&lt;/filename&gt;&lt;/title&gt;
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>#define AZUL     0.0, 0.0, 1.0
+#define VERMELHO 1.0, 0.0, 0.0
+#define AMARELO  1.0, 1.0, 0.0
+#define VERDE    0.0, 1.0, 0.0
+#define CYAN     1.0, 0.0, 1.0
+#define LARANJA  0.8, 0.6, 0.1
+#define ROSEO    0.7, 0.1, 0.6
+#define CINZA    0.6, 0.6, 0.6
+----       Define nomes para as tonalidades de cor utilizadas nas faces do cubo. Cada linha contém o nome da cor e as respectivas componentes R, G e B.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">static GLfloat vertices[30]={
+  0.0,  30.0, 30.0, /* 0 */
+  20.0, 30.0, 30.0, /* 1 */
+  30.0, 20.0, 30.0, /* 2 */
+  30.0,  0.0, 30.0, /* 3 */
+  0.0,   0.0, 30.0, /* 4 */
+  0.0,  30.0,  0.0, /* 5 */
+  30.0, 30.0,  0.0, /* 6 */
+  30.0,  0.0,  0.0, /* 7 */
+  0.0,   0.0,  0.0, /* 8 */
+  30.0, 30.0, 20.0  /* 9 */
+};
+----       Armazena em um vetor as posições de cada um dos vértices do cubo. Serão tomados posteriormente grupos de três elementos para compor as coordenadas x, y e z dos vértices. Os comentários que aparecem ao lado de cada linha referenciam as coordenadas correspondentes dos vértices da &lt;xref linkend="fig-projecoes-cubo"/&gt;.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>static GLubyte frenteIndices[]    = {0,4,3,2,1};
+static GLubyte trasIndices[]      = {5,6,7,8};
+static GLubyte esquerdaIndices[]  = {0,5,8,4};
+static GLubyte direitaIndices[]   = {2,3,7,6,9};
+static GLubyte topoIndices[]      = {0,1,9,6,5};
+static GLubyte fundoIndices[]     = {3,4,8,7};
+static GLubyte trianguloIndices[] = {1,2,9};
+----       Define vetores com índices para cada uma das faces do cubo, especificando os vértices que irão construí-las. A ordem em que os índices (números dos vértices) é incluída em cada vetor é importante, pois será esta a utilizada para introduzir cada vértice no desenho dos polígonos que formarão cada face. A parte frontal do polígono fica saindo do polígono, quando a seqüência de índices é especificada no sentido anti-horário, como mostra a &lt;xref linkend="fig-projecoes-indices"/&gt; para o polígono do topo (&lt;varname&gt;topoIndices[]&lt;/varname&gt;).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  &lt;figure xml:id="fig-projecoes-indices"&gt;
+&lt;title&gt;Seqüência de vértices defininindo a frente do polígono.&lt;/title&gt;
+  &lt;mediaobject&gt;
+&lt;imageobject&gt;
+  &lt;imagedata fileref="figs/projecoes-indices.svg" format="SVG"/&gt;
+&lt;/imageobject&gt;
+  &lt;/mediaobject&gt;
+  &lt;/figure&gt;</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">static int eixoy, eixox;
+int largura, altura;
+----       Define as duas variáveis &lt;varname&gt;eixoy&lt;/varname&gt; e &lt;varname&gt;eixox&lt;/varname&gt;, para armazenar as rotações em torno dos eixos y e x, respectivamente, e outras duas para armazenar a altura e a largura da tela de desenho.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void init(void){
+  glClearColor(0.0, 0.0, 0.0, 0.0);
+  glOrtho (-50, 50, -50, 50, -50 , 50);
+----      Na função <code>init()</code>, <code>glClearColor()</code> define PRETO (R,G,B)=(0,0,0) como a cor de limpeza da área de desenho. A chamada à função <code>glOrtho()</code> decide inicialmente que os objetos serão desenhados utilizando projeções ortográficas. De acordo com os parâmetros passados para esta função, os planos de recorte serão:
+      &lt;itemizedlist&gt;
+	-esqueda = -50; direita= +50
+	-fundo = -50; topo= +50
+	-frente = -50; trás= +50
+      &lt;/itemizedlist&gt;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Este volume de recorte garante que todo o objeto ficará sempre visível quando as transformações forem efetuadas sobre o mesmo.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void reshape (int w, int h){
+  glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+  largura=w;
+  altura=h;
+}
+----      A função `reshape()` é chamada cada vez que o tamanho da tela é alterado pelo usuário, atribuindo às variáveis &lt;varname&gt;largura&lt;/varname&gt; e &lt;varname&gt;altura&lt;/varname&gt; as novas dimensões da janela. Estas duas variáveis são utilizadas juntamente com a função `glViewport()` para tornar o cubo proporcional ao tamanho da janela.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glPushMatrix();
+  glRotatef ((GLfloat) eixoy, 0.0, 1.0, 0.0);
+  glRotatef ((GLfloat) eixox, 1.0, 0.0, 0.0);
+----      Utilizando a função `glPushMatrix()`, a posição e orientação do sistema de coordenadas original é guardado na pilha. Com as funções `glRotatef()` são realizadas rotações no objeto em torno dos eixos y e x, de modo possibilitar a visualização de outras faces.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">glEnableClientState(GL_VERTEX_ARRAY);
+glVertexPointer(3, GL_FLOAT, 0, vertices);
+----      Aqui entra uma característica nova do OpenGL: a possibilidade de desenhar objetos utilizando índices para referenciar as coordenadas dos seus vértices. Entretanto, esta característica deve ser habilitada com a chamada à função `glEnableClientState()`, caso contrário nada será desenhado. Os vértices do cubo são indexados através da chamada à função `glVertexPointer()`, que possui o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `glVertexPointer`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;GLint &lt;parameter&gt;size`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLenum &lt;parameter&gt;type`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLsizei &lt;parameter&gt;stride`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;const GLvoid &lt;parameter&gt;*pointer`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      O parâmetro &lt;parameter&gt;size` especifica o número de elementos que devem ser tomados do vetor &lt;parameter&gt;pointer` de cada vez para forma um vértice - neste caso, 3 elementos, uma para cada eixo coordenado. &lt;parameter&gt;type` especifica o tipo de dado contido no vetor e &lt;parameter&gt;stride` o deslocamento que deve ser realizado dentro do vetor entre vértices consecutivos. Como os elementos estão colados uns aos outros, &lt;parameter&gt;stride = 0`.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>glDrawElements(GL_POLYGON, 5, GL_UNSIGNED_BYTE, frenteIndices);</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>      A função `glDrawElements()` realiza o traçado deprimitivas com base em um vetor de dados. Neste exemplo, A primitiva a ser traçada é um polígono (&lt;parameter&gt;GL_POLYGON`) com 5 vértices, indexados pelo vetor &lt;parameter&gt;frenteIndices`, que é do tipo &lt;parameter&gt;GL_)UNSIGNED_BYTE`. As chamadas seguintes para esta função desenham o restante das faces do cubo.
+
+[source,c]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void keyboard(unsigned char key, int x, int y){
+  case 'p':
+    glLoadIdentity();
+    gluPerspective(65.0, (GLfloat) largura/(GLfloat) altura, 20.0, 120.0);
+    gluLookAt(0, 0, -90, 0, 0, 0, 0, 1, 0);
+    glutPostRedisplay();
+    break;
+----      Na função <code>keyboard()</code> é introduzida uma chamada à função <code>gluPerspective()</code>. Esta chamada faz com que todas as projeções efetuadas daí em diante sejam projeções de perspectiva. Esta função possui o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void <code>gluPerspective</code>&lt;/funcdef&gt;
+	  &lt;paramdef&gt;GLdouble &lt;parameter&gt;fovy`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLdouble &lt;parameter&gt;aspect`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLdouble &lt;parameter&gt;zNear`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLdouble &lt;parameter&gt;zFar`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      O parâmetro &lt;parameter&gt;fovy` especifica o campo de visão, em graus, na direção y (65 graus). O parâmetro &lt;parameter&gt;aspect` define a relação de aspecto entre largura e altura, determinando o campo de visão na direção x (largura/altura). &lt;parameter&gt;zNear` e &lt;parameter&gt;zFar` especificam as distâncias entre o observador e o planos de recorte mais próximo e mais distante, respectivamente (20 e 120). A escolha deste valor assegura que o cubo não será recortado durante as transformações. Estas variáveis são ilustradas na &lt;xref linkend="fig-projecoes-vista-perspectiva"/&gt;.
+      &lt;figure xml:id="fig-projecoes-vista-perspectiva"&gt;
+	&lt;title&gt;Vista em perspectiva.&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/projecoes-vista-perspectiva.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+      &lt;/figure&gt;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    A chamada à função `gluLookAt()` permite definir o ponto de observação, um ponto de referência, para onde o observador está olhando e a direção do vetor que aponta para cima. A função `gluLookAt()` possui o seguinte protótipo:
+    &lt;funcsynopsis&gt;
+  &lt;funcprototype&gt;
+    &lt;funcdef&gt;void `gluLookAt`&lt;/funcdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;eyex`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;eyey`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;eyez`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;centerx`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;centery`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;centerz`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;upx`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;upy`&lt;/paramdef&gt;
+    &lt;paramdef&gt; GLdouble &lt;parameter&gt;upz`&lt;/paramdef&gt;
+  &lt;/funcprototype&gt;
+    &lt;/funcsynopsis&gt;
+    Neste exemplo, o observador encontra-se sobre o eixo z, em z=-90, (eixox, eixoy, eixoz) = (0, 0, -90), está olhando para a origem, (centerx, centery, centerz) = (0, 0, 0) e a direção do vetor que aponta para cima é (upx, upy, upz) = ( 0, 1, 0), alinhado com o eixo y.
+    Antes de chamar as funções de projeção de perspectiva ou ortográfica, deve-se tomar cuidado para antes reiniciar a localização e orientação do sistema de coordenadas usando a função `glLoadIdentity()`, caso contrário a projeção será feita no sistema de coordenadas corrente, levando a resultados indesejados.
+  &lt;/sect1&gt;
+  &lt;sect1 xml:id="projecoes-exercicios"&gt;
+    &lt;title&gt;Exercícios&lt;/title&gt;
+    &lt;orderedlist&gt;
+   -Utilizando o programa link:exemplos/projecoes.c"&gt;&lt;filename&gt;projecoes.c&lt;/filename&gt;&lt;/link&gt; como referência, implemente um programa &lt;filename&gt;tiposdeprojecoes.c&lt;/filename&gt;. Este programa deverá conter mais sete opções de teclado: &lt;keycap&gt;t&lt;/keycap&gt; e &lt;keycap&gt;f&lt;/keycap&gt;, para exibir o topo e o fundo do objeto, &lt;keycap&gt;F&lt;/keycap&gt; e &lt;keycap&gt;T&lt;/keycap&gt;, para mostrar a frente e a face traseira, &lt;keycap&gt;e&lt;/keycap&gt; e &lt;keycap&gt;d&lt;/keycap&gt;, para mostrar a faces esquerda e direita, respectivamente, e a tecla &lt;keycap&gt;c&lt;/keycap&gt;, para mostrar o triângulo do canto.
+  -A função `glutIdleFunc()` é usada pelo GLUT para realizar operações em segundo plano ou animações, enquanto não recebe eventos de sistema. O seu protótipo é:
+    &lt;funcsynopsis&gt;
+      &lt;funcprototype&gt;
+        &lt;funcdef&gt;void `glutIdleFunc`&lt;/funcdef&gt;
+        &lt;paramdef&gt;void &lt;parameter&gt;*func`&lt;funcparams&gt;void&lt;/funcparams&gt;&lt;/paramdef&gt;
+      &lt;/funcprototype&gt;
+    &lt;/funcsynopsis&gt;
+    Tomando como base o programa link:exemplos/projecoes.c"&gt;&lt;filename&gt;projecoes.c&lt;/filename&gt;&lt;/link&gt;, utilizando a função `glutIdleFunc()` e crie uma função de retorno `idle()`. Nesta função, os valores dos ângulos &lt;varname&gt;eixox&lt;/varname&gt; e &lt;varname&gt;eixoy&lt;/varname&gt; devem ser incrementados de valores constantes pequenos e diferentes, de modo a possibilitar uma animação. Utilize a função `usleep()` para introduzir retardos entre as apresentações dos quadros da animação, tornando mais agradável a visualização. Mantenhas as teclas &lt;keycap&gt;o&lt;/keycap&gt; e &lt;keycap&gt;p&lt;/keycap&gt; para chavear entre projeções ortogonais e de perspectiva.
+    &lt;/orderedlist&gt;
+  &lt;/sect1&gt;
+&lt;/chapter&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;!-- curvas no plano --&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;chapter xml:id="curvas-plano"&gt;
+  &lt;title&gt;Curvas no plano&lt;/title&gt;
+  O propósito desta lição é mostrar como gerar em um plano as curvas paramétricas mais comuns no OpenGL: as curvas de Bézier e as NURBS ('Non Uniform Rational B-Splines'). A forma destas curvas é controlada pelo posicionamento dos vértices de um polígono característico, cuja influência será estudada de forma interativa no programa exemplo. Será estudada também a influência dos vetores de nós sobre as NURBS, vetores estes que servem para definir a região de influência de cada vértice do polígono característico na forma da curva.
+  É introduzido também o uso de uma nova função do GLUT: `glutMotionFunc()`, ativada quando o mouse é movimentado pela janela enquanto um ou mais botões são pressionados.
+  O programa utilizado nesta lição permite que o usuário controle a forma de uma curva através da seleção e movimentação dos vértices (destacados em vermelho) de um polígono (em amarelo), como mostra a &lt;xref linkend="fig-curvas-plano-splines"/&gt;.
+  &lt;figure xml:id="fig-curvas-plano-splines"&gt;
+    &lt;title&gt;Traçado interativo de splines.&lt;/title&gt;
+    &lt;mediaobject&gt;
+  &lt;imageobject&gt;
+    &lt;imagedata fileref="figs/curvas-plano-splines.jpg" format="JPG"/&gt;
+  &lt;/imageobject&gt;
+    &lt;/mediaobject&gt;
+  &lt;/figure&gt;
+   O programa usado para modelar as splines é mostrado no &lt;xref linkend="example-curvas-plano"/&gt;. As teclas &lt;keycap&gt;b&lt;/keycap&gt; e &lt;keycap&gt;n&lt;/keycap&gt; definem o tipo de curva que será desenhada: Bézier ou NURBS, respectivamente.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;example xml:id="example-curvas-plano"&gt;
+  &lt;title&gt;programa link:exemplos/splines2d.c"&gt;&lt;filename&gt;splines2d.c&lt;/filename&gt;&lt;/link&gt;&lt;/title&gt;
+  &lt;programlisting&gt;
+&lt;textobject&gt;&lt;textdata fileref="&amp;caminho;/exemplos/splines2d.c" format="linespecific"/&gt;&lt;/textobject&gt;
+  &lt;/programlisting&gt;
+&lt;/example&gt;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    Para compilar e executar o programa link:exemplos/splines2d.c"&gt;&lt;filename&gt;splines2d.c&lt;/filename&gt;&lt;/link&gt;, salve-o juntamente com o arquivo link:exemplos/Makefile"&gt;Makefile&lt;/link&gt; em um diretório e execute a seguinte seqüência de comandos:
+    &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;splines2d&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;splines2d&lt;/command&gt;
+&lt;/screen&gt;
+    &lt;sect1 xml:id="curvas-plano-descricao"&gt;
+      &lt;title&gt;Descrição do programa &lt;filename&gt;splines2d.c&lt;/filename&gt;&lt;/title&gt;</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLint nVertices=6;
+GLfloat vertices[6][3] = {
+  {-4.0,  0.0, 0.0},
+  {-4.0, +4.0, 0.0},
+  {+4.0, -4.0, 0.0},
+  {-4.0, -4.0, 0.0},
+  {+4.0, +4.0, 0.0},
+  {+4.0,  0.0, 0.0}
+};
+----      Define o número de vértices do polígono característico (variável &lt;varname&gt;nVertices&lt;/varname&gt;) e as posições no espaço dos seus respectivos vértices (vetor &lt;varname&gt;vertices&lt;/varname&gt;).
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLint largura, altura;
+GLint mudaCurva=0;
+GLint verticeCorrente=0;
+----      As variáveis &lt;varname&gt;largura&lt;/varname&gt; e &lt;varname&gt;altura&lt;/varname&gt; armazenam a largura e a altura da janela corrente, em pixels. &lt;varname&gt;mudaCurva&lt;/varname&gt; grava o estado da curva; quando &lt;varname&gt;mudaCurva&lt;/varname&gt;=1, a posição dos vértices pode ser alterada; quando &lt;varname&gt;mudaCurva&lt;/varname&gt;=0, a curva permanece inalterada com o movimento do mouse. A variável &lt;varname&gt;verticeCorrente&lt;/varname&gt; indica o vértice cuja posição poderá ser alterada através da movimentação do mouse.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLfloat esquerda=-5;
+GLfloat direita =+5;
+GLfloat fundo   =-5;
+GLfloat topo    =+5;
+GLfloat longe   =+5;
+GLfloat perto   =-5;
+----      Define as coordenadas do volume de recorte a ser utilizado na projeção ortográfica.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLUnurbsObj *nc;
+GLfloat nos[10]={0.0, 0.0, 0.0, 0.0, 1.0, 2.5, 3.0, 3.0, 3.0, 6.0};
+GLint nNos=10;
+----      A variável &lt;varname&gt;nc&lt;/varname&gt; contém a referência para a spline que irá modelar a curva usando NURBS. &lt;varname&gt;nos&lt;/varname&gt; e &lt;varname&gt;nNos&lt;/varname&gt; são o vetor de nós e o número de nós neste vetor, respectivamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLint matrizViewport[4];
+GLdouble matrizModelview[16], matrizProjecao[16];
+----      Define as matrizes de viewport, de modelo e de projeção para a cena. Estas matrizes serão usadas no cálculo da posição do mouse no mundo real.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    glMap1f(GL_MAP1_VERTEX_3, 0.0, 1.0, 3, nVertices, &amp;vertices[0][0]);
+----      Caso a spline seja do tipo Bézier, o traçado da curva se com o uso de avaliadores. Tais 'evaluators' proporcionam uma forma de utilizar o mapeamento de polinômios para produzir vértices, coordenadas de texturas e cores, baseados em funções de base de Bernstein, ou de Bézier.
+      A função `glMap1f()` define um avaliador ('evaluator') unidimesional. Neste caso, os valores gerados por esta função são utilizados pelos estágios posteriores do processamento como se houvessem sido gerados utilizando a função `glVertex*()`.
+      A função `glMap1f()` possui o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `glMap1f`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;GLenum &lt;parameter&gt;target`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLfloat&lt;parameter&gt;u1`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLfloat&lt;parameter&gt;u2`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLint &lt;parameter&gt;stride`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLint &lt;parameter&gt;order`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;const GLfloat &lt;parameter&gt;*points`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      O parâmetro &lt;parameter&gt;target` especifica o tipo de valores gerados pelo 'evaluator'; neste caso, especifica que cada ponto de controle é usado para mapear três valores x, y e z. Comandos internos `glVertex*()` são gerados quando este mapeamento é realizado. &lt;parameter&gt;u1` e &lt;parameter&gt;u2` especificam a faixa de mapeamento linear para u, ou seja, a faixa de variação do parâmetro que define a curva; neste caso [0,1]. &lt;parameter&gt;stride` especifica o número de elementos entre o início de um ponto de controle e o início do ponto de controle seguinte; como cada ponto de controle possui três coordenadas, &lt;parameter&gt;stride=`3 para este exemplo. O parâmetro &lt;parameter&gt;order` especifica o número de pontos de controle para a curva (6 pontos). Finalmente, o parâmetro &lt;parameter&gt;*points` deve conter a posição do primeiro ponto do polígono de controle.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">    glBegin(GL_LINE_STRIP);
+    for (i = 0; i &lt;= 30; i++){
+      glEvalCoord1f((GLfloat) i/30.0);
+    }
+    glEnd();
+----      Neste laço, quando a função `glEvalCoord1f()` é chamada, o valor do ponto a ser traçado na spline é calculado (ou avaliado) para o valor passado como referência para esta função. Quando o laço terminar, um conjunto de pontos interligados (via &lt;parameter&gt;GL_LINE_STRIP`) irá compor a forma da curva de Bézier, usando o polígono de controle especificado a priorio com a função `glMap1f()`.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    gluBeginCurve(nc);
+    gluNurbsCurve(nc, nNos, nos, 3, &amp;vertices[0][0], 4, GL_MAP1_VERTEX_3);
+    gluEndCurve(nc);
+----      Se a curva a ser desenhada for do tipo NURBS, então as funções `gluBeginCurve()` e `gluEndCurve()` serão utilizadas para demarcar o início e o fim do seu traçado. A função usada para desenhar esta classe de curvas é `gluNurbsCurve`, cujos parâmetros são bastante semelhantes aos da função `glMap1f()`, acrescentando apenas a referência para a curva, &lt;varname&gt;nc&lt;/varname&gt; e os dados do vetor de nós (&lt;varname&gt;nos&lt;/varname&gt; e &lt;varname&gt;nNos&lt;/varname&gt;). A variável &lt;varname&gt;nc&lt;/varname&gt; é iniciada na função `init()`.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glPointSize(5.0);
+----      O diâmetro dos pontos rasterizados é mudado para facilitar a visualização dos vértices do polígono de controle (5 pixels).
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  nc= gluNewNurbsRenderer();
+  gluNurbsProperty(nc, GLU_SAMPLING_TOLERANCE, 5.0);
+  glEnable(GL_MAP1_VERTEX_3);
+----      A função `gluNewNurbsRenderer()` cria um objeto NURBS, que pode ser referenciado durante a chamada para o traçado de curvas desta caterogia. A função `gluNurbsProperty()` aqui colocada define o espaçamento máximo, em pixels, usado na amostragem de pontos, durante o traçado da curva, geralmente traçada por aproximação poligonal. Neste exemplo, pontos adjacentes do polígono que aproxima a curva têm espacamento máximo de 5 pixels.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glGetIntegerv(GL_VIEWPORT, matrizViewport);
+  glGetDoublev(GL_MODELVIEW_MATRIX, matrizModelview);
+  glGetDoublev(GL_PROJECTION_MATRIX, matrizProjecao);
+----      As chamadas às funções `glGetIntergerv` e `glGetDoublev` gravam em &lt;varname&gt;matrizViewport&lt;/varname&gt;, &lt;varname&gt;matrizModelview&lt;/varname&gt; e &lt;varname&gt;matrizProjecao&lt;/varname&gt; as matrizes de viewport, de modelo e de projeção. Na matriz de viewport ficam armazenadas as coordenadas da origem da janela, seguidas pela sua altura e largura.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void proximidade(){
+  int i;
+  double tam=0, tamin=32000;
+  verticeCorrente=0;
+  for(i=0; i&lt;nVertices; i+){
+    tam = (wx-vertices[i][0])*(wx-vertices[i][0])
+      (wy-vertices[i][1])*(wy-vertices[i][1]);
+    if(tam &lt; tamin){
+      tamin=tam;
+      verticeCorrente=i;
+    }
+  }
+  tamin=sqrt(tamin);
+  if(tamin &gt; 0.5){
+    mudaCurva=0;
+  }
+}
+----      A função <code>proximidade()</code> compara os valores das distâncias entre a posição do mouse em coordenadas do mundo real, (wx, wy), com as coordenadas de cada vértice do polígono de controle, em busca do vértice mais próximo. Caso a distância entre a posição do mouse e o vértice mais próximo seja maior que uma dada tolerância, o vértice não será selecionado para alteração.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">      yreal = matrizViewport[3] - (GLint) y - 1;
+      gluUnProject ((GLdouble) x, (GLdouble) yreal, 0.0,
+		    matrizModelview, matrizProjecao, matrizViewport,
+		    &amp;wx, &amp;wy, &amp;wz);
+----       A variável &lt;varname&gt;yreal&lt;/varname&gt; armazena a coordenada y (em pixels) da posição do cursor, assumindo origem na parte inferior esquerda da janela.
+      A função `gluUnProject()` serve para mapear as coordenadas da janela para as coordenadas do mundo real. Com base nas coordenadas do mouse na janela, &lt;varname&gt;x&lt;/varname&gt; e &lt;varname&gt;yreal&lt;/varname&gt;, nas matrizes de modelo, de projeção e de viewport, e assumindo a posição z=0, a função `gluUnProject()` calcula as respectivas coordenadas wx, wy e wz da posição do mouse no mundo real, possibilitando a comparação das distâncias para cada vértice do polígono característico.
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void motion(int x, int y){
+  if(mudaCurva){
+    yreal = matrizViewport[3] - (GLint) y - 1;
+    gluUnProject ((GLdouble) x, (GLdouble) yreal, 0.0,
+		  matrizModelview, matrizProjecao, matrizViewport,
+		  &amp;wx, &amp;wy, &amp;wz);
+    vertices[verticeCorrente][0]=wx;
+    vertices[verticeCorrente][1]=wy;
+    glutPostRedisplay();
+  }
+}
+----      A função <code>motion()</code> é chamada cada vez que o mouse é movimentado na janela e um ou mais botões encontra-se pressionado. Caso a alteração dos vértices esteja habilitada, as coordenadas da posição do mouse são mapeadas para o mundo real e atribuídas ao vértice a ser modificado.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glutMotionFunc(motion);
+----      Define a função de movimentação do mouse para a janela corrente. A função passada como parâmetro deve possuir o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `funcao()`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;int &lt;parameter&gt;x`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;int &lt;parameter&gt;y`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      Os parâmetros &lt;parameter&gt;x` e &lt;parameter&gt;y` passados para esta função indicam a posição do mouse em coordenadas relativas à janela.
+      Caso seja necessário, a função `glutPassiveMotionFunc` pode ser utilizada para monitorar o movimento do mouse quando não há botões pressionados, e possui o mesmo protótipo da função `glutMotionFunc`
+    &lt;/sect1&gt;
+    &lt;sect1 xml:id="curvas-plano-exercicios"&gt;
+      &lt;title&gt;Exercícios&lt;/title&gt;
+      &lt;orderedlist&gt;
+	- Comente as funcionalidades das curvas de Bézier e NURBS utilizadas neste exemplo.
+	- Utilizando o programa link:exemplos/splines2d.c"&gt;&lt;filename&gt;splines2d.c&lt;/filename&gt;&lt;/link&gt; como referência, implemente um programa &lt;filename&gt;splinesnurbs.c&lt;/filename&gt;. Quando a tecla &lt;keycap&gt;u&lt;/keycap&gt; for pressionada, a NURBS deverá ser desenhada utilizando um vetor de nós uniforme. Quando a tecla &lt;keycap&gt;o&lt;/keycap&gt; for pressionada, a NURBS deverá ser desenhada utilizando um vetor de nós uniforme aberto. Quando a tecla &lt;keycap&gt;n&lt;/keycap&gt; for pressionada, a NURBS deverá ser desenhada utilizando um vetor de nós não uniforme.
+	-Qual a influência do vetor de nós foi utilizado sobre o comportamento das curvas tipo NURBS? Comente o resultado que obteve para curvas de ordens 3 e 5.
+	-Compare curvas de Beziér com NURBS considerando ordens iguais para ambas as curvas.
+      &lt;/orderedlist&gt;
+    &lt;/sect1&gt;
+  &lt;/chapter&gt;
+
+  &lt;!-- superfícies no espaço --&gt;
+
+  &lt;chapter xml:id="superficies-espaco"&gt;
+    &lt;title&gt;Superfícies no espaço&lt;/title&gt;
+    O propósito desta lição é mostrar como gerar no espaço as superfícies paramétricas de Bézier e NURBS utilizando OpenGL. De modo semelhante às curvas descritas no &lt;xref linkend="curvas-plano"/&gt;, a forma destas superfícies é controlada pelo posicionamento de vértices, desta vez componentes de um malha característica. Com a resolução dos exercícios propostos no final da lição, o aluno poderá notar a utilidade das superfícies apresentadas, associando-as a uma situação prática, através da modelagem interativa de uma superfície.
+    Será mostrado também como introduzir iluminação na cena, de modo a tornar a apresentação da superfície mais realística.
+    A superfície gerada pelo programa utilizado nesta lição é mostrado na &lt;xref linkend="fig-superficies-espaco-splines"/&gt;.
+    &lt;figure xml:id="fig-superficies-espaco-splines"&gt;
+      &lt;title&gt;Traçado de superfícies.&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/superficies-espaco-splines.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+    &lt;/figure&gt;
+     O programa usado para modelar as splines é mostrado no &lt;xref linkend="example-superficies-espaco"/&gt;. As teclas &lt;keycap&gt;b&lt;/keycap&gt; e &lt;keycap&gt;n&lt;/keycap&gt; definem o tipo de curva que será desenhada: Bézier ou NURBS, respectivamente. As teclas &lt;keycap&gt;x&lt;/keycap&gt; e &lt;keycap&gt;X&lt;/keycap&gt;, rotacionam a superfície em torno do eixo x. As teclas &lt;keycap&gt;y&lt;/keycap&gt; e &lt;keycap&gt;Y&lt;/keycap&gt;, rotacionam a superfície em torno do eixo y. As teclas &lt;keycap&gt;z&lt;/keycap&gt; e &lt;keycap&gt;Z&lt;/keycap&gt;, rotacionam a superfície em torno do eixo z.
+
+    &lt;example xml:id="example-superficies-espaco"&gt;
+      &lt;title&gt;programa link:exemplos/splines3d.c"&gt;&lt;filename&gt;splines3d.c&lt;/filename&gt;&lt;/link&gt;&lt;/title&gt;
+      &lt;programlisting&gt;
+	&lt;textobject&gt; &lt;textdata fileref="&amp;caminho;/exemplos/splines3d.c" format="linespecific"/&gt;&lt;/textobject&gt;
+      &lt;/programlisting&gt;
+    &lt;/example&gt;
+
+    Para compilar e executar o programa link:exemplos/splines3d.c"&gt;&lt;filename&gt;splines3d.c&lt;/filename&gt;&lt;/link&gt;, salve-o juntamente com o arquivo link:exemplos/Makefile"&gt;Makefile&lt;/link&gt; em um diretório e execute a seguinte seqüência de comandos:
+    &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;splines3d&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;splines3d&lt;/command&gt;
+&lt;/screen&gt;
+    &lt;sect1 xml:id="superficies-espaco-descricao"&gt;
+      &lt;title&gt;Descrição do programa &lt;filename&gt;splines3d.c&lt;/filename&gt;&lt;/title&gt;
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLint nVertices=4;
+GLfloat vertices[4][4][3];
+----      Define o número de vértices da malha característica (variável &lt;varname&gt;nVertices&lt;/varname&gt;) e as posições no espaço dos seus respectivos vértices (matriz &lt;varname&gt;vertices&lt;/varname&gt;).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLint largura, altura;
+----      As variáveis &lt;varname&gt;largura&lt;/varname&gt; e &lt;varname&gt;altura&lt;/varname&gt; armazenam a largura e a altura da janela corrente, em pixels.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLUnurbsObj *nc;
+GLfloat nos[8]={0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
+GLint nNos=8;
+----      A variável &lt;varname&gt;nc&lt;/varname&gt; contém a referência para a spline que irá modelar a superfície tipo NURBS. &lt;varname&gt;nos&lt;/varname&gt; e &lt;varname&gt;nNos&lt;/varname&gt; são o vetor de nós e o número de nós neste vetor, respectivamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">void gera_superficie(void);
+----      Cria as coordenadas x, y e z dos pontos da malha de controle.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glBegin(GL_LINES);
+  glVertex3f(0,0,0);  glVertex3f(1,0,0);
+  glEnd();
+  glRasterPos3f(1.5,0,0);
+  glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, 'x');
+----      Cria um segmento de reta representando o eixo x. A função ` glRasterPos3f()` define a posição do rasterizador para operações com pixels (desenho de bitmaps). Neste caso, o rasterizador é posicionado na ponta do eixo x. Em seguida, a função `glutBitmapCharacter()` é utilizada para desenhar um mapa de bits do caracter 'x' com a fonte especificada. Outras duas operações semelhantes são realizadas para os eixos y e z.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">    glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 4, 0, 1, 3*nVertices, 4, &amp;vertices[0][0][0]);</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  Caso a superfície seja do tipo Bézier, o seu traçado também se com o uso de avaliadores (semelhante ao caso bidimensional). A função `glMap2f()` define um avaliador bididimesional.
+  A função `glMap2f()` possui o seguinte protótipo:
+  &lt;funcsynopsis&gt;
+&lt;funcprototype&gt;
+  &lt;funcdef&gt;void `glMap1f`&lt;/funcdef&gt;
+  &lt;paramdef&gt;GLenum &lt;parameter&gt;target`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLfloat&lt;parameter&gt;u1`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLfloat&lt;parameter&gt;u2`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLint &lt;parameter&gt;ustride`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLint &lt;parameter&gt;uorder`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLfloat&lt;parameter&gt;v1`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLfloat&lt;parameter&gt;v2`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLint &lt;parameter&gt;vstride`&lt;/paramdef&gt;
+  &lt;paramdef&gt;GLint &lt;parameter&gt;vorder`&lt;/paramdef&gt;
+  &lt;paramdef&gt;const GLfloat &lt;parameter&gt;*points`&lt;/paramdef&gt;
+&lt;/funcprototype&gt;
+  &lt;/funcsynopsis&gt;
+  O parâmetro &lt;parameter&gt;target` especifica o tipo de valores gerados pelo 'evaluator'; neste caso, especifica que cada ponto de controle é usado para mapear três valores x, y e z. Comandos internos `glVertex*()` são gerados quando este mapeamento é realizado. &lt;parameter&gt;u1` e &lt;parameter&gt;u2` especificam a faixa de mapeamento linear para u (direção x), ou seja, a faixa de variação do parâmetro que define a curva; neste caso [0,1]. &lt;parameter&gt;ustride` especifica o número de elementos entre o início de um ponto de controle e o início do ponto de controle seguinte; como cada ponto de controle possui três coordenadas, &lt;parameter&gt;ustride=`3 para este exemplo. O parâmetro &lt;parameter&gt;order` especifica o número de pontos de controle para a curva (6 pontos). Estes quatro parâmetros repetem-se para o mapeamento de 'v', relativo à direção y da superfície. Finalmente, o parâmetro &lt;parameter&gt;*points` deve conter a posição do primeiro ponto da malha de controle.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">    glEnable(GL_AUTO_NORMAL);
+    glMapGrid2f(20, 0, 1.0, 20, 0, 1.0);
+    glEvalMesh2(GL_FILL, 0, 20, 0, 20);
+----      As funções `glMapGrid2f()` e `glEvalMesh2()` são utilizadas em conjunto para gerar uma série valores de 'u' e 'v' e avaliar as coordenadas x, y e z do pontos da superfície, para cada um dos pares de parâmetros (u,v). Foi definido 20 subdivisões para as faixas de cada parâmetro, [0,1].
+      Na função `glEvalMesh2()` foi especificado que a superfície deveria ser preenchida (GL_FILL), mas poderia também ser traçada utilizando linhas (GL_LINES) ou pontos (GL_POINTS). Os parâmetros seguintes passados para essa função indicam os primeiros e últimos valores inteiros utilizados para as posições do grid de desenho.
+      Foi habilitado, através do parâmetro &lt;parameter&gt;GL_AUTO_NORMAL`, o cálculo automático dos vetores normais aos pontos da superfície, utilizados no processo de iluminação da cena.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    gluBeginSurface(nc);
+    gluNurbsSurface(nc, nNos, nos, nNos, nos, 4*3, 3, &amp;vertices[0][0][0], 4, 4, GL_MAP2_VERTEX_3);
+    gluEndSurface(nc);
+----      Se a curva a ser desenhada for do tipo NURBS, então as funções `gluBeginSurface()` e `gluEndSurface()` serão utilizadas para demarcar o início e o fim do seu traçado. A função usada para desenhar esta classe de superfícies é `gluNurbsSurface`, cujos parâmetros são semelhantes aos da função `gluNurbsCurve()`, acrescentando o vetor de nós e o número de nós na direção y (&lt;varname&gt;nos&lt;/varname&gt; e &lt;varname&gt;nNos&lt;/varname&gt;), os deslocamentos entre sucessivos pontos de controle ('stride') nas duas direções (4*3 e 3), e as ordens da superfície em ambas as direções (4 e 4). A variável &lt;varname&gt;nc&lt;/varname&gt; é iniciada na função `init()`.
+      Neste exemplo o valor do deslocamento na direção x é 12 (4*3) porque existem três coordenadas para cada vértice (&lt;parameter&gt;GL_MAP2_VERTEX_3`) e quatro pontos de controle na direção v. O valor do deslocamento na direção v é 3 porque cada vértice tem três coordenadas, e os pontos de controle v são adjacentes uns aos outros na memória.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  GLfloat mat_diffuse[] = { 0.7, 0.7, 0.7, 1.0 };
+  GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+  GLfloat mat_shininess[] = { 100.0 };
+
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+----      Define as características do material que serão utilizadas pelo modelo de iluminação, através da função `glMaterialfv()`. Por enquanto estes recursos são apenas ilustrativos, pois serão abordados em uma lição posterior.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glShadeModel(GL_SMOOTH);
+  glEnable(GL_MAP2_VERTEX_3);
+----      A função `glShadeModel()` define o modelo de sombreamento usado na superfície. O parâmetro &lt;parameter&gt;GL_SMOOTH` torna a superfície suave, mais realística. Da mesma forma que a função `glMaterialfv()`, a presença desta também é ilustrativa, pois também será abordada em uma lição posterior.
+      Se o parâmetro &lt;parameter&gt;GL_MAP2_VERTEX_3` for hatilitado, chamadas às funções `glEvalCoord2()`, `glEvalMesh2` e `glEvalPoint2` irão gerar vértices com coordenadas x, y e z, necessárias ao traçado das superfícies.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glEnable(GL_AUTO_NORMAL);
+  glEnable(GL_NORMALIZE);
+----      Aqui, a geração automática de vetores normais à superfície é habilitado via &lt;parameter&gt;GL_AUTO_NORMAL`. Após gerados, os vetores normais são escalados de modo a ficarem com módulo igual a 1, melhorando a exibição da superfície.
+    &lt;/sect1&gt;
+    &lt;sect1 xml:id="superficies-espaco-exercicios"&gt;
+      &lt;title&gt;Exercícios&lt;/title&gt;
+      &lt;orderedlist&gt;
+	-Utilizando as técnicas de seleção de objetos apresentadas no &lt;xref linkend="superficies-espaco"/&gt;, implemente um programa &lt;filename&gt;splineinter.c&lt;/filename&gt; que proporcione um processo de modelagem interativa para este exemplo. Utilizando o botão esquerdo do mouse, o usuário deverá poder movimentar os pontos da malha de controle, podendo assim controlar livremente a forma da superfície.
+	  Um método de seleção envolve lançar um raio através da localização do mouse e testar a proximidade com os objetos da cena. O raio pode ser gerado chamando duas vezes a função `gluUnProject()`, uma vez para o plano mais próximo do usuário (winz=0) e outra para o plano mais distante (winz=1). Subtraindo o resultado obtido para o plano mais distante do resultado obtido para o plano mais próximo será possível obter a direção do raio. A origem do raio ficará na posição do observador, no plano mais próximo.
+	  A posição do ponto em uma reta que se encontra mais próxima de um dado ponto no espaço pode obtida pela seguinte equação:
+	  &lt;screen&gt;
+                   P_o + (R - P_o) dot V
+                         ---------------  V
+                             V dot V
+&lt;/screen&gt;
+	  Nesta equação, P_o é obtida da equação que define a reta, P(t) = P_o + V t. V é o vetor que dá a direção da reta, e 'dot' representa a operação de produto interno.
+      &lt;/orderedlist&gt;
+    &lt;/sect1&gt;
+  &lt;/chapter&gt;
+
+    &lt;!-- modelagem de sólidos --&gt;
+
+  &lt;chapter xml:id="modelagem-solidos"&gt;
+    &lt;title&gt;Modelagem de Sólidos&lt;/title&gt;
+    O propósito desta lição é introduzir o uso de listas de apresentação ('display lists'), mapeamento de texturas e o uso de teclas especiais.
+    As listas de apresentação permitem que vários comandos sejam executados de uma vez só apenas com uma chamada da lista. Cada lista de apresentação precisa ser armazenada apenas uma vez, de modo que quando uma chamada é realizada, todos os comandos declarados nesta lista já estarão presentes máquina interna do OpenGL, tornando o processo de desenho mais fácil e com performance melhorada.
+    O mapeamento de texturas nos objetos torna a cena mais realística, principalmente quando texturas de objetos reais são utilizadas. A maioria das texturas existentes não podem ser geradas de forma artificial. Quando isto é possível, os algoritmos utilizados são complexos e computacionamente custosos. Assim, geramente as texturas são lidas de arquivos de imagens digitais capturadas com dispositivos de arquisição de dados.
+    Diversos formatos podem ser usados para armazenar uma imagem digital: bmp, jpeg, gif, tif, tga etc. Neste curso usaremos o formato IRIS RGB, criado pela Silicon Graphics. As funções que permitem a leitura de arquivos RGB e seus respectivos protótipos estão implementados nos arquivos link:exemplos/image.c"&gt;&lt;filename&gt;image.c&lt;/filename&gt;&lt;/link&gt; e link:exemplos/image.h"&gt;&lt;filename&gt;image.h&lt;/filename&gt;&lt;/link&gt;.
+    O objeto utilizado nesta lição será um modelo simples de uma avião a jato com fuselagem texturizada, imóvel sobre um plano com textura montanhosa, como mostra a &lt;xref linkend="fig-modelagem-jato-3d"/&gt;. As vistas laterais, superior e frontal estão esquematizadas na &lt;xref linkend="fig-modelagem-jato"/&gt;.
+    &lt;figure xml:id="fig-modelagem-jato-3d"&gt;
+      &lt;title&gt;Avião a jato tridimensional&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/modelagem-jato-3d.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+    &lt;/figure&gt;
+    &lt;figure xml:id="fig-modelagem-jato"&gt;
+      &lt;title&gt;Vistas laterais, superior e frontal do avião a jato&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/modelagem-jato.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+    &lt;/figure&gt;
+     Neste exemplo, o olhar do observador é fixo aproximadamente no centro do avião, de modo que apenas a posição do observador é alterada para o usuário poder visualizar diversas tomadas da cena.
+     O programa usado para modelar o avião é mostrado no &lt;xref linkend="example-modelagem-solidos"/&gt;. As teclas &lt;keycap&gt;LEFT&lt;/keycap&gt; e &lt;keycap&gt;RIGHT&lt;/keycap&gt; servem para rotacionar a posição do observador em torno do eixo y contra e a favor do sentido dos ponteiros do relógio, respectivamente. A distância entre o observador e o centro de rotação (raio de observação) é alterado pelas teclas &lt;keycap&gt;r&lt;/keycap&gt; e &lt;keycap&gt;R&lt;/keycap&gt;, que aumentam o diminuem o seu valor, respectivamente. As teclas &lt;keycap&gt;UP&lt;/keycap&gt; e &lt;keycap&gt;DOWN&lt;/keycap&gt;, controlam a altitude do observador (no eixo y). A tecla &lt;keycap&gt;t&lt;/keycap&gt; habilita ou desabilita o uso de texturas. Para finalizar o programa, basta digitar &lt;keycap&gt;ESC&lt;/keycap&gt;. As teclas e suas respectivas ações estão definidas nas funções `keyboard()` e `special()`.
+    &lt;example xml:id="example-modelagem-solidos"&gt;
+      &lt;title&gt;programa link:exemplos/jato.c"&gt;&lt;filename&gt;jato.c&lt;/filename&gt;&lt;/link&gt;&lt;/title&gt;
+      &lt;programlisting&gt;
+	&lt;textobject&gt; &lt;textdata fileref="&amp;caminho;/exemplos/jato.c" format="linespecific"/&gt;&lt;/textobject&gt;
+      &lt;/programlisting&gt;
+    &lt;/example&gt;
+
+    Para compilar e executar o programa link:exemplos/jato.c"&gt;&lt;filename&gt;jato.c&lt;/filename&gt;&lt;/link&gt;, salve-o juntamente com os arquivo link:exemplos/Makefile.modelagem"&gt;Makefile.modelagem&lt;/link&gt;, link:exemplos/image.c"&gt;image.c&lt;/link&gt;, link:exemplos/image.h"&gt;image.h&lt;/link&gt;, link:exemplos/montanhas.rgb"&gt;montanhas.rgb&lt;/link&gt; e link:exemplos/camuflagem.rgb"&gt;camuflagem.rgb&lt;/link&gt; em um diretório e execute a seguinte seqüência de comandos:
+    &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;-f&lt;/option&gt; &lt;option&gt;Makefile.modelagem&lt;/option&gt; &lt;option&gt;jato&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;jato&lt;/command&gt;
+&lt;/screen&gt;
+    &lt;sect1 xml:id="modelagem-descricao"&gt;
+      &lt;title&gt;Descrição do programa &lt;filename&gt;jato.c&lt;/filename&gt;&lt;/title&gt;
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>#define COORD_TEXTURA_PLANO 1.0
+#define COORD_TEXTURA_AVIAO 1.0
+#define COR_DO_PLANO 0.52,0.52,0.78,1.0
+#define COR_DO_AVIAO 0.3,0.52,0.18,1.0
+#define TEXTURA_DO_PLANO "montanhas.rgb"
+#define TEXTURA_DO_AVIAO "camuflagem.rgb"
+----      Define as cores e coordenadas das texturas do plano e do avião, além dos nomes dos arquivos que contém as imagens das texturas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLint WIDTH =320;
+GLint HEIGHT=240;
+----      Especifica a largura ('WIDTH') e a altura ('HEIGHT') iniciais da janela de desenho.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLfloat obs[3]={0.0,7.0,0.0};
+GLfloat look[3]={0.0,3.0,0.0};
+----      As coordenadas da posição do observador é armazenada no vetor &lt;varname&gt;obs[]&lt;/varname&gt; e as do ponto para onde o observador olha é armazenado no vetor &lt;varname&gt;look[]&lt;/varname&gt;. De acordo com estes vetores, o observador encontra-se no ponto (x,y,z)=(0,7,0) e está olhando para o ponto (x,y,z)=(0,3,0).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLuint  textura_plano;
+GLuint  textura_aviao;
+----      As variáveis &lt;varname&gt;textura_plano&lt;/varname&gt; e &lt;varname&gt;textura_aviao&lt;/varname&gt; armazenam os identificadores das texturas do plano e do avião.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLshort texturas=1;
+GLfloat tetaxz=0;
+GLfloat raioxz=6;
+GLuint  jato;
+----      A variável &lt;varname&gt;texturas&lt;/varname&gt; é usada para habilitar/desabilitar o uso de texturas nos objetos. As variáveis &lt;varname&gt;tetaxz&lt;/varname&gt; e &lt;varname&gt;raioxz&lt;/varname&gt; armazenam o ângulo de rotação do ponto de observação e a distância entre o observador e a origem, respectivamente. A variável &lt;varname&gt;jato&lt;/varname&gt; amazena o identificador para a lista de apresentação do avião a jato.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLfloat ctp[4][2]={
+  {-COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},
+  {+COORD_TEXTURA_PLANO,-COORD_TEXTURA_PLANO},
+  {+COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO},
+  {-COORD_TEXTURA_PLANO,+COORD_TEXTURA_PLANO}
+};
+
+GLfloat cta[4][2]={
+  {-COORD_TEXTURA_AVIAO,-COORD_TEXTURA_AVIAO},
+  {+COORD_TEXTURA_AVIAO,-COORD_TEXTURA_AVIAO},
+  {+COORD_TEXTURA_AVIAO,+COORD_TEXTURA_AVIAO},
+  {-COORD_TEXTURA_AVIAO,+COORD_TEXTURA_AVIAO}
+};
+----      Quando uma textura é carregada, o OpenGL guarda em uma matriz e assume coordenadas (0,0), (1,0), (1,1) e (0,1) para os quatro cantos da textura. Neste exemplo, é assumido a repetição das texturas, de modo a poder cobrir todo o objeto. As coordenadas especificadas neste trecho de código indicam que o objeto será carimbado com sua respectiva textura e que as coordenadas das texturas que serão usadas para criar os carimbos do plano e do avião serão &lt;varname&gt;ctp[]&lt;/varname&gt; e &lt;varname&gt;cta[]&lt;/varname&gt;, respectivamente.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  GLUquadricObj *quadric;
+----      Quádricas são superfícies definidas pela seguinte equação a&lt;subscript&gt;1&lt;/subscript&gt;x&lt;superscript&gt;2&lt;/superscript&gt; + a&lt;subscript&gt;2&lt;/subscript&gt;y&lt;superscript&gt;2&lt;/superscript&gt; +a&lt;subscript&gt;3&lt;/subscript&gt;z&lt;superscript&gt;2&lt;/superscript&gt; + a&lt;subscript&gt;4&lt;/subscript&gt;xy + a&lt;subscript&gt;5&lt;/subscript&gt;yz + a&lt;subscript&gt;6&lt;/subscript&gt;xz + a&lt;subscript&gt;7&lt;/subscript&gt;x + a&lt;subscript&gt;8&lt;/subscript&gt;y +a&lt;subscript&gt;9&lt;/subscript&gt;z +  a&lt;subscript&gt;10&lt;/subscript&gt;. Os tipos de quádricas mais conhecidos são os cones, os cilindros, as esferas e os discos, modelados pelo ajuste adequado dos parâmetros a&lt;subscript&gt;i&lt;/subscript&gt;. Estes objetos são guardados em uma estrutura de dados do tipo &lt;type&gt;GLUquadricObj&lt;/type&gt;.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  GLfloat asa[][3]={
+    {-4.0,0.0,0.0},
+    {+4.0,0.0,0.0},
+    {0.0,0.0,3.0}
+  };
+
+  GLfloat cauda[][3]={
+    {0.0,0.0,0.0},
+    {0.0,2.0,-1.0},
+    {0.0,2.0,0.0},
+    {0.0,0.0,2.0}
+  };
+----      As variáveis &lt;varname&gt;asa[][]&lt;/varname&gt; e &lt;varname&gt;cauda[][]&lt;/varname&gt; armazenam as coordenadas dos polígonos que compõem a asa e a cauda do avião, respectivamente.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  jato = glGenLists(1);
+  glNewList(jato, GL_COMPILE);
+----      A função `glGenLists()` aloca um conjunto contínuo de listas de apresentação vazias e retorna o identificador utilizado para a lista alocada. Neste exemplo, o conjunto contém apenas uma lista de apresentação. Mais listas poderão ser alocadas com subseqüentes chamadas à mesma função.
+      A função `glNewList()` especifica o início de uma lista de apresentação. Todos os comandos executados até a chamada de `glEndList()` ficarão armazenados nesta lista. A função `glNewList()` possui o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `glNewList`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;GLUint &lt;parameter&gt;list`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLenum &lt;parameter&gt;mode`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      &lt;parameter&gt;list` é um número inteiro maior que zero que identifica de forma única a lista de apresentação. O parâmetro `mode` pode assumir os valores &lt;parameter class="option"&gt;GL_COMPILE` e &lt;parameter class="option"&gt;GL_COMPILE_AND_EXECUTE`. O primeiro apenas armazena os comandos na lista; o segundo executa os comandos enquanto são armazenados na lista.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  quadric = gluNewQuadric();
+  gluQuadricTexture(quadric, GL_TRUE);
+  gluCylinder(quadric, 0.5, 0.5, 4, 12, 3);
+----      Inicia, usando a função `gluNewQuadric()`, a primeira das quádricas do exemplo: o corpo do avião. Para esta quádrica, o mapeamento de textura está habilitado. A função `gluCylinder()` possui o seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `gluCylinder`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;GLUquadric* &lt;parameter&gt;quad`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLdouble &lt;parameter&gt; base`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLdouble &lt;parameter&gt;top`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLdouble &lt;parameter&gt;height`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLint &lt;parameter&gt;slices`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLint &lt;parameter&gt;stacks`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      O parâmetro &lt;parameter&gt;quad` é o objeto de quádrica; &lt;parameter&gt;base`, &lt;parameter&gt;top` e &lt;parameter&gt;height` especificam o raio da base, o raio do topo e a altura do cilindro, respectivamente; &lt;parameter&gt;slices` &lt;parameter&gt;stacks` especificam o número de subdivisões ao redor do eixo z e ao longo do mesmo.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  obs[0]=raioxz*cos(2*PI*tetaxz/360);
+  obs[2]=raioxz*sin(2*PI*tetaxz/360);
+  gluLookAt(obs[0],obs[1],obs[2],look[0],look[1],look[2],0.0,1.0,0.0);
+----      Na função `display()` as coordenadas x e z da posição do observador são calculadas e a função `gluLookAt()` é chamada para mudar a posição do observador.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  if(texturas){
+    glEnable(GL_TEXTURE_2D);
+  }
+  else{
+    glDisable(GL_TEXTURE_2D);
+  }
+----      Aqui o mapeamento de texturas é habilitado ou desabilitado, de acordo com o estado da variável &lt;varname&gt;texturas&lt;/varname&gt;. Quando o mapeamento de texturas é desabilitado, o objeto é desenhado utilizando as cores especificadas pela função `glColor*()`.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+----      A função `glTexEnvf()` define os parâmetros do ambiente de textura. O primeiro parâmetro é sempre &lt;parameter class="option"&gt;GL_TEXTURE_ENV`; o segundo parâmetro é sempre &lt;parameter class="option"&gt;GL_TEXTURE_ENV_MODE` e o terceiro especifica como a textura será combinada com a cor para formar a superfície do objeto, neste caso substituindo completamente a cor do objeto pela textura corrente.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glBindTexture(GL_TEXTURE_2D,textura_plano);
+
+  glBegin(GL_QUADS);
+  glTexCoord2fv(ctp[0]);  glVertex3f(-10,0,10);
+  glTexCoord2fv(ctp[1]);  glVertex3f(10,0,10);
+  glTexCoord2fv(ctp[2]);  glVertex3f(10,0,-10);
+  glTexCoord2fv(ctp[3]);  glVertex3f(-10,0,-10);
+  glEnd();
+----      `glBindTexture()` carrega a textura bidimensional associada com a variável &lt;varname&gt;textura_plano&lt;/varname&gt;. Em seguida, um plano é desenhado usando &lt;parameter class="option"&gt;GL_QUADS`. Observe que, antes de desenhar cada vértice, a função `glTexCoord2fv()` é chamada para definir as coordenadas de textura correntes.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void carregar_texturas(void){
+  IMAGE *img;
+  GLenum gluerr;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/* textura do plano */
+glGenTextures(1, &amp;textura_plano);
+glBindTexture(GL_TEXTURE_2D, textura_plano);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  if(!(img=ImageLoad(TEXTURA_DO_PLANO))) {
+    fprintf(stderr,"Error reading a texture.\n");
+    exit(-1);
+  }
+----      A carga das texturas é feita com uso da função `ImageLoad()`, implementada em link:exemplos/image.c"&gt;&lt;filename&gt;image.c&lt;/filename&gt;&lt;/link&gt; e definida em link:exemplos/image.h"&gt;&lt;filename&gt;image.h&lt;/filename&gt;&lt;/link&gt;. Esta função recebe como parâmetro o nome do arquivo com a imagem da textura e retorna um ponteiro para uma estrutura de dados do tipo &lt;type&gt;IMAGE&lt;/type&gt;.
+      A função `glGenTextures()` gera 1 nome de textura em &lt;varname&gt;textura_plano&lt;/varname&gt;. Um nome de textura é qualquer inteiro diferente de zero que identifique de forma única a textura. Assim, texturas diferentes possuem nomes diferentes. Caso o segundo parâmetro desta função seja um vetor de elementos &lt;type&gt;GLuint&lt;/type&gt;, mais nomes de textura podem ser gerados, um para cada elemento deste vetor.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  gluerr=gluBuild2DMipmaps(GL_TEXTURE_2D, 3,
+			   img-&gt;sizeX, img-&gt;sizeY,
+			   GL_RGB, GL_UNSIGNED_BYTE,
+			   (GLvoid *)(img-&gt;data));
+----      Mipmaps são séries de versões em baixa resolução de um mapa de textura. Geralmente é utilizado para texturizar um objeto cuja resolução na tela difere da resolução no mapa de textura. Por exemplo, um objeto próximo da tela pode ser desenhado utilizando uma resolução de textura maior que um objeto distante da tela. O uso de mipmaps evita o efeito de serrilhamento ('aliasing') e outros distúrbios de exibição quando um objeto é aproximado ou afastado da tela.
+      Mipmaps bidimensionais são construídos com a função `gluBuild2dMipmaps()`, que possuiu seguinte protótipo:
+      &lt;funcsynopsis&gt;
+	&lt;funcprototype&gt;
+	  &lt;funcdef&gt;void `gluBuild2dMipmaps`&lt;/funcdef&gt;
+	  &lt;paramdef&gt;GLenum &lt;parameter&gt;target`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLint &lt;parameter&gt;internalFormat`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLsizei &lt;parameter&gt;width`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLsizei &lt;parameter&gt;height`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLenum &lt;parameter&gt;format`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;GLenum &lt;parameter&gt;type`&lt;/paramdef&gt;
+	  &lt;paramdef&gt;const void &lt;parameter&gt;*data`&lt;/paramdef&gt;
+	&lt;/funcprototype&gt;
+      &lt;/funcsynopsis&gt;
+      &lt;parameter&gt;target` indica o tipo de mipmaps que se deseja construir - neste caso uma textura bidimensional. &lt;parameter&gt;internalFormat` indica o tipo de armazenagem interna do arquivo de textura. Neste exemplo, as texturas são imagens RGB, incluindo 3 (três) componentes de cor. Os parâmetros &lt;parameter&gt;width` e &lt;parameter&gt;height` especificam a largura e a altura do dado. Ambas estas dimensões devem ser potências de 2. &lt;parameter&gt;format` especifica o formato dos pixels do dado (RGB). &lt;parameter&gt;type` especifica o tipo de dado representado no vetor de dados. &lt;parameter&gt;data` especifica o ponteiro para a posição de memória onde os dados de textura residem.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+----      A função `glTexParameterf()` define uma série de parâmetros que controlam como uma textura é tratada e aplicada a um fragmento de um dado objeto. Aqui, através dos parâmetros &lt;parameter class="option"&gt;GL_TEXTURE_WRAP_S` e &lt;parameter class="option"&gt;GL_TEXTURE_WRAP_T`, a função define que nas direções s e t (coordenadas) a textura deverá será repetida no objeto.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+----      Neste trecho do código, as funções `glTexParameterf()` define os tipos de filtro usados quando a textura for minimizada ou maximizada. Pelo parâmetro &lt;parameter&gt;GL_LINEAR_MIPMAP_LINEAR`, o OpenGL escolhe dois mipmaps que mais aproximam o tamanho do pixel a ser texturizado calcula a média dos quatro elementos de textura mais próximos do centro do pixel. O valor da textura para o pixel será a média desses dois valores. O parâmetro &lt;parameter&gt;GL_LINEAR`, por sua vez não utiliza mipmaps: associa ao pixel a ser texturizado a média dos quatro elementos de textura mais próximos do centro do pixel.
+    &lt;/sect1&gt;
+    &lt;sect1 xml:id="modelagem-exercicios"&gt;
+      &lt;title&gt;Exercícios&lt;/title&gt;
+      &lt;orderedlist&gt;
+ 	-Utilizando o programa link:exemplos/jato.c"&gt;&lt;filename&gt;jato.c&lt;/filename&gt;&lt;/link&gt; como referência, implemente um programa &lt;filename&gt;superjato.c&lt;/filename&gt;. Caso você ainda não tenha notado, o avião a jato deste exemplo não possui uma turbina. Faça-o mais feliz, projetando essa turbina e acoplando-a à parte traseira do jato no seu novo programa. O modelo da turbina fica a seu gosto. Acrescente também dois mísseis sob as asas.
+
+	-Crie um logotipo utilizando um programa de manipulação de imagens de sua preferência. Salve-o no formato Iris RGB e mapeie-o na parte superior da asa, como mostra a &lt;xref linkend="fig-modelagem-logotipo"/&gt;
+	  &lt;figure xml:id="fig-modelagem-logotipo"&gt;
+	    &lt;title&gt;Exemplo de logotipo para o superjato&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/modelagem-logotipo.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+	  &lt;/figure&gt;
+
+      &lt;/orderedlist&gt;
+
+    &lt;/sect1&gt;
+  &lt;/chapter&gt;
+
+  &lt;!-- modelos de iluminação --&gt;
+
+  &lt;chapter xml:id="modelos-iluminacao"&gt;
+    &lt;title&gt;Modelos de iluminação e sombreamento&lt;/title&gt;
+    O propósito desta lição é ilustrar para o usuário os principais conceitos envolvidos na iluminação de uma cena e na definição das propriedades luminosas de um material, geralmente representadas pelos coeficientes de reflexão difusa e especular.
+    Será mostrado com definir características básicas de uma fonte de luz, tais como a intensidade da luz gerada, para as componentes de luz ambiente, difusa e especular (no OpenGL, é possível separar as contribuições). Além disso, será mostrado também o uso do canal alfa para geração de transparências e a construção de 'spots' de luz.
+    A cena gerada pelo programa utilizado nesta lição é mostrado na &lt;xref linkend="fig-modelos-iluminacao-cena"/&gt;. Consiste de duas esferas (nomeadas A e B) sob um plano. A esfera "A" é sólida, e os valores das suas constantes de reflexão difusa e especular pode ser modificados através de seleção de opções em um menu. A esfera "B" é translúcida, e sua translucidez pode ser ajustada através do canal alfa.
+     Até o momento, o canal alfa tem sido ignorado (alfa é o A em RGBA). Os valores do canal alfa variam de 0 a 1, e são especificados com as funções `glColor*()`. Quando os efeitos de composição ('blending') são utilizados, o valor de alfa é utilizado para combinar a cor do fragmento que está sendo processado com a cor já presente no 'framebuffer'. De modo geral, a composição de imagens utilando o canal alfa é dada pela seguinte expressão:
+    &lt;screen&gt;
+         IT = IP * alfa + (1-alfa)* IFB
+&lt;/screen&gt;
+    onde: IT é a imagem total resultante, IP é a imagem que está sendo processada, e IFB é a imagem anteriormente presente no 'framebuffer'.
+
+    &lt;figure xml:id="fig-modelos-iluminacao-cena"&gt;
+      &lt;title&gt;Esferas sob um plano.&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/modelos-iluminacao-cena.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+    &lt;/figure&gt;
+     O programa usado para modelar esta cena é mostrado no &lt;xref linkend="example-modelos-iluminacao"/&gt;. As teclas &lt;keycap&gt;LEFT&lt;/keycap&gt; e &lt;keycap&gt;RIGHT&lt;/keycap&gt; servem para rotacionar a posição do observador em torno do eixo y contra e a favor do sentido dos ponteiros do relógio, respectivamente. A distância entre o observador e o centro de rotação (raio de observação) é alterado pelas teclas &lt;keycap&gt;r&lt;/keycap&gt; e &lt;keycap&gt;R&lt;/keycap&gt;, que aumentam o diminuem o seu valor, respectivamente. As teclas &lt;keycap&gt;UP&lt;/keycap&gt; e &lt;keycap&gt;DOWN&lt;/keycap&gt;, controlam a altitude do observador (no eixo y). É possível modificar os graus de reflexão difusa e especular da esfera maciça através do menu 'popup' disponível pelo pressionamento do botão direito do mouse. A tecla &lt;keycap&gt;t&lt;/keycap&gt; habilita ou desabilita o uso de texturas. Para finalizar o programa, basta digitar &lt;keycap&gt;ESC&lt;/keycap&gt;.
+
+    &lt;example xml:id="example-modelos-iluminacao"&gt;
+      &lt;title&gt;programa link:exemplos/iluminacao.c"&gt;&lt;filename&gt;iluminacao.c&lt;/filename&gt;&lt;/link&gt;&lt;/title&gt;
+      &lt;programlisting&gt;
+	&lt;textobject&gt; &lt;textdata fileref="&amp;caminho;/exemplos/iluminacao.c" format="linespecific"/&gt;&lt;/textobject&gt;
+      &lt;/programlisting&gt;
+    &lt;/example&gt;
+
+    Para compilar e executar o programa link:exemplos/iluminacao.c"&gt;&lt;filename&gt;iluminacao.c&lt;/filename&gt;&lt;/link&gt;, salve-o juntamente com o arquivo link:exemplos/Makefile"&gt;Makefile&lt;/link&gt; em um diretório e execute a seguinte seqüência de comandos:
+    &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;iluminacao&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;iluminacao&lt;/command&gt;
+&lt;/screen&gt;
+
+    &lt;sect1 xml:id="modelos-iluminacao-descricao"&gt;
+      &lt;title&gt;Descrição do programa &lt;filename&gt;iluminacao.c&lt;/filename&gt;&lt;/title&gt;
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLint fatias=30;
+GLint pilhas=30;
+GLint raioEsfera=1.5;
+----      Define o número de fatias (longitude), o número de pilhas (latitude) e o raio das esferas da cena.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLfloat plano_difusa[]    = { 0.5, 0.5, 0.0, 1.0 };
+GLfloat plano_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat plano_brilho[]    = { 50.0 };
+
+GLfloat mat_a_difusa[]    = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat mat_a_brilho[]    = { 50.0 };
+
+GLfloat mat_b_difusa[]    = { 0.7, 0.7, 0.7, 0.5 };
+GLfloat mat_b_especular[] = { 1.0, 1.0, 1.0, 0.5 };
+GLfloat mat_b_brilho[]    = { 50.0 };
+----      Define os coeficientes de reflexão difusa (&lt;varname&gt;*_difusa&lt;/varname&gt;) e especular (&lt;varname&gt;*_especular&lt;/varname&gt;) para os três objetos da cena. As componentes destes vetores são do tipo R,G,B e A(lfa) e serão utilizados para as compor cores do plano, da esfera A e da esfera B. Observe que a esfera B possui valor de alfa igual a 0.5, proporcionando assim a sua aparência translúcida.
+      O brilho do material, que pode assumir valores entre 1 e 128, é um expoente que modela a função de distribuição espacial da componente de luz refletida especularmente. À medida em que o valor do brilho aumenta, diminui o espalhamento da luz refletida.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>GLfloat posicao_luz0[]    = { 0.0, 10.0, 0.0, 1.0};
+GLfloat cor_luz0[]        = { 1.0, 1.0, 1.0, 1.0};
+GLfloat cor_luz0_amb[]    = { 0.3, 0.3, 0.3, 1.0};
+----      Indica a posição (posicao_luz0) e as componentes de luz para reflexão difusa e especular (&lt;varname&gt;cor_luz0&lt;/varname&gt;), e a componente de luz para reflexão ambiente (cor_luz0_amb).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">GLfloat posicao_luz1[]    = { 0.0, 10.0, 5.0, 1.0};
+GLfloat cor_luz1[]        = { 0.0, 0.0, 1.0, 1.0};
+GLfloat direcao_luz1[]    = { 0.0, -10.0, -5.0, 1.0};
+GLint   spot_luz1         = 30;
+----      É apresentado aqui o exemplo de uma luz tipo spot. É necessário que seja definidos, além da cor da luz e da posição do spot, a sua orientação e o seu ângulo de corte, mostrado na &lt;xref linkend="modelos-iluminacao-spot"/&gt;. Para este exemplo, o ângulo de corte é igual a 30 graus.
+      &lt;figure xml:id="modelos-iluminacao-spot"&gt;
+	&lt;title&gt;Spot de luz&lt;/title&gt;
+      &lt;mediaobject&gt;
+	&lt;imageobject&gt;
+	  &lt;imagedata fileref="figs/modelos-iluminacao-spot.jpg" format="JPG"/&gt;
+	&lt;/imageobject&gt;
+      &lt;/mediaobject&gt;
+      &lt;/figure&gt;
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  if(gouraud){
+    glShadeModel(GL_SMOOTH);
+  }
+  else{
+    glShadeModel(GL_FLAT);
+  }
+----      Através da variável &lt;varname&gt;gouraud&lt;/varname&gt; a função `display` decide se o modelo de sombreamento ('shading') para os objetos será o de Gouraud (GL_SMOOTH) ou 'flat shading', tornando os objetos com aparência faceteada.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  /* propriedades do material do plano */
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, plano_difusa);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, plano_especular);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, plano_brilho);
+
+  /* desenha o plano */
+  glNormal3f(0,1,0);
+  glBegin(GL_QUADS);
+  glVertex3f(-10,0,10);
+  glVertex3f(10,0,10);
+  glVertex3f(10,0,-10);
+  glVertex3f(-10,0,-10);
+  glEnd();
+----      A função `glMaterialfv()` define as propriedades de reflexão difusa e especular, e brilho do material que será utilizado para compor o objeto imediatamente desenhado, neste caso um plano, via GL_QUADS. Observer a chamada à função `glNormal3f()` antes de o plano ser desenhado. Isto é necessário porque, por 'default', o vetor normal encontra-se na direção (x,y,z)=(0,0,1) e para que a normal à superfície encontra-se orientada com eixo y, ou seja, na direção (x,y,z)=(0,1,0).
+      Um procedimento semelhante a esse é utilizado para definir as características do material das esferas presentes na cena.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glPushMatrix();
+  glTranslatef(posicao_luz0[0],posicao_luz0[1],posicao_luz0[2]);
+  glColor3f(1,0,0);
+  glMaterialfv(GL_FRONT, GL_EMISSION, cor_luz0);
+  glutSolidSphere(0.3,5,5);
+  glPopMatrix();
+----      Para facilitar a identificação das fontes de luz, são desenhadas duas esferas nas posições destas fontes. Na chamada à função `glMaterialfv()`, o parâmetro &lt;parameter&gt;GL_EMISSION` define a intensidade luminosa emitida pelo material como sendo a própria cor da fonte de luz, dando a aparência de que a esfera brilha, assim como brilharia uma lâmpada.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+----      Habilita a composição ('blending') de imagens dos valores RGBA correntes com aqueles presentes no 'framebuffer'. A função `glBlendFunc()` define os pesos para a imagem que está sendo processada (IP) e a presente no 'framebuffer'. Neste caso, os pesos são o próprio valor do canal alfa (&lt;parameter&gt;GL_SRC_ALPHA`) e 1-alfa (&lt;parameter&gt;GL_ONE_MINUS_SRC_ALPHA`).
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  glLightfv(GL_LIGHT0, GL_DIFFUSE, cor_luz0);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, cor_luz0);
+  glLightfv(GL_LIGHT0, GL_AMBIENT, cor_luz0_amb);
+  glLightfv(GL_LIGHT0, GL_POSITION, posicao_luz0);
+----      Define a posição e as componentes de cor da fonte de luz GL_LIGHT0.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">  glLightfv(GL_LIGHT1, GL_DIFFUSE, cor_luz1);
+  glLightfv(GL_LIGHT1, GL_SPECULAR, cor_luz1);
+  glLightf (GL_LIGHT1, GL_SPOT_CUTOFF, spot_luz1);
+  glLightfv(GL_LIGHT1, GL_POSITION, posicao_luz1);
+  glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direcao_luz1);
+----      Define a posição, orientação, ângulo de corte e as componentes de cor para a fonte de luz GL_LIGHT1.
+
+[source,c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>void menu(int value){
+  switch (value) {
+  case 0:
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=0.0;
+    break;
+  case 1:
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=0.5;
+    break;
+  case 2:
+    mat_a_especular[0]=mat_a_especular[1]=mat_a_especular[2]=1.0;
+    break;
+  case 3:
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=0.0;
+    break;
+  case 4:
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=0.5;
+    break;
+  case 5:
+    mat_a_difusa[0]=mat_a_difusa[1]=mat_a_difusa[2]=1.0;
+    break;
+  }
+  glutPostRedisplay();
+}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>A função menu é ativada quando o botão direito do mouse é pressionado. De acordo com o valor da variável &lt;varname&gt;value&lt;/varname&gt;, determinadas propriedades do material que compõe a esfera A são modificadas.
+
+[source,c]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>glutCreateMenu(menu);
+glutAddMenuEntry("-sem spec", 0);
+glutAddMenuEntry("-spec média", 1);
+glutAddMenuEntry("-spec alta", 2);
+glutAddMenuEntry("-sem difusa", 3);
+glutAddMenuEntry("-difusa média", 4);
+glutAddMenuEntry("-difusa alta", 5);
+glutAttachMenu(GLUT_RIGHT_BUTTON);</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Aqui, a função `glutCreateMenu()`, em conjunto com a função `glutAddMenuEntry()`, habilita um menu 'popup' com seis opções que permitirão ativar entradas presentes na função `menu`, de acordo com os valores passados nos segundos argumentos das funções `glutAddMenuEntry()`. Finalmente, a função `glutAttachMenu()` associa o aparecimento deste menu ao pressionamento do botão direito do mouse.
+    &lt;/sect1&gt;
+
+    &lt;sect1 xml:id="modelos-iluminacao-exercicios"&gt;
+      &lt;title&gt;Exercícios&lt;/title&gt;
+      &lt;orderedlist&gt;
+	-Utilizando o programa link:exemplos/iluminacao.c"&gt;&lt;filename&gt;iluminacao.c&lt;/filename&gt;&lt;/link&gt; como referência, implemente um programa &lt;filename&gt;iluminacao2.c&lt;/filename&gt;. Utilizando este novo programa, possibilite que a transparência do objeto B seja modificada através dos movimentos horizontal ou vertical do mouse quando nenhuma tecla for pressionada. Caso a tecla &lt;keycap&gt;SHIFT&lt;/keycap&gt; esteja pressionada, os movimentos do mouse deverão diminuir ou aumentar os níveis de iluminação ambiente.
+      &lt;/orderedlist&gt;
+    &lt;/sect1&gt;
+
+  &lt;/chapter&gt;
+
+  &lt;!-- como submeter exercícios --&gt;
+
+  &lt;chapter xml:id="submissao-exercicios"&gt;
+    &lt;title&gt;Instruções para submissão dos exercícios&lt;/title&gt;
+     A submissão dos exercícios será feita diretamente via WWW. Cada aluno deverá criar uma 'homepage' apresentando suas soluções para os exercícios propostos. A URL gerada será incluída na homepage do professor.
+     A 'homepage' de apresentação das soluções deverá conter links para os programas criados, bem como as instruções de instalação e compilação destes.
+     Os programas dos exercícios serão compilados e testados no Laboratório de graduação em Engenharia da Computação. Assegure-se de que o seu programa funciona no referido laboratório.
+     Você poderá encontrar link:submissao.html"&gt;aqui&lt;/link&gt; um modelo de 'homepage' para submissão de exercícios.
+    &lt;sect1&gt;
+      &lt;title&gt;Exemplo de Homepage&lt;/title&gt;
+      &lt;subtitle&gt;Solução para os exercícios propostos&lt;/subtitle&gt;
+      Agostinho Brito - 905632
+
+      &lt;orderedlist&gt;
+	-&lt;emphasis&gt;Desenhando linhas e pontos&lt;/emphasis&gt;
+	  &lt;orderedlist&gt;
+	    -    Implementação do programa quadrado.
+	       Utilize os seguintes arquivos:
+	      &lt;itemizedlist&gt;
+		&lt;listitem&gt;
+		  link:Makefile"&gt;Makefile&lt;/link&gt;
+			&lt;listitem&gt;
+		  link:quadrado.c"&gt;quadrado.c&lt;/link&gt;
+		      &lt;/itemizedlist&gt;
+	      Como compilar e executar:
+	      &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;quadrado&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;quadrado&lt;/command&gt;
+&lt;/screen&gt;
+	    &lt;/listitem&gt;
+	    -    Algoritmo de Bresenham para traçado de retas
+	       Utilize os seguintes arquivos:
+	      &lt;itemizedlist&gt;
+		&lt;listitem&gt;
+		  link:Makefile"&gt;Makefile&lt;/link&gt;
+			&lt;listitem&gt;
+		  link:bresenham-retas.c"&gt;bresenham-retas.c&lt;/link&gt;
+		      &lt;/itemizedlist&gt;
+	      Como compilar e executar:
+	      &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;bresenham-retas&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;bresenham-retas&lt;/command&gt;
+&lt;/screen&gt;
+	    &lt;/listitem&gt;
+	    -    Algoritmo de Bresenham para traçado de circunferências
+	       Utilize os seguintes arquivos:
+	      &lt;itemizedlist&gt;
+		&lt;listitem&gt;
+		  link:Makefile"&gt;Makefile&lt;/link&gt;
+			&lt;listitem&gt;
+		  link:bresenham-circunferencias.c"&gt;bresenham-circunferencias.c&lt;/link&gt;
+		      &lt;/itemizedlist&gt;
+	      Como compilar e executar:
+	      &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;bresenham-circunferencias&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;bresenham-circunferencias&lt;/command&gt;
+&lt;/screen&gt;
+	    &lt;/listitem&gt;
+	  &lt;/orderedlist&gt;
+	-&lt;emphasis&gt;Preenchimento de regiões&lt;/emphasis&gt;
+	  &lt;orderedlist&gt;
+	    -    Seleção de cores
+	       Utilize os seguintes arquivos:
+	      &lt;itemizedlist&gt;
+		&lt;listitem&gt;
+		  link:Makefile"&gt;Makefile&lt;/link&gt;
+			&lt;listitem&gt;
+		  link:selecao.c"&gt;selecao.c&lt;/link&gt;
+		      &lt;/itemizedlist&gt;
+	      Como compilar e executar:
+	      &lt;screen&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;make&lt;/command&gt; &lt;option&gt;selecao&lt;/option&gt;
+&lt;prompt&gt;$&lt;/prompt&gt; &lt;command&gt;selecao&lt;/command&gt;
+&lt;/screen&gt;
+	    &lt;/listitem&gt;
+	  &lt;/orderedlist&gt;
+      &lt;/orderedlist&gt;
+
+    &lt;/sect1&gt;
+  &lt;/chapter&gt;
+
+  &lt;!-- bibliografia --&gt;
+
+  &lt;bibliography xml:id="bibliografia"&gt;
+    &lt;biblioentry&gt;
+      &lt;abbrev&gt;Neider2000&lt;/abbrev&gt;
+      &lt;author&gt;
+	&lt;personname&gt;
+	&lt;firstname&gt;Jackie&lt;/firstname&gt;
+	&lt;surname&gt;Neider&lt;/surname&gt;
+	&lt;/personname&gt;
+      &lt;/author&gt;
+      &lt;biblioset&gt;
+	&lt;title&gt;OpenGL programming Guide&lt;/title&gt;
+      &lt;/biblioset&gt;
+    &lt;/biblioentry&gt;
+    &lt;biblioentry&gt;
+      &lt;abbrev&gt;OpenGL ARB&lt;/abbrev&gt;
+      &lt;biblioset&gt;
+	&lt;title&gt;link:http://www.opengl.org"&gt;www.opengl.org&lt;/link&gt;&lt;/title&gt;
+      &lt;/biblioset&gt;
+    &lt;/biblioentry&gt;
+  &lt;/bibliography&gt;
+  &lt;appendix xml:id="contribuicoes"&gt;
+    &lt;title&gt;Contribuições&lt;/title&gt;
+    Envie suas contribuições para link:mailto:ambj@leca.ufrn.br"&gt;ambj@leca.ufrn.br&lt;/link&gt;. Elas serão muito bem acolhidas.
+    Muito obrigado àqueles que contribuíram para melhorar ou corrigir erros.
+    Agostinho Brito
+    &lt;variablelist&gt;
+      &lt;varlistentry&gt;
+	&lt;term&gt;&lt;emphasis&gt;Correção de link:mailto:leonardo@engcomp.ufrn.br"&gt;Leonardo Campos&lt;/link&gt;, em 16/11/2000&lt;/emphasis&gt;&lt;/term&gt;
+	-
+    &lt;screen&gt;
+A pagina do capitulo 6 de opengl, na parte de quadricas, ha um erro.
+Ao inves de a_1x^2+a_2x^2+a_3x^2 deveria ser a_1x^2+a_2y^2+a_3z^2.
+
+Ate mais,
+
+Leonardo Campos
+&lt;/screen&gt;
+
+      &lt;/varlistentry&gt;
+      &lt;varlistentry&gt;
+	&lt;term&gt;&lt;emphasis&gt;Correções de link:mailto:adler@engcomp.ufrn.br"&gt;Adler Cardoso&lt;/link&gt;, em 20/11/2000&lt;/emphasis&gt;&lt;/term&gt;
+	-
+    &lt;screen&gt;
+Agostinho,
+
+  ai estão alguns erros que encontrei na especificação do cap. 6:
+  1 - no arquivo jato.c tem:
+        GLint WIDTH =320;
+        GLint HEIGHT=240;
+  e na explicação do arquivo tem:
+        int WIDTH =320;
+        int HEIGHT=240;
+  2 - na explicação da tetaxz tem escrito tetaxy (em vermelho);
+  3 - na explicação de coordenadas ctp e cta tem matrix ao invés de
+  matriz;
+  4 - na equação de objetos quádricos tem a_1x^2+a_2x^2+a_3x^3+...;
+  5 - na explicação de glTexEnvf aparece glBindTexture, que é explicada
+  logo após também;
+  6 - na explicação de ImageLoad, tem ImageLoad(();
+  7 - GL_TEXTURE_WRAP_S é repetido na explicação;
+  8 - na última, explicação, tem GL_LINEAR_.
+
+  Espero que isto ajude.
+
+[]'s
+Adler.
+&lt;/screen&gt;
+
+      &lt;/varlistentry&gt;
+    &lt;/variablelist&gt;
+  &lt;/appendix&gt;
+&lt;/book&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 0.9<br>
+Last updated 2015-09-30 22:59:18 BRT
+</div>
+</div>
+</body>
+</html>
