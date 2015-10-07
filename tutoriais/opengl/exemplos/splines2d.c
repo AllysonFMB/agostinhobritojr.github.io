@@ -31,7 +31,7 @@ GLint nNos=10;
 
 GLint matrizViewport[4];
 GLdouble matrizModelview[16], matrizProjecao[16];
-GLint yreal;  /*  posição da coordenada y no OpenGL */
+GLint yreal;  /*  posiÃ§Ã£o da coordenada y no OpenGL */
 GLdouble wx, wy, wz;  /*  coordenadas no mundo real: x, y, z  */
 
 void display(void){
