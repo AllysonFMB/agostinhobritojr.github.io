@@ -39,7 +39,7 @@ GLint   spot_luz1         = 30;
 
 GLfloat sem_cor[]         = { 0.0, 0.0, 0.0, 1.0};
   
-GLint gouraud=0;
+sGLint gouraud=0;
 
 GLfloat tetaxz=0;
 GLfloat raioxz=6;

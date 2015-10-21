@@ -240,10 +240,10 @@ int main(int argc,char **argv){
 
   glutCreateMenu(menu);
   glutAddMenuEntry("-sem spec", 0);
-  glutAddMenuEntry("-spec media", 1);
+  glutAddMenuEntry("-spec média", 1);
   glutAddMenuEntry("-spec alta", 2);
   glutAddMenuEntry("-sem difusa", 3);
-  glutAddMenuEntry("-difusa media", 4);
+  glutAddMenuEntry("-difusa média", 4);
   glutAddMenuEntry("-difusa alta", 5);
   glutAttachMenu(GLUT_RIGHT_BUTTON);
 
