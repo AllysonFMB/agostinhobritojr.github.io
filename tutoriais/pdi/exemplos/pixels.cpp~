@@ -6,6 +6,8 @@ using namespace cv;
 using namespace std;
 
 int main(int, char**){
+  double width, height;
+  Vec3b val;
   Mat image;
 
   image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
