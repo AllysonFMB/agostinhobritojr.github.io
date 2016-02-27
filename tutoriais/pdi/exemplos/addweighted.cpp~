@@ -9,11 +9,11 @@ double alfa;
 int alfa_slider = 0;
 int alfa_slider_max = 100;
 
-int top_slider = 1;
+int top_slider = 0;
 int top_slider_max = 100;
 
 Mat image1, image2, blended;
-Mat imageTop, imageBottom;
+Mat imageTop; 
 
 char TrackbarName[50];
 
@@ -26,10 +26,10 @@ void on_trackbar_blend(int, void*){
 void on_trackbar_line(int, void*){
   image1.copyTo(imageTop);
   int limit = top_slider*255/100;
-  if(limit < 1)
-	limit = 1;
-  Mat tmp = image2(Rect(0, 0, 256, limit));
-  tmp.copyTo(imageTop(Rect(0, 0, 256, limit)));
+  if(limit > 0){
+	Mat tmp = image2(Rect(0, 0, 256, limit));
+	tmp.copyTo(imageTop(Rect(0, 0, 256, limit)));
+  }
   on_trackbar_blend(alfa_slider,0);
 }
 

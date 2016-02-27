@@ -688,8 +688,7 @@ de comando.</p>
 <div class="title">Listagem 2. hello.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;cv.h&gt;</span>
-<span class="tok-cp">#include &lt;highgui.h&gt;</span>
+<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 
@@ -783,6 +782,7 @@ desenhar um quadrado vermelho na mesma região que foi pré-estabelecida.</p>
 
 <span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-p">,</span> <span class="tok-kt">char</span><span class="tok-o">**</span><span class="tok-p">){</span>
   <span class="tok-n">Mat</span> <span class="tok-n">image</span><span class="tok-p">;</span>
+  <span class="tok-n">Vec3b</span> <span class="tok-n">val</span><span class="tok-p">;</span>
 
   <span class="tok-n">image</span><span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;bolhas.png&quot;</span><span class="tok-p">,</span><span class="tok-n">CV_LOAD_IMAGE_GRAYSCALE</span><span class="tok-p">);</span>
   <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-o">!</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">data</span><span class="tok-p">)</span>
@@ -842,8 +842,7 @@ $ ./pixels</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;cv.h&gt;</span>
-<span class="tok-cp">#include &lt;highgui.h&gt;</span>
+<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span></code></pre>
@@ -851,13 +850,12 @@ $ ./pixels</code></pre>
 </div>
 <div class="paragraph">
 <p>Em geral, a maior parte das funcionalidades da biblioteca é definida
-nos arquivos de cabeçalho <code>cv.h</code> e <code>highgui.h</code>. No arquivo de
-cabeçalho <code>cv.h</code> são definidos tipos básicos da biblioteca, bem como
-os protótipos de várias funções usadas para tratamento de imagens. O
-arquivo de cabeçalho <code>highgui.h</code>, por sua vez, agrega as definições de
-funções que são usadas para entrada e saída de dados, criação de e
-manipulação de janelas e seus eventos, além de <em>widgets</em> para permitir
-interação com o usuário.</p>
+no arquivo de cabeçalho <code>opencv.hpp</code>. Nesse arquivo, são definidos
+tipos básicos da biblioteca, bem como os protótipos de várias funções
+usadas para tratamento de imagens. Ele agrega as definições de funções
+que são usadas para entrada e saída de dados, criação de e manipulação
+de janelas e seus eventos, além de <em>widgets</em> para permitir interação
+com o usuário.</p>
 </div>
 <div class="paragraph">
 <p>Todas as clases e funções do OpenCV normalmente estão definidas no
@@ -1139,8 +1137,7 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 <div class="title">Listagem 4. labeling.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;cv.h&gt;</span>
-<span class="tok-cp">#include &lt;highgui.h&gt;</span>
+<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 
@@ -1814,8 +1811,7 @@ Listagem <a href="#exa_filtroespacial">Filtroespacial</a>.</p>
 <div class="title">Listagem 6. filtroespacial.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;cv.hpp&gt;</span>
-<span class="tok-cp">#include &lt;highgui.h&gt;</span>
+<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
@@ -2149,8 +2145,7 @@ Listagem <a href="#exa_addweighted">Addweighted</a>.</p>
 <div class="title">Listagem 7. addweighted.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;cv.hpp&gt;</span>
-<span class="tok-cp">#include &lt;highgui.h&gt;</span>
+<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
@@ -2327,7 +2322,7 @@ em vídeos desse tipo.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-02-18 08:48:56 BRT
+Última atualização 2016-02-27 05:49:27 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">

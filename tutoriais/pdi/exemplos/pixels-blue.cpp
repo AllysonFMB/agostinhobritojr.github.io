@@ -7,7 +7,6 @@ using namespace std;
 
 int main(int, char**){
   Mat image;
-
   image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
   if(!image.data)
     cout << "nao abriu bolhas.png" << endl;
@@ -25,9 +24,10 @@ int main(int, char**){
 
   image= imread("bolhas.png",CV_LOAD_IMAGE_COLOR);
 
-  val[0] = 0;   //B
+  Vec3b val;
+  val[0] = 255;   //B
   val[1] = 0;   //G
-  val[2] = 255; //R
+  val[2] = 0; //R
   
   for(int i=200;i<210;i++){
     for(int j=10;j<200;j++){
