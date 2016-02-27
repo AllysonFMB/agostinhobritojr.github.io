@@ -7,6 +7,7 @@ using namespace std;
 
 int main(int, char**){
   Mat image;
+  Vec3b val;
 
   image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
   if(!image.data)
