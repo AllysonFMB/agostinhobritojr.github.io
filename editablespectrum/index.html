@@ -76,7 +76,7 @@
 		  <div class="col-md-12 col-lg-12 col-sm-12 col" >
 		    
 		    <div class="form-group">
-		      <input type="file" name="imageLoader"  id="imageLoader" />
+		      <input type="file" name="imageLoader"  id="imageLoader"/>
 		    </div>
 		    
 		    <div class="form-group">
@@ -85,6 +85,16 @@
 			<option value="1">Keep image size</option>
 			<option value="2">512x512</option>
 		      </select>
+		    </div>
+
+		    <div class="radio">
+		      <label><input type="radio" name="optradio">Option 1</label>
+		    </div>
+		    <div class="radio">
+		      <label><input type="radio" name="optradio">Option 2</label>
+		    </div>
+		    <div class="radio disabled">
+		      <label><input type="radio" name="optradio" disabled>Option 3</label>
 		    </div>
 		    
 		    <div class="form-group">
@@ -96,12 +106,12 @@
 		      </select>
 		    </div>
 		    
-		    <div class="form-group">
+		    <!--div class="form-group">
 		      <div class="alert alert-info" role="alert" id="messagesBox" style="visibility:hidden;">
 			<i class = "glyphicon glyphicon-info-sign"></i><p id="infoText">
 			</p>
 		      </div>
-		    </div>
+		    </div-->
 		  </div>
 		</div >
 	      </div>
@@ -123,8 +133,6 @@
 		<div class="tab-content" >
 		  <div id="editableSpectrum" class="tab-pane fade in active">
 		    
-		    
-		    
 		    <table>
                       <thead>
                         <tr>
@@ -142,63 +150,86 @@
                           <td style="padding: 5px">
 			    <button type="button" id="drawRectangleIcon"
 				    onclick="drawRectangleSelectedButton()"
-				    class="btn btn-default"
+				    class="btn btn-danger btn-block"
 				    aria-label="Left Align" type="button">
-			      <span class="glyphicon
-			      glyphicon-stop"
-			      aria-hidden="true"></span> Cut Rectangle
+			      <span class="glyphicon glyphicon-unchecked"
+				    aria-hidden="true"></span><br>
+			      Rectangle 
 			    </button>
-                            <button id="drawRectangleIcon1"
-				    onclick="drawRectangleSelectedButton()"
-				    type="button" class="btn
-							 btn-info btn-sm">
-                              <img src="icons/rectangle.svg" title="retangulo" width="40" height="40"/>
-                            </button>
 
                             <div class="row"></div>
 
-                            <button id="drawCircleIcon"
+			    <button type="button" id="drawCircleIcon"
 				    onclick="drawCircleSelectedButton()"
-				    class = "btn btn-info btn-sm" type="button">
-                              <img src="icons/circle.svg" title="circulo" width="40" height="40"/>
-                            </button>
+				    class="btn btn-danger btn-block"
+				    aria-label="Left Align" type="button">
+			      <span class="glyphicon glyphicon-record"
+				    aria-hidden="true"></span><br>
+			      Circle
+			    </button>
 
-                            <div class="row"></div>
+			    <div class="row"></div>
 
-                            <button id="drawConjugate"
+			    <button type="button" id="drawConjugate"
 				    onclick="drawComplexConjugateButtonSelected()"
-				    class = "btn btn-info btn-sm" type="button" >
-                              <img src="icons/conjugate.svg" title="complex conjugate" width="40" height="40"/>
-                            </button>
+				    class="btn btn-primary btn-block"
+				    aria-label="Left Align" type="button">
+			      <span class="glyphicon glyphicon-resize-full"
+				    aria-hidden="true"></span><br>
+			      Conjugate
+			    </button>
 
                             <div class="row"></div>
-
-                            <button id="drawClearArea" onclick="drawClearAreaButtonSelected()" type="button" >
-                              <img src="imagesIcons/clearRectangleAreaIcon.png" title="Draw Clear Area" width="32" height="32"/>
-                            </button>
-
                             <div class="row"></div>
 
-                            <button id="mouserPointer" onclick="deslectAllButtonsDrawSelected()" type="button" style="border: 2px solid #555555;">
-                              <img src="imagesIcons/mouse_pointer-512.png" title="cursor edit" width="32" height="32"/>
-                            </button>
-
+			    <button type="button" id="drawClearArea"
+				    onclick="drawClearAreaButtonSelected()"
+				    class="btn btn-primary btn-block"
+				    aria-label="Left Align" type="button">
+			      <span class="glyphicon glyphicon-plus-sign"
+				    aria-hidden="true"></span><br>
+			      Insert area
+			    </button>
                             <div class="row"></div>
 
-                            <button id="SaveButton" onclick="saveCanvasAsImage()" type="button" style="border: 2px solid #555555;">
-                              <img src="imagesIcons/Save.png" title="Save output image" width="32" height="32"/>
-                            </button>
-
+			    <button type="button" id="mouserPointer"
+				    onclick="deslectAllButtonsDrawSelected()"
+				    class="btn btn-primary btn-block"
+				    aria-label="Left Align" type="button">
+			      <span class="glyphicon glyphicon-hand-up"
+				    aria-hidden="true"></span><br>
+			      Edit Shapes
+			    </button>
                             <div class="row"></div>
 
-                            <button id="deleteAllObjects" onclick="deleteAllObjectsShape()" type="button" style="border: 2px solid #555555;">
-                              <img src="imagesIcons/Actions-edit-clear-icon.png" title="Delete all Objects drawn" width="32" height="32"/>
-                            </button>
+			    <button type="button" id="SaveButton"
+				    onclick="saveCanvasAsImage()"
+				    class="btn btn-primary btn-block"
+				    aria-label="Left Align" type="button">
+			      <span class="glyphicon glyphicon-floppy-disk"
+				    aria-hidden="true"></span><br>
+			      Save Result
+			    </button>
+			    
+                            <div class="row"></div>
 
+			    <button type="button" id="deleteAllObjects"
+				    onclick="deleteAllObjectsShape()"
+				    class="btn btn-primary btn-block"
+				    aria-label="Left Align" type="button">
+			      <span class="glyphicon glyphicon-trash"
+				    aria-hidden="true"></span><br>
+			      Delete Shapes
+			    </button>
+			    
                             <div class="row"></div>
 
                             <br/>
-                            <p id="TextInfo"></p>
+			    <button class="btn btn-primary"
+				    type="button">
+			      Cursor Info<br/>
+			      <span class="badge"><span id="TextInfo"></span>
+			    </button>
 
                           </td>
                         </tr>
@@ -263,7 +294,8 @@
       var imageHeightZeroPadding = 512;
 
 
-      $('#TextInfo').html("x=" +  0 + ", y=" + 0 + "<br>" + "#" + ("000000"))   ;
+      $('#TextInfo').html("(" + 0 + ", " + 0 + ") = " + "#" + ("000000"))   ;
+      $('#TextInfoColor').html("#"+("000000"))   ;
 
       var data_fft;
       var isImageLoaded = false;
