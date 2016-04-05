@@ -424,8 +424,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
 .listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
 .listingblock .pygments .tok-o { color: #666666 } /* Operator */
+.listingblock .pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+.listingblock .pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
 .listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
 .listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
@@ -665,10 +667,10 @@ clique <a href="exemplos/Makefile">aqui</a>.</p>
 <span class="tok-nv">GCC</span> <span class="tok-o">=</span> g++
 
 <span class="tok-nf">.c</span><span class="tok-o">:</span>
-	<span class="tok-k">$(</span>CC<span class="tok-k">)</span> -I<span class="tok-k">$(</span>INCDIR<span class="tok-k">)</span> <span class="tok-k">$(</span>CFLAGS<span class="tok-k">)</span> <span class="tok-nv">$&lt;</span> <span class="tok-k">$(</span>GL_LIBS<span class="tok-k">)</span> -o <span class="tok-nv">$@</span>
+	<span class="tok-k">$(</span>CC<span class="tok-k">)</span> -I<span class="tok-k">$(</span>INCDIR<span class="tok-k">)</span> <span class="tok-k">$(</span>CFLAGS<span class="tok-k">)</span> $&lt; <span class="tok-k">$(</span>GL_LIBS<span class="tok-k">)</span> -o <span class="tok-nv">$@</span>
 
 <span class="tok-nf">.cpp</span><span class="tok-o">:</span>
-	<span class="tok-k">$(</span>GCC<span class="tok-k">)</span> -std<span class="tok-o">=</span>c++11 -O2 <span class="tok-sb">`</span>pkg-config --cflags opencv<span class="tok-sb">`</span> <span class="tok-nv">$&lt;</span> -o <span class="tok-nv">$@</span> <span class="tok-sb">`</span>pkg-config --libs opencv<span class="tok-sb">`</span></code></pre>
+	<span class="tok-k">$(</span>GCC<span class="tok-k">)</span> -ggdb -std<span class="tok-o">=</span>c++11 -O2 <span class="tok-sb">`</span>pkg-config --cflags opencv<span class="tok-sb">`</span> $&lt; -o <span class="tok-nv">$@</span> <span class="tok-sb">`</span>pkg-config --libs opencv<span class="tok-sb">`</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -687,8 +689,8 @@ de comando.</p>
 <div id="exa_hello" class="listingblock">
 <div class="title">Listagem 2. hello.cpp</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 
@@ -773,9 +775,9 @@ desenhar um quadrado vermelho na mesma região que foi pré-estabelecida.</p>
 <div id="exa_pixels" class="listingblock">
 <div class="title">Listagem 3. pixels.cpp</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;cv.h&gt;</span>
-<span class="tok-cp">#include &lt;highgui.h&gt;</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;cv.h&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;highgui.h&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
@@ -841,8 +843,8 @@ $ ./pixels</code></pre>
 <h3 id="_descrição_do_programa_code_pixels_cpp_code">3.1. Descrição do programa <code>pixels.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span></code></pre>
@@ -1136,8 +1138,8 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 <div id="exa_labeling" class="listingblock">
 <div class="title">Listagem 4. labeling.cpp</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 
@@ -1355,8 +1357,8 @@ superior esquerdo da imagem capturada.</p>
 <div id="exa_histogram" class="listingblock">
 <div class="title">Listagem 5. histogram.cpp</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
@@ -1809,8 +1811,8 @@ Listagem <a href="#exa_filtroespacial">Filtroespacial</a>.</p>
 <div id="exa_filtroespacial" class="listingblock">
 <div class="title">Listagem 6. filtroespacial.cpp</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
@@ -2143,8 +2145,8 @@ Listagem <a href="#exa_addweighted">Addweighted</a>.</p>
 <div id="exa_addweighted" class="listingblock">
 <div class="title">Listagem 7. addweighted.cpp</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include &lt;iostream&gt;</span>
-<span class="tok-cp">#include &lt;opencv2/opencv.hpp&gt;</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
