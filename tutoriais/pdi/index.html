@@ -535,6 +535,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_filtragem_no_domínio_da_frequência">8. Filtragem no domínio da frequência</a>
 <ul class="sectlevel2">
 <li><a href="#_descrição_do_programa_code_dft_cpp_code">8.1. Descrição do programa <code>dft.cpp</code></a></li>
+<li><a href="#_exercícios_6">8.2. Exercícios</a></li>
 </ul>
 </li>
 </ul>
@@ -759,11 +760,23 @@ imagem, mudando a cor de uma pequena região retangular de uma imagem
 fornecida para processamento.</p>
 </div>
 <div class="paragraph">
-<p>Alguns conceitos importantes serão abordados neste contexto:
-- Alguns tipos de dados comuns mais usados no OpenCV.
-- Funções para realizar entrada/saída de dados.
-- Funções para acessar os pixels de uma imagem.
-- Funções para realizar interações na interface gráfica.</p>
+<p>Alguns conceitos importantes serão abordados neste contexto:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alguns tipos de dados comuns mais usados no OpenCV.</p>
+</li>
+<li>
+<p>Funções para realizar entrada/saída de dados.</p>
+</li>
+<li>
+<p>Funções para acessar os pixels de uma imagem.</p>
+</li>
+<li>
+<p>Funções para realizar interações na interface gráfica.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Para evoluir nesses conceitos, realize o download do programa
@@ -956,8 +969,9 @@ objeto <code>image</code> deverá ter valor nulo, sinalizando o erro.</p>
 <div class="paragraph">
 <p>Algo importante a ser observado nesse momento é que, embora a
 estrutura para armazenamento de imagens seja provida por uma classe -
-a classe <code>Mat</code> - algumas das estruturas internas são publicas não
-haver degradação de desempenho com o uso excessivo de métodos.</p>
+a classe <code>Mat</code> - algumas das estruturas internas são públicas. Isso
+ajuda a não haver degradação de desempenho com o uso excessivo de
+chamadas de métodos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1721,7 +1735,8 @@ outra, para o canto superior esquerdo da imagem capturada na câmera.</p>
 implemente um programa <code>equalize.cpp</code>. Este deverá, para cada
 imagem capturada, realizar a equalização do histogram antes de
 exibir a imagem. Teste sua implementação apontando a câmera para
-ambientes com iluminações variadas e observando o efeito gerado.</p>
+ambientes com iluminações variadas e observando o efeito
+gerado. Assuma que as imagens processadas serão em tons de cinza.</p>
 </li>
 <li>
 <p>Utilizando o programa <a href="exemplos/histogram.cpp" class="bare">exemplos/histogram.cpp</a> como referência,
@@ -2635,7 +2650,7 @@ com frequência de corte de 20 pixels.</p>
 </li>
 <li>
 <p>Inserção de ruído coerente com frequência ajustável pela variável
-<em>freq</em> , nas posições <code>F(freq, freq)</code> e <code>F(-freq,-freq)</code>.</p>
+<em>freq</em> , nas posições \(F(freq, freq)\) e \(F(-freq,-freq)\).</p>
 </li>
 </ul>
 </div>
@@ -2680,8 +2695,8 @@ alterada de <code>0&#8594;1</code> ou <code>1&#8594;0</code> quando a tecla <kbd
 <div class="paragraph">
 <p>As variáveis <code>freq</code> e <code>gain</code> regulam a frequência do ruído coerente e
 sua intensidade. Esta última é adicionada à imagem transformada como
-uma proporção ao valor de \$F(0,0)\$, valor médio dos tons de cinza
-da imagem capturada. Escolheu-se o valor de \$F(0,0)\$ para que a
+uma proporção ao valor de \(F(0,0)\), valor médio dos tons de cinza
+da imagem capturada. Escolheu-se o valor de \(F(0,0)\) para que a
 ponderação da inteferência ficasse atrelada a cada imagem, causando um
 efeito visual mais convincente.</p>
 </div>
@@ -2867,10 +2882,11 @@ real) e <code>planos[1]</code> (componente imaginária).</p>
 </div>
 <div class="paragraph">
 <p>O trecho seguinte introduz o ruído nas posições da imagem localicadas
-em \$F(freq, freq)\$ e \$F(-freq,-freq)\$. Veja que nas
-equações é dado um deslocamento adicional de <code>(dft_M/2, dft\_N/2)</code>, já que a origem da Transformada de Fourier está posicionada
-no centro da imagem. Observe também que as ponderações são realizadas
-utilizando as propriedades de simetria.</p>
+em \(F(freq, freq)\) e \(F(-freq,-freq)\). Veja que
+nas equações é dado um deslocamento adicional nos índices dos arrays
+igual a <code>(dft_M/2, dft_N/2)</code>, já que a origem da Transformada de Fourier
+está posicionada no centro da imagem. Observe também que as
+ponderações são realizadas utilizando as propriedades de simetria.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2907,7 +2923,7 @@ inversa usando a função <code>idft()</code>.</p>
 <div class="paragraph">
 <p>A imagem complexa é separada em suas componentes real e imaginária nos
 elementos do array <code>planos</code>. A matriz <code>planos[0]</code> conterá a imagem
-processada. Ela tem seus valores normalizados na faixa \$ [0,1\$ ]
+processada. Ela tem seus valores normalizados na faixa \$[0,1\$]
 para exibição na tela.</p>
 </div>
 <div class="paragraph">
@@ -2950,12 +2966,26 @@ simulada. As opções do menu são descritas na tabela seguinte:</p>
 </tbody>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_exercícios_6">8.2. Exercícios</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Utilizando o programa <a href="exemplos/dft.cpp" class="bare">exemplos/dft.cpp</a> como referência,
+implemente o filtro homomórfico para melhorar imagens com iluminação
+irregular. Crie uma cena mal iluminada e ajuste os parâmetros do
+filtro homomórfico para corrigir a iluminação da melhor forma
+possível. Assuma que a imagem fornecida é em tons de cinza.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-04-10 07:17:48 BRT
+Última atualização 2016-04-10 08:01:42 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
