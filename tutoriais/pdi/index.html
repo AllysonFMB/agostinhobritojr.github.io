@@ -532,7 +532,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_exercícios_5">7.1. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_filtragem_no_domínio_da_frequência">8. Filtragem no domínio da frequência</a></li>
+<li><a href="#_filtragem_no_domínio_da_frequência">8. Filtragem no domínio da frequência</a>
+<ul class="sectlevel2">
+<li><a href="#_descrição_do_programa_code_dft_cpp_code">8.1. Descrição do programa <code>dft.cpp</code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -552,7 +556,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 digital de imagens usando a biblioteca de visão artificial OpenCV. Foi
 concebido como material acessório da disciplina processamento digital
 de imagens e, neste contexto, assume que o leitor possui fundamentação
-teórica suficiente para acompanhar as lições.</p>
+teórica suficiente para acompanhar as lições. Dominar adequadamente
+conceitos de programação em C++ e da matemática explorada em cursos de
+Análise de Sinais e Sistemas são requisitos necessários para uma boa
+compreensão do texto.</p>
 </div>
 <div class="paragraph">
 <p>Tutoriais de programação OpenCV em inglês são bastante numerosos e a
@@ -566,7 +573,7 @@ funcionalidades mais aprofundadas não serão exploradas&#8230;&#8203; por enqua
 <div class="paragraph">
 <p>Toda e qualquer sugestão e/ou contribuição visando melhorar e evoluir
 este tutorial será bemvinda. Pode mandá-la diretamente via e-mail para
-ambj_at_dca.ufrn.br</p>
+<a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a></p>
 </div>
 <div class="paragraph">
 <p>Os exemplos descritos no tutorial foram desenvolvidos usando a API C++
@@ -932,9 +939,9 @@ byte na memória.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Esse trecho de código usa a função <code>imread</code> para ler uma imagem
+<p>Esse trecho de código usa a função <code>imread()</code> para ler uma imagem
 presente em um arquivo e armazená-la no objeto <code>image</code>. A função
-<code>imread</code> recebe dois parâmetros: o primeiro é o caminho para o arquivo
+<code>imread()</code> recebe dois parâmetros: o primeiro é o caminho para o arquivo
 a ser aberto; o segundo é a forma como a imagem será
 interpretada. Neste casso, independentemente do formato da imagem
 presente no arquivo <code>bolhas.png</code>, ela será imediatamente transformada
@@ -986,7 +993,7 @@ receber um tipo correspondente o tipo de dado que está armazenado no
 objeto <code>image</code>. Como a leitura foi feita assumindo uma imagem em tons
 de cinza, o tipo de dado necessário será, neste caso, <code>unsigned
 char</code>. Tipos diferentes poderão gerar resultados incorretos, posto que
-a função <code>at</code> interpretará a sequência de bytes da matriz <code>image</code> de
+a função <code>at()</code> interpretará a sequência de bytes da matriz <code>image</code> de
 forma inapropriada.</p>
 </div>
 <div class="paragraph">
@@ -1043,7 +1050,7 @@ conjunto de elementos do tipo <code>Vec3b</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Agora, a função <code>at</code> interpreta a sequência de bytes usada para
+<p>Agora, a função <code>at()</code> interpreta a sequência de bytes usada para
 armazenar a matriz <code>image</code> como sendo formadas por pixels do tipo
 <code>Vec3b</code>, sendo às posições correspondentes atribuídas a cor vermelha
 predefinida na variável <code>val</code>.</p>
@@ -1587,7 +1594,7 @@ dispositivo de entrada conectado e armazenadas no objeto
 <code>image</code>. Dispositivos de captura normalmente disponibilizam imagens
 com suporte a cor, ou seja, cada matriz possui normalmente três planos
 de cor. Logo, os histogramas deverão ser calculados para cada um
-desses planos, de modo que a função <code>split</code> faz a separação adequada
+desses planos, de modo que a função <code>split()</code> faz a separação adequada
 para que se proceda com o cálculo.</p>
 </div>
 <div class="paragraph">
@@ -1618,7 +1625,7 @@ componente de cor de forma independente.</p>
 </div>
 <div class="paragraph">
 <p>Os histogramas são então calculados para cada uma das componentes
-de cor. A função <code>calcHist</code> do OpenCV recebe, na sequência, os
+de cor. A função <code>calcHist()</code> do OpenCV recebe, na sequência, os
 seguintes argumentos:</p>
 </div>
 <div class="ulist">
@@ -1691,7 +1698,7 @@ encontrados na componente de cor.</p>
 <p>As imagens com os desenhos dos histogramas são então
 geradas. Inicialmente, todas são preenchidas com <code>0</code> (cor preta). Em
 seguida, os histogramas são desenhados na forma de um gráfico de
-barras usando a função <code>line</code>.</p>
+barras usando a função <code>line()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1997,7 +2004,7 @@ ponto flutuante, posto que as operações de cálculo contarão com a
 presença de números fracionários.</p>
 </div>
 <div class="paragraph">
-<p>O uso da função <code>scaleAdd</code> serve para dar o ganho de \$1/9\$ nos
+<p>O uso da função <code>scaleAdd()</code> serve para dar o ganho de \$1/9\$ nos
 coeficientes do filtro da média. A operação multiplica o primeiro
 argumento pelo segundo, soma com o terceiro argumento (neste caso, uma
 matriz de zeros) e armazena o resultado no terceiro argumento,
@@ -2015,8 +2022,8 @@ digital.</p>
 <div class="paragraph">
 <p>Em loop infinito, imagens coloridas são capturadas constantemente na
 matriz <code>cap</code> e convertidas em equivalentes em tons de cinza usando a
-função <code>cvtColor</code>. A imagem então é invertida horizontalmente com a
-função <code>flip</code>. A inversão é feita apenas para fins de tornar a
+função <code>cvtColor()</code>. A imagem então é invertida horizontalmente com a
+função <code>flip()</code>. A inversão é feita apenas para fins de tornar a
 interação com o programa exemplo semelhante à de um espelho.</p>
 </div>
 <div class="listingblock">
@@ -2030,12 +2037,12 @@ interação com o programa exemplo semelhante à de um espelho.</p>
 imagem em tom de cinza armazenada na variável <code>frame</code> é convertida
 para outra equivalente com representação em ponto flutuante -
 <code>frame32f</code>. A conversão é necessária devido aos tipos de operação que
-serão realizados pela função <code>filter2D</code>. Observe apenas que OpenCV
+serão realizados pela função <code>filter2D()</code>. Observe apenas que OpenCV
 replica os pixels na borda ('ao invés de preencher de zeros') durante
 o processo de filtragem.</p>
 </div>
 <div class="paragraph">
-<p>A função <code>filter2d</code> recebe então a matriz da imagem em ponto
+<p>A função <code>filter2d()</code> recebe então a matriz da imagem em ponto
 flutuante - <code>frame32f</code> - e produz a matriz <code>frameFiltered</code>, de acordo
 com o tipo do elemento da matriz de entrada - neste caso, CV_32F (ou
 float). O objeto <code>Point(1,1)</code> que é repassado como próximo argumento
@@ -2132,7 +2139,7 @@ sorte a produzir nas proximidades da borda o efeito do borramento
 enquanto se mantém na região central a imagem sem borramento.</p>
 </div>
 <div class="paragraph">
-<p>Uma forma de combinar pode ser realizada com a função <code>addWeighted</code> do
+<p>Uma forma de combinar pode ser realizada com a função <code>addWeighted()</code> do
 OpenCV. Ela opera calculando a combinação linear de duas imagens
 \$f_0(x,y)\$ e \$f_1(x,y)\$ pela
 equação \$g(x,y) = (1 - \alpha)f_0(x,y) + \alpha f_1(x,y)\$, para um
@@ -2265,7 +2272,7 @@ desejado.</p>
 </div>
 <div class="paragraph">
 <p>O processo de ponderação pode ser realizado por intermédio da função
-<code>multiply</code> do OpenCV, destinada à multiplicação de matrizes
+<code>multiply()</code> do OpenCV, destinada à multiplicação de matrizes
 elemento-a-elemento. Cria-se a imagem que irá ponderar as linhas da
 imagem original e seu negativo irá ponderar as linhas da imagem
 borrada. A combinação linear dessas duas imagens fara o efeito
@@ -2402,7 +2409,7 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
 
 <span class="tok-c1">// troca os quadrantes da imagem da DFT</span>
-<span class="tok-kt">void</span> <span class="tok-nf">shiftDFT</span><span class="tok-p">(</span><span class="tok-n">Mat</span><span class="tok-o">&amp;</span> <span class="tok-n">image</span> <span class="tok-p">){</span>
+<span class="tok-kt">void</span> <span class="tok-nf">deslocaDFT</span><span class="tok-p">(</span><span class="tok-n">Mat</span><span class="tok-o">&amp;</span> <span class="tok-n">image</span> <span class="tok-p">){</span>
   <span class="tok-n">Mat</span> <span class="tok-n">tmp</span><span class="tok-p">,</span> <span class="tok-n">A</span><span class="tok-p">,</span> <span class="tok-n">B</span><span class="tok-p">,</span> <span class="tok-n">C</span><span class="tok-p">,</span> <span class="tok-n">D</span><span class="tok-p">;</span>
 
   <span class="tok-c1">// se a imagem tiver tamanho impar, recorta a regiao para</span>
@@ -2437,14 +2444,14 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
   <span class="tok-c1">// habilita/desabilita ruido</span>
   <span class="tok-kt">int</span> <span class="tok-n">noise</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
   <span class="tok-c1">// frequencia do ruido</span>
-  <span class="tok-kt">int</span> <span class="tok-n">shift</span><span class="tok-o">=</span><span class="tok-mi">10</span><span class="tok-p">;</span>
+  <span class="tok-kt">int</span> <span class="tok-n">freq</span><span class="tok-o">=</span><span class="tok-mi">10</span><span class="tok-p">;</span>
   <span class="tok-c1">// ganho inicial do ruido</span>
   <span class="tok-kt">float</span> <span class="tok-n">gain</span><span class="tok-o">=</span><span class="tok-mi">1</span><span class="tok-p">;</span>
 
   <span class="tok-c1">// valor do ruido</span>
   <span class="tok-kt">float</span> <span class="tok-n">mean</span><span class="tok-p">;</span>
 
-
+  <span class="tok-c1">// guarda tecla capturada</span>
   <span class="tok-kt">char</span> <span class="tok-n">key</span><span class="tok-p">;</span>
 
   <span class="tok-c1">// valores ideais dos tamanhos da imagem</span>
@@ -2467,17 +2474,14 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
 
   <span class="tok-c1">// realiza o padding da imagem</span>
   <span class="tok-n">copyMakeBorder</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">padded</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
-				 <span class="tok-n">dft_M</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
-				 <span class="tok-n">dft_N</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">,</span>
-				 <span class="tok-n">BORDER_CONSTANT</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-o">::</span><span class="tok-n">all</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
-
-  <span class="tok-c1">// parte real da matriz complexa de entrada para a dft</span>
-  <span class="tok-n">realInput</span> <span class="tok-o">=</span> <span class="tok-n">Mat_</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">());</span>
+                 <span class="tok-n">dft_M</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
+                 <span class="tok-n">dft_N</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">,</span>
+                 <span class="tok-n">BORDER_CONSTANT</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-o">::</span><span class="tok-n">all</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
 
   <span class="tok-c1">// parte imaginaria da matriz complexa (preenchida com zeros)</span>
   <span class="tok-n">zeros</span> <span class="tok-o">=</span> <span class="tok-n">Mat_</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;::</span><span class="tok-n">zeros</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">());</span>
 
-  <span class="tok-c1">// preapara a matriz complexa para ser preenchida</span>
+  <span class="tok-c1">// prepara a matriz complexa para ser preenchida</span>
   <span class="tok-n">complexImage</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">(),</span> <span class="tok-n">CV_32FC2</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
 
   <span class="tok-c1">// a função de transferência (filtro frequencial) deve ter o</span>
@@ -2490,11 +2494,11 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
 
   <span class="tok-c1">// prepara o filtro passa-baixas ideal</span>
   <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">dft_M</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
-	<span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">j</span><span class="tok-o">&lt;</span><span class="tok-n">dft_N</span><span class="tok-p">;</span> <span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">){</span>
-	  <span class="tok-k">if</span><span class="tok-p">((</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">+</span><span class="tok-p">(</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span> <span class="tok-n">RADIUS</span><span class="tok-o">*</span><span class="tok-n">RADIUS</span><span class="tok-p">){</span>
-		<span class="tok-n">tmp</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span> <span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-p">)</span> <span class="tok-o">=</span> <span class="tok-mf">1.0</span><span class="tok-p">;</span>
-	  <span class="tok-p">}</span>
-	<span class="tok-p">}</span>
+    <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">j</span><span class="tok-o">&lt;</span><span class="tok-n">dft_N</span><span class="tok-p">;</span> <span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">){</span>
+      <span class="tok-k">if</span><span class="tok-p">((</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">+</span><span class="tok-p">(</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span> <span class="tok-n">RADIUS</span><span class="tok-o">*</span><span class="tok-n">RADIUS</span><span class="tok-p">){</span>
+        <span class="tok-n">tmp</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span> <span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-p">)</span> <span class="tok-o">=</span> <span class="tok-mf">1.0</span><span class="tok-p">;</span>
+      <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
   <span class="tok-p">}</span>
 
   <span class="tok-c1">// cria a matriz com as componentes do filtro e junta</span>
@@ -2503,125 +2507,455 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
   <span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">comps</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-n">filter</span><span class="tok-p">);</span>
 
   <span class="tok-k">for</span><span class="tok-p">(;;){</span>
-
     <span class="tok-n">cap</span> <span class="tok-o">&gt;&gt;</span> <span class="tok-n">image</span><span class="tok-p">;</span>
     <span class="tok-n">cvtColor</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">imagegray</span><span class="tok-p">,</span> <span class="tok-n">CV_BGR2GRAY</span><span class="tok-p">);</span>
-	<span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;original&quot;</span><span class="tok-p">,</span> <span class="tok-n">imagegray</span><span class="tok-p">);</span>
+    <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;original&quot;</span><span class="tok-p">,</span> <span class="tok-n">imagegray</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// realiza o padding da imagem</span>
-	<span class="tok-n">copyMakeBorder</span><span class="tok-p">(</span><span class="tok-n">imagegray</span><span class="tok-p">,</span> <span class="tok-n">padded</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
-				   <span class="tok-n">dft_M</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
-				   <span class="tok-n">dft_N</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">,</span>
-				   <span class="tok-n">BORDER_CONSTANT</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-o">::</span><span class="tok-n">all</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
+    <span class="tok-c1">// realiza o padding da imagem</span>
+    <span class="tok-n">copyMakeBorder</span><span class="tok-p">(</span><span class="tok-n">imagegray</span><span class="tok-p">,</span> <span class="tok-n">padded</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
+                   <span class="tok-n">dft_M</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
+                   <span class="tok-n">dft_N</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">,</span>
+                   <span class="tok-n">BORDER_CONSTANT</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-o">::</span><span class="tok-n">all</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
 
-	<span class="tok-c1">// limpa o array de matrizes que vao compor a</span>
-	<span class="tok-c1">// imagem complexa</span>
-	<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
-	<span class="tok-c1">// cria a compoente real</span>
-	<span class="tok-n">realInput</span> <span class="tok-o">=</span> <span class="tok-n">Mat_</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">);</span>
-	<span class="tok-c1">// insere as duas componentes no array de matrizes</span>
-	<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">push_back</span><span class="tok-p">(</span><span class="tok-n">realInput</span><span class="tok-p">);</span>
-	<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">push_back</span><span class="tok-p">(</span><span class="tok-n">zeros</span><span class="tok-p">);</span>
+    <span class="tok-c1">// limpa o array de matrizes que vao compor a</span>
+    <span class="tok-c1">// imagem complexa</span>
+    <span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
+    <span class="tok-c1">// cria a compoente real</span>
+    <span class="tok-n">realInput</span> <span class="tok-o">=</span> <span class="tok-n">Mat_</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">);</span>
+    <span class="tok-c1">// insere as duas componentes no array de matrizes</span>
+    <span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">push_back</span><span class="tok-p">(</span><span class="tok-n">realInput</span><span class="tok-p">);</span>
+    <span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">push_back</span><span class="tok-p">(</span><span class="tok-n">zeros</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// combina o array de matrizes em uma unica</span>
-	<span class="tok-c1">// componente complexa</span>
+    <span class="tok-c1">// combina o array de matrizes em uma unica</span>
+    <span class="tok-c1">// componente complexa</span>
     <span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// calcula o dft</span>
+    <span class="tok-c1">// calcula o dft</span>
     <span class="tok-n">dft</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
-	<span class="tok-c1">// limpa o array de planos</span>
-	<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
 
-	<span class="tok-c1">// realiza a troca de quadrantes</span>
-	<span class="tok-n">shiftDFT</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">);</span>
+    <span class="tok-c1">// realiza a troca de quadrantes</span>
+    <span class="tok-n">deslocaDFT</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// aplica o filtro frequencial</span>
-	<span class="tok-n">mulSpectrums</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span><span class="tok-n">filter</span><span class="tok-p">,</span><span class="tok-n">complexImage</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+    <span class="tok-c1">// aplica o filtro frequencial</span>
+    <span class="tok-n">mulSpectrums</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span><span class="tok-n">filter</span><span class="tok-p">,</span><span class="tok-n">complexImage</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// separa as partes real e imaginaria para modifica-las</span>
-	<span class="tok-n">split</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">);</span>
+    <span class="tok-c1">// limpa o array de planos</span>
+    <span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
+    <span class="tok-c1">// separa as partes real e imaginaria para modifica-las</span>
+    <span class="tok-n">split</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// usa o valor medio do espectro para dosar o ruido</span>
-	<span class="tok-n">mean</span> <span class="tok-o">=</span> <span class="tok-n">abs</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span> <span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">));</span>
+    <span class="tok-c1">// usa o valor medio do espectro para dosar o ruido</span>
+    <span class="tok-n">mean</span> <span class="tok-o">=</span> <span class="tok-n">abs</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span> <span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">));</span>
 
-	<span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">noise</span><span class="tok-p">){</span>
-	  <span class="tok-c1">// F(u,v) recebe ganho proporcional a F(0,0)</span>
-	  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">)</span> <span class="tok-o">+=</span>
-		<span class="tok-n">gain</span><span class="tok-o">*</span><span class="tok-n">mean</span><span class="tok-p">;</span>
+    <span class="tok-c1">// insere ruido coerente, se habilitado</span>
+    <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">noise</span><span class="tok-p">){</span>
+      <span class="tok-c1">// F(u,v) recebe ganho proporcional a F(0,0)</span>
+      <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">+=</span>
+        <span class="tok-n">gain</span><span class="tok-o">*</span><span class="tok-n">mean</span><span class="tok-p">;</span>
 
-	  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">)</span> <span class="tok-o">+=</span>
-		<span class="tok-n">gain</span><span class="tok-o">*</span><span class="tok-n">mean</span><span class="tok-p">;</span>
+      <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">+=</span>
+        <span class="tok-n">gain</span><span class="tok-o">*</span><span class="tok-n">mean</span><span class="tok-p">;</span>
 
-	  <span class="tok-c1">// F*(-u,-v) = F(u,v)</span>
-	  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">shift</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">shift</span><span class="tok-p">)</span> <span class="tok-o">=</span>
-		<span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">);</span>
+      <span class="tok-c1">// F*(-u,-v) = F(u,v)</span>
+      <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">=</span>
+        <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">);</span>
 
-	  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">shift</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">shift</span><span class="tok-p">)</span> <span class="tok-o">=</span>
-		<span class="tok-o">-</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">shift</span><span class="tok-p">);</span>
+      <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">=</span>
+        <span class="tok-o">-</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">);</span>
 
-	<span class="tok-p">}</span>
+    <span class="tok-p">}</span>
 
-	<span class="tok-c1">// recompoe os planos em uma unica matriz complexa</span>
-	<span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
+    <span class="tok-c1">// recompoe os planos em uma unica matriz complexa</span>
+    <span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// troca novamente os quadrantes</span>
-	<span class="tok-n">shiftDFT</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">);</span>
+    <span class="tok-c1">// troca novamente os quadrantes</span>
+    <span class="tok-n">deslocaDFT</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// calcula a DFT inversa</span>
-	<span class="tok-n">idft</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
+    <span class="tok-c1">// calcula a DFT inversa</span>
+    <span class="tok-n">idft</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// limpa o array de planos</span>
-	<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
+    <span class="tok-c1">// limpa o array de planos</span>
+    <span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
 
-	<span class="tok-c1">// separa as partes real e imaginaria da</span>
-	<span class="tok-c1">// imagem filtrada</span>
-	<span class="tok-n">split</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">);</span>
+    <span class="tok-c1">// separa as partes real e imaginaria da</span>
+    <span class="tok-c1">// imagem filtrada</span>
+    <span class="tok-n">split</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">);</span>
 
-	<span class="tok-c1">// normaliza a parte real para exibicao</span>
-	<span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">CV_MINMAX</span><span class="tok-p">);</span>
-	<span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;filtrada&quot;</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">]);</span>
+    <span class="tok-c1">// normaliza a parte real para exibicao</span>
+    <span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">CV_MINMAX</span><span class="tok-p">);</span>
+    <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;filtrada&quot;</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">]);</span>
 
-	<span class="tok-n">key</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-kt">char</span><span class="tok-p">)</span> <span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">10</span><span class="tok-p">);</span>
-	<span class="tok-k">if</span><span class="tok-p">(</span> <span class="tok-n">key</span> <span class="tok-o">==</span> <span class="tok-mi">27</span> <span class="tok-p">)</span> <span class="tok-k">break</span><span class="tok-p">;</span> <span class="tok-c1">// esc pressed!</span>
-	<span class="tok-k">switch</span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-p">){</span>
-	  <span class="tok-c1">// aumenta a frequencia do ruido</span>
-	<span class="tok-k">case</span> <span class="tok-sc">&#39;q&#39;</span><span class="tok-o">:</span>
-	  <span class="tok-n">shift</span><span class="tok-o">=</span><span class="tok-n">shift</span><span class="tok-o">+</span><span class="tok-mi">1</span><span class="tok-p">;</span>
-	  <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">shift</span> <span class="tok-o">&gt;</span> <span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">)</span>
-		<span class="tok-n">shift</span> <span class="tok-o">=</span> <span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">;</span>
-	  <span class="tok-k">break</span><span class="tok-p">;</span>
-	  <span class="tok-c1">// diminui a frequencia do ruido</span>
-	<span class="tok-k">case</span> <span class="tok-sc">&#39;a&#39;</span><span class="tok-o">:</span>
-	  <span class="tok-n">shift</span><span class="tok-o">=</span><span class="tok-n">shift</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">;</span>
-	  <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">shift</span> <span class="tok-o">&lt;</span> <span class="tok-mi">1</span><span class="tok-p">)</span>
-		<span class="tok-n">shift</span> <span class="tok-o">=</span> <span class="tok-mi">1</span><span class="tok-p">;</span>
-	  <span class="tok-k">break</span><span class="tok-p">;</span>
-	  <span class="tok-c1">// amplifica o ruido</span>
-	<span class="tok-k">case</span> <span class="tok-sc">&#39;x&#39;</span><span class="tok-o">:</span>
-	  <span class="tok-n">gain</span> <span class="tok-o">+=</span> <span class="tok-mf">0.1</span><span class="tok-p">;</span>
-	  <span class="tok-k">break</span><span class="tok-p">;</span>
-	  <span class="tok-c1">// atenua o ruido</span>
-	<span class="tok-k">case</span> <span class="tok-sc">&#39;z&#39;</span><span class="tok-o">:</span>
-	  <span class="tok-n">gain</span> <span class="tok-o">-=</span> <span class="tok-mf">0.1</span><span class="tok-p">;</span>
-	  <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">gain</span> <span class="tok-o">&lt;</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
-		<span class="tok-n">gain</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
-	  <span class="tok-k">break</span><span class="tok-p">;</span>
-	  <span class="tok-c1">// insere/remove ruido</span>
-	<span class="tok-k">case</span> <span class="tok-sc">&#39;e&#39;</span><span class="tok-o">:</span>
-	  <span class="tok-n">noise</span><span class="tok-o">=!</span><span class="tok-n">noise</span><span class="tok-p">;</span>
-	  <span class="tok-k">break</span><span class="tok-p">;</span>
-	<span class="tok-p">}</span>
+    <span class="tok-n">key</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-kt">char</span><span class="tok-p">)</span> <span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">10</span><span class="tok-p">);</span>
+    <span class="tok-k">if</span><span class="tok-p">(</span> <span class="tok-n">key</span> <span class="tok-o">==</span> <span class="tok-mi">27</span> <span class="tok-p">)</span> <span class="tok-k">break</span><span class="tok-p">;</span> <span class="tok-c1">// esc pressed!</span>
+    <span class="tok-k">switch</span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-p">){</span>
+      <span class="tok-c1">// aumenta a frequencia do ruido</span>
+    <span class="tok-k">case</span> <span class="tok-sc">&#39;q&#39;</span><span class="tok-o">:</span>
+      <span class="tok-n">freq</span><span class="tok-o">=</span><span class="tok-n">freq</span><span class="tok-o">+</span><span class="tok-mi">1</span><span class="tok-p">;</span>
+      <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">freq</span> <span class="tok-o">&gt;</span> <span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">)</span>
+        <span class="tok-n">freq</span> <span class="tok-o">=</span> <span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">;</span>
+      <span class="tok-k">break</span><span class="tok-p">;</span>
+      <span class="tok-c1">// diminui a frequencia do ruido</span>
+    <span class="tok-k">case</span> <span class="tok-sc">&#39;a&#39;</span><span class="tok-o">:</span>
+      <span class="tok-n">freq</span><span class="tok-o">=</span><span class="tok-n">freq</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">;</span>
+      <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">freq</span> <span class="tok-o">&lt;</span> <span class="tok-mi">1</span><span class="tok-p">)</span>
+        <span class="tok-n">freq</span> <span class="tok-o">=</span> <span class="tok-mi">1</span><span class="tok-p">;</span>
+      <span class="tok-k">break</span><span class="tok-p">;</span>
+      <span class="tok-c1">// amplifica o ruido</span>
+    <span class="tok-k">case</span> <span class="tok-sc">&#39;x&#39;</span><span class="tok-o">:</span>
+      <span class="tok-n">gain</span> <span class="tok-o">+=</span> <span class="tok-mf">0.1</span><span class="tok-p">;</span>
+      <span class="tok-k">break</span><span class="tok-p">;</span>
+      <span class="tok-c1">// atenua o ruido</span>
+    <span class="tok-k">case</span> <span class="tok-sc">&#39;z&#39;</span><span class="tok-o">:</span>
+      <span class="tok-n">gain</span> <span class="tok-o">-=</span> <span class="tok-mf">0.1</span><span class="tok-p">;</span>
+      <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">gain</span> <span class="tok-o">&lt;</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
+        <span class="tok-n">gain</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+      <span class="tok-k">break</span><span class="tok-p">;</span>
+      <span class="tok-c1">// insere/remove ruido</span>
+    <span class="tok-k">case</span> <span class="tok-sc">&#39;e&#39;</span><span class="tok-o">:</span>
+      <span class="tok-n">noise</span><span class="tok-o">=!</span><span class="tok-n">noise</span><span class="tok-p">;</span>
+      <span class="tok-k">break</span><span class="tok-p">;</span>
+    <span class="tok-p">}</span>
   <span class="tok-p">}</span>
   <span class="tok-k">return</span> <span class="tok-mi">0</span><span class="tok-p">;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_descrição_do_programa_code_dft_cpp_code">8.1. Descrição do programa <code>dft.cpp</code></h3>
+<div class="paragraph">
+<p>O programa funciona capturando continuamente quadros da primeira
+câmera disponível, calcula a Transformada de Fourier e realiza duas
+operações:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Filtragem no domínio da frequência usando filtro ideal passa-baixas
+com frequência de corte de 20 pixels.</p>
+</li>
+<li>
+<p>Inserção de ruído coerente com frequência ajustável pela variável
+<em>freq</em> , nas posições <code>F(freq, freq)</code> e <code>F(-freq,-freq)</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para aplicar o filtro, é necessário que o sinal transformado seja
+deslocado de modo que a origem do sinal fique posicionada no centro da
+imagem, como ilustra a Figura <a href="#fig_dftshift">Deslocamento da imagem transformada</a>.</p>
+</div>
+<div id="fig_dftshift" class="imageblock">
+<div class="content">
+<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iMTI2LjgwODc4bW0iCiAgIGhlaWdodD0iNDkuNzcwNTM4bW0iCiAgIHZpZXdCb3g9IjAgMCA0NDkuMzIyNDQgMTc2LjM1MjMiCiAgIGlkPSJzdmcyIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlua3NjYXBlOnZlcnNpb249IjAuOTEgcjEzNzI1IgogICBzb2RpcG9kaTpkb2NuYW1lPSJkZnRzaGlmdC5zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM0Ij4KICAgIDxtYXJrZXIKICAgICAgIGlua3NjYXBlOnN0b2NraWQ9IkFycm93Mk1lbmQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVmWD0iMCIKICAgICAgIGlkPSJBcnJvdzJNZW5kIgogICAgICAgc3R5bGU9Im92ZXJmbG93OnZpc2libGUiCiAgICAgICBpbmtzY2FwZTppc3N0b2NrPSJ0cnVlIj4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg1OTQzIgogICAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDowLjYyNTtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgICAgZD0iTSA4LjcxODU4NzgsNC4wMzM3MzUyIC0yLjIwNzI4OTUsMC4wMTYwMTMyNiA4LjcxODU4ODQsLTQuMDAxNzA3OCBjIC0xLjc0NTQ5ODQsMi4zNzIwNjA5IC0xLjczNTQ0MDgsNS42MTc0NTE5IC02ZS03LDguMDM1NDQzIHoiCiAgICAgICAgIHRyYW5zZm9ybT0ic2NhbGUoLTAuNiwtMC42KSIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlcgogICAgICAgaW5rc2NhcGU6c3RvY2tpZD0iQXJyb3cxTWVuZCIKICAgICAgIG9yaWVudD0iYXV0byIKICAgICAgIHJlZlk9IjAiCiAgICAgICByZWZYPSIwIgogICAgICAgaWQ9Im1hcmtlcjkzMDMiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDkzMDUiCiAgICAgICAgIGQ9Ik0gMCwwIDUsLTUgLTEyLjUsMCA1LDUgMCwwIFoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjFwdDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgtMC40LDAsMCwtMC40LC00LDApIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzJNc3RhcnQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVmWD0iMCIKICAgICAgIGlkPSJBcnJvdzJNc3RhcnQiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDU5NDAiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuNjI1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICBkPSJNIDguNzE4NTg3OCw0LjAzMzczNTIgLTIuMjA3Mjg5NSwwLjAxNjAxMzI2IDguNzE4NTg4NCwtNC4wMDE3MDc4IGMgLTEuNzQ1NDk4NCwyLjM3MjA2MDkgLTEuNzM1NDQwOCw1LjYxNzQ1MTkgLTZlLTcsOC4wMzU0NDMgeiIKICAgICAgICAgdHJhbnNmb3JtPSJzY2FsZSgwLjYsMC42KSIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlcgogICAgICAgaW5rc2NhcGU6c3RvY2tpZD0iQXJyb3cxTWVuZCIKICAgICAgIG9yaWVudD0iYXV0byIKICAgICAgIHJlZlk9IjAiCiAgICAgICByZWZYPSIwIgogICAgICAgaWQ9IkFycm93MU1lbmQiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDU5MjUiCiAgICAgICAgIGQ9Ik0gMCwwIDUsLTUgLTEyLjUsMCA1LDUgMCwwIFoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjFwdDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgtMC40LDAsMCwtMC40LC00LDApIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzFNc3RhcnQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVmWD0iMCIKICAgICAgIGlkPSJBcnJvdzFNc3RhcnQiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDU5MjIiCiAgICAgICAgIGQ9Ik0gMCwwIDUsLTUgLTEyLjUsMCA1LDUgMCwwIFoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjFwdDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjQsMCwwLDAuNCw0LDApIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzJMc3RhcnQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVmWD0iMCIKICAgICAgIGlkPSJtYXJrZXI5MDI5IgogICAgICAgc3R5bGU9Im92ZXJmbG93OnZpc2libGUiCiAgICAgICBpbmtzY2FwZTppc3N0b2NrPSJ0cnVlIj4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5MDMxIgogICAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDowLjYyNTtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgICAgZD0iTSA4LjcxODU4NzgsNC4wMzM3MzUyIC0yLjIwNzI4OTUsMC4wMTYwMTMyNiA4LjcxODU4ODQsLTQuMDAxNzA3OCBjIC0xLjc0NTQ5ODQsMi4zNzIwNjA5IC0xLjczNTQ0MDgsNS42MTc0NTE5IC02ZS03LDguMDM1NDQzIHoiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDEuMSwwLDAsMS4xLDEuMSwwKSIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlcgogICAgICAgaW5rc2NhcGU6c3RvY2tpZD0iQXJyb3cyTGVuZCIKICAgICAgIG9yaWVudD0iYXV0byIKICAgICAgIHJlZlk9IjAiCiAgICAgICByZWZYPSIwIgogICAgICAgaWQ9IkFycm93MkxlbmQiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDU5MzciCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuNjI1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICBkPSJNIDguNzE4NTg3OCw0LjAzMzczNTIgLTIuMjA3Mjg5NSwwLjAxNjAxMzI2IDguNzE4NTg4NCwtNC4wMDE3MDc4IGMgLTEuNzQ1NDk4NCwyLjM3MjA2MDkgLTEuNzM1NDQwOCw1LjYxNzQ1MTkgLTZlLTcsOC4wMzU0NDMgeiIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoLTEuMSwwLDAsLTEuMSwtMS4xLDApIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzFMZW5kIgogICAgICAgb3JpZW50PSJhdXRvIgogICAgICAgcmVmWT0iMCIKICAgICAgIHJlZlg9IjAiCiAgICAgICBpZD0iQXJyb3cxTGVuZCIKICAgICAgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlIgogICAgICAgaW5rc2NhcGU6aXNzdG9jaz0idHJ1ZSI+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoNTkxOSIKICAgICAgICAgZD0iTSAwLDAgNSwtNSAtMTIuNSwwIDUsNSAwLDAgWiIKICAgICAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB0O3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KC0wLjgsMCwwLC0wLjgsLTEwLDApIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzJMc3RhcnQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVmWD0iMCIKICAgICAgIGlkPSJBcnJvdzJMc3RhcnQiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDU5MzQiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuNjI1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICBkPSJNIDguNzE4NTg3OCw0LjAzMzczNTIgLTIuMjA3Mjg5NSwwLjAxNjAxMzI2IDguNzE4NTg4NCwtNC4wMDE3MDc4IGMgLTEuNzQ1NDk4NCwyLjM3MjA2MDkgLTEuNzM1NDQwOCw1LjYxNzQ1MTkgLTZlLTcsOC4wMzU0NDMgeiIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMS4xLDAsMCwxLjEsMS4xLDApIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzJMc3RhcnQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVmWD0iMCIKICAgICAgIGlkPSJBcnJvdzJMc3RhcnQtNSIKICAgICAgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlIgogICAgICAgaW5rc2NhcGU6aXNzdG9jaz0idHJ1ZSI+CiAgICAgIDxwYXRoCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICAgIGlkPSJwYXRoNTkzNC0xIgogICAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDowLjYyNTtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgICAgZD0iTSA4LjcxODU4NzgsNC4wMzM3MzUyIC0yLjIwNzI4OTUsMC4wMTYwMTMyNiA4LjcxODU4ODQsLTQuMDAxNzA3OCBjIC0xLjc0NTQ5ODQsMi4zNzIwNjA5IC0xLjczNTQ0MDgsNS42MTc0NTE5IC02ZS03LDguMDM1NDQzIHoiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDEuMSwwLDAsMS4xLDEuMSwwKSIgLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlcgogICAgICAgaW5rc2NhcGU6c3RvY2tpZD0iQXJyb3cyTGVuZCIKICAgICAgIG9yaWVudD0iYXV0byIKICAgICAgIHJlZlk9IjAiCiAgICAgICByZWZYPSIwIgogICAgICAgaWQ9IkFycm93MkxlbmQtNyIKICAgICAgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlIgogICAgICAgaW5rc2NhcGU6aXNzdG9jaz0idHJ1ZSI+CiAgICAgIDxwYXRoCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICAgIGlkPSJwYXRoNTkzNy05IgogICAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDowLjYyNTtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgICAgZD0iTSA4LjcxODU4NzgsNC4wMzM3MzUyIC0yLjIwNzI4OTUsMC4wMTYwMTMyNiA4LjcxODU4ODQsLTQuMDAxNzA3OCBjIC0xLjc0NTQ5ODQsMi4zNzIwNjA5IC0xLjczNTQ0MDgsNS42MTc0NTE5IC02ZS03LDguMDM1NDQzIHoiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KC0xLjEsMCwwLC0xLjEsLTEuMSwwKSIgLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlcgogICAgICAgaW5rc2NhcGU6c3RvY2tpZD0iQXJyb3cyTXN0YXJ0IgogICAgICAgb3JpZW50PSJhdXRvIgogICAgICAgcmVmWT0iMCIKICAgICAgIHJlZlg9IjAiCiAgICAgICBpZD0iQXJyb3cyTXN0YXJ0LTAiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBpZD0icGF0aDU5NDAtNSIKICAgICAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MC42MjU7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICAgIGQ9Ik0gOC43MTg1ODc4LDQuMDMzNzM1MiAtMi4yMDcyODk1LDAuMDE2MDEzMjYgOC43MTg1ODg0LC00LjAwMTcwNzggYyAtMS43NDU0OTg0LDIuMzcyMDYwOSAtMS43MzU0NDA4LDUuNjE3NDUxOSAtNmUtNyw4LjAzNTQ0MyB6IgogICAgICAgICB0cmFuc2Zvcm09InNjYWxlKDAuNiwwLjYpIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzJNZW5kIgogICAgICAgb3JpZW50PSJhdXRvIgogICAgICAgcmVmWT0iMCIKICAgICAgIHJlZlg9IjAiCiAgICAgICBpZD0iQXJyb3cyTWVuZC04IgogICAgICAgc3R5bGU9Im92ZXJmbG93OnZpc2libGUiCiAgICAgICBpbmtzY2FwZTppc3N0b2NrPSJ0cnVlIj4KICAgICAgPHBhdGgKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAgICAgaWQ9InBhdGg1OTQzLTgiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuNjI1O3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICBkPSJNIDguNzE4NTg3OCw0LjAzMzczNTIgLTIuMjA3Mjg5NSwwLjAxNjAxMzI2IDguNzE4NTg4NCwtNC4wMDE3MDc4IGMgLTEuNzQ1NDk4NCwyLjM3MjA2MDkgLTEuNzM1NDQwOCw1LjYxNzQ1MTkgLTZlLTcsOC4wMzU0NDMgeiIKICAgICAgICAgdHJhbnNmb3JtPSJzY2FsZSgtMC42LC0wLjYpIiAvPgogICAgPC9tYXJrZXI+CiAgPC9kZWZzPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0iYmFzZSIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiCiAgICAgYm9yZGVyb3BhY2l0eT0iMS4wIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp6b29tPSIxLjQxNDIxMzYiCiAgICAgaW5rc2NhcGU6Y3g9IjI5OC43NTg4OCIKICAgICBpbmtzY2FwZTpjeT0iMTUuMDU5NDgxIgogICAgIGlua3NjYXBlOmRvY3VtZW50LXVuaXRzPSJweCIKICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJsYXllcjEiCiAgICAgc2hvd2dyaWQ9ImZhbHNlIgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTg3MSIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIxMDU2IgogICAgIGlua3NjYXBlOndpbmRvdy14PSI0OSIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMjQiCiAgICAgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMSIKICAgICBmaXQtbWFyZ2luLXRvcD0iMCIKICAgICBmaXQtbWFyZ2luLWxlZnQ9IjAiCiAgICAgZml0LW1hcmdpbi1yaWdodD0iMCIKICAgICBmaXQtbWFyZ2luLWJvdHRvbT0iMCIgLz4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE3Ij4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICAgIDxkYzp0aXRsZT48L2RjOnRpdGxlPgogICAgICA8L2NjOldvcms+CiAgICA8L3JkZjpSREY+CiAgPC9tZXRhZGF0YT4KICA8ZwogICAgIGlua3NjYXBlOmxhYmVsPSJDYW1hZGEgMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlkPSJsYXllcjEiCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTc1LjIxNDI4NywtNzAuMDgxMzM3KSI+CiAgICA8ZwogICAgICAgaWQ9Imc5ODIyIj4KICAgICAgPHJlY3QKICAgICAgICAgcnk9IjUiCiAgICAgICAgIHJ4PSI1IgogICAgICAgICB5PSI3Mi4zNjIyMDYiCiAgICAgICAgIHg9Ijc1LjcxNDI4NyIKICAgICAgICAgaGVpZ2h0PSI4NS43MTQyODciCiAgICAgICAgIHdpZHRoPSI4NS43MTQyODciCiAgICAgICAgIGlkPSJyZWN0MzMzNiIKICAgICAgICAgc3R5bGU9ImZpbGw6I2ZiZWRjNDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiIC8+CiAgICAgIDxyZWN0CiAgICAgICAgIHJ5PSI1IgogICAgICAgICByeD0iNSIKICAgICAgICAgeT0iNzIuMzYyMjA2IgogICAgICAgICB4PSIxNjQuNDI4NTciCiAgICAgICAgIGhlaWdodD0iODUuNzE0Mjg3IgogICAgICAgICB3aWR0aD0iODUuNzE0Mjg3IgogICAgICAgICBpZD0icmVjdDMzMzYtOCIKICAgICAgICAgc3R5bGU9ImZpbGw6I2ZmOWZlYTtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiIC8+CiAgICAgIDxyZWN0CiAgICAgICAgIHJ5PSI1IgogICAgICAgICByeD0iNSIKICAgICAgICAgeT0iMTYwLjIxOTM1IgogICAgICAgICB4PSI3NS43MTQyODciCiAgICAgICAgIGhlaWdodD0iODUuNzE0Mjg3IgogICAgICAgICB3aWR0aD0iODUuNzE0Mjg3IgogICAgICAgICBpZD0icmVjdDMzMzYtOSIKICAgICAgICAgc3R5bGU9ImZpbGw6I2Q2ZDdlZjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiIC8+CiAgICAgIDxyZWN0CiAgICAgICAgIHJ5PSI1IgogICAgICAgICByeD0iNSIKICAgICAgICAgeT0iMTYwLjIxOTM1IgogICAgICAgICB4PSIxNjQuNDI4NTciCiAgICAgICAgIGhlaWdodD0iODUuNzE0Mjg3IgogICAgICAgICB3aWR0aD0iODUuNzE0Mjg3IgogICAgICAgICBpZD0icmVjdDMzMzYtOC04IgogICAgICAgICBzdHlsZT0iZmlsbDojOGJmZjg4O2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIgLz4KICAgICAgPHRleHQKICAgICAgICAgc29kaXBvZGk6bGluZXNwYWNpbmc9IjEyNSUiCiAgICAgICAgIGlkPSJ0ZXh0NTc3MSIKICAgICAgICAgeT0iMTI5Ljc5OTQyIgogICAgICAgICB4PSIxMDQuODk5NTUiCiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zaXplOjQwcHg7bGluZS1oZWlnaHQ6MTI1JTtmb250LWZhbWlseTpzYW5zLXNlcmlmO2xldHRlci1zcGFjaW5nOjBweDt3b3JkLXNwYWNpbmc6MHB4O2ZpbGw6IzAwMDAwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiPjx0c3BhbgogICAgICAgICAgIHk9IjEyOS43OTk0MiIKICAgICAgICAgICB4PSIxMDQuODk5NTUiCiAgICAgICAgICAgaWQ9InRzcGFuNTc3MyIKICAgICAgICAgICBzb2RpcG9kaTpyb2xlPSJsaW5lIj5BPC90c3Bhbj48L3RleHQ+CiAgICAgIDx0ZXh0CiAgICAgICAgIHNvZGlwb2RpOmxpbmVzcGFjaW5nPSIxMjUlIgogICAgICAgICBpZD0idGV4dDU3NzUiCiAgICAgICAgIHk9IjEyOS43OTk0MiIKICAgICAgICAgeD0iMTkzLjAxODE0IgogICAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc2l6ZTo0MHB4O2xpbmUtaGVpZ2h0OjEyNSU7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZjtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFjaW5nOjBweDtmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjFweDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICB4bWw6c3BhY2U9InByZXNlcnZlIj48dHNwYW4KICAgICAgICAgICB5PSIxMjkuNzk5NDIiCiAgICAgICAgICAgeD0iMTkzLjAxODE0IgogICAgICAgICAgIGlkPSJ0c3BhbjU3NzciCiAgICAgICAgICAgc29kaXBvZGk6cm9sZT0ibGluZSI+QjwvdHNwYW4+PC90ZXh0PgogICAgICA8dGV4dAogICAgICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSIKICAgICAgICAgaWQ9InRleHQ1Nzc5IgogICAgICAgICB5PSIyMTcuNjM3MDQiCiAgICAgICAgIHg9IjEwNC41Njc1MiIKICAgICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXNpemU6NDBweDtsaW5lLWhlaWdodDoxMjUlO2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7bGV0dGVyLXNwYWNpbmc6MHB4O3dvcmQtc3BhY2luZzowcHg7ZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHRzcGFuCiAgICAgICAgICAgeT0iMjE3LjYzNzA0IgogICAgICAgICAgIHg9IjEwNC41Njc1MiIKICAgICAgICAgICBpZD0idHNwYW41NzgxIgogICAgICAgICAgIHNvZGlwb2RpOnJvbGU9ImxpbmUiPkM8L3RzcGFuPjwvdGV4dD4KICAgICAgPHRleHQKICAgICAgICAgc29kaXBvZGk6bGluZXNwYWNpbmc9IjEyNSUiCiAgICAgICAgIGlkPSJ0ZXh0NTc4MyIKICAgICAgICAgeT0iMjE3LjY1NjU3IgogICAgICAgICB4PSIxOTEuMTA0MDgiCiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zaXplOjQwcHg7bGluZS1oZWlnaHQ6MTI1JTtmb250LWZhbWlseTpzYW5zLXNlcmlmO2xldHRlci1zcGFjaW5nOjBweDt3b3JkLXNwYWNpbmc6MHB4O2ZpbGw6IzAwMDAwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiPjx0c3BhbgogICAgICAgICAgIHk9IjIxNy42NTY1NyIKICAgICAgICAgICB4PSIxOTEuMTA0MDgiCiAgICAgICAgICAgaWQ9InRzcGFuNTc4NSIKICAgICAgICAgICBzb2RpcG9kaTpyb2xlPSJsaW5lIj5EPC90c3Bhbj48L3RleHQ+CiAgICA8L2c+CiAgICA8cmVjdAogICAgICAgc3R5bGU9ImZpbGw6IzhiZmY4ODtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICBpZD0icmVjdDMzMzYtOTIiCiAgICAgICB3aWR0aD0iODUuNzE0Mjg3IgogICAgICAgaGVpZ2h0PSI4NS43MTQyODciCiAgICAgICB4PSIzNDkuNjA4MTUiCiAgICAgICB5PSI3MC41ODEzMzciCiAgICAgICByeD0iNSIKICAgICAgIHJ5PSI1IiAvPgogICAgPHJlY3QKICAgICAgIHN0eWxlPSJmaWxsOiNkNmQ3ZWY7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjFweDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2Utb3BhY2l0eToxIgogICAgICAgaWQ9InJlY3QzMzM2LTgtNyIKICAgICAgIHdpZHRoPSI4NS43MTQyODciCiAgICAgICBoZWlnaHQ9Ijg1LjcxNDI4NyIKICAgICAgIHg9IjQzOC4zMjI0NSIKICAgICAgIHk9IjcwLjU4MTMzNyIKICAgICAgIHJ4PSI1IgogICAgICAgcnk9IjUiIC8+CiAgICA8cmVjdAogICAgICAgc3R5bGU9ImZpbGw6I2ZmOWZlYTtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICBpZD0icmVjdDMzMzYtOS0zIgogICAgICAgd2lkdGg9Ijg1LjcxNDI4NyIKICAgICAgIGhlaWdodD0iODUuNzE0Mjg3IgogICAgICAgeD0iMzQ5LjYwODE1IgogICAgICAgeT0iMTU4LjQzODQ4IgogICAgICAgcng9IjUiCiAgICAgICByeT0iNSIgLz4KICAgIDxyZWN0CiAgICAgICBzdHlsZT0iZmlsbDojZmJlZGM0O2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIGlkPSJyZWN0MzMzNi04LTgtMyIKICAgICAgIHdpZHRoPSI4NS43MTQyODciCiAgICAgICBoZWlnaHQ9Ijg1LjcxNDI4NyIKICAgICAgIHg9IjQzOC4zMjI0NSIKICAgICAgIHk9IjE1OC40Mzg0OCIKICAgICAgIHJ4PSI1IgogICAgICAgcnk9IjUiIC8+CiAgICA8dGV4dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zaXplOjQwcHg7bGluZS1oZWlnaHQ6MTI1JTtmb250LWZhbWlseTpzYW5zLXNlcmlmO2xldHRlci1zcGFjaW5nOjBweDt3b3JkLXNwYWNpbmc6MHB4O2ZpbGw6IzAwMDAwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICB4PSIzNzguNzkzNDMiCiAgICAgICB5PSIxMjguMDE4NTUiCiAgICAgICBpZD0idGV4dDU3NzEtMCIKICAgICAgIHNvZGlwb2RpOmxpbmVzcGFjaW5nPSIxMjUlIj48dHNwYW4KICAgICAgICAgc29kaXBvZGk6cm9sZT0ibGluZSIKICAgICAgICAgaWQ9InRzcGFuNTc3My0zIgogICAgICAgICB4PSIzNzguNzkzNDMiCiAgICAgICAgIHk9IjEyOC4wMTg1NSI+RDwvdHNwYW4+PC90ZXh0PgogICAgPHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc2l6ZTo0MHB4O2xpbmUtaGVpZ2h0OjEyNSU7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZjtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFjaW5nOjBweDtmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjFweDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2Utb3BhY2l0eToxIgogICAgICAgeD0iNDY2LjkxMjAyIgogICAgICAgeT0iMTI4LjAxODU1IgogICAgICAgaWQ9InRleHQ1Nzc1LTEiCiAgICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+PHRzcGFuCiAgICAgICAgIHNvZGlwb2RpOnJvbGU9ImxpbmUiCiAgICAgICAgIGlkPSJ0c3BhbjU3NzctNiIKICAgICAgICAgeD0iNDY2LjkxMjAyIgogICAgICAgICB5PSIxMjguMDE4NTUiPkM8L3RzcGFuPjwvdGV4dD4KICAgIDx0ZXh0CiAgICAgICB4bWw6c3BhY2U9InByZXNlcnZlIgogICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXNpemU6NDBweDtsaW5lLWhlaWdodDoxMjUlO2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7bGV0dGVyLXNwYWNpbmc6MHB4O3dvcmQtc3BhY2luZzowcHg7ZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIHg9IjM3OC40NjE0IgogICAgICAgeT0iMjE1Ljg1NjE3IgogICAgICAgaWQ9InRleHQ1Nzc5LTciCiAgICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+PHRzcGFuCiAgICAgICAgIHNvZGlwb2RpOnJvbGU9ImxpbmUiCiAgICAgICAgIGlkPSJ0c3BhbjU3ODEtOSIKICAgICAgICAgeD0iMzc4LjQ2MTQiCiAgICAgICAgIHk9IjIxNS44NTYxNyI+QjwvdHNwYW4+PC90ZXh0PgogICAgPHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc2l6ZTo0MHB4O2xpbmUtaGVpZ2h0OjEyNSU7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZjtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFjaW5nOjBweDtmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjFweDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2Utb3BhY2l0eToxIgogICAgICAgeD0iNDY0Ljk5Nzk2IgogICAgICAgeT0iMjE1Ljg3NTciCiAgICAgICBpZD0idGV4dDU3ODMtOCIKICAgICAgIHNvZGlwb2RpOmxpbmVzcGFjaW5nPSIxMjUlIj48dHNwYW4KICAgICAgICAgc29kaXBvZGk6cm9sZT0ibGluZSIKICAgICAgICAgaWQ9InRzcGFuNTc4NS03IgogICAgICAgICB4PSI0NjQuOTk3OTYiCiAgICAgICAgIHk9IjIxNS44NzU3Ij5BPC90c3Bhbj48L3RleHQ+CiAgICA8ZwogICAgICAgaWQ9Imc5ODE4IgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEuNTcxNDI2NCwxLjI4NTcxODcpIj4KICAgICAgPHBhdGgKICAgICAgICAgc29kaXBvZGk6bm9kZXR5cGVzPSJjYyIKICAgICAgICAgaW5rc2NhcGU6dHJhbnNmb3JtLWNlbnRlci15PSIyLjAyMDMwNTEiCiAgICAgICAgIGlua3NjYXBlOnRyYW5zZm9ybS1jZW50ZXIteD0iNy41NzYxNDQxIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBpZD0icGF0aDU5MTAiCiAgICAgICAgIGQ9Im0gMTM3LjMxNTk3LDEzMi43MDM1NiA1NC4zNjgwNiw1MC4zMTcyOCIKICAgICAgICAgc3R5bGU9ImZpbGw6bm9uZTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxO21hcmtlci1zdGFydDp1cmwoI0Fycm93Mk1zdGFydCk7bWFya2VyLWVuZDp1cmwoI0Fycm93Mk1lbmQpIiAvPgogICAgICA8cGF0aAogICAgICAgICBzb2RpcG9kaTpub2RldHlwZXM9ImNjIgogICAgICAgICBpbmtzY2FwZTp0cmFuc2Zvcm0tY2VudGVyLXk9IjIuMDIwMzA1MSIKICAgICAgICAgaW5rc2NhcGU6dHJhbnNmb3JtLWNlbnRlci14PSItNy41NzYxNDQxIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBpZD0icGF0aDU5MTAtNyIKICAgICAgICAgZD0ibSAxOTEuNjg0MDMsMTMyLjcwMzU2IC01NC4zNjgwNiw1MC4zMTcyOCIKICAgICAgICAgc3R5bGU9ImZpbGw6bm9uZTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxO21hcmtlci1zdGFydDp1cmwoI0Fycm93Mk1zdGFydC0wKTttYXJrZXItZW5kOnVybCgjQXJyb3cyTWVuZC04KSIgLz4KICAgIDwvZz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZmlsbDpub25lO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDozO3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1vcGFjaXR5OjE7bWFya2VyLWVuZDp1cmwoI0Fycm93MkxlbmQpIgogICAgICAgZD0ibSAyNzUsMTU2LjM2MjIgNTEuNSwwIgogICAgICAgaWQ9InBhdGg5ODM2IgogICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICA8L2c+Cjwvc3ZnPgo=" alt="dftshift">
+</div>
+<div class="title">Figura 15. Deslocamento da imagem transformada</div>
+</div>
+<div class="paragraph">
+<p>A operação de deslocamento é realizada pela função <code>deslocaDft()</code>. Ela
+recebe a referência para a matriz que contem a imagem transformada e
+troca seus quadrantes. Caso a imagem possua tamanho <strong>ímpar</strong>, ela
+diminuída de tamanho em <strong>um pixel</strong> para que a troca dos quadrantes
+seja feita usando tamanhos iguais. Normalmente, trata-se a imagem que
+será submetida ao cálculo da DFT para que possua dimensões de
+ordem par, de sorte que essa linha não deverá alterar o tamanho das
+imagens usualmente fornecidas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// habilita/desabilita ruido</span>
+<span class="tok-kt">int</span> <span class="tok-n">noise</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-c1">// frequencia do ruido</span>
+<span class="tok-kt">int</span> <span class="tok-n">freq</span><span class="tok-o">=</span><span class="tok-mi">10</span><span class="tok-p">;</span>
+<span class="tok-c1">// ganho inicial do ruido</span>
+<span class="tok-kt">float</span> <span class="tok-n">gain</span><span class="tok-o">=</span><span class="tok-mi">1</span><span class="tok-p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Essa são variáveis que regulam um ruído coerente que pode ser
+adicionado ao sinal filtrado para simular uma inteferência. A variável
+<code>noise</code> pode assumir os valores <code>0</code> ou <code>1</code>, indicando se a
+inteferência será aplicada ou não, respectivamente. Essa variável é
+alterada de <code>0&#8594;1</code> ou <code>1&#8594;0</code> quando a tecla <kbd>e</kbd> é pressionada.</p>
+</div>
+<div class="paragraph">
+<p>As variáveis <code>freq</code> e <code>gain</code> regulam a frequência do ruído coerente e
+sua intensidade. Esta última é adicionada à imagem transformada como
+uma proporção ao valor de \$F(0,0)\$, valor médio dos tons de cinza
+da imagem capturada. Escolheu-se o valor de \$F(0,0)\$ para que a
+ponderação da inteferência ficasse atrelada a cada imagem, causando um
+efeito visual mais convincente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">dft_M</span> <span class="tok-o">=</span> <span class="tok-n">getOptimalDFTSize</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">);</span>
+<span class="tok-n">dft_N</span> <span class="tok-o">=</span> <span class="tok-n">getOptimalDFTSize</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>getOptimalDFTSize()</code> identifica os melhores valores com base
+no tamanho fornecido para acelerar o processo de cálculo da DFT com
+base em algum algoritmo otimizado. Segundo a documentação do OpenCV,
+valores múltiplos de dois, três e cinco produzem resultados
+melhores. Os valores de tamanho ideal para a quantidade de linhas e
+colunas da imagem são armazenados nas variáveis <code>dft_M</code> e <code>dft_N</code>,
+respectivamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">copyMakeBorder</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">padded</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
+               <span class="tok-n">dft_M</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span>
+               <span class="tok-n">dft_N</span> <span class="tok-o">-</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">,</span>
+               <span class="tok-n">BORDER_CONSTANT</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-o">::</span><span class="tok-n">all</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>copyMakeBorder()</code> cria uma versão da imagem fornecida com
+uma borda preenchida com <em>zeros</em> e ajustada ao tamanho ótimo para
+cálculo da DFT, conforme indicado pelo uso da função
+<code>getOptimalDFTSize()</code>. Para uma imagem <code>image</code> fornecida, a saída é
+produzida na imagem <code>padded</code>. Perceba que, caso a imagem fornecida já
+possua dimensões apropriadas, a imagem de saída será igual à de
+entrada.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// parte imaginaria da matriz complexa (preenchida com zeros)</span>
+<span class="tok-n">zeros</span> <span class="tok-o">=</span> <span class="tok-n">Mat_</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;::</span><span class="tok-n">zeros</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">());</span>
+
+<span class="tok-c1">// prepara a matriz complexa para ser preenchida</span>
+<span class="tok-n">complexImage</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">(),</span> <span class="tok-n">CV_32FC2</span><span class="tok-p">,</span> <span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Esse trecho de código constrói a matriz uma matriz de zeros tipo float
+e uma matriz complexa que serão necessárias para o cálculo da DFT. A
+matriz de zeros é usada para compor, juntamente com a imagem
+capturada, a componente complexa que será fornecida à função que
+calcula a Tranformada de Fourier.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// a função de transferência (filtro frequencial) deve ter o</span>
+<span class="tok-c1">// mesmo tamanho e tipo da matriz complexa</span>
+<span class="tok-n">filter</span> <span class="tok-o">=</span> <span class="tok-n">complexImage</span><span class="tok-p">.</span><span class="tok-n">clone</span><span class="tok-p">();</span>
+
+<span class="tok-c1">// cria uma matriz temporária para criar as componentes real</span>
+<span class="tok-c1">// e imaginaria do filtro ideal</span>
+<span class="tok-n">tmp</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">);</span>
+
+<span class="tok-c1">// prepara o filtro passa-baixas ideal</span>
+<span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">dft_M</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+ <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">j</span><span class="tok-o">&lt;</span><span class="tok-n">dft_N</span><span class="tok-p">;</span> <span class="tok-n">j</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-k">if</span><span class="tok-p">((</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">+</span><span class="tok-p">(</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">j</span><span class="tok-o">-</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">)</span> <span class="tok-o">&lt;</span> <span class="tok-n">RADIUS</span><span class="tok-o">*</span><span class="tok-n">RADIUS</span><span class="tok-p">){</span>
+      <span class="tok-n">tmp</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span> <span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-p">)</span> <span class="tok-o">=</span> <span class="tok-mf">1.0</span><span class="tok-p">;</span>
+    <span class="tok-p">}</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">}</span>
+
+<span class="tok-c1">// cria a matriz com as componentes do filtro e junta</span>
+<span class="tok-c1">// ambas em uma matriz multicanal complexa</span>
+<span class="tok-n">Mat</span> <span class="tok-n">comps</span><span class="tok-p">[]</span><span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-n">tmp</span><span class="tok-p">,</span> <span class="tok-n">tmp</span><span class="tok-p">};</span>
+<span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">comps</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-n">filter</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O filtro ideal passa baixas é preparado com base na matriz complexa
+<code>complexImage</code> previamente montada. Esse filtro, armazenado na matriz
+<code>filter</code> <strong>DEVE SER DO MESMO TAMANHO E TIPO DA IMAGEM COMPLEXA</strong> para
+que a função de filtragem funcione corretamente. O filtro ideal é
+criado desenhando-se no centro da imagem complexa um círculo de raio
+igual a <code>RADIUS</code> com todos os valores preenchidos com <code>1</code>. Fora desse
+raio, o valor do filtro é igual a <code>0</code>.</p>
+</div>
+<div class="paragraph">
+<p>Como as duas componentes da imagem do filtro - real e complexa -
+precisam ter exatamente os mesmos valores, uma matriz temporária <code>tmp</code>
+armazena os valores do filtro, que em seguida são combinadas com a
+função <code>merge()</code> para montar a matriz do filtro.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-c1">// limpa o array de matrizes que vao compor a</span>
+<span class="tok-c1">// imagem complexa</span>
+<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
+<span class="tok-c1">// cria a compoente real</span>
+<span class="tok-n">realInput</span> <span class="tok-o">=</span> <span class="tok-n">Mat_</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">padded</span><span class="tok-p">);</span>
+<span class="tok-c1">// insere as duas componentes no array de matrizes</span>
+<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">push_back</span><span class="tok-p">(</span><span class="tok-n">realInput</span><span class="tok-p">);</span>
+<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">push_back</span><span class="tok-p">(</span><span class="tok-n">zeros</span><span class="tok-p">);</span>
+<span class="tok-c1">// combina o array de matrizes em uma unica</span>
+<span class="tok-c1">// componente complexa</span>
+<span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Em cada passada no <em>loop</em> infinito do programa, uma imagem capturada
+da câmera é redimensionada (quando necessário) e preparada para o
+cálculo da DFT.</p>
+</div>
+<div class="paragraph">
+<p>Um vetor auxiliar <code>planos</code> é usado para montar a matriz
+complexa. Inicialmente, o vetor é limpo para armazenar as novas
+contribuições. Cria-se uma matriz <code>realInput</code> do tipo <code>float</code>, com
+base na imagem resultante da operação de <em>padding</em>. Tanto essa quanto
+a matriz de zeros são inseridas no array de planos. O array é, então,
+combinado usando a função <code>merge()</code> para montar a matriz complexa.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// calcula o dft</span>
+<span class="tok-n">dft</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
+
+<span class="tok-c1">// realiza a troca de quadrantes</span>
+<span class="tok-n">deslocaDFT</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O cálculo do DFT é realizado. Perceba que tanto a matriz de entrada
+quanto a de saída passadas como parâmetro podem ser a
+mesma. Finalizado o cálculo da DFT, a função <code>deslocaDFT()</code> realiza a
+troca de quadrantes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// aplica o filtro frequencial</span>
+<span class="tok-n">mulSpectrums</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span><span class="tok-n">filter</span><span class="tok-p">,</span><span class="tok-n">complexImage</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Agora, o processo de filtragem no domínio da frequência é propriamente
+realizado. A função <code>mulSpectrums()</code> recebe pelo menos quatro
+argumentos: a imagem a ser filtrada, o filtro, a imagem onde deverá
+ser lançada a saída (que pode ser a mesma matriz de entrada), e flags
+de operação. Normalmente, esse flag não é usado, adicionando-se
+simplesmente <code>0</code> ao seu valor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// limpa o array de planos</span>
+<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
+<span class="tok-c1">// separa as partes real e imaginaria para modifica-las</span>
+<span class="tok-n">split</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">);</span>
+
+<span class="tok-c1">// usa o valor medio do espectro para dosar o ruido</span>
+<span class="tok-n">mean</span> <span class="tok-o">=</span> <span class="tok-n">abs</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span> <span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">));</span>
+<span class="tok-c1">// insere ruido coerente, se habilitado</span>
+<span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">noise</span><span class="tok-p">){</span>
+  <span class="tok-c1">// F(u,v) recebe ganho proporcional a F(0,0)</span>
+  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">+=</span>
+   <span class="tok-n">gain</span><span class="tok-o">*</span><span class="tok-n">mean</span><span class="tok-p">;</span>
+
+  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">+=</span>
+    <span class="tok-n">gain</span><span class="tok-o">*</span><span class="tok-n">mean</span><span class="tok-p">;</span>
+
+  <span class="tok-c1">// F*(-u,-v) = F(u,v)</span>
+  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">=</span>
+    <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">);</span>
+
+  <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">-</span><span class="tok-n">freq</span><span class="tok-p">)</span> <span class="tok-o">=</span>
+    <span class="tok-o">-</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">].</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">dft_M</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">,</span> <span class="tok-n">dft_N</span><span class="tok-o">/</span><span class="tok-mi">2</span> <span class="tok-o">+</span><span class="tok-n">freq</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Esse trecho realiza a simulação da inteferência por ruído
+coerente. Inicialmente, o array de planos é limpo para receber as
+partes real e imaginária da imagem filtrada. Ele é preenchido pela
+função <code>split()</code> que realiza a divisão da imagem complexa em dois
+arrays reais. Estes arrays ficam contidos em <code>planos[0]</code> (componente
+real) e <code>planos[1]</code> (componente imaginária).</p>
+</div>
+<div class="paragraph">
+<p>O trecho seguinte introduz o ruído nas posições da imagem localicadas
+em \$F(freq, freq)\$ e \$F(-freq,-freq)\$. Veja que nas
+equações é dado um deslocamento adicional de <code>(dft_M/2, dft\_N/2)</code>, já que a origem da Transformada de Fourier está posicionada
+no centro da imagem. Observe também que as ponderações são realizadas
+utilizando as propriedades de simetria.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// recompoe os planos em uma unica matriz complexa</span>
+<span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
+
+<span class="tok-c1">// troca novamente os quadrantes</span>
+<span class="tok-n">deslocaDFT</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">);</span>
+
+<span class="tok-c1">// calcula a DFT inversa</span>
+<span class="tok-n">idft</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uma vez inserida a interferência, os planos reais são novamente
+fundidos em uma matriz complexa. Essa matriz deve ter seus quadrantes
+trocados para que seja realizado cálculo da Transformada de Fourier
+inversa usando a função <code>idft()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-c1">// limpa o array de planos</span>
+<span class="tok-n">planos</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">();</span>
+
+<span class="tok-c1">// separa as partes real e imaginaria da</span>
+<span class="tok-c1">// imagem filtrada</span>
+<span class="tok-n">split</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">);</span>
+
+<span class="tok-c1">// normaliza a parte real para exibicao</span>
+<span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">CV_MINMAX</span><span class="tok-p">);</span>
+<span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;filtrada&quot;</span><span class="tok-p">,</span> <span class="tok-n">planos</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">]);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A imagem complexa é separada em suas componentes real e imaginária nos
+elementos do array <code>planos</code>. A matriz <code>planos[0]</code> conterá a imagem
+processada. Ela tem seus valores normalizados na faixa \$ [0,1\$ ]
+para exibição na tela.</p>
+</div>
+<div class="paragraph">
+<p>A sequência do programa apenas trata opções de menu que realizam
+modificações no ganho e na frequência de corte da interferência
+simulada. As opções do menu são descritas na tabela seguinte:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Opção</th>
+<th class="tableblock halign-left valign-top">funcionalidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>q</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aumenta a frequência da interferência</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>a</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">diminui a frequência da interferência</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>x</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aumenta o ganho da inteferência</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>z</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">diminui o ganho da interferência</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>e</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">habilita/desabilita o efeito da interferência</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-04-09 15:45:47 BRT
+Última atualização 2016-04-10 07:17:48 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
