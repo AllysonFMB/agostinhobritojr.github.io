@@ -13,6 +13,7 @@ using namespace cv;
 
 #define STEP 5
 #define JITTER 3
+#define RAIO 3
 
 int main(int argc, char** argv){
   vector<int> yrange;
@@ -59,7 +60,7 @@ int main(int argc, char** argv){
       gray = image.at<uchar>(x,y);
       circle(points,
              cv::Point(y,x),
-             3,
+             RAIO,
              CV_RGB(gray,gray,gray),
              -1,
              CV_AA);
