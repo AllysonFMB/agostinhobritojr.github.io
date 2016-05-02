@@ -1,0 +1,108 @@
+DCA0445
+=========
+Agostinho Brito <agostinhobritojr@gmail.com>
+
+== Ementa
+Introdução, fundamentos de imagens digitais, transformações de
+imagens, melhoramento de imagens, restauração de imagens, segmentação,
+representação e descrição, reconhecimento e interpretação de imagens.
+
+== Objetivo geral
+Introduzir os conceitos de processamento digital de imagens, aplicar
+as técnicas introduzidas na solução de problemas tradicionais e
+estimular o desenvolvimento de métodos, procedimentos e aplicações na
+área.
+
+== Metodologia
+Aulas expositivas e práticas, no laboratório, utilizando programas
+específicos.
+
+== Materiais adicionais
+
+* link:https://github.com/agostinhobritojr/dca0445[https://github.com/agostinhobritojr/dca0445]
+* Tutoriais de git (inglês): link:https://www.atlassian.com/git/tutorials/[https://www.atlassian.com/git/tutorials/]
+
+== Programa do curso
+
+* Primeira unidade  
+  - Apresentação do curso (1 aula) 
+  - Fundamentos de imagens digitais (etapas envolvidas no
+    processamento de imagens) link:fundamentos.pdf[fundamentos.pdf] (1 aula)
+  - Fundamentos de imagens digitais (representação de imagens digitais) (1 aula)
+  - Apresentação da biblioteca OpenCV (2 aulas) (laboratório)
+  - Relações entre pixels/ transformações geométricas (1 aula)
+  - Modelos de cor (1 aula) 
+  - Manipulação de histogramas link:espacial.pdf[espacial.pdf] (1 aula)
+  - Princípios de convolução digital (1 aula)
+  - Filtros espaciais (2 aulas) 
+  - 1a. Avaliação
+* Segunda unidade
+ - Transformada de Fourier link:frequencia.pdf[frequencia.pdf] (2 aulas) 
+ - Filtragem no domínio da freqüência (2 aulas) 
+ - Restauração de imagens (1 aula) 
+ - Segmentação de imagens / limiarização (2 aulas) 
+ - Fundamentos de morfologia matemática (2 aulas) 
+ - Transformada de Hotteling (1 aula)
+ - Detecção de faces - algoritmo de Viola-Jones (1 aula)
+ - 2a. Avaliação
+* Terceira unidade
+ - Representação e descrição de imagens (1 aulas)
+ - Descritores de fronteiras e regiões (2 aulas)
+ - Reconhecimento de padrões (2 aula)
+ - Compressão de imagens (2 aulas)
+ - Métodos de decisão (1 aula)
+ - Acompanhamento de projetos (2 aulas)
+ - 'Workshop' para apresentação de projetos (3 aulas)
+
+== Metodologia de avaliação
+
+* 1a e 2a unidades: Prova escrita (40%) e Exercícios (60%)
+* 3a unidade: Artigo científico
+** Oito páginas (versão em pdf) editadas em LaTeX - formato ieee (1 ponto por página)
+** Referências bibliográficas (mínimo de 10: 0,1 ponto por
+   referência)
+** Observância à regras de escrita da língua portuguesa ( 0,1 ponto
+   por erro encontrado - até o limite de 10 pontos)
+
+== Datas das avaliações
+
+ * 1a Avaliação: /2016 
+ * 2a Avaliação: /2016
+ * 3a Avaliação: /2016
+ * reposicao:  /2016
+
+== Submissão de exercícios
+
+* Cada aluno deverá submeter seus exercícios em uma homepage com as modificações realizadas no programa pdi fornecido como referência, os testes realizados, imagens obtidas, ambos devidamente comentados. Logo que sua página web estiver pronta, envie um e-mail para seu instrutor (agostinhobritojr@gmail.com) com a URL de referência, que a mesma será incluída na página do curso. Se necessário, inclua as instruções de compilação do seu programa.
+* O prazo para entrega das atividades encerra-se ao fim de cada avaliação. Atividades entregues após este prazo não serão aceitas.
+
+== Bibliografia
+[bibliography]
+- Rafael Gonzalez. 'Processamento Digital de Imagens'. Addison-Wesley. 1990. 2 ed.
+.
+
+== Páginas das tarefas da turma (2016.1)
+* link:http://marcellacavalcanti.github.io/PDI/[Marcella Cavalcanti]
+* link:http://angelelouise.github.io/arquivos/pdi/index.html[Angele
+  Louise e Victor Mafra]
+* link:http://matheuspetrovich.github.io[Matheus Petrovich]
+* link:http://projetospdi.github.io/PDI[Gusttavo Henrique & Filipe
+  Viana Monteiro]
+* link:http://pedroklisley.github.io[Pedro Kisley e Samuel Alves]
+* link:http://rdsilva.github.io/PDI/[Rodrigo Silva]
+* link:https://github.com/brevik/pdi[Brevik Rafael]
+* link:https://github.com/thalescast/PDI[Thales Castro & Tiago Batista]
+* link:http://mribeirodantas.github.io/pdi/[Marcel Ribeiro]
+* link:http://minedayse.github.io/[Yasmin & Dayse]
+* link:https://github.com/jrandson/pdi/wiki/Exercicios[José Randson]
+* link:http://yargo11.github.io/yargo.github.io/[Yargo]
+* link:http://ronaldojose.github.io/[Ronaldo Cabral]
+* link:http://jonathanlima1.github.io[Jonathan Gabriel & Flávio Davim]
+* link:http://herbeton.github.io/unidadeum.html[Herbeton Bispo]
+* link:http://pdi20161.github.io/[Maykon Ricardo]
+* link:http://yuripedro.github.io/[Yuri Pedro & Yuri Aguiar]
+* link:http://www.joaopdi.weebly.com[João Gadelha]
+* link:http://ffm1994.github.io/pdi/[Felipe Fernandes]
+* link:http://ormaza.github.io/[Ormazabal Lima]
+* link:https://github.com/miguelrochajr/DCA0445_Exercises[Miguel & Rodolfo]
+* link:http://rdsilva.github.io/PDI/[Rodrigo Silva]

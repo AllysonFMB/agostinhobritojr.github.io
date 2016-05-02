@@ -21,7 +21,7 @@ int main(int argc, char** argv){
   p.x=0;
   p.y=0;
 
-  // busca objetos com buracos presentes
+  // busca objetos presentes
   nobjects=0;
   for(int i=0; i<height; i++){
     for(int j=0; j<width; j++){
@@ -30,6 +30,7 @@ int main(int argc, char** argv){
         nobjects++;
         p.x=j;
         p.y=i;
+		// preenche o objeto com o contador
         floodFill(image,p,nobjects);
       }
     }

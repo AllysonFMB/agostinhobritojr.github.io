@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.3">
-<title>Lista de Exercícios (Ponteiros)</title>
+<meta name="generator" content="Asciidoctor 1.5.4">
+<title>DCA0201 - 2a avaliação - 2016.1</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -423,8 +423,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
 .listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
 .listingblock .pygments .tok-o { color: #666666 } /* Operator */
+.listingblock .pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+.listingblock .pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
 .listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
 .listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
@@ -484,377 +486,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Lista de Exercícios (Ponteiros)</h1>
+<h1>DCA0201 - 2a avaliação - 2016.1</h1>
 </div>
 <div id="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Qual a utilidade do aprendizado do uso de ponteiro para aplicações em engenharia?</p>
-</li>
-<li>
-<p>Seja o seguinte trecho de programa:</p>
+<p>(2,0 pontos) Uma pequena classe em C++ visa trabalhar com vendas de ingresso
+feitas por cambistas na entrada de um show. A classe armazena o nome
+do cambista e o preço do seu ingresso, e provê uma série de funções,
+conforme mostra o protótipo da classe a seguir</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">j</span><span class="tok-o">=</span><span class="tok-mi">5</span><span class="tok-p">;</span>
-<span class="tok-kt">int</span> <span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">q</span><span class="tok-p">;</span>
-<span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">i</span><span class="tok-p">;</span>
-<span class="tok-n">q</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">j</span><span class="tok-p">;</span></code></pre>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-k">class</span> <span class="tok-nc">Ingresso</span> <span class="tok-p">{</span>
+<span class="tok-k">public</span> <span class="tok-o">:</span>
+  <span class="tok-c1">// o construtor trata com preco e o nome do cambista</span>
+  <span class="tok-n">Ingresso</span> <span class="tok-p">(</span><span class="tok-kt">double</span> <span class="tok-n">_preco</span><span class="tok-p">,</span> <span class="tok-n">string</span> <span class="tok-n">_cambista</span><span class="tok-p">);</span>
+  <span class="tok-c1">// recupera o preco do ingresso</span>
+  <span class="tok-kt">double</span> <span class="tok-nf">getPreco</span><span class="tok-p">();</span>
+  <span class="tok-c1">// recupera o nome do cambista</span>
+  <span class="tok-n">string</span> <span class="tok-nf">getNome</span><span class="tok-p">();</span>
+  <span class="tok-c1">// muda o preco do ingresso</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setPreco</span><span class="tok-p">(</span><span class="tok-kt">double</span> <span class="tok-n">_preco</span><span class="tok-p">);</span>
+  <span class="tok-c1">// muda o nome do cambista</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setNome</span><span class="tok-p">(</span><span class="tok-n">string</span> <span class="tok-n">_cambista</span><span class="tok-p">);</span>
+  <span class="tok-c1">// imprime o nome do cambista e o preco do seu ingresso</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">print</span><span class="tok-p">();</span>
+  <span class="tok-c1">// retorna o valor total arrecadado pelo cambista, dado</span>
+  <span class="tok-c1">// o numero total de ingressos que ele vendeu</span>
+  <span class="tok-kt">double</span> <span class="tok-nf">getLucro</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">nVendidos</span><span class="tok-p">);</span>
+  <span class="tok-c1">// Compara os preços dos ingressos</span>
+  <span class="tok-c1">// ingresso2 tem preco maior</span>
+  <span class="tok-kt">bool</span> <span class="tok-k">operator</span><span class="tok-o">&lt;</span> <span class="tok-p">(</span><span class="tok-n">Ingresso</span> <span class="tok-n">ingresso2</span><span class="tok-p">);</span>
+  <span class="tok-c1">// ingresso2 tem preco menor</span>
+  <span class="tok-kt">bool</span> <span class="tok-k">operator</span><span class="tok-o">&gt;</span> <span class="tok-p">(</span><span class="tok-n">Ingresso</span> <span class="tok-n">ingresso2</span><span class="tok-p">);</span>
+  <span class="tok-c1">// ingresso2 tem preco igual</span>
+  <span class="tok-kt">bool</span> <span class="tok-k">operator</span><span class="tok-o">==</span> <span class="tok-p">(</span><span class="tok-n">Ingresso</span> <span class="tok-n">ingresso2</span><span class="tok-p">);</span>
+<span class="tok-k">private</span> <span class="tok-o">:</span>
+  <span class="tok-kt">double</span> <span class="tok-n">preco</span><span class="tok-p">;</span> <span class="tok-c1">// preço do ingresso</span>
+  <span class="tok-n">string</span> <span class="tok-n">cambista</span><span class="tok-p">;</span> <span class="tok-c1">// nome do vendedor de ingresso</span>
+<span class="tok-p">};</span></code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Determine o valor das seguintes expressões:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>p == &amp;i;</code></p>
-</li>
-<li>
-<p><code>*p - *q;</code></p>
-</li>
-<li>
-<p><code>**&amp;p;</code></p>
-</li>
-<li>
-<p><code>3 - *p/(*q) + 7;</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Mostre o que será impresso por programa supondo que i ocupa o endereço 4094 na memória.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">main</span><span class="tok-p">(){</span>
-  <span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">5</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-p">;</span>
-  <span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">i</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%x %d %d %d %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-o">+</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-o">**&amp;</span><span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-o">**</span><span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-o">**&amp;</span><span class="tok-n">p</span><span class="tok-o">+</span><span class="tok-mi">4</span><span class="tok-p">);</span>
-<span class="tok-p">}</span></code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Se i e j são variáveis inteiras e p e q ponteiros para int, quais das seguintes expressões de atribuição são ilegais?</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><code>p = &amp;i;</code></p>
-</li>
-<li>
-<p><code>*q = &amp;j;</code></p>
-</li>
-<li>
-<p><code>p = &amp;*&amp;i;</code></p>
-</li>
-<li>
-<p><code>i = (*&amp;)j;</code></p>
-</li>
-<li>
-<p><code>i = *&amp;j;</code></p>
-</li>
-<li>
-<p><code>i = <strong>&amp;</strong>&amp;j;</code></p>
-</li>
-<li>
-<p><code>q = *p;</code></p>
-</li>
-<li>
-<p><code>i = (*p)` + *q; </code></p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Determine o que será mostrado pelo seguinte programa (compile-o, execute-o e verifique se foram obtidas as respostas esperadas).</p>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">()</span> <span class="tok-p">{</span>
-  <span class="tok-kt">int</span>    <span class="tok-n">valor</span><span class="tok-p">;</span>
-  <span class="tok-kt">int</span>   <span class="tok-o">*</span><span class="tok-n">p1</span><span class="tok-p">;</span>
-  <span class="tok-kt">float</span>  <span class="tok-n">temp</span><span class="tok-p">;</span>
-  <span class="tok-kt">float</span> <span class="tok-o">*</span><span class="tok-n">p2</span><span class="tok-p">;</span>
-  <span class="tok-kt">char</span>   <span class="tok-n">aux</span><span class="tok-p">;</span>
-  <span class="tok-kt">char</span>  <span class="tok-o">*</span><span class="tok-n">nome</span> <span class="tok-o">=</span> <span class="tok-s">&quot;Ponteiros&quot;</span><span class="tok-p">;</span>
-  <span class="tok-kt">char</span>  <span class="tok-o">*</span><span class="tok-n">p3</span><span class="tok-p">;</span>
-  <span class="tok-kt">int</span>    <span class="tok-n">idade</span><span class="tok-p">;</span>
-  <span class="tok-kt">int</span>    <span class="tok-n">vetor</span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">];</span>
-  <span class="tok-kt">int</span>   <span class="tok-o">*</span><span class="tok-n">p4</span><span class="tok-p">;</span>
-  <span class="tok-kt">int</span>   <span class="tok-o">*</span><span class="tok-n">p5</span><span class="tok-p">;</span>
-
-  <span class="tok-cm">/* (a) */</span>
-  <span class="tok-n">valor</span> <span class="tok-o">=</span> <span class="tok-mi">10</span><span class="tok-p">;</span>
-  <span class="tok-n">p1</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">valor</span><span class="tok-p">;</span>
-  <span class="tok-o">*</span><span class="tok-n">p1</span> <span class="tok-o">=</span> <span class="tok-mi">20</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">valor</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (b) */</span>
-  <span class="tok-n">temp</span> <span class="tok-o">=</span> <span class="tok-mf">26.5</span><span class="tok-p">;</span>
-  <span class="tok-n">p2</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">temp</span><span class="tok-p">;</span>
-  <span class="tok-o">*</span><span class="tok-n">p2</span> <span class="tok-o">=</span> <span class="tok-mf">29.0</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%.1f </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">temp</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (c) */</span>
-  <span class="tok-n">p3</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">nome</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">];</span>
-  <span class="tok-n">aux</span> <span class="tok-o">=</span> <span class="tok-o">*</span><span class="tok-n">p3</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%c </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">aux</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (d) */</span>
-  <span class="tok-n">p3</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">nome</span><span class="tok-p">[</span><span class="tok-mi">4</span><span class="tok-p">];</span>
-  <span class="tok-n">aux</span> <span class="tok-o">=</span> <span class="tok-o">*</span><span class="tok-n">p3</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%c </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">aux</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (e) */</span>
-  <span class="tok-n">p3</span> <span class="tok-o">=</span> <span class="tok-n">nome</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%c </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p3</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (f) */</span>
-  <span class="tok-n">p3</span> <span class="tok-o">=</span> <span class="tok-n">p3</span> <span class="tok-o">+</span> <span class="tok-mi">4</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%c </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p3</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (g) */</span>
-  <span class="tok-n">p3</span><span class="tok-o">--</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%c </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p3</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (h) */</span>
-  <span class="tok-n">vetor</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-mi">31</span><span class="tok-p">;</span>
-  <span class="tok-n">vetor</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-mi">45</span><span class="tok-p">;</span>
-  <span class="tok-n">vetor</span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-mi">27</span><span class="tok-p">;</span>
-  <span class="tok-n">p4</span> <span class="tok-o">=</span> <span class="tok-n">vetor</span><span class="tok-p">;</span>
-  <span class="tok-n">idade</span> <span class="tok-o">=</span> <span class="tok-o">*</span><span class="tok-n">p4</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">idade</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (i) */</span>
-  <span class="tok-n">p5</span> <span class="tok-o">=</span> <span class="tok-n">p4</span> <span class="tok-o">+</span> <span class="tok-mi">1</span><span class="tok-p">;</span>
-  <span class="tok-n">idade</span> <span class="tok-o">=</span> <span class="tok-o">*</span><span class="tok-n">p5</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">idade</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (j) */</span>
-  <span class="tok-n">p4</span> <span class="tok-o">=</span> <span class="tok-n">p5</span> <span class="tok-o">+</span> <span class="tok-mi">1</span><span class="tok-p">;</span>
-  <span class="tok-n">idade</span> <span class="tok-o">=</span> <span class="tok-o">*</span><span class="tok-n">p4</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">idade</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (l) */</span>
-  <span class="tok-n">p4</span> <span class="tok-o">=</span> <span class="tok-n">p4</span> <span class="tok-o">-</span> <span class="tok-mi">2</span><span class="tok-p">;</span>
-  <span class="tok-n">idade</span> <span class="tok-o">=</span> <span class="tok-o">*</span><span class="tok-n">p4</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">idade</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (m) */</span>
-  <span class="tok-n">p5</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">vetor</span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">]</span> <span class="tok-o">-</span> <span class="tok-mi">1</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p5</span><span class="tok-p">);</span>
-
-  <span class="tok-cm">/* (n) */</span>
-  <span class="tok-n">p5</span><span class="tok-err">`</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p5</span><span class="tok-p">);</span>
-  <span class="tok-k">return</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
-<span class="tok-p">}</span></code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Determine o que será mostrado pelo seguinte programa (compile-o, execute-o e verifique se foram obtidas as respostas esperadas).</p>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
-  <span class="tok-kt">float</span> <span class="tok-n">vet</span><span class="tok-p">[</span><span class="tok-mi">5</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mf">1.1</span><span class="tok-p">,</span><span class="tok-mf">2.2</span><span class="tok-p">,</span><span class="tok-mf">3.3</span><span class="tok-p">,</span><span class="tok-mf">4.4</span><span class="tok-p">,</span><span class="tok-mf">5.5</span><span class="tok-p">};</span>
-  <span class="tok-kt">float</span> <span class="tok-o">*</span><span class="tok-n">f</span><span class="tok-p">;</span>
-  <span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-p">;</span>
-  <span class="tok-n">f</span> <span class="tok-o">=</span> <span class="tok-n">vet</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;contador/valor/valor/endereco/endereco&quot;</span><span class="tok-p">);</span>
-  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">i</span> <span class="tok-o">=</span> <span class="tok-mi">0</span> <span class="tok-p">;</span> <span class="tok-n">i</span> <span class="tok-o">&lt;=</span> <span class="tok-mi">4</span> <span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
-    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;</span><span class="tok-se">\n</span><span class="tok-s">i = %d&quot;</span><span class="tok-p">,</span><span class="tok-n">i</span><span class="tok-p">);</span>
-    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;vet[%d] = %.1f&quot;</span><span class="tok-p">,</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">vet</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]);</span>
-    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;*(f + %d) = %.1f&quot;</span><span class="tok-p">,</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">f</span><span class="tok-o">+</span><span class="tok-n">i</span><span class="tok-p">));</span>
-    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;&amp;vet[%d] = %X&quot;</span><span class="tok-p">,</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-o">&amp;</span><span class="tok-n">vet</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]);</span>
-    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;(f + %d) = %X&quot;</span><span class="tok-p">,</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">f</span><span class="tok-o">+</span><span class="tok-n">i</span><span class="tok-p">);</span>
-  <span class="tok-p">}</span>
-<span class="tok-p">}</span></code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Assumindo que <code>pulo[]</code> é um vetor do tipo int, quais das seguintes expressões referenciam o valor do terceiro elemento do vetor?</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>*(pulo + 2);</code></p>
-</li>
-<li>
-<p><code>*(pulo + 4);</code></p>
-</li>
-<li>
-<p><code>pulo + 4;</code></p>
-</li>
-<li>
-<p><code>pulo + 2;</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Considerando a declaração</p>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-n">mat</span><span class="tok-p">[</span><span class="tok-mi">4</span><span class="tok-p">],</span> <span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-p">,</span> <span class="tok-n">x</span><span class="tok-p">;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>quais das seguintes expressões são válidas? Justifique.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>p = mat + 1;</code></p>
-</li>
-<li>
-<p><code>p = mat</code>;`</p>
-</li>
-<li>
-<p><code>p =`mat;</code></p>
-</li>
-<li>
-<p><code>x = (*mat)</code>;`</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>O que fazem os seguintes programas em C?</p>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(){</span>
-  <span class="tok-kt">int</span> <span class="tok-n">vet</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mi">4</span><span class="tok-p">,</span><span class="tok-mi">9</span><span class="tok-p">,</span><span class="tok-mi">13</span><span class="tok-p">};</span>
-  <span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-p">;</span>
-  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-mi">3</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
-    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d &quot;</span><span class="tok-p">,</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">vet</span><span class="tok-o">+</span><span class="tok-n">i</span><span class="tok-p">));</span>
-  <span class="tok-p">}</span>
-<span class="tok-p">}</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(){</span>
-  <span class="tok-kt">int</span> <span class="tok-n">vet</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mi">4</span><span class="tok-p">,</span><span class="tok-mi">9</span><span class="tok-p">,</span><span class="tok-mi">13</span><span class="tok-p">};</span>
-  <span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-p">;</span>
-  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-mi">3</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
-    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%X &quot;</span><span class="tok-p">,</span><span class="tok-n">vet</span><span class="tok-o">+</span><span class="tok-n">i</span><span class="tok-p">);</span>
-  <span class="tok-p">}</span>
-<span class="tok-p">}</span></code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Seja x um vetor de 4 elementos, declarado da forma <code>TIPO x[4]</code>. Suponha que depois da declaração, x esteja armazenado no endereço de memória 4092 (ou seja, o endereço de <code>x[0]</code>). Suponha também que na máquina seja usada uma variável do tipo char ocupa 1 byte, do tipo int ocupa 2 bytes, do tipo float ocupa 4 bytes e do tipo double ocupa 8 bytes. Quais serão os valores de <code>x+1</code>, <code>x+2</code> e <code>x+3</code> se:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>x for declarado como <code>char</code>?</p>
-</li>
-<li>
-<p>x for declarado como <code>int</code>?</p>
-</li>
-<li>
-<p>x for declarado como <code>float</code>?</p>
-</li>
-<li>
-<p>x for declarado como <code>double</code>?</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Implemente um programa de computador para testar estas suposições e compare as respostas oferecidas pelo programa com as respostas que você idealizou.</p>
-</div>
-</li>
-<li>
-<p>Suponha que as seguintes declarações tenham sido realizadas:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">float</span> <span class="tok-n">aloha</span><span class="tok-p">[</span><span class="tok-mi">10</span><span class="tok-p">],</span> <span class="tok-n">coisas</span><span class="tok-p">[</span><span class="tok-mi">10</span><span class="tok-p">][</span><span class="tok-mi">5</span><span class="tok-p">],</span> <span class="tok-o">*</span><span class="tok-n">pf</span><span class="tok-p">,</span> <span class="tok-n">value</span> <span class="tok-o">=</span> <span class="tok-mf">2.2</span><span class="tok-p">;</span>
-<span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">3</span><span class="tok-p">;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Identifique quais dos seguintes comandos é válido ou inválido:</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><code>aloha[2] = value;</code></p>
+<p>(1,5 pontos) Implemente os métodos da classe, conforme sugere os comentários
+apresentados antes de cada um.</p>
 </li>
 <li>
-<p><code>scanf("%f", &amp;aloha);</code></p>
-</li>
-<li>
-<p><code>aloha = value";</code></p>
-</li>
-<li>
-<p><code>printf("%f", aloha);</code></p>
-</li>
-<li>
-<p><code>coisas[4][4] = aloha[3];</code></p>
-</li>
-<li>
-<p><code>coisas[5] = aloha;</code></p>
-</li>
-<li>
-<p><code>pf = value;</code></p>
-</li>
-<li>
-<p><code>pf = aloha;</code></p>
+<p>(0,5 ponto)Implemente um programa para testar cada uma das funções implementadas</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>O que é um ponteiro para uma função? Pesquise na Internet referências sobre o assunto e escreva um pequeno programa exemplificando o uso deste recurso.</p>
+<p>(1,0 ponto) Qual a utilidade do processo de herança em programação orientada a
+objetos? Fundamente sua resposta a partir da criação e análise de um
+exemplo de sua <strong>PRÓPRIA</strong> autoria.</p>
 </li>
 <li>
-<p>Implemente em linguagem C uma função em um programa de computador que leia n valores do tipo float e os apresente em ordem crescente. Utilize alocação dinâmica de memória para realizar a tarefa.</p>
-</li>
-<li>
-<p>Reimplemente o programa da questão anterior utilizando a função <code>qsort()</code> do C. Comente o seu código, explicando o que faz cada uma das linhas.</p>
-</li>
-<li>
-<p>Utilize a ideia do ponteiro para função pela função qsort() para implementar sua própria função de ordenação. Para isso, sua função deverá receber, entre outros argumentos, um ponteiro para a função de comparação.</p>
-</li>
-<li>
-<p>Procure na internet mecanismos que possibilitem medir tempos de execução de rotinas computacionais. Geralmente, estas medidas são realizadas com o auxílio de funções em C que lêem a hora no sistema (sistemas Unix e Windows geralmente usam funções diferentes). Utilizando os conhecimentos que você obteve com sua pesquisa, meça os tempos de execução das implementações que você criou para os dois problemas de ordenação anteriores e compare os resultados obtidos.</p>
-</li>
-<li>
-<p>Escreva uma função em c que escreva em um vetor a soma dos elementos correspondentes de outros dois vetores (os tamanhos dos vetores devem ser fornecidos pelo usuário). Por exemplo, se o primeiro vetor contiver os elementos 1, 3, 0 e -2, e o segundo vetor contiver os elementos 3, 5, -3 e 1, o vetor de soma terá valores resultantes iguais a 4, 8, -3 e -1. A função deve receber 4 argumentos: os nomes dos três vetores e o número de elementos presentes em cada vetor.</p>
-</li>
-<li>
-<p>Crie uma função capaz de realizar multiplicação matricial da forma
-\$C=A B\$. A função deve receber 6 argumentos: os ponteiros para as matrizes A, B e C, o número de linhas e colunas de A e o número de colunas de B (assuma que o número de coluna de A é igual ao número de linhas de B). O resultado da multiplicação deve ficar armazenado em C. Crie um programa para testar sua implementação, capaz de utilizar a função de multiplicação e imprimir as três matrizes. A função criada para multiplicação não deve realizar nenhum tipo de saída de dados no terminal.</p>
-</li>
-<li>
-<p>Pesquise na Internet sobre o uso da biblioteca libGC, que implementa um coletor de lixo em C. O processo de instalação dessa biblioteca em sistemas Windows pode ser um pouco trabalhoso. Entretanto, em sistemas Unix, a instalação é bem simples, de sorte que se recomenda a resolução desta questão em uma máquina, por exemplo, com Linux instalado. Caso seja usuário Windows e não queira instalar sistemas alternativos em seu computador, use uma ferramenta de virtualização (ex: VirtualBox) para instalar e executar o Linux sem alterar a instalação original de seu computador. Prepare um pequeno programa-exemplo demonstrando como usar a biblioteca.</p>
-</li>
-<li>
-<p>Com base no programa-exemplo da questão anterior, proponha uma aplicação que permita comparar o desempenho das funções tradicionais de alocação/liberação de memória da linguagem c (malloc/free) com as funções de gerenciamento de memória da biblioteca que você escolheu. A aplicação deverá ser capaz de ressaltar possíveis atrasos de tempo provenientes do coletor de lixo utilizado.</p>
+<p>(1,0 ponto) Utilizando a biblioteca padrão de gabaritos, construa uma função
+que realize o produto interno entre dois objetos da classe “vector” de
+mesmo tamanho, como sugere o uso descrito na função “main()” a seguir:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+  <span class="tok-n">vector</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span> <span class="tok-n">v1</span><span class="tok-p">(</span><span class="tok-mi">10</span><span class="tok-p">),</span> <span class="tok-n">v2</span><span class="tok-p">(</span><span class="tok-mi">10</span><span class="tok-p">);</span>
+  <span class="tok-kt">float</span> <span class="tok-n">prod</span><span class="tok-p">;</span>
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">v1</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">();</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-n">v1</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">%</span><span class="tok-mi">30</span><span class="tok-p">;</span>
+    <span class="tok-n">v2</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">%</span><span class="tok-mi">30</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+  <span class="tok-n">prod</span> <span class="tok-o">=</span> <span class="tok-n">mult</span><span class="tok-p">(</span><span class="tok-n">v1</span><span class="tok-p">,</span><span class="tok-n">v2</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
 </li>
 </ol>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Prepare um arquivo TXT contendo as respostas das questões, com os
+comentários necessários para o bom entendimento do que foi
+desenvolvido.</p>
+</li>
+<li>
+<p><strong>INSIRA</strong> NO TOPO DO <strong>RELATÓRIO</strong> DE RESPOSTAS O SEU <strong>NOME
+COMPLETO</strong>. Caso contrário, não haverá como identificar seu exame.</p>
+</li>
+<li>
+<p>Consulte a documentação que achar necessária, tomando cuidado para
+não copiar códigos de terceiros - DESENVOLVA SUAS PRÓPRIAS SOLUÇÕES.</p>
+</li>
+<li>
+<p>As provas terão início as 7:00h. Finalização às 8:40h. Até as 8:50h as
+provas serão recebidas via SIGAA. A partir das 8:50h até as 9:00h as
+provas serão recebidas via e-mail: <a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a>, porém <strong>serão
+penalizadas em 1,5 ponto</strong>.</p>
+</li>
+<li>
+<p>Provas enviadas a partir das 9:00h não serão recebidas.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-03-29 07:53:31 BRT
+Last updated 2016-04-24 11:49:58 BRT
 </div>
 </div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.5.3/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

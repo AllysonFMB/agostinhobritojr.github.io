@@ -1,6 +1,5 @@
 #include <iostream>
-#include "cv.h"
-#include "highgui.h"
+#include <opencv2/opencv.hpp>
 
 using namespace cv;
 
@@ -22,7 +21,6 @@ int main(int argc, char** argv){
   p.x=0;
   p.y=0;
 
-  //  std::cout << floodFill(image,p,Scalar(100)) << "\n";
   // busca objetos com buracos presentes
   nobjects=0;
   for(int i=0; i<height; i++){
