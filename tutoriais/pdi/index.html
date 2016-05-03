@@ -2594,6 +2594,7 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
     <span class="tok-c1">// troca novamente os quadrantes</span>
     <span class="tok-n">deslocaDFT</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">);</span>
 
+	<span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">complexImage</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">endl</span><span class="tok-p">;</span>
     <span class="tok-c1">// calcula a DFT inversa</span>
     <span class="tok-n">idft</span><span class="tok-p">(</span><span class="tok-n">complexImage</span><span class="tok-p">,</span> <span class="tok-n">complexImage</span><span class="tok-p">);</span>
 
@@ -3260,6 +3261,9 @@ pontilhista realiza a sobreposição de círculos.</p>
 
   <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">uint</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">xrange</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">();</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
     <span class="tok-n">xrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">=</span> <span class="tok-n">xrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">*</span><span class="tok-n">STEP</span><span class="tok-o">+</span><span class="tok-n">STEP</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">uint</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">yrange</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">();</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
     <span class="tok-n">yrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">=</span> <span class="tok-n">yrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">*</span><span class="tok-n">STEP</span><span class="tok-o">+</span><span class="tok-n">STEP</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
 
@@ -3340,6 +3344,9 @@ círculo.</p>
 
 <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">uint</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">xrange</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">();</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
   <span class="tok-n">xrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">=</span> <span class="tok-n">xrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">*</span><span class="tok-n">STEP</span><span class="tok-o">+</span><span class="tok-n">STEP</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+
+<span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">uint</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">yrange</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">();</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
   <span class="tok-n">yrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">=</span> <span class="tok-n">yrange</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">]</span><span class="tok-o">*</span><span class="tok-n">STEP</span><span class="tok-o">+</span><span class="tok-n">STEP</span><span class="tok-o">/</span><span class="tok-mi">2</span><span class="tok-p">;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
@@ -3450,7 +3457,7 @@ sua técnica pontilhista.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-04-26 14:43:48 BRT
+Última atualização 2016-05-02 08:59:11 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
