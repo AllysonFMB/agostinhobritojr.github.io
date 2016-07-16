@@ -417,6 +417,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <style>
 .listingblock .pygments .hll { background-color: #ffffcc }
 .listingblock .pygments  { background: #f8f8f8; }
@@ -499,12 +500,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_etapa_1_criação_da_classe_code_ponto_code">1.1. Etapa 1 - Criação da classe <code>Ponto</code></a></li>
 <li><a href="#_etapa_2_criação_da_classe_code_poligono_code">1.2. Etapa 2 - Criação da classe <code>Poligono</code></a></li>
 <li><a href="#_etapa_3_criação_da_classe_code_retangulo_code">1.3. Etapa 3 - Criação da classe <code>Retangulo</code></a></li>
+<li><a href="#_etapa_4_teste_das_classes_criadas">1.4. Etapa 4 - Teste das classes criadas</a></li>
+</ul>
+</li>
+<li><a href="#_projeto_2_tratamento_de_classes_abstratas">2. Projeto 2 - Tratamento de classes abstratas</a>
+<ul class="sectlevel2">
+<li><a href="#_etapa_1_criação_da_classe_concreta_code_screen_code">2.1. Etapa 1 - Criação da classe concreta <code>Screen</code></a></li>
+<li><a href="#_etapa_2_criação_da_classe_abstrata_code_figurageometrica_code">2.2. Etapa 2 - Criação da classe abstrata <code>FiguraGeometrica</code></a></li>
+<li><a href="#_etapa_3_criação_da_classe_concreta_code_reta_code">2.3. Etapa 3 - Criação da classe concreta <code>Reta</code></a></li>
+<li><a href="#_etapa_4_criação_da_classe_concreta_code_retangulo_code">2.4. Etapa 4 -  Criação da classe concreta <code>Retangulo</code></a></li>
+<li><a href="#_etapa_5_criação_da_classe_concreta_code_circulo_code">2.5. Etapa 5 -  Criação da classe concreta <code>Circulo</code></a></li>
+<li><a href="#_etapa_6_armazenamento_de_figuras">2.6. Etapa 6 - Armazenamento de figuras</a></li>
+<li><a href="#_etapa_7_teste_das_funcionalidades_implementadas">2.7. Etapa 7 - Teste das funcionalidades implementadas</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Importante"></i>
+</td>
+<td class="content">
+<div class="title">Leia com atenção</div>
+<div class="paragraph">
+<p>As descrições dos projetos devem ser lidas com atenção. Se não estiver
+claro, procure o professor para que o texto seja atualizado.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_projeto_1_tratamento_de_polígonos">1. Projeto 1 - Tratamento de polígonos</h2>
 <div class="sectionbody">
@@ -518,20 +551,20 @@ polígonos formados por conjuntos de pontos em duas dimensões.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Ponto</p>
+<p><code>Ponto</code></p>
 </li>
 <li>
-<p>Poligono</p>
+<p><code>Poligono</code></p>
 </li>
 <li>
-<p>Retangulo</p>
+<p><code>Retangulo</code></p>
 </li>
 </ul>
 </div>
 <div class="sect2">
 <h3 id="_etapa_1_criação_da_classe_code_ponto_code">1.1. Etapa 1 - Criação da classe <code>Ponto</code></h3>
 <div class="paragraph">
-<p>Crie uma classe denominada Pointo para representar pontos no espaço
+<p>Crie uma classe denominada <code>Point</code> para representar pontos no espaço
 bidimensional. Na sua implementação, você deverá encapsular duas
 variáveis x e y do tipo float para guardar a posição do ponto. Apenas
 as funções da classe poderão ter acesso direto a essas variávies, de
@@ -647,12 +680,12 @@ em torno de um ponto \((x_0, y_0)\) fornecido pelo usuário.</p>
 <div class="sect2">
 <h3 id="_etapa_3_criação_da_classe_code_retangulo_code">1.3. Etapa 3 - Criação da classe <code>Retangulo</code></h3>
 <div class="paragraph">
-<p>Utilizando a implementação da classe Poligono desenvolvida na etapa
+<p>Utilizando a implementação da classe <code>Poligono</code> desenvolvida na etapa
 anterior, crie uma subclasse <code>Retangulo</code> derivada da superclasse
 <code>Poligono</code>. O construtor da nova classe deverá ser da forma
 <code>Retangulo(int x, int y, int largura, int altura)</code>, denotando a
 posição \$(x,y)\$ do retângulo no espaço e suas dimensões - altura
-e largura. Realize com sua classe as seguintes tarefas:</p>
+e largura. Realize com esta classe as seguintes tarefas:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -660,6 +693,13 @@ e largura. Realize com sua classe as seguintes tarefas:</p>
 <p>Assegure-se de que o construtor da classe utiliza os métodos da
 superclasse para armazenar a estrutura interna do retângulo.</p>
 </li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_4_teste_das_classes_criadas">1.4. Etapa 4 - Teste das classes criadas</h3>
+<div class="ulist">
+<ul>
 <li>
 <p>Crie um pequeno exemplo para testar sua implementação da classe
 <code>Retangulo</code>.</p>
@@ -677,11 +717,247 @@ superclasse para armazenar a estrutura interna do retângulo.</p>
 </li>
 <li>
 <p>Mude a posição do retângulo usando a função <code>move(float,float)</code> para
-\$(x,y) = (-3,4)\$ e recalcule a área do retângulo.</p>
+\$(x,y) = (-3,4)\$ e recalcule a área do retângulo. Compare-a com a
+área calculada antes da transformação geométrica.</p>
 </li>
 <li>
 <p>Rotacione o Retângulo de \$+30^o\$ em relação ao seu centro de
-massa e recalcule a sua área.</p>
+massa e recalcule a sua área. Compare-a com a área calculada antes
+da transformação geométrica.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_projeto_2_tratamento_de_classes_abstratas">2. Projeto 2 - Tratamento de classes abstratas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Seu projeto deverá ser capaz de tratar classes abstratas para
+manipulação de figuras geométricas simples, realizando operações de
+desenho em uma matriz de pontos.</p>
+</div>
+<div class="sect2">
+<h3 id="_etapa_1_criação_da_classe_concreta_code_screen_code">2.1. Etapa 1 - Criação da classe concreta <code>Screen</code></h3>
+<div class="paragraph">
+<p>A classe <code>Screen</code> deverá prover suporte para desenhar pontos em uma
+tela virtual. Essa tela deverá ser implementada em uma matriz alocada
+dinamicamente conforme tamanho a ser determinado pelo usuário.</p>
+</div>
+<div class="paragraph">
+<p>A classe <code>Screen</code> deverá ter o protótipo mostrado na Listagem <a href="#exa_screen">Classe Screen</a> e
+deverá ter seus métodos implementados conforme sugerem os comentários
+que os precedem.</p>
+</div>
+<div id="exa_screen" class="listingblock">
+<div class="title">Listagem 1. Classe <code>Screen</code></div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-k">class</span> <span class="tok-nc">Screen</span><span class="tok-p">{</span>
+<span class="tok-k">private</span><span class="tok-o">:</span>
+  <span class="tok-c1">// armazenam o tamanho da tela de desenho</span>
+  <span class="tok-c1">// no de linhas e de colunas</span>
+  <span class="tok-kt">int</span> <span class="tok-n">nlin</span><span class="tok-p">,</span> <span class="tok-n">ncol</span><span class="tok-p">;</span>
+
+  <span class="tok-c1">// guarda o caractere usado para desenhar</span>
+  <span class="tok-kt">char</span> <span class="tok-n">brush</span><span class="tok-p">;</span>
+
+  <span class="tok-c1">// armazena a matriz da tela</span>
+  <span class="tok-n">vector</span><span class="tok-o">&lt;</span> <span class="tok-n">vector</span><span class="tok-o">&lt;</span><span class="tok-kt">char</span><span class="tok-o">&gt;</span> <span class="tok-o">&gt;</span> <span class="tok-n">mat</span><span class="tok-p">;</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-c1">// construtor da classe</span>
+  <span class="tok-n">Screen</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">nlin</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">ncol</span><span class="tok-p">);</span>
+
+  <span class="tok-c1">// desenha um pixel da matriz usando o caratere</span>
+  <span class="tok-c1">// guardado em &#39;brush&#39;</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setPixel</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">y</span><span class="tok-p">);</span>
+
+  <span class="tok-c1">// limpa a tela</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">clear</span><span class="tok-p">();</span>
+
+  <span class="tok-c1">// muda o caractere de desenho</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setBrush</span><span class="tok-p">(</span><span class="tok-kt">char</span> <span class="tok-n">brush</span><span class="tok-p">);</span>
+
+  <span class="tok-c1">// envia a tela para um stream de saida</span>
+  <span class="tok-k">friend</span> <span class="tok-n">ostream</span><span class="tok-o">&amp;</span> <span class="tok-k">operator</span><span class="tok-o">&lt;&lt;</span><span class="tok-p">(</span><span class="tok-n">ostream</span> <span class="tok-o">&amp;</span><span class="tok-n">os</span><span class="tok-p">,</span> <span class="tok-n">Screen</span> <span class="tok-o">&amp;</span><span class="tok-n">t</span><span class="tok-p">);</span>
+<span class="tok-p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_2_criação_da_classe_abstrata_code_figurageometrica_code">2.2. Etapa 2 - Criação da classe abstrata <code>FiguraGeometrica</code></h3>
+<div class="paragraph">
+<p>Crie uma classe abstrata <code>FiguraGeometrica</code> para representar objetos
+primitivos genéricos, e preveja para esta classe pelo menos duas
+características:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A posição que do objeto em coordenadas inteiras na tela virtual.</p>
+</li>
+<li>
+<p>Uma função virtual pura <code>draw(Screen &amp;t)</code> que instrua o objeto a se
+desenhar em um objeto do tipo <code>Screen</code>. Essa função deverá ser
+implementada nas subclasses da classe <code>FiguraGeometrica</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_3_criação_da_classe_concreta_code_reta_code">2.3. Etapa 3 - Criação da classe concreta <code>Reta</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>Reta</code> derivada de <code>FiguraGeometrica</code>. Uma reta
+deverá ser especificada conforme a posição de dois pontos
+fornecidos.</p>
+</li>
+<li>
+<p>O método <code>draw(Screen &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_4_criação_da_classe_concreta_code_retangulo_code">2.4. Etapa 4 -  Criação da classe concreta <code>Retangulo</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>Retangulo</code> derivada de <code>FiguraGeometrica</code>. Um
+retângulo deverá ser especificado conforme a posição do canto
+superior esquerdo, bem como largura e altura em pixels.</p>
+</li>
+<li>
+<p>O método <code>draw(Screen &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_5_criação_da_classe_concreta_code_circulo_code">2.5. Etapa 5 -  Criação da classe concreta <code>Circulo</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>Circulo</code> derivada de <code>FiguraGeometrica</code>. Um
+círculo deverá ser especificado conforme a posição do centro, seu
+raio e se este deverá ser preenchido ou apenas o contorno será
+desenhado.</p>
+</li>
+<li>
+<p>O método <code>draw(Screen &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_6_armazenamento_de_figuras">2.6. Etapa 6 - Armazenamento de figuras</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prepare um recurso para ler figuras gravadas em um arquivo e
+desenhá-las conforme as instruções presentes. O arquivo poderá
+conter os seguintes códigos, que deverão ser interpretados pela sua
+aplicação e utilizar a classe abstrata <code>FiguraGeometrica</code> para
+tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab_codigos">Códigos das figuras geométricas</a>.</p>
+</li>
+</ul>
+</div>
+<table id="tab_codigos" class="tableblock frame-all grid-all spread">
+<caption class="title">Tabela 1. Códigos das figuras geométricas</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Código</th>
+<th class="tableblock halign-left valign-top">Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>dim largura altura</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>define as dimensões do desenho.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>dim 60 20</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>brush x</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>muda o caractere de desenho para <code>x</code>. Se não possuir argumento, o
+  caractere <code>espaço</code> será utilizado.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>brush @</code></p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>brush</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>line x0 y0 x1 y1</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>define uma linha do ponto \$(x0,y0)\$ para \$(x1, y1)\$.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>line 5 5 10 8</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>rectangle x0 y0 largura altura</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>define um retângulo com ponto superior esquerdo em \$(x0,y0)\$ e
+  dimensões <code>largura x altura</code>.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>retangle 5 6 10 20</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>circle x0 y0 raio fillmode</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>define um círculo com centro no ponto \$(x0, y0)\$, raio
+  especificado e sua forma de preenchimento. Se fillmode maior que
+  zero, o círculo será totalmente preenchido. Caso contrário, apenas o
+  contorno será desenhado</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>circle 10 10 5 1</code> (circulo preenchido)</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>circle 10 10 5 0</code> (apenas contorno do círculo)</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_etapa_7_teste_das_funcionalidades_implementadas">2.7. Etapa 7 - Teste das funcionalidades implementadas</h3>
+<div class="paragraph">
+<p>Crie uma figura e um programa-exemplo para testar as implementações
+que você realizou.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Toda a figura poderá ser armazenada em um array de ponteiros para
+<code>FiguraGeometrica</code>.</p>
+</li>
+<li>
+<p>Faça utilização exaustiva das classes da biblioteca padrão de
+gabaritos. As classes <code>vector</code>, <code>string</code> e <code>stringstream</code>, bem como
+seus respetivos <code>iterators</code> poderão ser amplamente utilizados para
+realizar a implementação das funcionalidades.</p>
+</li>
+<li>
+<p>Crie uma figura e represente-a em um arquivo utilizando os códigos
+fornecidos. Use uma combinação adequada de classes para converter
+sua figura em uma matriz de pontos em código ASCII. A matriz deverá
+ser salva em outro arquivo usando um dos métodos da classe <code>Screen</code>.</p>
 </li>
 </ul>
 </div>
@@ -691,7 +967,7 @@ massa e recalcule a sua área.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-07-14 12:46:41 BRT
+Última atualização 2016-07-16 12:56:27 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
