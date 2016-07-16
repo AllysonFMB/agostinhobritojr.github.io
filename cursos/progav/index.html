@@ -5,6 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="author" content="Agostinho Brito">
 <title>DCA0201: Paradigmas de programação</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -416,10 +417,94 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+.listingblock .pygments .hll { background-color: #ffffcc }
+.listingblock .pygments  { background: #f8f8f8; }
+.listingblock .pygments .tok-c { color: #408080; font-style: italic } /* Comment */
+.listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+.listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+.listingblock .pygments .tok-o { color: #666666 } /* Operator */
+.listingblock .pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+.listingblock .pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
+.listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
+.listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+.listingblock .pygments .tok-ge { font-style: italic } /* Generic.Emph */
+.listingblock .pygments .tok-gr { color: #FF0000 } /* Generic.Error */
+.listingblock .pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.listingblock .pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
+.listingblock .pygments .tok-go { color: #888888 } /* Generic.Output */
+.listingblock .pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.listingblock .pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+.listingblock .pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.listingblock .pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+.listingblock .pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.listingblock .pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.listingblock .pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.listingblock .pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+.listingblock .pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.listingblock .pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+.listingblock .pygments .tok-m { color: #666666 } /* Literal.Number */
+.listingblock .pygments .tok-s { color: #BA2121 } /* Literal.String */
+.listingblock .pygments .tok-na { color: #7D9029 } /* Name.Attribute */
+.listingblock .pygments .tok-nb { color: #008000 } /* Name.Builtin */
+.listingblock .pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.listingblock .pygments .tok-no { color: #880000 } /* Name.Constant */
+.listingblock .pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+.listingblock .pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
+.listingblock .pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.listingblock .pygments .tok-nf { color: #0000FF } /* Name.Function */
+.listingblock .pygments .tok-nl { color: #A0A000 } /* Name.Label */
+.listingblock .pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.listingblock .pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+.listingblock .pygments .tok-nv { color: #19177C } /* Name.Variable */
+.listingblock .pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.listingblock .pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+.listingblock .pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+.listingblock .pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+.listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+.listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+.listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+.listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+.listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+.listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.listingblock .pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+.listingblock .pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.listingblock .pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+.listingblock .pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
+.listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+.listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+.listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+.listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+.listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+.listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
 </head>
-<body class="article">
+<body class="book toc2 toc-left">
 <div id="header">
 <h1>DCA0201: Paradigmas de programação</h1>
+<div class="details">
+<span id="author" class="author">Agostinho Brito</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Sumário</div>
+<ul class="sectlevel1">
+<li><a href="#_ementa">1. Ementa</a></li>
+<li><a href="#_objetivo_geral">2. Objetivo geral</a></li>
+<li><a href="#_metodologia">3. Metodologia</a></li>
+<li><a href="#_programa_do_curso">4. Programa do curso</a></li>
+<li><a href="#_metodologia_de_avaliação">5. Metodologia de avaliação</a></li>
+<li><a href="#_datas_das_avaliações">6. Datas das avaliações</a></li>
+<li><a href="#_submissão_de_exercícios">7. Submissão de exercícios</a></li>
+<li><a href="#_bibliografia">8. Bibliografia</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
@@ -430,7 +515,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ementa">Ementa</h2>
+<h2 id="_ementa">1. Ementa</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Principais paradigmas de programação. Estudo comparativo de
@@ -443,7 +528,7 @@ características avançadas. Prática de programação.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_objetivo_geral">Objetivo geral</h2>
+<h2 id="_objetivo_geral">2. Objetivo geral</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Conhecer os principais paradigmas de programação existentes:
@@ -455,7 +540,7 @@ adequada em problemas de engenharia.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_metodologia">Metodologia</h2>
+<h2 id="_metodologia">3. Metodologia</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Aulas expositivas e práticas, no laboratório, utilizando programas
@@ -464,7 +549,7 @@ específicos.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_programa_do_curso">Programa do curso</h2>
+<h2 id="_programa_do_curso">4. Programa do curso</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -596,7 +681,7 @@ específicos.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_metodologia_de_avaliação">Metodologia de avaliação</h2>
+<h2 id="_metodologia_de_avaliação">5. Metodologia de avaliação</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -611,7 +696,7 @@ específicos.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_datas_das_avaliações">Datas das avaliações</h2>
+<h2 id="_datas_das_avaliações">6. Datas das avaliações</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -632,7 +717,7 @@ específicos.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_submissão_de_exercícios">Submissão de exercícios</h2>
+<h2 id="_submissão_de_exercícios">7. Submissão de exercícios</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -650,7 +735,7 @@ específicos.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bibliografia">Bibliografia</h2>
+<h2 id="_bibliografia">8. Bibliografia</h2>
 <div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
@@ -667,8 +752,24 @@ específicos.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-07-16 13:04:28 BRT
+Última atualização 2016-07-16 13:14:28 BRT
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
