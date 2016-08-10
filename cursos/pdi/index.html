@@ -5,7 +5,12 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
+<<<<<<< HEAD
 <title>Untitled</title>
+=======
+<meta name="author" content="Agostinho Brito">
+<title>DCA0445 - Processamento Digital de Imagens</title>
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -416,6 +421,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<<<<<<< HEAD
 </head>
 <body class="article">
 <div id="header">
@@ -438,10 +444,127 @@ representação e descrição, reconhecimento e interpretação de imagens.</p>
 <div class="paragraph">
 <p>== Objetivo geral
 Introduzir os conceitos de processamento digital de imagens, aplicar
+=======
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+.listingblock .pygments .hll { background-color: #ffffcc }
+.listingblock .pygments  { background: #f8f8f8; }
+.listingblock .pygments .tok-c { color: #408080; font-style: italic } /* Comment */
+.listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+.listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+.listingblock .pygments .tok-o { color: #666666 } /* Operator */
+.listingblock .pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+.listingblock .pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
+.listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
+.listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+.listingblock .pygments .tok-ge { font-style: italic } /* Generic.Emph */
+.listingblock .pygments .tok-gr { color: #FF0000 } /* Generic.Error */
+.listingblock .pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.listingblock .pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
+.listingblock .pygments .tok-go { color: #888888 } /* Generic.Output */
+.listingblock .pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.listingblock .pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+.listingblock .pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.listingblock .pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+.listingblock .pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.listingblock .pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.listingblock .pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.listingblock .pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+.listingblock .pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.listingblock .pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+.listingblock .pygments .tok-m { color: #666666 } /* Literal.Number */
+.listingblock .pygments .tok-s { color: #BA2121 } /* Literal.String */
+.listingblock .pygments .tok-na { color: #7D9029 } /* Name.Attribute */
+.listingblock .pygments .tok-nb { color: #008000 } /* Name.Builtin */
+.listingblock .pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.listingblock .pygments .tok-no { color: #880000 } /* Name.Constant */
+.listingblock .pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+.listingblock .pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
+.listingblock .pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.listingblock .pygments .tok-nf { color: #0000FF } /* Name.Function */
+.listingblock .pygments .tok-nl { color: #A0A000 } /* Name.Label */
+.listingblock .pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.listingblock .pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+.listingblock .pygments .tok-nv { color: #19177C } /* Name.Variable */
+.listingblock .pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.listingblock .pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+.listingblock .pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+.listingblock .pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+.listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+.listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+.listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+.listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+.listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+.listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.listingblock .pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+.listingblock .pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.listingblock .pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+.listingblock .pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
+.listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+.listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+.listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+.listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+.listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+.listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>DCA0445 - Processamento Digital de Imagens</h1>
+<div class="details">
+<span id="author" class="author">Agostinho Brito</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Sumário</div>
+<ul class="sectlevel1">
+<li><a href="#_ementa">1. Ementa</a></li>
+<li><a href="#_objetivo_geral">2. Objetivo geral</a></li>
+<li><a href="#_metodologia">3. Metodologia</a></li>
+<li><a href="#_materiais_adicionais">4. Materiais adicionais</a></li>
+<li><a href="#_programa_do_curso">5. Programa do curso</a></li>
+<li><a href="#_metodologia_de_avaliação">6. Metodologia de avaliação</a></li>
+<li><a href="#_datas_das_avaliações">7. Datas das avaliações</a></li>
+<li><a href="#_submissão_de_exercícios">8. Submissão de exercícios</a></li>
+<li><a href="#_bibliografia">9. Bibliografia</a></li>
+<li><a href="#_páginas_das_tarefas_da_turma_2016_1">10. Páginas das tarefas da turma (2016.1)</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Agostinho Brito &lt;<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>&gt;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ementa">1. Ementa</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Introdução, fundamentos de imagens digitais, transformações de
+imagens, melhoramento de imagens, restauração de imagens, segmentação,
+representação e descrição, reconhecimento e interpretação de imagens.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objetivo_geral">2. Objetivo geral</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Introduzir os conceitos de processamento digital de imagens, aplicar
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 as técnicas introduzidas na solução de problemas tradicionais e
 estimular o desenvolvimento de métodos, procedimentos e aplicações na
 área.</p>
 </div>
+<<<<<<< HEAD
 <div class="paragraph">
 <p>== Metodologia
 Aulas expositivas e práticas, no laboratório, utilizando programas
@@ -450,6 +573,22 @@ específicos.</p>
 <div class="paragraph">
 <p>== Materiais adicionais</p>
 </div>
+=======
+</div>
+</div>
+<div class="sect1">
+<h2 id="_metodologia">3. Metodologia</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Aulas expositivas e práticas, no laboratório, utilizando programas
+específicos.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_materiais_adicionais">4. Materiais adicionais</h2>
+<div class="sectionbody">
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 <div class="ulist">
 <ul>
 <li>
@@ -460,9 +599,17 @@ específicos.</p>
 </li>
 </ul>
 </div>
+<<<<<<< HEAD
 <div class="paragraph">
 <p>== Programa do curso</p>
 </div>
+=======
+</div>
+</div>
+<div class="sect1">
+<h2 id="_programa_do_curso">5. Programa do curso</h2>
+<div class="sectionbody">
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 <div class="ulist">
 <ul>
 <li>
@@ -542,13 +689,21 @@ processamento de imagens) <a href="fundamentos.pdf">fundamentos.pdf</a> (1 aula)
 <div class="ulist">
 <ul>
 <li>
+<<<<<<< HEAD
 <p>Representação e descrição de imagens (1 aulas)</p>
+=======
+<p>Representação e descrição de imagens <a href="representacao.pdf">representacao.pdf</a> (1 aulas)</p>
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 </li>
 <li>
 <p>Descritores de fronteiras e regiões (2 aulas)</p>
 </li>
 <li>
+<<<<<<< HEAD
 <p>Reconhecimento de padrões (2 aula)</p>
+=======
+<p>Reconhecimento de padrões <a href="reconhecimento.pdf">reconhecimento.pdf</a> (2 aulas)</p>
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 </li>
 <li>
 <p>Compressão de imagens (2 aulas)</p>
@@ -567,6 +722,7 @@ processamento de imagens) <a href="fundamentos.pdf">fundamentos.pdf</a> (1 aula)
 </li>
 </ul>
 </div>
+<<<<<<< HEAD
 <div class="paragraph">
 <p>== Metodologia de avaliação</p>
 </div>
@@ -589,15 +745,43 @@ referência - limite de 1,0 ponto)</p>
 <li>
 <p>Observância à regras de escrita da língua portuguesa ( 0,1 ponto descontado
 por erro encontrado - até o limite de 10 pontos)</p>
+=======
+</div>
+</div>
+<div class="sect1">
+<h2 id="_metodologia_de_avaliação">6. Metodologia de avaliação</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Prova escrita (50%) e Exercícios (50%)</p>
+</li>
+<li>
+<p>3a unidade (opcional): Artigo científico</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Seis páginas (versão em pdf) editadas em LaTeX - formato ieee (1 ponto por página)
+Pode-se usar como referência o
+<a href="http://cba2016.org.br/ModeloLatexCBA2016.zip">modelo do cba 2016</a>.</p>
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
+<<<<<<< HEAD
 <div class="paragraph">
 <p>== Datas das avaliações</p>
 </div>
+=======
+</div>
+</div>
+<div class="sect1">
+<h2 id="_datas_das_avaliações">7. Datas das avaliações</h2>
+<div class="sectionbody">
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 <div class="ulist">
 <ul>
 <li>
@@ -614,9 +798,17 @@ por erro encontrado - até o limite de 10 pontos)</p>
 </li>
 </ul>
 </div>
+<<<<<<< HEAD
 <div class="paragraph">
 <p>== Submissão de exercícios</p>
 </div>
+=======
+</div>
+</div>
+<div class="sect1">
+<h2 id="_submissão_de_exercícios">8. Submissão de exercícios</h2>
+<div class="sectionbody">
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 <div class="ulist">
 <ul>
 <li>
@@ -627,9 +819,17 @@ por erro encontrado - até o limite de 10 pontos)</p>
 </li>
 </ul>
 </div>
+<<<<<<< HEAD
 <div class="paragraph">
 <p>== Bibliografia</p>
 </div>
+=======
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bibliografia">9. Bibliografia</h2>
+<div class="sectionbody">
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -638,6 +838,7 @@ por erro encontrado - até o limite de 10 pontos)</p>
 </li>
 </ul>
 </div>
+<<<<<<< HEAD
 <div class="paragraph">
 <p>== Páginas das tarefas da turma (2016.1)
 * <a href="http://marcellacavalcanti.github.io/PDI/">Marcella Cavalcanti</a>
@@ -665,14 +866,117 @@ por erro encontrado - até o limite de 10 pontos)</p>
 * <a href="https://github.com/miguelrochajr/DCA0445_Exercises">Miguel &amp; Rodolfo</a>
 * <a href="http://dudevictor.github.io/projects/processamento-digital-imagens/">José Victor</a>
 * <a href="http://kalmik.github.io/pdi-ufrn/">Sérgio Felipe</a></p>
+=======
+</div>
+</div>
+<div class="sect1">
+<h2 id="_páginas_das_tarefas_da_turma_2016_1">10. Páginas das tarefas da turma (2016.1)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://marcellacavalcanti.github.io/PDI/">Marcella Cavalcanti</a></p>
+</li>
+<li>
+<p><a href="http://angelelouise.github.io/arquivos/pdi/index.html">Angele
+Louise e Victor Mafra</a></p>
+</li>
+<li>
+<p><a href="http://matheuspetrovich.github.io">Matheus Petrovich</a></p>
+</li>
+<li>
+<p><a href="http://projetospdi.github.io/PDI">Gusttavo Henrique &amp; Filipe
+Viana Monteiro</a></p>
+</li>
+<li>
+<p><a href="http://pedroklisley.github.io">Pedro Kisley e Samuel Alves</a></p>
+</li>
+<li>
+<p><a href="http://rdsilva.github.io/PDI/">Rodrigo Silva</a></p>
+</li>
+<li>
+<p><a href="https://github.com/brevik/pdi/wiki/TAREFAS">Brevik Rafael</a></p>
+</li>
+<li>
+<p><a href="https://github.com/thalescast/PDI">Thales Castro &amp; Tiago Batista</a></p>
+</li>
+<li>
+<p><a href="http://mribeirodantas.github.io/pdi/">Marcel Ribeiro</a></p>
+</li>
+<li>
+<p><a href="http://minedayse.github.io/">Yasmin &amp; Dayse</a></p>
+</li>
+<li>
+<p><a href="https://github.com/jrandson/pdi/wiki/Exercicios">José Randson</a></p>
+</li>
+<li>
+<p><a href="http://yargo11.github.io/yargo.github.io/">Yargo</a></p>
+</li>
+<li>
+<p><a href="http://ronaldojose.github.io/">Ronaldo Cabral</a></p>
+</li>
+<li>
+<p><a href="http://jonathanlima1.github.io">Jonathan Gabriel &amp; Flávio Davim</a></p>
+</li>
+<li>
+<p><a href="http://herbeton.github.io/unidadeum.html">Herbeton Bispo</a></p>
+</li>
+<li>
+<p><a href="http://pdi20161.github.io/">Maykon Ricardo</a></p>
+</li>
+<li>
+<p><a href="http://yuripedro.github.io/">Yuri Pedro &amp; Yuri Aguiar</a></p>
+</li>
+<li>
+<p><a href="http://www.joaopdi.weebly.com">João Gadelha</a></p>
+</li>
+<li>
+<p><a href="http://ffm1994.github.io/pdi/">Felipe Fernandes</a></p>
+</li>
+<li>
+<p><a href="http://ormaza.github.io/">Ormazabal Lima</a></p>
+</li>
+<li>
+<p><a href="https://github.com/miguelrochajr/DCA0445_Exercises">Miguel &amp; Rodolfo</a></p>
+</li>
+<li>
+<p><a href="http://dudevictor.github.io/projects/processamento-digital-imagens/">José Victor</a></p>
+</li>
+<li>
+<p><a href="http://kalmik.github.io/pdi-ufrn/">Sérgio Felipe</a></p>
+</li>
+</ul>
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
+<<<<<<< HEAD
 Last updated 2016-05-04 09:28:51 BRT
 </div>
 </div>
+=======
+Última atualização 2016-07-16 17:13:25 BRT
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+>>>>>>> 7a32025f82eedf50dad0e491e57d09856f9a08d4
 </body>
 </html>
