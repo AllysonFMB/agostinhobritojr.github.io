@@ -2439,32 +2439,33 @@ base.</p>
 <col style="width: 25%;">
 <col style="width: 25%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Especificador de herança</th>
-<th class="tableblock halign-left valign-top">Tipo de interface</th>
-<th class="tableblock halign-left valign-top">public</th>
-<th class="tableblock halign-left valign-top">private</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">protected</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">public</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">public</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">private</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>Especificador de herança</strong></p></td>
+<td class="tableblock halign-center valign-middle" colspan="3"><p class="tableblock"><strong>Tipo de interface</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">protected</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">private</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">private</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">private</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>public</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>private</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>protected</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">private</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">protected</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">protected</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">private</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>public</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>public</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>private</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>protected</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>private</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>private</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>private</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>private</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>protected</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>protected</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>private</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>protected</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2512,34 +2513,34 @@ objetos.</p>
 <div id="exe.heranca.construtor" class="listingblock">
 <div class="title">Listagem 14. Construtores no processo de herança</div>
 <div class="content">
-<pre class="pygments highlight"><code>#include &lt;iostream&gt;
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
 
-using namespace std;
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
 
-class Base{
-public:
-  Base(){
-    cout &lt;&lt; "Construtor da classe Base\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Base</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-n">Base</span><span class="tok-p">(){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Construtor da classe Base</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-class Intermediaria : public Base{
-public:
-  Intermediaria(){
-    cout &lt;&lt; "Construtor da classe Intermediaria\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Intermediaria</span> <span class="tok-o">:</span> <span class="tok-k">public</span> <span class="tok-n">Base</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-n">Intermediaria</span><span class="tok-p">(){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Construtor da classe Intermediaria</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-class Derivada : public Intermediaria{
-public:
-  Derivada(){
-    cout &lt;&lt; "Construtor da classe Derivada\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Derivada</span> <span class="tok-o">:</span> <span class="tok-k">public</span> <span class="tok-n">Intermediaria</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-n">Derivada</span><span class="tok-p">(){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Construtor da classe Derivada</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-int main(void){
-  Derivada d;
-}</code></pre>
+<span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+  <span class="tok-n">Derivada</span> <span class="tok-n">d</span><span class="tok-p">;</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2568,34 +2569,34 @@ o construtor da classe derivada.</p>
 <div class="listingblock">
 <div class="title">Listagem 15. Especificando os construtores das classes base na lista de iniciadores</div>
 <div class="content">
-<pre class="pygments highlight"><code>#include &lt;iostream&gt;
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
 
-using namespace std;
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
 
-class Base{
-public:
-  Base(int a){
-    cout &lt;&lt; "Construtor da classe Base: " &lt;&lt; a &lt;&lt; "\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Base</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-n">Base</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">a</span><span class="tok-p">){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Construtor da classe Base: &quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">a</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-class Intermediaria : public Base{
-public:
-  Intermediaria(int a) : Base(a-1){
-    cout &lt;&lt; "Construtor da classe Intermediaria: " &lt;&lt; a &lt;&lt; "\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Intermediaria</span> <span class="tok-o">:</span> <span class="tok-k">public</span> <span class="tok-n">Base</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-n">Intermediaria</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">a</span><span class="tok-p">)</span> <span class="tok-o">:</span> <span class="tok-n">Base</span><span class="tok-p">(</span><span class="tok-n">a</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Construtor da classe Intermediaria: &quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">a</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-class Derivada : public Intermediaria{
-public:
-  Derivada(int a) : Intermediaria(a-1){
-    cout &lt;&lt; "Construtor da classe Derivada: " &lt;&lt; a &lt;&lt; "\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Derivada</span> <span class="tok-o">:</span> <span class="tok-k">public</span> <span class="tok-n">Intermediaria</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-n">Derivada</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">a</span><span class="tok-p">)</span> <span class="tok-o">:</span> <span class="tok-n">Intermediaria</span><span class="tok-p">(</span><span class="tok-n">a</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Construtor da classe Derivada: &quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">a</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-int main(void){
-  Derivada d(3);
-}</code></pre>
+<span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+  <span class="tok-n">Derivada</span> <span class="tok-n">d</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2619,34 +2620,34 @@ também na ordem inversa.  Observe o funcionamento do
 <div id="exe.heranca.destrutor" class="listingblock">
 <div class="title">Listagem 16. Ordem de chamada dos destrutores na hierarquia de classes</div>
 <div class="content">
-<pre class="pygments highlight"><code>#include &lt;iostream&gt;
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
 
-using namespace std;
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
 
-class Base{
-public:
-  ~Base(){
-    cout &lt;&lt; "Destrutor da classe Base\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Base</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-o">~</span><span class="tok-n">Base</span><span class="tok-p">(){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Destrutor da classe Base</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-class Intermediaria : public Base{
-public:
-  ~Intermediaria(){
-    cout &lt;&lt; "Destrutor da classe Intermediaria\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Intermediaria</span> <span class="tok-o">:</span> <span class="tok-k">public</span> <span class="tok-n">Base</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-o">~</span><span class="tok-n">Intermediaria</span><span class="tok-p">(){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Destrutor da classe Intermediaria</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-class Derivada : public Intermediaria{
-public:
-  ~Derivada(){
-    cout &lt;&lt; "Destrutor da classe Derivada\n";
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Derivada</span> <span class="tok-o">:</span> <span class="tok-k">public</span> <span class="tok-n">Intermediaria</span><span class="tok-p">{</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-o">~</span><span class="tok-n">Derivada</span><span class="tok-p">(){</span>
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Destrutor da classe Derivada</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-int main(void){
-  Derivada d;
-}</code></pre>
+<span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+  <span class="tok-n">Derivada</span> <span class="tok-n">d</span><span class="tok-p">;</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2794,15 +2795,15 @@ números inteiros comuns, as operações realizadas nestas linhas são
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>class Foo{
-  float x;
-  string nome;
-};
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-k">class</span> <span class="tok-nc">Foo</span><span class="tok-p">{</span>
+  <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">;</span>
+  <span class="tok-n">string</span> <span class="tok-n">nome</span><span class="tok-p">;</span>
+<span class="tok-p">};</span>
 
-main(){
-  Foo a, b, c;
-  c = a + b;
-}</code></pre>
+<span class="tok-n">main</span><span class="tok-p">(){</span>
+  <span class="tok-n">Foo</span> <span class="tok-n">a</span><span class="tok-p">,</span> <span class="tok-n">b</span><span class="tok-p">,</span> <span class="tok-n">c</span><span class="tok-p">;</span>
+  <span class="tok-n">c</span> <span class="tok-o">=</span> <span class="tok-n">a</span> <span class="tok-o">+</span> <span class="tok-n">b</span><span class="tok-p">;</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2830,35 +2831,35 @@ deseja sobrecarregar, como mostra a Listagem
 <div id="exe.sobrecarga.exemplo.criacao" class="listingblock">
 <div class="title">Listagem 17. Realizando a sobrecarga do operador</div>
 <div class="content">
-<pre class="pygments highlight"><code>#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;string&gt;</span><span class="tok-cp"></span>
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
 
-class Foo{
-  float x;
-  string nome;
-public:
-  Foo(string _nome, float _x){
-	nome = _nome;
-	x = _x;
-  }
-  Foo(){}
-  Foo operator+(Foo b){
-	Foo retorno;
-	retorno.x = x + b.x;
-	retorno.nome= nome + b.nome;
-	return(retorno);
-  }
-  void print(){
-	cout &lt;&lt; nome &lt;&lt; ":"  &lt;&lt; x &lt;&lt; endl;
-  }
-};
+<span class="tok-k">class</span> <span class="tok-nc">Foo</span><span class="tok-p">{</span>
+  <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">;</span>
+  <span class="tok-n">string</span> <span class="tok-n">nome</span><span class="tok-p">;</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-n">Foo</span><span class="tok-p">(</span><span class="tok-n">string</span> <span class="tok-n">_nome</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">){</span>
+	<span class="tok-n">nome</span> <span class="tok-o">=</span> <span class="tok-n">_nome</span><span class="tok-p">;</span>
+	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+  <span class="tok-n">Foo</span><span class="tok-p">(){}</span>
+  <span class="tok-n">Foo</span> <span class="tok-k">operator</span><span class="tok-o">+</span><span class="tok-p">(</span><span class="tok-n">Foo</span> <span class="tok-n">b</span><span class="tok-p">){</span>
+	<span class="tok-n">Foo</span> <span class="tok-n">retorno</span><span class="tok-p">;</span>
+	<span class="tok-n">retorno</span><span class="tok-p">.</span><span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">x</span> <span class="tok-o">+</span> <span class="tok-n">b</span><span class="tok-p">.</span><span class="tok-n">x</span><span class="tok-p">;</span>
+	<span class="tok-n">retorno</span><span class="tok-p">.</span><span class="tok-n">nome</span><span class="tok-o">=</span> <span class="tok-n">nome</span> <span class="tok-o">+</span> <span class="tok-n">b</span><span class="tok-p">.</span><span class="tok-n">nome</span><span class="tok-p">;</span>
+	<span class="tok-k">return</span><span class="tok-p">(</span><span class="tok-n">retorno</span><span class="tok-p">);</span>
+  <span class="tok-p">}</span>
+  <span class="tok-kt">void</span> <span class="tok-n">print</span><span class="tok-p">(){</span>
+	<span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">nome</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;:&quot;</span>  <span class="tok-o">&lt;&lt;</span> <span class="tok-n">x</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">endl</span><span class="tok-p">;</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">};</span>
 
-main(){
-  Foo a("jose",3), b("maria",4), c;
-  c = a + b;
-  c.print();
-}</code></pre>
+<span class="tok-n">main</span><span class="tok-p">(){</span>
+  <span class="tok-n">Foo</span> <span class="tok-n">a</span><span class="tok-p">(</span><span class="tok-s">&quot;jose&quot;</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">),</span> <span class="tok-n">b</span><span class="tok-p">(</span><span class="tok-s">&quot;maria&quot;</span><span class="tok-p">,</span><span class="tok-mi">4</span><span class="tok-p">),</span> <span class="tok-n">c</span><span class="tok-p">;</span>
+  <span class="tok-n">c</span> <span class="tok-o">=</span> <span class="tok-n">a</span> <span class="tok-o">+</span> <span class="tok-n">b</span><span class="tok-p">;</span>
+  <span class="tok-n">c</span><span class="tok-p">.</span><span class="tok-n">print</span><span class="tok-p">();</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2875,7 +2876,7 @@ operandos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>c = a + b;</code></pre>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">c</span> <span class="tok-o">=</span> <span class="tok-n">a</span> <span class="tok-o">+</span> <span class="tok-n">b</span><span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2883,7 +2884,7 @@ operandos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code>c = a.operator+(b);</code></pre>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">c</span> <span class="tok-o">=</span> <span class="tok-n">a</span><span class="tok-p">.</span><span class="tok-k">operator</span><span class="tok-o">+</span><span class="tok-p">(</span><span class="tok-n">b</span><span class="tok-p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2900,7 +2901,7 @@ classe <code>Vetor2d</code>.</p>
 <div id="exe.sobrecarga.sobrecarga.vetor2d" class="listingblock">
 <div class="title">Listagem 18. Realizando sobrecarga de operadores com a classe <code>Vetor2d</code>.</div>
 <div class="content">
-<pre class="pygments highlight"><code>include::exemplos/sobrecarga-vetor2d.cpp</code></pre>
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">include</span><span class="tok-o">::</span><span class="tok-n">exemplos</span><span class="tok-o">/</span><span class="tok-n">sobrecarga</span><span class="tok-o">-</span><span class="tok-n">vetor2d</span><span class="tok-p">.</span><span class="tok-n">cpp</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3645,7 +3646,7 @@ em desenvolvimento&#8230;&#8203;
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-07-22 07:45:59 BRT
+Última atualização 2016-09-13 11:29:46 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
