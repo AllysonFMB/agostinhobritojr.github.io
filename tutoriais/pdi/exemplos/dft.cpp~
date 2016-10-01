@@ -43,7 +43,7 @@ int main(int , char**){
   // habilita/desabilita ruido
   int noise=0;
   // frequencia do ruido
-  int shift=10;
+  int freq=10;
   // ganho inicial do ruido
   float gain=1;
 
@@ -77,13 +77,10 @@ int main(int , char**){
                  dft_N - image.cols,
                  BORDER_CONSTANT, Scalar::all(0));
 
-  // parte real da matriz complexa de entrada para a dft
-  realInput = Mat_<float>(padded.size());
-  
   // parte imaginaria da matriz complexa (preenchida com zeros)
   zeros = Mat_<float>::zeros(padded.size());
 
-  // preapara a matriz complexa para ser preenchida
+  // prepara a matriz complexa para ser preenchida
   complexImage = Mat(padded.size(), CV_32FC2, Scalar(0));
 
   // a função de transferência (filtro frequencial) deve ter o
@@ -134,8 +131,6 @@ int main(int , char**){
 
     // calcula o dft
     dft(complexImage, complexImage);
-    // limpa o array de planos
-    planos.clear();
 
     // realiza a troca de quadrantes
     deslocaDFT(complexImage);
@@ -143,6 +138,8 @@ int main(int , char**){
     // aplica o filtro frequencial
     mulSpectrums(complexImage,filter,complexImage,0);
 
+    // limpa o array de planos
+    planos.clear();
     // separa as partes real e imaginaria para modifica-las
     split(complexImage, planos);
  
@@ -152,18 +149,18 @@ int main(int , char**){
     // insere ruido coerente, se habilitado
     if(noise){
       // F(u,v) recebe ganho proporcional a F(0,0)
-      planos[0].at<float>(dft_M/2 +shift, dft_N/2 +shift) +=
+      planos[0].at<float>(dft_M/2 +freq, dft_N/2 +freq) +=
         gain*mean;
    
-      planos[1].at<float>(dft_M/2 +shift, dft_N/2 +shift) +=
+      planos[1].at<float>(dft_M/2 +freq, dft_N/2 +freq) +=
         gain*mean;
    
       // F*(-u,-v) = F(u,v)
-      planos[0].at<float>(dft_M/2 -shift, dft_N/2 -shift) =
-        planos[0].at<float>(dft_M/2 +shift, dft_N/2 +shift);
+      planos[0].at<float>(dft_M/2 -freq, dft_N/2 -freq) =
+        planos[0].at<float>(dft_M/2 +freq, dft_N/2 +freq);
    
-      planos[1].at<float>(dft_M/2 -shift, dft_N/2 -shift) =
-        -planos[1].at<float>(dft_M/2 +shift, dft_N/2 +shift);
+      planos[1].at<float>(dft_M/2 -freq, dft_N/2 -freq) =
+        -planos[1].at<float>(dft_M/2 +freq, dft_N/2 +freq);
 
     }
 
@@ -173,6 +170,7 @@ int main(int , char**){
     // troca novamente os quadrantes
     deslocaDFT(complexImage);
 
+	cout << complexImage.size().height << endl;
     // calcula a DFT inversa
     idft(complexImage, complexImage);
 
@@ -192,15 +190,15 @@ int main(int , char**){
     switch(key){
       // aumenta a frequencia do ruido
     case 'q':
-      shift=shift+1;
-      if(shift > dft_M/2-1)
-        shift = dft_M/2-1;
+      freq=freq+1;
+      if(freq > dft_M/2-1)
+        freq = dft_M/2-1;
       break;
       // diminui a frequencia do ruido
     case 'a':
-      shift=shift-1;
-      if(shift < 1)
-        shift = 1;
+      freq=freq-1;
+      if(freq < 1)
+        freq = 1;
       break;
       // amplifica o ruido
     case 'x':
