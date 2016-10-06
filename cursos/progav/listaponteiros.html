@@ -528,7 +528,7 @@ printf("%x %d %d %d %d", p,*p+2,**&amp;p,3**p,**&amp;p+4);
 </div>
 </li>
 <li>
-<p>Se i e j são variáveis inteiras e p e q ponteiros para int, quais
+<p>Se <code>i</code> e <code>j</code> são variáveis inteiras e p e q ponteiros para int, quais
 das seguintes expressões de atribuição são ilegais?</p>
 <div class="listingblock">
 <div class="content">
@@ -651,70 +651,62 @@ das seguintes expressões de atribuição são ilegais?</p>
 </div>
 </li>
 <li>
-<p>Assumindo que pulo[] é um vetor do tipo int, quais das seguintes expressões referenciam o valor do terceiro elemento do vetor?</p>
-<div class="ulist">
-<ul>
-<li>
-<p>$$*(pulo + 2);$$</p>
-</li>
-<li>
-<p>$$*(pulo + 4);$$</p>
-</li>
-<li>
-<p>$$pulo + 4;$$</p>
-</li>
-<li>
-<p>$$pulo + 2;$$</p>
-</li>
-</ul>
+<p>Assumindo que <code>pulo[]</code> é um vetor do tipo int, quais das seguintes
+expressões referenciam o valor do terceiro elemento do vetor?</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">2</span><span class="tok-p">);</span>
+<span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">4</span><span class="tok-p">);</span>
+<span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">4</span><span class="tok-p">;</span>
+<span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">2</span><span class="tok-p">;</span></code></pre>
+</div>
 </div>
 </li>
 <li>
-<p>Considerando a declaração int mat[4], *p, x;, quais das seguintes expressões são válidas? Justifique.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>$$p = mat + 1; $$</p>
-</li>
-<li>
-<p>$$p = mat; $$++</p>
-</li>
-<li>
-<p>$$p = mat; $$++</p>
-</li>
-<li>
-<p>$$x = (*mat); $$++</p>
-</li>
-</ul>
+<p>Considerando a declaração <code>int mat[4], *p, x;</code>, quais das
+seguintes expressões são válidas? Justifique.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-n">mat</span> <span class="tok-o">+</span> <span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-n">mat</span><span class="tok-o">++</span><span class="tok-p">;</span>
+<span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-o">++</span><span class="tok-n">mat</span><span class="tok-p">;</span>
+<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-o">*</span><span class="tok-n">mat</span><span class="tok-p">)</span><span class="tok-o">++</span><span class="tok-p">;</span></code></pre>
+</div>
 </div>
 </li>
 <li>
 <p>O que fazem os seguintes programas em C?</p>
 <div class="listingblock">
 <div class="content">
-<pre>int main(){
-  int vet[] = {4,9,13};
-  int i;
-  for(i=0;i&lt;3;i++){
-    printf("%d ",*(vet+i));
-  }
-}</pre>
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(){</span>
+  <span class="tok-kt">int</span> <span class="tok-n">vet</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mi">4</span><span class="tok-p">,</span><span class="tok-mi">9</span><span class="tok-p">,</span><span class="tok-mi">13</span><span class="tok-p">};</span>
+  <span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-p">;</span>
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-mi">3</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d &quot;</span><span class="tok-p">,</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">vet</span><span class="tok-o">+</span><span class="tok-n">i</span><span class="tok-p">));</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>int main(){
-  int vet[] = {4,9,13};
-  int i;
-  for(i=0;i&lt;3;i++){
-    printf("%X ",vet+i);
-  }
-}</pre>
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(){</span>
+  <span class="tok-kt">int</span> <span class="tok-n">vet</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mi">4</span><span class="tok-p">,</span><span class="tok-mi">9</span><span class="tok-p">,</span><span class="tok-mi">13</span><span class="tok-p">};</span>
+  <span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-p">;</span>
+  <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-mi">3</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+    <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%X &quot;</span><span class="tok-p">,</span><span class="tok-n">vet</span><span class="tok-o">+</span><span class="tok-n">i</span><span class="tok-p">);</span>
+  <span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Seja x um vetor de 4 elementos, declarado da forma TIPO x[4]. Suponha que depois da declaração, x esteja armazenado no endereço de memória 4092 (ou seja, o endereço de x[0]). Suponha também que na máquina seja usada uma variável do tipo char ocupa 1 byte, do tipo int ocupa 2 bytes, do tipo float ocupa 4 bytes e do tipo double ocupa 8 bytes. Quais serão os valores de $$x+1$$, $$x+2$$ e $$x+3$$ se:</p>
+<p>Seja <code>x</code> um vetor de 4 elementos, declarado da forma <code>TIPO
+x[4];</code>. Suponha que depois da declaração, <code>x</code> esteja armazenado no
+endereço de memória <code>4092</code> (ou seja, o endereço de <code>x[0]</code>). Suponha
+também que na máquina seja usada uma variável do tipo char ocupa 1
+byte, do tipo int ocupa 2 bytes, do tipo float ocupa 4 bytes e do tipo
+double ocupa 8 bytes. Quais serão os valores de <code>x+1</code>, <code>x+2</code> e <code>x+3</code>
+se:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -739,40 +731,24 @@ das seguintes expressões de atribuição são ilegais?</p>
 <p>Suponha que as seguintes declarações tenham sido realizadas:</p>
 <div class="listingblock">
 <div class="content">
-<pre>float aloha[10], coisas[10][5], *pf, value = 2.2;
-int i=3;</pre>
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">float</span> <span class="tok-n">aloha</span><span class="tok-p">[</span><span class="tok-mi">10</span><span class="tok-p">],</span> <span class="tok-n">coisas</span><span class="tok-p">[</span><span class="tok-mi">10</span><span class="tok-p">][</span><span class="tok-mi">5</span><span class="tok-p">],</span> <span class="tok-o">*</span><span class="tok-n">pf</span><span class="tok-p">,</span> <span class="tok-n">value</span> <span class="tok-o">=</span> <span class="tok-mf">2.2</span><span class="tok-p">;</span>
+<span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">3</span><span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Identifique quais dos seguintes comandos é válido ou inválido:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>aloha[2] = value;</p>
-</li>
-<li>
-<p>scanf("%f", &amp;amp;aloha); </p>
-</li>
-<li>
-<p>aloha = value"; </p>
-</li>
-<li>
-<p>printf("%f", aloha); </p>
-</li>
-<li>
-<p>coisas[4][4] = aloha[3]; </p>
-</li>
-<li>
-<p>coisas[5] = aloha; </p>
-</li>
-<li>
-<p>pf = value; </p>
-</li>
-<li>
-<p>pf = aloha </p>
-</li>
-</ol>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">aloha</span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">value</span><span class="tok-p">;</span>
+<span class="tok-n">scanf</span><span class="tok-p">(</span><span class="tok-s">&quot;%f&quot;</span><span class="tok-p">,</span> <span class="tok-o">&amp;</span><span class="tok-n">aloha</span><span class="tok-p">);</span>
+<span class="tok-n">aloha</span> <span class="tok-o">=</span> <span class="tok-n">value</span><span class="tok-s">&quot;;</span>
+<span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%f&quot;</span><span class="tok-p">,</span> <span class="tok-n">aloha</span><span class="tok-p">);</span>
+<span class="tok-n">coisas</span><span class="tok-p">[</span><span class="tok-mi">4</span><span class="tok-p">][</span><span class="tok-mi">4</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">aloha</span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">];</span>
+<span class="tok-n">coisas</span><span class="tok-p">[</span><span class="tok-mi">5</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">aloha</span><span class="tok-p">;</span>
+<span class="tok-n">pf</span> <span class="tok-o">=</span> <span class="tok-n">value</span><span class="tok-p">;</span>
+<span class="tok-n">pf</span> <span class="tok-o">=</span> <span class="tok-n">aloha</span><span class="tok-p">;</span></code></pre>
+</div>
 </div>
 </li>
 <li>
@@ -782,7 +758,7 @@ int i=3;</pre>
 <p>Implemente em linguagem C uma função em um programa de computador que leia n valores do tipo float e os apresente em ordem crescente. Utilize alocação dinâmica de memória para realizar a tarefa.</p>
 </li>
 <li>
-<p>Reimplemente o programa da questão anterior utilizando a função qsort() do C. Comente o seu código, explicando o que faz cada uma das linhas.</p>
+<p>Reimplemente o programa da questão anterior utilizando a função <code>qsort()</code> do C. Comente o seu código, explicando o que faz cada uma das linhas.</p>
 </li>
 <li>
 <p>Utilize a ideia do ponteiro para função pela função qsort() para implementar sua própria função de ordenação. Para isso, sua função deverá receber, entre outros argumentos, um ponteiro para a função de comparação.</p>
@@ -808,8 +784,24 @@ int i=3;</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-02 05:44:23 BRT
+Last updated 2016-09-03 14:45:46 BRT
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

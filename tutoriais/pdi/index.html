@@ -575,8 +575,7 @@ documentação provida pela equipe de desenvolvimento é, sem dúvida,
 excelente. Entretanto, material de estudo online em língua portuguesa
 ainda é carente de investimento e resolvemos oferecer essa pequena
 contribuição. O foco do tutorial é ensino de graduação, de sorte que
-funcionalidades mais aprofundadas não serão exploradas&#8230;&#8203; por enquanto
-:)</p>
+funcionalidades mais aprofundadas não serão exploradas por enquanto.</p>
 </div>
 <div class="paragraph">
 <p>Toda e qualquer sugestão e/ou contribuição visando melhorar e evoluir
@@ -1104,11 +1103,10 @@ exibida com o negativo da imagem na região correspondente. O efeito
 <ul>
 <li>
 <p>Utilizando o programa <a href="exemplos/pixels.cpp" class="bare">exemplos/pixels.cpp</a> como referência,
-implemente um programa <code>trocaregioes.cpp</code>. Seu programa deverão
-trocar aleatoriamente regiões da imagem, formando uma espécie de
-quebra-cabeças. Explore o uso da classe <code>Mat</code> e seus construtores
-para criar as regiões que serão trocadas. O efeito é ilustrado na
-Figura <a href="#fig_trocaregioes">Troca de regiões</a>.</p>
+implemente um programa <code>trocaregioes.cpp</code>. Seu programa deverá
+trocar os quadrantes em diagonal na imagem. Explore o uso da classe
+<code>Mat</code> e seus construtores para criar as regiões que serão
+trocadas. O efeito é ilustrado na Figura <a href="#fig_trocaregioes">Troca de regiões</a>.</p>
 </li>
 </ul>
 </div>
@@ -1437,22 +1435,25 @@ superior esquerdo da imagem capturada.</p>
              <span class="tok-n">uniform</span><span class="tok-p">,</span> <span class="tok-n">acummulate</span><span class="tok-p">);</span>
 
     <span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">histR</span><span class="tok-p">,</span> <span class="tok-n">histR</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">histImgR</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-n">NORM_MINMAX</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-p">());</span>
-    <span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">histG</span><span class="tok-p">,</span> <span class="tok-n">histB</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">histImgR</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-n">NORM_MINMAX</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-p">());</span>
-    <span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">histB</span><span class="tok-p">,</span> <span class="tok-n">histB</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">histImgR</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-n">NORM_MINMAX</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-p">());</span>
+    <span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">histG</span><span class="tok-p">,</span> <span class="tok-n">histG</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">histImgG</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-n">NORM_MINMAX</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-p">());</span>
+    <span class="tok-n">normalize</span><span class="tok-p">(</span><span class="tok-n">histB</span><span class="tok-p">,</span> <span class="tok-n">histB</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">histImgB</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">,</span> <span class="tok-n">NORM_MINMAX</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-p">());</span>
 
     <span class="tok-n">histImgR</span><span class="tok-p">.</span><span class="tok-n">setTo</span><span class="tok-p">(</span><span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
     <span class="tok-n">histImgG</span><span class="tok-p">.</span><span class="tok-n">setTo</span><span class="tok-p">(</span><span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
     <span class="tok-n">histImgB</span><span class="tok-p">.</span><span class="tok-n">setTo</span><span class="tok-p">(</span><span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">));</span>
 
     <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">nbins</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
-      <span class="tok-n">line</span><span class="tok-p">(</span><span class="tok-n">histImgR</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-p">),</span>
-           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">cvRound</span><span class="tok-p">(</span><span class="tok-n">histR</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">))),</span>
+      <span class="tok-n">line</span><span class="tok-p">(</span><span class="tok-n">histImgR</span><span class="tok-p">,</span>
+           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-p">),</span>
+           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-o">-</span><span class="tok-n">cvRound</span><span class="tok-p">(</span><span class="tok-n">histR</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">))),</span>
            <span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">255</span><span class="tok-p">),</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
-      <span class="tok-n">line</span><span class="tok-p">(</span><span class="tok-n">histImgG</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-p">),</span>
-           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">cvRound</span><span class="tok-p">(</span><span class="tok-n">histG</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">))),</span>
+      <span class="tok-n">line</span><span class="tok-p">(</span><span class="tok-n">histImgG</span><span class="tok-p">,</span>
+           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-p">),</span>
+           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-o">-</span><span class="tok-n">cvRound</span><span class="tok-p">(</span><span class="tok-n">histG</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">))),</span>
            <span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">255</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">),</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
-      <span class="tok-n">line</span><span class="tok-p">(</span><span class="tok-n">histImgB</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-p">),</span>
-           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">cvRound</span><span class="tok-p">(</span><span class="tok-n">histB</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">))),</span>
+      <span class="tok-n">line</span><span class="tok-p">(</span><span class="tok-n">histImgB</span><span class="tok-p">,</span>
+           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-p">),</span>
+           <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-o">-</span><span class="tok-n">cvRound</span><span class="tok-p">(</span><span class="tok-n">histB</span><span class="tok-p">.</span><span class="tok-n">at</span><span class="tok-o">&lt;</span><span class="tok-kt">float</span><span class="tok-o">&gt;</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">))),</span>
            <span class="tok-n">Scalar</span><span class="tok-p">(</span><span class="tok-mi">255</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">),</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
     <span class="tok-p">}</span>
     <span class="tok-n">histImgR</span><span class="tok-p">.</span><span class="tok-n">copyTo</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">(</span><span class="tok-n">Rect</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">0</span>       <span class="tok-p">,</span><span class="tok-n">nbins</span><span class="tok-p">,</span> <span class="tok-n">histh</span><span class="tok-p">)));</span>
@@ -3466,7 +3467,7 @@ sua técnica pontilhista.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-05-02 22:19:50 BRT
+Última atualização 2016-10-01 08:49:56 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
