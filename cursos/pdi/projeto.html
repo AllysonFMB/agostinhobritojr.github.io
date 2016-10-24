@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.5">
 <meta name="author" content="Agostinho Brito">
-<title>DCA0445 - Processamento Digital de Imagens</title>
+<title>Projeto da terceira unidade</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -418,7 +418,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <style>
 .listingblock .pygments .hll { background-color: #ffffcc }
 .listingblock .pygments, .listingblock .pygments code { background: #f8f8f8; }
@@ -489,401 +488,115 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>DCA0445 - Processamento Digital de Imagens</h1>
+<h1>Projeto da terceira unidade</h1>
 <div class="details">
 <span id="author" class="author">Agostinho Brito</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_ementa">1. Ementa</a></li>
-<li><a href="#_objetivo_geral">2. Objetivo geral</a></li>
-<li><a href="#_metodologia">3. Metodologia</a></li>
-<li><a href="#_materiais_adicionais">4. Materiais adicionais</a></li>
-<li><a href="#_programa_do_curso">5. Programa do curso</a></li>
-<li><a href="#_metodologia_de_avaliação">6. Metodologia de avaliação</a></li>
-<li><a href="#_datas_das_avaliações">7. Datas das avaliações</a></li>
-<li><a href="#_submissão_de_exercícios">8. Submissão de exercícios</a></li>
-<li><a href="#_bibliografia">9. Bibliografia</a></li>
-<li><a href="#_páginas_das_tarefas_da_turma_2016_2">10. Páginas das tarefas da turma (2016.2)</a></li>
-<li><a href="#_páginas_das_tarefas_da_turma_2016_1">11. Páginas das tarefas da turma (2016.1)</a></li>
+<li><a href="#_introdução">1. Introdução</a></li>
+<li><a href="#_o_experimento">2. O experimento</a></li>
+<li><a href="#_o_produto">3. O produto</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introdução">1. Introdução</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Agostinho Brito &lt;<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>&gt;</p>
+<p>Granulometria é o estudo da distribuição das dimensões de grãos em um
+determinado conjunto. Em se tratando de técnicas de processamento de
+imagens, a análise granulométrica visa obter (geralmente de forma
+automática) informações sobre forma, cor ou textura de grãos presentes
+em uma imagem.</p>
+</div>
+<div class="paragraph">
+<p>Um dos usos da granulometria é na classificação de grãos de
+cereais. Informações como a forma de um grão, sua cor, textura,
+tamanho, entre outras, podem ser usadas para indicar possíveis
+impurezas em uma amostra, oferecendo mecanismos para concepção de
+aparatos de classificação automáticos.</p>
+</div>
+<div class="paragraph">
+<p>O objetivo desse projeto é realizar a classificação de quatro tipos de
+grãos que deverão estrategicamente posicionados em um anteparo e,
+usando técnicas de processamento de imagens, separá-los conforme sua
+categoria.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ementa">1. Ementa</h2>
+<h2 id="_o_experimento">2. O experimento</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Introdução, fundamentos de imagens digitais, transformações de
-imagens, melhoramento de imagens, restauração de imagens, segmentação,
-representação e descrição, reconhecimento e interpretação de imagens.</p>
+<p>Prepare um aparato para capturar a imagem de uma cena onde poderão
+estar 4 tipos de grãos diferentes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Feijão preto</p>
+</li>
+<li>
+<p>Feijão mulatinho</p>
+</li>
+<li>
+<p>Arroz agulhinha</p>
+</li>
+<li>
+<p>Arroz do sertão</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Os grãos deverão estar misturados, mas a cena pode ser preparada para
+facilitar o processo de separação dos grãos. Por exemplo, a posição
+dos grãos pode ser ajustada de forma a separar grãos que se tocam uns
+nos outros.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_objetivo_geral">2. Objetivo geral</h2>
+<h2 id="_o_produto">3. O produto</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Introduzir os conceitos de processamento digital de imagens, aplicar
-as técnicas introduzidas na solução de problemas tradicionais e
-estimular o desenvolvimento de métodos, procedimentos e aplicações na
-área.</p>
+<p>Implemente, usando OpenCV, um programa de computador capaz de
+classificar, em uma imagem capturada, cada grão conforme sua
+espécie. Com o programa funcional, elabore um relatório que explore os
+seguintes aspectos:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia">3. Metodologia</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Aulas expositivas e práticas, no laboratório, utilizando programas
-específicos.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_materiais_adicionais">4. Materiais adicionais</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="https://github.com/agostinhobritojr/dca0445">https://github.com/agostinhobritojr/dca0445</a></p>
+<p>(2,0 pontos) Como a cena foi preparada, incluindo a escolha de anteparos,
+iluminação, etc, e como esses elementos influenciaram no processo.</p>
 </li>
 <li>
-<p>Tutoriais de git (inglês): <a href="https://www.atlassian.com/git/tutorials/">https://www.atlassian.com/git/tutorials/</a></p>
+<p>(2,0 pontos) Como foi realizada a segmentação da imagem, separando
+os grãos do restante da imagem</p>
 </li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_programa_do_curso">5. Programa do curso</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
 <li>
-<p>Primeira unidade</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Apresentação do curso (1 aula)</p>
-</li>
-<li>
-<p>Fundamentos de imagens digitais (etapas envolvidas no
-processamento de imagens) <a href="fundamentos.pdf">fundamentos.pdf</a> (1 aula)</p>
-</li>
-<li>
-<p>Fundamentos de imagens digitais (representação de imagens digitais) (1 aula)</p>
-</li>
-<li>
-<p>Apresentação da biblioteca OpenCV (2 aulas) (laboratório)</p>
-</li>
-<li>
-<p>Relações entre pixels/ transformações geométricas (1 aula)</p>
-</li>
-<li>
-<p>Modelos de cor <a href="cor.pdf">cor.pdf</a> (1 aula)</p>
-</li>
-<li>
-<p>Manipulação de histogramas <a href="espacial.pdf">espacial.pdf</a> (1 aula)</p>
-</li>
-<li>
-<p>Princípios de convolução digital (1 aula)</p>
-</li>
-<li>
-<p>Filtros espaciais (2 aulas)</p>
-</li>
-<li>
-<p>1a. Avaliação</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Segunda unidade</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Transformada de Fourier <a href="frequencia.pdf">frequencia.pdf</a> (2 aulas)</p>
-</li>
-<li>
-<p>Filtragem no domínio da freqüência (2 aulas)</p>
-</li>
-<li>
-<p>Restauração de imagens (1 aula)</p>
-</li>
-<li>
-<p>Segmentação de imagens / limiarização <a href="segmentacao.pdf">segmentacao.pdf</a> (2 aulas)</p>
-</li>
-<li>
-<p>Fundamentos de morfologia matemática (2 aulas)</p>
-</li>
-<li>
-<p>Transformada de Hotteling <a href="pca.pdf">pca.pdf</a> (1 aula)</p>
-</li>
-<li>
-<p>Detecção de faces - algoritmo de Viola-Jones (1 aula)</p>
-</li>
-<li>
-<p>Rastreio de pontos usando fluxo ótico <a href="fluxo.pdf">fluxo.pdf</a> (1 aula)</p>
-</li>
-<li>
-<p>2a. Avaliação</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Terceira unidade</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="projeto.html">Projeto da terceira unidade</a></p>
-</li>
-<li>
-<p>Representação e descrição de imagens <a href="representacao.pdf">representacao.pdf</a> (1 aulas)</p>
-</li>
-<li>
-<p>Descritores de fronteiras e regiões (2 aulas)</p>
-</li>
-<li>
-<p>Reconhecimento de padrões <a href="reconhecimento.pdf">reconhecimento.pdf</a> (2 aulas)</p>
-</li>
-<li>
-<p>Compressão de imagens (2 aulas)</p>
-</li>
-<li>
-<p>Métodos de decisão (1 aula)</p>
-</li>
-<li>
-<p>Acompanhamento de projetos (2 aulas)</p>
-</li>
-<li>
-<p>'Workshop' para apresentação de projetos (3 aulas)</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia_de_avaliação">6. Metodologia de avaliação</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Prova escrita (50%) e Exercícios (50%)</p>
-</li>
-<li>
-<p>3a unidade (opcional): Artigo científico</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Quatro a seis páginas (versão em pdf) editadas em LaTeX - formato
-ieee Pode-se usar como referência o
-<a href="http://cba2016.org.br/ModeloLatexCBA2016.zip">modelo do cba
-2016</a>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_datas_das_avaliações">7. Datas das avaliações</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>1a Avaliação: /2016</p>
-</li>
-<li>
-<p>2a Avaliação: /2016</p>
-</li>
-<li>
-<p>3a Avaliação: /2016</p>
-</li>
-<li>
-<p>reposicao:  /2016</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_submissão_de_exercícios">8. Submissão de exercícios</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Cada aluno deverá submeter seus exercícios em uma homepage com as modificações realizadas no programa pdi fornecido como referência, os testes realizados, imagens obtidas, ambos devidamente comentados. Logo que sua página web estiver pronta, envie um e-mail para seu instrutor (<a href="mailto:agostinhobritojr@gmail.com">agostinhobritojr@gmail.com</a>) com a URL de referência, que a mesma será incluída na página do curso. Se necessário, inclua as instruções de compilação do seu programa.</p>
-</li>
-<li>
-<p>O prazo para entrega das atividades encerra-se ao fim de cada avaliação. Atividades entregues após este prazo não serão aceitas.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bibliografia">9. Bibliografia</h2>
-<div class="sectionbody">
-<div class="ulist bibliography">
-<ul class="bibliography">
-<li>
-<p>Rafael Gonzalez. 'Processamento Digital de Imagens'. Addison-Wesley. 1990. 2 ed.
-.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_páginas_das_tarefas_da_turma_2016_2">10. Páginas das tarefas da turma (2016.2)</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://gustavolaires.github.io/">Gustavo Linhares</a></p>
-</li>
-<li>
-<p><a href="http://andrebfd4.github.io/andrebfd4/">André Diniz</a></p>
-</li>
-<li>
-<p><a href="http://danvictor.github.io/">Dan Victor</a></p>
-</li>
-<li>
-<p><a href="http://fernandoleandrofernandes.github.io/">Fernando Leandro e Gustavo Linhares</a></p>
-</li>
-<li>
-<p><a href="http://gustavolaires.github.io/">Gustavo Laires</a></p>
-</li>
-<li>
-<p><a href="http://jmarcoscosta.github.io">João Marcos</a></p>
-</li>
-<li>
-<p><a href="http://josiele.github.io">Josiele e Djanilson</a></p>
-</li>
-<li>
-<p><a href="http://marcusbrito.github.io">Marcus Brito</a></p>
-</li>
-<li>
-<p><a href="http://mathmmss.github.io">Matheus Vinícius</a></p>
-</li>
-<li>
-<p><a href="http://melosgabriel.github.io">Gabriel Melo</a></p>
-</li>
-<li>
-<p><a href="http://remailes.github.io/">Isaías Remailes</a></p>
-</li>
-<li>
-<p><a href="http://vitorramos.github.io/">Vitor Ramos</a></p>
-</li>
-<li>
-<p><a href="http://wendellalves.github.io/">Wendell Alves</a></p>
-</li>
-<li>
-<p><a href="https://lucascamaradb.github.io/pdi/">Lucas Câmara</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_páginas_das_tarefas_da_turma_2016_1">11. Páginas das tarefas da turma (2016.1)</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://marcellacavalcanti.github.io/PDI/">Marcella Cavalcanti</a></p>
-</li>
-<li>
-<p><a href="http://angelelouise.github.io/arquivos/pdi/index.html">Angele
-Louise e Victor Mafra</a></p>
-</li>
-<li>
-<p><a href="http://matheuspetrovich.github.io">Matheus Petrovich</a></p>
-</li>
-<li>
-<p><a href="http://projetospdi.github.io/PDI">Gusttavo Henrique &amp; Filipe
-Viana Monteiro</a></p>
-</li>
-<li>
-<p><a href="http://pedroklisley.github.io">Pedro Kisley e Samuel Alves</a></p>
-</li>
-<li>
-<p><a href="http://rdsilva.github.io/PDI/">Rodrigo Silva</a></p>
-</li>
-<li>
-<p><a href="https://github.com/brevik/pdi/wiki/TAREFAS">Brevik Rafael</a></p>
-</li>
-<li>
-<p><a href="https://github.com/thalescast/PDI">Thales Castro &amp; Tiago Batista</a></p>
-</li>
-<li>
-<p><a href="http://mribeirodantas.github.io/pdi/">Marcel Ribeiro</a></p>
-</li>
-<li>
-<p><a href="http://minedayse.github.io/">Yasmin &amp; Dayse</a></p>
-</li>
-<li>
-<p><a href="https://github.com/jrandson/pdi/wiki/Exercicios">José Randson</a></p>
-</li>
-<li>
-<p><a href="http://yargo11.github.io/yargo.github.io/">Yargo</a></p>
-</li>
-<li>
-<p><a href="http://ronaldojose.github.io/">Ronaldo Cabral</a></p>
-</li>
-<li>
-<p><a href="http://jonathanlima1.github.io">Jonathan Gabriel &amp; Flávio Davim</a></p>
-</li>
-<li>
-<p><a href="http://herbeton.github.io/unidadeum.html">Herbeton Bispo</a></p>
-</li>
-<li>
-<p><a href="http://pdi20161.github.io/">Maykon Ricardo</a></p>
-</li>
-<li>
-<p><a href="http://yuripedro.github.io/">Yuri Pedro &amp; Yuri Aguiar</a></p>
-</li>
-<li>
-<p><a href="http://www.joaopdi.weebly.com">João Gadelha</a></p>
-</li>
-<li>
-<p><a href="http://ffm1994.github.io/pdi/">Felipe Fernandes</a></p>
-</li>
-<li>
-<p><a href="http://ormaza.github.io/">Ormazabal Lima</a></p>
-</li>
-<li>
-<p><a href="https://github.com/miguelrochajr/DCA0445_Exercises">Miguel &amp; Rodolfo</a></p>
+<p>(2,0 pontos) Como foram classificados os grãos conforme sua forma.</p>
 </li>
 <li>
-<p><a href="http://dudevictor.github.io/projects/processamento-digital-imagens/">José Victor</a></p>
+<p>(2,0 pontos) Como foram classificados os grãos conforme sua
+cor/textura.</p>
 </li>
 <li>
-<p><a href="http://kalmik.github.io/pdi-ufrn/">Sérgio Felipe</a></p>
+<p>(2,0 pontos) Ilustre com um exemplo, passo a passo, as etapas
+do processo de visão artificial, discutindo as dificuldades
+encontradas em cada uma delas.</p>
 </li>
-</ul>
+</ol>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-10-24 16:14:17 BRT
+Última atualização 2016-10-24 16:12:30 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
