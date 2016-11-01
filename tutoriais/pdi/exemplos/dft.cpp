@@ -170,6 +170,7 @@ int main(int , char**){
     // troca novamente os quadrantes
     deslocaDFT(complexImage);
 
+	cout << complexImage.size().height << endl;
     // calcula a DFT inversa
     idft(complexImage, complexImage);
 

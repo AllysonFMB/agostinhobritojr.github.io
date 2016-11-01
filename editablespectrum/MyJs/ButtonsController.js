@@ -14,7 +14,7 @@ var ButtonDrawingClearArea = document.getElementById('drawClearArea');
 
 //////////////////////////////////////////////////////
 var defaultButtonBorderStyle = "2px solid #555555";
-var selectedButtonBorderStyle = "3px solid blue";
+var selectedButtonBorderStyle = "5px solid blue";
 ////////////////////////////////////////////////////
 
 

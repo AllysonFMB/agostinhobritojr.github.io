@@ -47,7 +47,7 @@ function rgbToHex(r, g, b) {
 }
 
 function updateCursosInformation(){
-    textComponent.innerHTML = currentCursorPosition + "=" + currentColorPixel + "<br>" + currentDragDropPosition;
+    textComponent.innerHTML = currentCursorPosition + "<br>" + currentColorPixel + "<br>" + currentDragDropPosition;
 }
 
 
@@ -97,7 +97,8 @@ $('#imageFourier').mousemove(function(e) {
     currentCursorPosition = "(" +  mouseCursorPositionInArea_X + ", " + mouseCursorPositionInArea_Y +")";
     var c = this.getContext('2d');
     var p = contextFourierTransformArea.getImageData(mouseCursorPositionInArea_X, mouseCursorPositionInArea_Y, 1, 1).data;
-    currentColorPixel =  "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+    //currentColorPixel =  "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+    currentColorPixel = "R = "+ p[0] +"<br>"+"G = " + p[1] + "<br>" + "B = " + p[2];
     if(mousePressed){
         whileMouseDown(mouseCursorPositionInArea_X, mouseCursorPositionInArea_Y);
         if(!(anyButtonDrawSelected())){

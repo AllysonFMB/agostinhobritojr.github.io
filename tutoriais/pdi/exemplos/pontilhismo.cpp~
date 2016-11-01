@@ -5,12 +5,15 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 using namespace cv;
 
-#define STEP 6
-#define JITTER 4
+#define STEP 5
+#define JITTER 3
+#define RAIO 3
 
 int main(int argc, char** argv){
   vector<int> yrange;
@@ -19,8 +22,11 @@ int main(int argc, char** argv){
   Mat image, frame, points;
 
   int width, height, gray;
+  int x, y;
   
   image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
+
+  srand(time(0));
   
   if(!image.data){
 	cout << "nao abriu" << argv[1] << endl;
@@ -49,11 +55,12 @@ int main(int argc, char** argv){
   for(auto i : xrange){
     random_shuffle(yrange.begin(), yrange.end());
     for(auto j : yrange){
-      gray = image.at<uchar>(i,j);
+      x = i+rand()%(2*JITTER)-JITTER+1;
+      y = j+rand()%(2*JITTER)-JITTER+1;
+      gray = image.at<uchar>(x,y);
       circle(points,
-             cv::Point(j+rand()%(JITTER+1)-JITTER,
-                       i+rand()%(JITTER+1)-JITTER),
-             3,
+             cv::Point(y,x),
+             RAIO,
              CV_RGB(gray,gray,gray),
              -1,
              CV_AA);

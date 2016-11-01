@@ -665,7 +665,7 @@ matemática necessária para implementar essa funcionalidade.</p>
 </li>
 <li>
 <p>Transladar o polígono para \((+a, +b)\) usando uma função
-<code>move(float a, float b)</code>.</p>
+<code>translada(float a, float b)</code>.</p>
 </li>
 <li>
 <p>Rotacionar o polígono de \$\theta\$ graus no sentido anti-horário
@@ -683,7 +683,7 @@ em torno de um ponto \((x_0, y_0)\) fornecido pelo usuário.</p>
 <p>Utilizando a implementação da classe <code>Poligono</code> desenvolvida na etapa
 anterior, crie uma subclasse <code>Retangulo</code> derivada da superclasse
 <code>Poligono</code>. O construtor da nova classe deverá ser da forma
-<code>Retangulo(int x, int y, int largura, int altura)</code>, denotando a
+<code>Retangulo(float x, float y, float largura, float altura)</code>, denotando a
 posição \$(x,y)\$ do retângulo no espaço (coordenadas do canto
 superior esquerdo) e suas dimensões - altura
 e largura. Realize com esta classe as seguintes tarefas:</p>
@@ -717,7 +717,7 @@ superclasse para armazenar a estrutura interna do retângulo.</p>
 <code>Poligono</code> e mostre o resultado.</p>
 </li>
 <li>
-<p>Mude a posição do retângulo usando a função <code>move(float,float)</code> para
+<p>Mude a posição do retângulo usando a função <code>translada(float,float)</code> para
 \$(x,y) = (-3,4)\$ e recalcule a área do retângulo. Compare-a com a
 área calculada antes da transformação geométrica.</p>
 </li>
@@ -794,9 +794,6 @@ características:</p>
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p>A posição que do objeto em coordenadas inteiras na tela virtual.</p>
-</li>
 <li>
 <p>Uma função virtual pura <code>draw(Screen &amp;t)</code> que instrua o objeto a se
 desenhar em um objeto do tipo <code>Screen</code>. Essa função deverá ser
@@ -915,7 +912,7 @@ tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab
   dimensões <code>largura x altura</code>.</p>
 </div>
 <div class="paragraph">
-<p>Ex: <code>retangle 5 6 10 20</code></p>
+<p>Ex: <code>rectangle 5 6 10 20</code></p>
 </div></div></td>
 </tr>
 <tr>
@@ -968,7 +965,7 @@ ser salva em outro arquivo usando um dos métodos da classe <code>Screen</code>.
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2016-09-20 05:46:03 BRT
+Última atualização 2016-10-24 14:43:45 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">

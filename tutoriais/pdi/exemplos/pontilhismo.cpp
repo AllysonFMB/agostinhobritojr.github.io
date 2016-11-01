@@ -45,9 +45,12 @@ int main(int argc, char** argv){
 
   for(uint i=0; i<xrange.size(); i++){
     xrange[i]= xrange[i]*STEP+STEP/2;
+  }
+
+  for(uint i=0; i<yrange.size(); i++){
     yrange[i]= yrange[i]*STEP+STEP/2;
   }
-  
+
   points = Mat(height, width, CV_8U, Scalar(255));
 
   random_shuffle(xrange.begin(), xrange.end());
