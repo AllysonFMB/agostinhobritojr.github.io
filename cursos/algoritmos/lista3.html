@@ -467,8 +467,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
 .listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
 .listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
 .listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
 .listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+.listingblock .pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
 .listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
 .listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -479,9 +481,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
 .listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
 .listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
 .listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
 .listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
 .listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+.listingblock .pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
 .listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 </style>
 </head>
@@ -507,9 +511,6 @@ cada uma das questões abaixo.</p>
 </li>
 <li>
 <p>Calcular os divisores de um nº qualquer.</p>
-</li>
-<li>
-<p>Calcular a média de idade de uma turma qualquer.</p>
 </li>
 <li>
 <p>Para calcular o fatorial de um número qualquer.</p>
@@ -555,8 +556,8 @@ desta série e calcula e escreve a soma destes termos.</p>
 </div>
 </li>
 <li>
-<p>Gerar 20 números de 1000 a 1999 e escrever aqueles que divididos
-por 11 dão um resto igual a 5.</p>
+<p>Gerar 20 números entre 1000 a 1999 que divididos por 11 dão um resto
+igual a 5.</p>
 </li>
 <li>
 <p>Contar quantos caracteres 'a' existem em um texto fornecido pelo
@@ -586,12 +587,94 @@ caracteres.</p>
 </dl>
 </div>
 </li>
+<li>
+<p>Crie uma função para converter de Celsius para Farenheit</p>
+</li>
+<li>
+<p>Crie uma função para converter de Farenheit para Celsius</p>
+</li>
+<li>
+<p>Crie uma função para gerar um número aleatório no intervalo fechado
+\$[A:B\$], sendo \$A\$ e \$B\$ passados como parâmetro para essa
+função. Ex:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-n">x</span><span class="tok-p">;</span>
+<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">aleatorio</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">50</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Crie uma função para imprimir realizar a decomposição em fatores
+primos de um número inteiro fornecido e imprimir esses fatores.
+Ex: 1365 = 3 x 5 x 7 x 13</p>
+</li>
+<li>
+<p>Crie uma função que receba um array de inteiros e desenhe um gráfico
+vertical usando '*'. Cada linha do gráfico possui quantidade de
+asteriscos igual o valor numérico dos elementos do array. Ex: para o
+array formado pelos elementos \${4,5,6,1,8}\$, o gráfico seria da
+forma</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">****
+*****
+******
+*
+********</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Refaça a questão anterior realizando agora o traçado do gráfico na
+horizontal. Ex: para o array formado pelos elementos
+\${4,5,6,1,8}\$, o gráfico seria da forma</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code>    *
+    *
+  * *
+ ** *
+*** *
+*** *
+*** *
+*****</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Prepare um programa que leia uma frase do teclado e informe quantas
+caracteres e palavras foram digitadas. Ex:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">Digite a frase: o rato roeu a   roupa
+15 caracteres, 5 palavras</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Prepare uma função que receba um literal em um array e o rearrange de
+trás para frente. Ex:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">char</span> <span class="tok-n">nome</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-s">&quot;francisco jose&quot;</span><span class="tok-p">;</span>
+<span class="tok-n">puts</span><span class="tok-p">(</span><span class="tok-n">nome</span><span class="tok-p">);</span> <span class="tok-c1">// mostra &quot;francisco jose&quot;</span>
+<span class="tok-n">reverse</span><span class="tok-p">(</span><span class="tok-n">nome</span><span class="tok-p">);</span>
+<span class="tok-n">puts</span><span class="tok-p">(</span><span class="tok-n">nome</span><span class="tok-p">);</span> <span class="tok-c1">// mostra &quot;esoj ocsicnarf&quot;</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Leia um texto que o usuário digitar no teclado. Em seguida, informe
+a contagem de ocorrências dos caracteres [a-z] digitados. Não importa
+se o usuário digital minúsculas ou maiúsculas.</p>
+</li>
 </ol>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-02 08:48:20 BRT
+Last updated 2017-04-18 07:54:13 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
