@@ -467,8 +467,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
 .listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
 .listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
 .listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
 .listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+.listingblock .pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
 .listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
 .listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -479,9 +481,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
 .listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
 .listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
 .listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
 .listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
 .listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+.listingblock .pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
 .listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 </style>
 </head>
@@ -508,64 +512,40 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Determine o valor das seguintes expressões:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>p == &amp;i;</code></p>
-</li>
-<li>
-<p><code>*p - *q;</code></p>
-</li>
-<li>
-<p><code>**&amp;p;</code></p>
-</li>
-<li>
-<p><code>3 - *p/(*q) + 7;</code></p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">p</span> <span class="tok-o">==</span> <span class="tok-o">&amp;</span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-o">*</span><span class="tok-n">p</span> <span class="tok-o">-</span> <span class="tok-o">*</span><span class="tok-n">q</span><span class="tok-p">;</span>
+<span class="tok-o">**&amp;</span><span class="tok-n">p</span><span class="tok-p">;</span>
+<span class="tok-mi">3</span> <span class="tok-o">-</span> <span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-o">*</span><span class="tok-n">q</span><span class="tok-p">)</span> <span class="tok-o">+</span> <span class="tok-mi">7</span><span class="tok-p">;</span></code></pre>
+</div>
 </div>
 </li>
 <li>
 <p>Mostre o que será impresso por programa supondo que i ocupa o endereço 4094 na memória.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">main</span><span class="tok-p">(){</span>
-  <span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">5</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-p">;</span>
-  <span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">i</span><span class="tok-p">;</span>
-  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%x %d %d %d %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-o">+</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-o">**&amp;</span><span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-o">**</span><span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-o">**&amp;</span><span class="tok-n">p</span><span class="tok-o">+</span><span class="tok-mi">4</span><span class="tok-p">);</span>
-<span class="tok-p">}</span></code></pre>
+<pre>int i=5, *p;
+p = &amp;i;
+printf("%x %d %d %d %d", p,*p+2,**&amp;p,3**p,**&amp;p+4);
+}</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Se i e j são variáveis inteiras e p e q ponteiros para int, quais das seguintes expressões de atribuição são ilegais?</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><code>p = &amp;i;</code></p>
-</li>
-<li>
-<p><code>*q = &amp;j;</code></p>
-</li>
-<li>
-<p><code>p = &amp;*&amp;i;</code></p>
-</li>
-<li>
-<p><code>i = (*&amp;)j;</code></p>
-</li>
-<li>
-<p><code>i = *&amp;j;</code></p>
-</li>
-<li>
-<p><code>i = <strong>&amp;</strong>&amp;j;</code></p>
-</li>
-<li>
-<p><code>q = *p;</code></p>
-</li>
-<li>
-<p><code>i = (*p)` + *q; </code></p>
-</li>
-</ol>
+<p>Se <code>i</code> e <code>j</code> são variáveis inteiras e p e q ponteiros para int, quais
+das seguintes expressões de atribuição são ilegais?</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-n">q</span> <span class="tok-o">=</span> <span class="tok-o">&amp;</span><span class="tok-n">j</span><span class="tok-p">;</span>
+<span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-o">&amp;*&amp;</span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-n">i</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-o">*&amp;</span><span class="tok-p">)</span><span class="tok-n">j</span><span class="tok-p">;</span>
+<span class="tok-n">i</span> <span class="tok-o">=</span> <span class="tok-o">*&amp;</span><span class="tok-n">j</span><span class="tok-p">;</span>
+<span class="tok-n">i</span> <span class="tok-o">=</span> <span class="tok-o">*&amp;*&amp;</span><span class="tok-n">j</span><span class="tok-p">;</span>
+<span class="tok-n">q</span> <span class="tok-o">=</span> <span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-p">;</span>
+<span class="tok-n">i</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-p">)</span><span class="tok-o">++</span> <span class="tok-o">+</span> <span class="tok-o">*</span><span class="tok-n">q</span><span class="tok-p">;</span></code></pre>
+</div>
 </div>
 </li>
 <li>
@@ -647,7 +627,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p5</span><span class="tok-p">);</span>
 
   <span class="tok-cm">/* (n) */</span>
-  <span class="tok-n">p5</span><span class="tok-err">`</span><span class="tok-p">;</span>
+  <span class="tok-n">p5</span><span class="tok-o">++</span><span class="tok-p">;</span>
   <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d </span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-o">*</span><span class="tok-n">p5</span><span class="tok-p">);</span>
   <span class="tok-k">return</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
 <span class="tok-p">}</span></code></pre>
@@ -676,49 +656,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Assumindo que <code>pulo[]</code> é um vetor do tipo int, quais das seguintes expressões referenciam o valor do terceiro elemento do vetor?</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>*(pulo + 2);</code></p>
-</li>
-<li>
-<p><code>*(pulo + 4);</code></p>
-</li>
-<li>
-<p><code>pulo + 4;</code></p>
-</li>
-<li>
-<p><code>pulo + 2;</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Considerando a declaração</p>
+<p>Assumindo que <code>pulo[]</code> é um vetor do tipo int, quais das seguintes
+expressões referenciam o valor do terceiro elemento do vetor?</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span class="tok-kt">int</span> <span class="tok-n">mat</span><span class="tok-p">[</span><span class="tok-mi">4</span><span class="tok-p">],</span> <span class="tok-o">*</span><span class="tok-n">p</span><span class="tok-p">,</span> <span class="tok-n">x</span><span class="tok-p">;</span></code></pre>
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">2</span><span class="tok-p">);</span>
+<span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">4</span><span class="tok-p">);</span>
+<span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">4</span><span class="tok-p">;</span>
+<span class="tok-n">pulo</span> <span class="tok-o">+</span> <span class="tok-mi">2</span><span class="tok-p">;</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>quais das seguintes expressões são válidas? Justifique.</p>
+</li>
+<li>
+<p>Considerando a declaração <code>int mat[4], *p, x;</code>, quais das
+seguintes expressões são válidas? Justifique.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-n">mat</span> <span class="tok-o">+</span> <span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-n">mat</span><span class="tok-o">++</span><span class="tok-p">;</span>
+<span class="tok-n">p</span> <span class="tok-o">=</span> <span class="tok-o">++</span><span class="tok-n">mat</span><span class="tok-p">;</span>
+<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-o">*</span><span class="tok-n">mat</span><span class="tok-p">)</span><span class="tok-o">++</span><span class="tok-p">;</span></code></pre>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>p = mat + 1;</code></p>
-</li>
-<li>
-<p><code>p = mat</code>;`</p>
-</li>
-<li>
-<p><code>p =`mat;</code></p>
-</li>
-<li>
-<p><code>x = (*mat)</code>;`</p>
-</li>
-</ul>
 </div>
 </li>
 <li>
@@ -747,26 +705,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>Seja x um vetor de 4 elementos, declarado da forma <code>TIPO x[4]</code>. Suponha que depois da declaração, x esteja armazenado no endereço de memória 4092 (ou seja, o endereço de <code>x[0]</code>). Suponha também que na máquina seja usada uma variável do tipo char ocupa 1 byte, do tipo int ocupa 2 bytes, do tipo float ocupa 4 bytes e do tipo double ocupa 8 bytes. Quais serão os valores de <code>x+1</code>, <code>x+2</code> e <code>x+3</code> se:</p>
+<p>Seja <code>x</code> um vetor de 4 elementos, declarado da forma <code>TIPO
+x[4];</code>. Suponha que depois da declaração, <code>x</code> esteja armazenado no
+endereço de memória <code>4092</code> (ou seja, o endereço de <code>x[0]</code>). Suponha
+também que na máquina seja usada uma variável do tipo char ocupa 1
+byte, do tipo int ocupa 2 bytes, do tipo float ocupa 4 bytes e do tipo
+double ocupa 8 bytes. Quais serão os valores de <code>x+1</code>, <code>x+2</code> e <code>x+3</code>
+se:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>x for declarado como <code>char</code>?</p>
+<p>x for declarado como char?</p>
 </li>
 <li>
-<p>x for declarado como <code>int</code>?</p>
+<p>x for declarado como int?</p>
 </li>
 <li>
-<p>x for declarado como <code>float</code>?</p>
+<p>x for declarado como float?</p>
 </li>
 <li>
-<p>x for declarado como <code>double</code>?</p>
+<p>x for declarado como double?</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Implemente um programa de computador para testar estas suposições e compare as respostas oferecidas pelo programa com as respostas que você idealizou.</p>
-</div>
 </li>
 <li>
 <p>Suponha que as seguintes declarações tenham sido realizadas:</p>
@@ -779,33 +743,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Identifique quais dos seguintes comandos é válido ou inválido:</p>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><code>aloha[2] = value;</code></p>
-</li>
-<li>
-<p><code>scanf("%f", &amp;aloha);</code></p>
-</li>
-<li>
-<p><code>aloha = "value";</code></p>
-</li>
-<li>
-<p><code>printf("%f", aloha);</code></p>
-</li>
-<li>
-<p><code>coisas[4][4] = aloha[3];</code></p>
-</li>
-<li>
-<p><code>coisas[5] = aloha;</code></p>
-</li>
-<li>
-<p><code>pf = value;</code></p>
-</li>
-<li>
-<p><code>pf = aloha;</code></p>
-</li>
-</ol>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span class="tok-n">aloha</span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">value</span><span class="tok-p">;</span>
+<span class="tok-n">scanf</span><span class="tok-p">(</span><span class="tok-s">&quot;%f&quot;</span><span class="tok-p">,</span> <span class="tok-o">&amp;</span><span class="tok-n">aloha</span><span class="tok-p">);</span>
+<span class="tok-n">aloha</span> <span class="tok-o">=</span> <span class="tok-n">value</span><span class="tok-s">&quot;;</span>
+<span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%f&quot;</span><span class="tok-p">,</span> <span class="tok-n">aloha</span><span class="tok-p">);</span>
+<span class="tok-n">coisas</span><span class="tok-p">[</span><span class="tok-mi">4</span><span class="tok-p">][</span><span class="tok-mi">4</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">aloha</span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">];</span>
+<span class="tok-n">coisas</span><span class="tok-p">[</span><span class="tok-mi">5</span><span class="tok-p">]</span> <span class="tok-o">=</span> <span class="tok-n">aloha</span><span class="tok-p">;</span>
+<span class="tok-n">pf</span> <span class="tok-o">=</span> <span class="tok-n">value</span><span class="tok-p">;</span>
+<span class="tok-n">pf</span> <span class="tok-o">=</span> <span class="tok-n">aloha</span><span class="tok-p">;</span></code></pre>
+</div>
 </div>
 </li>
 <li>
@@ -828,7 +776,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p>Crie uma função capaz de realizar multiplicação matricial da forma
-\$C=A B\$. A função deve receber 6 argumentos: os ponteiros para as matrizes A, B e C, o número de linhas e colunas de A e o número de colunas de B (assuma que o número de coluna de A é igual ao número de linhas de B). O resultado da multiplicação deve ficar armazenado em C. Crie um programa para testar sua implementação, capaz de utilizar a função de multiplicação e imprimir as três matrizes. A função criada para multiplicação não deve realizar nenhum tipo de saída de dados no terminal.</p>
+\(C=A B\). A função deve receber 6 argumentos: os ponteiros para as matrizes A, B e C, o número de linhas e colunas de A e o número de colunas de B (assuma que o número de coluna de A é igual ao número de linhas de B). O resultado da multiplicação deve ficar armazenado em C. Crie um programa para testar sua implementação, capaz de utilizar a função de multiplicação e imprimir as três matrizes. A função criada para multiplicação não deve realizar nenhum tipo de saída de dados no terminal.</p>
 </li>
 <li>
 <p>Pesquise na Internet sobre o uso da biblioteca libGC, que implementa um coletor de lixo em C. O processo de instalação dessa biblioteca em sistemas Windows pode ser um pouco trabalhoso. Entretanto, em sistemas Unix, a instalação é bem simples, de sorte que se recomenda a resolução desta questão em uma máquina, por exemplo, com Linux instalado. Caso seja usuário Windows e não queira instalar sistemas alternativos em seu computador, use uma ferramenta de virtualização (ex: VirtualBox) para instalar e executar o Linux sem alterar a instalação original de seu computador. Prepare um pequeno programa-exemplo demonstrando como usar a biblioteca.</p>
@@ -841,7 +789,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-27 08:42:33 BRT
+Last updated 2017-07-31 16:31:44 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
