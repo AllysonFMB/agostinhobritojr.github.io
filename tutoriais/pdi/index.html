@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.5">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
 <meta name="author" content="Agostinho Brito">
 <title>Introdução ao processamento digital de imagens com OpenCV</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -90,13 +90,12 @@ strong,b{font-weight:bold;line-height:inherit}
 small{font-size:60%;line-height:inherit}
 code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
 ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
-ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
 ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
 ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
-ul.no-bullet{list-style:none}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -132,7 +131,11 @@ strong strong{font-weight:400}
 kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
 .keyseq kbd:first-child{margin-left:0}
 .keyseq kbd:last-child{margin-right:0}
-.menuseq,.menu{color:rgba(0,0,0,.8)}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
 b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
 b.button:before{content:"[";padding:0 3px 0 2px}
 b.button:after{content:"]";padding:0 2px 0 3px}
@@ -199,7 +202,7 @@ table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
 table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
 .admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
 .admonitionblock>table td.icon{text-align:center;width:80px}
-.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon img{max-width:initial}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
@@ -255,13 +258,13 @@ table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 table.tableblock{max-width:100%;border-collapse:separate}
 table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
-table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
-table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
-table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
-table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
-table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
-table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
 table.frame-all{border-width:1px}
 table.frame-sides{border-width:0 1px}
 table.frame-topbot{border-width:1px 0}
@@ -282,10 +285,12 @@ ul li ol{margin-left:1.5em}
 dl dd{margin-left:1.125em}
 dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
 ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
-ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
-ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
-ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
-ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
 ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
 ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
 ul.inline>li>*{display:block}
@@ -302,7 +307,8 @@ ol.lowergreek{list-style-type:lower-greek}
 td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
 td.hdlist1{font-weight:bold;padding-bottom:1.25em}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
-.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
+.colist>table tr>td:first-of-type img{max-width:initial}
 .colist>table tr>td:last-of-type{padding:.25em 0}
 .thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
 .imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
@@ -365,6 +371,7 @@ div.unbreakable{page-break-inside:avoid}
 .yellow{color:#bfbf00}
 .yellow-background{background-color:#fafa00}
 span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
 .admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
 .admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
@@ -497,53 +504,53 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_prefácio">1. Prefácio</a></li>
-<li><a href="#conceitos">2. Conceitos iniciais</a>
+<li><a href="#_prefácio">Prefácio</a></li>
+<li><a href="#conceitos">1. Conceitos iniciais</a>
 <ul class="sectlevel2">
-<li><a href="#_o_que_é_opencv">2.1. O que é OpenCV</a></li>
-<li><a href="#_hello_opencv">2.2. Hello, OpenCV</a></li>
+<li><a href="#_o_que_é_opencv">1.1. O que é OpenCV</a></li>
+<li><a href="#_hello_opencv">1.2. Hello, OpenCV</a></li>
 </ul>
 </li>
-<li><a href="#_manipulando_pixels_em_uma_imagem">3. Manipulando pixels em uma imagem</a>
+<li><a href="#_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_code_pixels_cpp_code">3.1. Descrição do programa <code>pixels.cpp</code></a></li>
-<li><a href="#_exercícios">3.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_code_pixels_cpp_code">2.1. Descrição do programa <code>pixels.cpp</code></a></li>
+<li><a href="#_exercícios">2.2. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_preenchendo_regiões">4. Preenchendo regiões</a>
+<li><a href="#_preenchendo_regiões">3. Preenchendo regiões</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_code_labeling_cpp_code">4.1. Descrição do programa <code>labeling.cpp</code></a></li>
-<li><a href="#_exercícios_2">4.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_code_labeling_cpp_code">3.1. Descrição do programa <code>labeling.cpp</code></a></li>
+<li><a href="#_exercícios_2">3.2. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_manipulação_de_histogramas">5. Manipulação de histogramas</a>
+<li><a href="#_manipulação_de_histogramas">4. Manipulação de histogramas</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_code_histogram_cpp_code">5.1. Descrição do programa <code>histogram.cpp</code></a></li>
-<li><a href="#_exercícios_3">5.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_code_histogram_cpp_code">4.1. Descrição do programa <code>histogram.cpp</code></a></li>
+<li><a href="#_exercícios_3">4.2. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_filtragem_no_domínio_espacial_i">6. Filtragem no domínio espacial I</a>
+<li><a href="#_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_code_filtroespacial_cpp_code">6.1. Descrição do programa <code>filtroespacial.cpp</code></a></li>
-<li><a href="#_exercícios_4">6.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_code_filtroespacial_cpp_code">5.1. Descrição do programa <code>filtroespacial.cpp</code></a></li>
+<li><a href="#_exercícios_4">5.2. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_filtragem_no_domínio_espacial_ii">7. Filtragem no domínio espacial II</a>
+<li><a href="#_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</a>
 <ul class="sectlevel2">
-<li><a href="#_exercícios_5">7.1. Exercícios</a></li>
+<li><a href="#_exercícios_5">6.1. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_filtragem_no_domínio_da_frequência">8. Filtragem no domínio da frequência</a>
+<li><a href="#_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_code_dft_cpp_code">8.1. Descrição do programa <code>dft.cpp</code></a></li>
-<li><a href="#_exercícios_6">8.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_code_dft_cpp_code">7.1. Descrição do programa <code>dft.cpp</code></a></li>
+<li><a href="#_exercícios_6">7.2. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_detecção_de_bordas_com_o_algoritmo_de_canny">9. Detecção de bordas com o algoritmo de Canny</a></li>
-<li><a href="#_canny_e_a_arte_com_pontilhismo">10. Canny e a arte com pontilhismo</a></li>
-<li><a href="#_descrição_do_programa_code_pontilhismo_cpp_code">11. Descrição do programa <code>pontilhismo.cpp</code></a>
+<li><a href="#_detecção_de_bordas_com_o_algoritmo_de_canny">8. Detecção de bordas com o algoritmo de Canny</a></li>
+<li><a href="#_canny_e_a_arte_com_pontilhismo">9. Canny e a arte com pontilhismo</a></li>
+<li><a href="#_descrição_do_programa_code_pontilhismo_cpp_code">10. Descrição do programa <code>pontilhismo.cpp</code></a>
 <ul class="sectlevel2">
-<li><a href="#_exercícios_7">11.1. Exercícios</a></li>
+<li><a href="#_exercícios_7">10.1. Exercícios</a></li>
 </ul>
 </li>
 </ul>
@@ -558,7 +565,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_prefácio">1. Prefácio</h2>
+<h2 id="_prefácio">Prefácio</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Esse tutorial visa apresentar alguns conceitos de processamento
@@ -592,10 +599,10 @@ plataformas.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="conceitos">2. Conceitos iniciais</h2>
+<h2 id="conceitos">1. Conceitos iniciais</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_o_que_é_opencv">2.1. O que é OpenCV</h3>
+<h3 id="_o_que_é_opencv">1.1. O que é OpenCV</h3>
 <div class="paragraph">
 <p>OpenCV (Open Source Computer Vision Library:
 <a href="http://www.opencv.org">http://www.opencv.org</a>) é uma
@@ -652,7 +659,7 @@ distinta, que pode ser consultatada no
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hello_opencv">2.2. Hello, OpenCV</h3>
+<h3 id="_hello_opencv">1.2. Hello, OpenCV</h3>
 <div class="paragraph">
 <p>O primeiro exemplo que será apresentado visa mostrar como compilar e
 executar um pequeno usando OpenCV em um ambiente Linux. Em suma, será
@@ -676,17 +683,17 @@ clique <a href="exemplos/Makefile">aqui</a>.</p>
 <div id="exemplo_makefile" class="listingblock">
 <div class="title">Listagem 1. Makefile</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="Makefile"><span class="tok-nf">.SUFFIXES</span><span class="tok-o">:</span>
-<span class="tok-nf">.SUFFIXES</span><span class="tok-o">:</span> .<span class="tok-n">c</span> .<span class="tok-n">cpp</span>
+<pre class="pygments highlight"><code data-lang="Makefile">.SUFFIXES:
+.SUFFIXES: .c .cpp
 
-<span class="tok-nv">CC</span> <span class="tok-o">=</span> gcc
-<span class="tok-nv">GCC</span> <span class="tok-o">=</span> g++
+CC = gcc
+GCC = g++
 
-<span class="tok-nf">.c</span><span class="tok-o">:</span>
-	<span class="tok-k">$(</span>CC<span class="tok-k">)</span> -I<span class="tok-k">$(</span>INCDIR<span class="tok-k">)</span> <span class="tok-k">$(</span>CFLAGS<span class="tok-k">)</span> $&lt; <span class="tok-k">$(</span>GL_LIBS<span class="tok-k">)</span> -o <span class="tok-nv">$@</span>
+.c:
+	$(CC) -I$(INCDIR) $(CFLAGS) $&lt; $(GL_LIBS) -o $@
 
-<span class="tok-nf">.cpp</span><span class="tok-o">:</span>
-	<span class="tok-k">$(</span>GCC<span class="tok-k">)</span> -Wall -Wunused -std<span class="tok-o">=</span>c++11 -O2 <span class="tok-sb">`</span>pkg-config --cflags opencv<span class="tok-sb">`</span> $&lt; -o <span class="tok-nv">$@</span> <span class="tok-sb">`</span>pkg-config --libs opencv<span class="tok-sb">`</span></code></pre>
+.cpp:
+	$(GCC) -Wall -Wunused -std=c++11 -O2 `pkg-config --cflags opencv` $&lt; -o $@ `pkg-config --libs opencv`</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -698,7 +705,7 @@ carecer de modificações em outros sistemas.</p>
 </div>
 <div class="paragraph">
 <p>O seu ambiente de desenvolvimento poderá ser testado com programa
-<a href="exemplos/hello.c" class="bare">exemplos/hello.c</a> , mostrada Listagem <a href="#exa_hello">Hello</a>, cuja
+<a href="exemplos/hello.cpp" class="bare">exemplos/hello.cpp</a> , mostrada Listagem <a href="#exa_hello">Hello</a>, cuja
 única funcionalidade apresentar na tela uma imagem fornecida via linha
 de comando.</p>
 </div>
@@ -759,7 +766,7 @@ conteúdo da imagem original a ser gravada.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_manipulando_pixels_em_uma_imagem">3. Manipulando pixels em uma imagem</h2>
+<h2 id="_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo dessa lição é mostra como manipular os pixels de uma
@@ -804,8 +811,7 @@ vermelho na mesma região que foi pré-estabelecida.</p>
 <div class="title">Listagem 3. pixels.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
-<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;cv.h&gt;</span><span class="tok-cp"></span>
-<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;highgui.h&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
@@ -869,7 +875,7 @@ $ ./pixels</code></pre>
 <div class="title">Figura 2. Saída do programa pixels</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_code_pixels_cpp_code">3.1. Descrição do programa <code>pixels.cpp</code></h3>
+<h3 id="_descrição_do_programa_code_pixels_cpp_code">2.1. Descrição do programa <code>pixels.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
@@ -1079,7 +1085,7 @@ predefinida na variável <code>val</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios">3.2. Exercícios</h3>
+<h3 id="_exercícios">2.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1121,7 +1127,7 @@ trocadas. O efeito é ilustrado na Figura <a href="#fig_trocaregioes">Troca de r
 </div>
 </div>
 <div class="sect1">
-<h2 id="_preenchendo_regiões">4. Preenchendo regiões</h2>
+<h2 id="_preenchendo_regiões">3. Preenchendo regiões</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Uma tarefa bastante comum em processamento de imagens e visão
@@ -1222,16 +1228,16 @@ $ ./labeling bolhas.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>labeling</em> é mostrado na Figura <a href="#exa_labeling">Labeling</a></p>
+<p>A saída do programa <em>labeling</em> é mostrado na Figura <a href="#fig_labeling">Labeling</a></p>
 </div>
-<div id="exa_labeling" class="imageblock">
+<div id="fig_labeling" class="imageblock">
 <div class="content">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAAA3NCSVQICAjb4U/gAAAAGXRFWHRTb2Z0d2FyZQBnbm9tZS1zY3JlZW5zaG907wO/PgAADWJJREFUeJztnVdDFTsURgfLtSG9qNj+/68SkCIogqAggtyHuc49TskkmZSdZK035hTm4VvZO+WcM1eZMDc3N/TQ3d2d0VupuXfvnuYzf//+bfcOQy8sk/v377t9w9vbW7dvqObBgweWL9R/qiL99aNuHdBEXxVQcHt769yBJLD0BvKjGbOLMoHhE9oE7l6ccHNzY/fCQgVgAgA1QgXwGlDSP0qKRcAOgznA3d2deh7slm5Mp893iX4YEvLHbBIc2IEWTXxNTSD3FhSyLpTkKhCBDoOdAwkN/1WiAkAwNB1IK/SzGPQzo81PlI0wCMOQBqKib7EfrCWAZt+PABAdIwdubm7Gk60/60UAEIKOBvXe2Ui4jdZ8EACkMWRCs3PsTADSDyniZieY9EOiOBCA9EO6CD0LBBCGqQIw/EPSTFoGJf3hefjwofoJv379CnMneRDtZJtk/vnnH/UTrq+vw9xJw2juZ8EBfRDgL0aj3+DbAaPEt0AAfZgE/49++k2fbMqU9IMRnAb9D4tANy8J3xGBK6gADvBaDcArCJAbTACMQAAoGgQQBzPgkCDAfzCRLRME+B9rB5AnXRDgL0yjfH19TfqThn0AY0h8TiBAm+vr6+66PqHPFQTogbiXA3OArGAXzBQEyAfSbwEtUCZETP+jR4/sXvjz50+3d2IBFUAcaQ3k1umf+FpXOP5AzOPHj4ceurq6cvu/CkHnZESKw/8sEUuBMwEU0R8CJfRRaBC3YrgaxWM54GAOYBH95oU4oElafVFCTJ0DWKffycsBJuJrFag1tBN0kImXVaBuY0OrA2pirQixDApFgwBQNOEEoAsCNVG6II5CQBE8efKk9zotEOTPUPorBIDC8SLA0Ko/0wCQBhUAJuHwDE+U40BTBZg+qLNJnDpOghvrMBwVAOIT8Ti0CAEoAqljl+Cff3B+P/o4EKC3C+rNNEHPGKMoR899g8eNMOJeIN1Yd/d3hUS/xo0AV1dXxB16ERX3LsUdhXj69Kn6CT9+/AhzJyABEQKE2SAbjX73aciQPc5WgaxDLCr9Tl4FCRGnAnAmAoQgYh/ANwzkMIRLAbIc15EnbxxXAB0HsvQEJHN5eTn0kPsW6OrqaijiiocAvDLkQKDvBQKIzuXlZfejYUVMglnOh5rLy8tWKRCxEQYQklkHiqgAE2EhKGNKEYAuCHopRQCAXgoSgCIAXQoSoMIB6OD4N8KSwHRSizY+ePbsWffi9+/fA99GiQJUJg5ITv/8/Lz6CRcXF2HuRJPe0LcI7EChAlRKBySHvmE0/TWxHNDJei8IAONopr8mvAPW6a8J6cDc8+fPR590fn4e4FZAHyMBquAOTBSgCuiA1iqQjiQgGVNhyqGsZdA8IM0O0RWAIpA6aNOLQQXAAcgPjkNnQmuam/R4H3IVyGwOQBGQSXeRJ+4W2JQEB94HeNC7xEnQp7CwsNC68u3btyh3khzhj0IYrwLhhppu+ocu5o1FlMOnvxoSgJ0vOxRBX1hYKE0Do0BHSX9ltw9AEehFJ98FOlAz+rQw99NlcBXo/PycoKfC/Py88FWgiBFXo1oGxQF9Qg7tFxcX3XxLS3wqsA/ggPCNTT3elxz6xcXF1pWzszOL9xkRIHwRWFpaal05PT0NeQMJ0VsKSqCb/vqihQOCKkA3+s31bBxwviGgXwqkfTrMB40Y+iZIEWAo/TnhbztsVIMS0j+LvgkiBCD9Tigt5TqM9kXxBdBJf/OcbHohCIbagcQ+EJNoreAsUFx6J801kQVINNBGkH4JDDmQWAWQiSLipF84MecAOQ3/BF0+vZOBkQrAUQjIG4kt0OnpKas94IPuTEAlQNzhf8iBnBoniE6PAM//MPQarx+X0Rn7cQCsaRWBvwRQ514US0tLaAB2zDrwoDJsdUR9WjKnc3IQhXupDPlDUAoKxO7o/yxNETBbBQow/M+mWX90xwEwpXbAQIBgzY+dA1AU04tAVVWLi4u6AgRu/WcbGxyAXpw4MPIDGV5zr9m3NAKon48nZaI46anDXDWwChS43Z8OAhSOnQmRfyPMoQMIABYORD4LRGrBIRazgviH4XAAHHJ2dmakgZSfSZ3YC2ERtNBsh6QIMIupDKQfuiQsQGW+QgrQIm0BAKaj40D8STBARKgAkDOjRSD+N8NBWiwvL+s87evXr77vxAlUADBAM/01QhxQFwHmAOCL5eVlI2GiQAUwYGVlZfbPk5OTWHcSC7tARy8Fcr8bNCFa6e+9Ar1IrgMIAEXDKtAkZotAgI5odXV16KEvX774/u9ZQgVwxsrKitemSJH++lH1E0omnx/IkE/ciQEOmIIA7mFynBAI4AUckEZvF3R2dsYkGEqh1wEqgC+yLALRt7ScgwBa2KXZrQNCFjozcwABJjG69h++DghcCJLsDAJMpcATQUaBlpz+KvpO8NraWvfi58+fw9+JP1ZWVgJLsrq6KqRfkk+0CrC2ttab/mrACoE0sRbYCPlGc1wXPvxXgSuAfrLX1taoA8Kpw6046Sk//VVIAVIZ1+04OTnJb5jXIYmUK5A7CU5OmJOTk8zG+BKQK0B+TC8RTG2dgwCOUReBMA7giT6B5gDJ9TNTUM8Hps+GybdDqAARKHO6LBME8AKz4VRAgDhQBISAAL6gCCSBXAEy2AnGAfnIFSAPFA7QBUkAAbxDHZAMAkDRBBIgg4YesiRcBcABEEjor0fXPBMx3Zb19fXZP4+Pj6e829CEVb+/730Hpgc1Gxsbs38eHR0F+9eh5wA6yXae/t4rIIRW+usr3YueiPCZYN+90FDW19fXJ9YBcMhoxOsn+K4Gc5ubm0OPffr0yev/9sHoSG/twMQehhaoxm5o96eBqgJsbm6m6ICa2hBXpSC/T/r6YHo/s7Gx4cmBQr8b1GE7hAMtPLXvnhwYmQQrGiRo4FBDTcjJqyvGK0CWjZBz1HWgBEMU0VeM3NGF4SiEM4ZSXkL6Faj7lpBL/r1oCUAjVOmt2LR+Jsz3r4bBdAqdBNuh+e1XhN4HrAKJwOE3wLF2pInXNim3OUCAvV6C24unmPqeJOQmQJWIA1ladHR01M2rep1HvXYUYIqsOgoxS3IroeozEU4kse6Fskx/L9IOPnTJdg5wfHzs+wSo6XygnNw3NFFWmxBxMTTbCtDQ1cBHj6Q2ocDop0K2FaAhzBFoIp4oGU6CAfRBACgaBICi0RIg3RkwgJpxAUg/ZMyIAKQf8kYlAOmH7GESDEUzuBHG8A/yefHixdBDh4eHOu8wV3U+8EX0IQkU6a/RcSD0d4MCOGE0/Q1qDRAAkkRfADVMgqFoqACQHq6G/4oKAIWDAFA0CACZcHh4qLn2PwsCQFaYapD/RyKhQLoODM2bqQCQP4pVIypAibx8+bJ15eDgIMqdRAcBiqOb/qGLJViBADDIrBW5yoAAsnj16tXsn/v7+7HupEUjQ3ImqI9MMwkWRCv9vVei8/IPsW9kKvVKUbgKsLW11Xt9b28v2D3IRGDKdUi3JswSqAIMpV/9UAkkmv5ZJFeD0WNztEAxySD9idLslIVogZIY41+/fj300MePH338R1Hpr9sYyWO5BTqnpkWsAjWGBJsPKOLe+2TnDohKf5VF9O0+JCBCgIYwJhil3wfS0l8asyeFhM4Btra2kmicfCNnH0ABq0Aqpqx++nAg+vCfEwcHB8mlv3VQVGgFaBBSB9CmS3LR70XWHMA35Hg6EnJ/eHiYw9eiBN4DJv3TkZD+GrsPQHZf4rcCjE4A9vb2hDQ5oEBO7lvof/Kr98mVhBaolsG3BtOHfx+7AVE4ODjQX/UXG/0hTMtCfAEgPKMOJJd7a0QIUFoXtL+/r7MX5nUToJyIq4kwCTaa+zqZKAuc/o6GO4ktsAyIUAG2trY0Y533RwWIuATitEC1A6V1PiCQaPsAo+nPe/gHIUg/CgHgFQSAovErgHUbI7D/yWMXDFqE+IUY08muj/RPXAkl/bkS6CeS9B3wPfZrmkDiCyHob4QpNBDY80AJ8CN5EJ83b960ruzu7ob51wgAkemmvyaMAyyDglCGxHALAoBcAjiAACAa3w4wB4DI6Efcx6wAASA+psO8QxMQAERg1+pMN4E5ACTM9BkCAoAIgu18taAFKpG3b9+2ruzs7ES5kxYWI/pEcxCgLLrRb0jUgYkCiPhalLR49+5d9+L29nb4OzFFkf7ZR4WYEAYqgBa9oW8h3AF1+rtE1CDkzoBWBXj//n3ryocPHyb+Y+HoJD4hTNPfvCSKBru7u2EOAlU6FaCb/posHZiSe7EVwCL9LaJooOOA932AofRnSWajfs309Lt6E1N2/6B4wvT/omqBiko/qIk4Rfa6RTBYAUi/ETL7Hx8j99u3b6MUBE/0zwE005/ZNMC0BZIZ+ll8JzWDBVP2AYyRn/uaAON0BlsHPQIU2/xsb293i0AqcY9Luib0tEBGAmTWBeVErE49LQemngYttlzAEGnNkh0ch8YB6JKKA24+D4ADkCjOPhCDA5AiLj8RhgOQHHwkMlvSWo2JRY8ArGxmw87OTiwNUtGPneD8mc0ihyNa9LdAFIFc2flD7BuRwr8yujF5gTnjkwAAAABJRU5ErkJggg==" alt="labeling">
 </div>
 <div class="title">Figura 7. Saída do programa labeling</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_code_labeling_cpp_code">4.1. Descrição do programa <code>labeling.cpp</code></h3>
+<h3 id="_descrição_do_programa_code_labeling_cpp_code">3.1. Descrição do programa <code>labeling.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">CvPoint</span> <span class="tok-n">p</span><span class="tok-p">;</span></code></pre>
@@ -1329,7 +1335,7 @@ então gravada no arquivo <code>labeling.png</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_2">4.2. Exercícios</h3>
+<h3 id="_exercícios_2">3.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1352,7 +1358,7 @@ se pode presumir, a priori, que elas tenham buracos ou não.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_manipulação_de_histogramas">5. Manipulação de histogramas</h2>
+<h2 id="_manipulação_de_histogramas">4. Manipulação de histogramas</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo dessa lição é mostrar como tratar histogramas de imagens usando
@@ -1489,7 +1495,7 @@ $ ./histogram</code></pre>
 <div class="title">Figura 8. Saída do programa histogram</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_code_histogram_cpp_code">5.1. Descrição do programa <code>histogram.cpp</code></h3>
+<h3 id="_descrição_do_programa_code_histogram_cpp_code">4.1. Descrição do programa <code>histogram.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">VideoCapture</span> <span class="tok-n">cap</span><span class="tok-p">;</span></code></pre>
@@ -1737,7 +1743,7 @@ outra, para o canto superior esquerdo da imagem capturada na câmera.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_3">5.2. Exercícios</h3>
+<h3 id="_exercícios_3">4.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1763,7 +1769,7 @@ que julgar conveniente.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_filtragem_no_domínio_espacial_i">6. Filtragem no domínio espacial I</h2>
+<h2 id="_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A convolução é um processo pelo qual duas funções se combinam para
@@ -1984,7 +1990,7 @@ a imagem original capturada e outra com o resultado da filtragem. O
 filtro inicial escolhido no exemplo é o da média.</p>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_code_filtroespacial_cpp_code">6.1. Descrição do programa <code>filtroespacial.cpp</code></h3>
+<h3 id="_descrição_do_programa_code_filtroespacial_cpp_code">5.1. Descrição do programa <code>filtroespacial.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-kt">float</span> <span class="tok-n">media</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span>
@@ -2094,7 +2100,7 @@ capturada.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_4">6.2. Exercícios</h3>
+<h3 id="_exercícios_4">5.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2111,7 +2117,7 @@ do filtro laplaciano.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_filtragem_no_domínio_espacial_ii">7. Filtragem no domínio espacial II</h2>
+<h2 id="_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Este capítulo visa explorar um pouco mais do uso de filtragem espacial
@@ -2301,19 +2307,19 @@ desejado.</p>
 elemento-a-elemento. Cria-se a imagem que irá ponderar as linhas da
 imagem original e seu negativo irá ponderar as linhas da imagem
 borrada. A combinação linear dessas duas imagens fara o efeito
-simulado de <code>tiltshift</code>. A Figura <a href="#fig_tiltshiftfunction">Função Tiltshift</a> ilustra
+simulado de <code>tiltshift</code>. A Figura <a href="#fig_tiltshiftfunctionpondera">Imagens para multiplicação</a> ilustra
 possíveis imagens que poderiam ser usadas para ponderação no
 processo. A da esquerda ponderaria a imagem original e a da direita a
 imagem borrada.</p>
 </div>
-<div id="fig_tiltshiftfunction" class="imageblock">
+<div id="fig_tiltshiftfunctionpondera" class="imageblock">
 <div class="content">
 <img src="data:image/jpg;base64,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Uy8svLLyzcs3LNyy8svLNy+D46fC+LTw1cNPDVw1cNXDTw1cNXDVw0+lq4aeGrhp4aeGrhq4aeGnhq4auGr0tXDVw1cNPDVw1cNPDVw08PlPaV8niYmJiYmJiYmJiYmJiYmJiYmJiYmNiYmJiYmJjYmJifF8T8Z4tra2tra2tra2tra2tra2tra2tra2tja2tra2trY2tra997fr73MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM9jx09l4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS9z9Pjn3Ha4drh2uHa4drh2uHa4drh2uHa4drh2uHa4drh2uHa4drh2uHa4drh2uHa4drh2uHa4drh2uHa4drh2uHa4e2/D2/i7vLu8u7y7vLu8u7y7vLu8u7y7vLu8u7y7vLu8u7y7vLu8u7y7vLu8u7y7vLu8u7y7vLu8u7y7vLu8u7y7vLu8vr+n8+UpSlKUpSlKUpSlKUpSlKUpSlKX0P4PFSlKUpSlKUpSlKUpSlKUpSlKUpSn1vT+bKUpSlKUpSlKUpSlKUpSlKUpSlL6P8XipSlKUpSlKUpSlKUpSlKUpSlKUpT6np/MlKUpSlKUpSlKUpSlKUpSlKUpSl9P+PxUpSlKUpSlKUpSlKUpSlKUpSlKUp6/T/nKUpSlKUpSlKUpSlKUpSlKUpSlL0f8AjxUpSlKUpSlKUpSlKUpSlKUpSlKUp6vT+MpSlKUpSlKUpSlKUpSlKUpSlKUvT/rxUpSlKUpSlKUpSlKUpSlKUpSlKUpKUpSlKUpSlKUpSlKUpSlKUpSlKfJSlKUpSlKUpSlKUpSlKUpSlKUpSkpSlKUpSlKUpSlKUpSlKUpSlKUp8lKUpSlKUpSlKUpSlKUpSlKUpSlKcc/hTqpTqpSlKU6uqlOqlOrq6qdVOrqpSnV1c/78UpdEpS6JSlLo6OiUuiXR0dEujol0SlKXR0UpSlKUpSlKUpSlKUpSlKUpSlKUrySlKUpSlKUpSlKUpSlKUpSlKUpSlz6vxpSlKUpSlKUpSlKUpSlKUpSlKUpx/rxSlKUpSlKUpSlKUpSlKUpSlKUpSl6vV/lSlKUpSlKUpSlKUpSlKUpSlKUpT0/+fFKUpSlKUpSlKUpSlKUpSlKUpSlKX1PV/nSlKUpSlKUpSlKUpSlKUpSlKUpT6f8A48Up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7v8AZxy456rxz0eOXHLjn8FeOXDP4K8c9Hhno6gMtdX92n/p22222+2222n22rdvq216RaOheND9f2bu/wDqb7bbbbbLb7bbbTP+LSbNq+/9CemUpS7vRKUpSl5+EpabU9MpSlPTPT3vX2d/o0dOD7fwfs302ta+j09+nx8u31X02tbXevpta1r6b6e3R5+VvPyyHHnX+yUJ6ZePhKUpSlPTPTLz8JT0ylKemememWjGj7fzfrta1rWta+m1rX03028fK1rWta+m+m19ORY8/wB9UpSlKUpSlKUpSlKUpSlKUpSlKenRhe389P12ta1rWta1rWta+m1rWta3h5Wta1r6cxx5/pr0wlKUpSlKemUpSnplKUpSlKUpSlpxo+38P1302ta1rWta1rWta1rWtpvWta1rWtbJre+pPTKU9Om1Lz6e30SlLXalKUpShrtT0ylPTKWjC9tH8/XalrWtbXetr2+em1rW8fK1rWtal9fTetfXtkNcedUpSlKUpS8fCXf6JShKUpTlLVlDx8dE9eUtGNGntp+vz8renuta1rWtbx8rWta1r6bd/q79FrW8vK+m1rZtbHnTKUpSlKemUpSlKUJd/olKeiemUp6ZSlpwvbX9drWtS1r6bWta1rUta19Nr6bWvptbXe09NP200YbMdmGzBiwYbMNmGzDZgx2Y7MGDHZhswYsdmLDZiw2Y7MdmDDZhsx2Ytedf311/Xky3Z7st2TLdmy3Zbst2W7Pdnuz3ZMme7LdmzZ7sme7Pdkz3ZbsmW7LdnuzdnbPjpta1KWta1rWta1rWvpvpt3+vTfTS1s57+/65ShKUJSlKUpd/onplKUp6Z6ZT067UoS7WA58al9e1LV02vp8/K3f6rWt2eq1r69r6bWta2vOv76P1yl609MJT0ynplKUpdvp0ylPTKWm1oynolLFoe39lrX+Gta1rePnpta1rUvpta1rX02tbXke/8v1ylKWnThKUpS8+mUpT0wlKUpSlPTKUsDz4/tqta1rWta1r6bWta19NrWta1rWta2rOv7/y0/XKUpSlKUpSnplKUpT0ylKUp6ZSlKWDSz4/qW81rWt4+VrWta1qWpa1rWvptbx8rWtbVke/8X656ZSlKUpSlKUpQlKU9MpT0ylKU9MsTz40PstfT4+VrWtpv6bd+ium1td61dNr69rdvqt2+rtW15fv/B+uUp6fV2SlKWu3pl2J6Ze/CUo/L8pSlPTrtYFnx/eta1rWta1rWtbt9VrWtpudvqvr2ta1raefdryvf+f9ff6Nc/RKUpSlKUp7pd/ol3pdvol3pefjpnplptSlKWvf4f6WV+QqnHPR4ZccuOfwV45ccuOWvc8cuOXHPR45ccuOXHLjlxz0eOXDLsPVb7r9ovHHR446HHHR44ccOOHHHVeOHHDjjo8cOOHHHVeOHHDjhww446PHDhjo9pL1z2HJq2ny2ny2ny5NXJq2ny2ny2ny2nz0m0+XJq2ny2ny2ny2ny2ny73h8vN2fLk1bT5bT5bT5bT5bT5cmrafLafLafLafLu7n7z9ZyaOTRvPhvPhvPhyaN58OTRvPhvPhvPhyaN58OTRvPhyaN58N58N58N58O95fDk0cmjveXw3nw3nw3nw5NG8+G8+G8+G8+HiT2PPtouGXLLllyy5ZcMuWXLLllyy5ZcsuGXLLllyy4ZcsvP/ACcsuGXLLllyy5ZcMuWXDLhlyy5Zd9M9zur+vhhww5YcsOWHLDhhyw5YcsNOWjlhyw4YcsOWHDDlhyw5YcsOGHLDlhyw4YcMOWHDDhhyw5YYhnxoi1rUtalrWpa1qWpalqWtSlrefla1Mx99f9ZCXj4SlKUJePhKEpShKUoSnKUodvohKUpQxDPjRFrUtS1LUtS1rUtSlKUta1qa71rWtmHvq/rJSlKUpQhCXl4QlKEoeHhCEJSlCEpSlLvt40Ha1LWta1rWta1rWtalKWtbv9VrWtbebU/XylKEu/0SlKUpSlCUpSlCEtMfRKEpSlKWD58aZpSlLWtpuWta1qW88ZWta1qWpa3j5eXlS1sz99f9bKEIQlKUpQlKUNdqUpSlKEpSlKEJS7geNI2tS1LU8vKnd69Pd6u/1Upa1rWpalvPytalrd3qyL31v1spSlKEISh2+iUJQlKUpdvohKEoefhCUoS//9k=" alt="tiltshift weight">
 </div>
 <div class="title">Figura 12. Exemplo de imagens geradas para ponderação no <code>tiltshift</code></div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_5">7.1. Exercícios</h3>
+<h3 id="_exercícios_5">6.1. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2354,7 +2360,7 @@ em vídeos desse tipo.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_filtragem_no_domínio_da_frequência">8. Filtragem no domínio da frequência</h2>
+<h2 id="_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo desse capítulo é entender como se dá o uso da filtragem no
@@ -2647,7 +2653,7 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_code_dft_cpp_code">8.1. Descrição do programa <code>dft.cpp</code></h3>
+<h3 id="_descrição_do_programa_code_dft_cpp_code">7.1. Descrição do programa <code>dft.cpp</code></h3>
 <div class="paragraph">
 <p>O programa funciona capturando continuamente quadros da primeira
 câmera disponível, calcula a Transformada de Fourier e realiza duas
@@ -2978,7 +2984,7 @@ simulada. As opções do menu são descritas na tabela seguinte:</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_6">8.2. Exercícios</h3>
+<h3 id="_exercícios_6">7.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2994,7 +3000,7 @@ possível. Assuma que a imagem fornecida é em tons de cinza.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_detecção_de_bordas_com_o_algoritmo_de_canny">9. Detecção de bordas com o algoritmo de Canny</h2>
+<h2 id="_detecção_de_bordas_com_o_algoritmo_de_canny">8. Detecção de bordas com o algoritmo de Canny</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O detector de bordas de Canny é sabidamente reconhecido como um dos
@@ -3171,7 +3177,7 @@ quantidades  <code>top_slider</code> e <code>3*top_slider</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_canny_e_a_arte_com_pontilhismo">10. Canny e a arte com pontilhismo</h2>
+<h2 id="_canny_e_a_arte_com_pontilhismo">9. Canny e a arte com pontilhismo</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O algoritmo de Canny de fato é útil para diversas aplicações em
@@ -3317,7 +3323,7 @@ $ ./pontilhismo biel.png</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_descrição_do_programa_code_pontilhismo_cpp_code">11. Descrição do programa <code>pontilhismo.cpp</code></h2>
+<h2 id="_descrição_do_programa_code_pontilhismo_cpp_code">10. Descrição do programa <code>pontilhismo.cpp</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O programa <code>pontilhismo.cpp</code> não introduz novas funcionalidades da
@@ -3417,7 +3423,7 @@ o círculo terá bordas não serrilhadas, produzindo um efeito visual
 agradável na imagem pontilhista.</p>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_7">11.1. Exercícios</h3>
+<h3 id="_exercícios_7">10.1. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3468,7 +3474,7 @@ sua técnica pontilhista.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2017-03-21 05:39:44 BRT
+Última atualização 2017-08-09 15:54:01 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
