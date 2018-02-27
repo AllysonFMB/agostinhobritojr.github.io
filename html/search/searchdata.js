@@ -1,21 +1,21 @@
 var indexSectionsWithContent =
 {
-  0: "tv",
-  1: "v",
-  2: "t"
+  0: "fimn",
+  1: "fm",
+  2: "fimn"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "classes",
-  2: "pages"
+  1: "files",
+  2: "functions"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Classes",
-  2: "Pages"
+  1: "Files",
+  2: "Functions"
 };
 
