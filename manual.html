@@ -5,8 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="author" content="transporte - projeto CIRD =">
-<title>Manual de uso de ferramentas de reconhecimento de camadas de rede e</title>
+<meta name="author" content="Agostinho Brito">
+<title>Manual de uso de ferramentas - projeto CIRD</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -499,20 +499,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Manual de uso de ferramentas de reconhecimento de camadas de rede e</h1>
+<h1>Manual de uso de ferramentas - projeto CIRD</h1>
 <div class="details">
 <span id="author" class="author">Agostinho Brito</span><br>
-<span id="revdate">Agostinho Brito &lt;ambj@dca.ufrn.br&gt;</span>
+<span id="email" class="email"><a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a></span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
 <li><a href="#_instalação_de_dependências">1. Instalação de dependências</a></li>
-<li><a href="#_preparação_das_ferramentas">2. Preparação das ferramentas</a></li>
-<li><a href="#_apresentação_da_ferramenta_de_captura">3. Apresentação da ferramenta de captura</a></li>
-<li><a href="#_apresentação_das_ferramentas_de_preparação_do_espaco_de_fase">4. Apresentação das ferramentas de preparação do espaco de fase</a></li>
-<li><a href="#_apresentação_da_ferramenta_para_cálculo_de_descritores">5. Apresentação da ferramenta para cálculo de descritores</a></li>
-<li><a href="#_preparação_e_treinamento_de_redes_neurais_artificiais_para">6. Preparação e treinamento de Redes Neurais Artificiais para</a></li>
+<li><a href="#_ferramentas_de_reconhecimento_de_camadas_de_rede_e_transporte">2. Ferramentas de reconhecimento de camadas de rede e transporte</a>
+<ul class="sectlevel2">
+<li><a href="#_preparação_das_ferramentas">2.1. Preparação das ferramentas</a></li>
+<li><a href="#_apresentação_da_ferramenta_de_captura">2.2. Apresentação da ferramenta de captura</a></li>
+<li><a href="#_apresentação_das_ferramentas_de_preparação_do_espaco_de_fase">2.3. Apresentação das ferramentas de preparação do espaco de fase</a></li>
+<li><a href="#_apresentação_da_ferramenta_para_cálculo_de_descritores">2.4. Apresentação da ferramenta para cálculo de descritores</a></li>
+<li><a href="#_preparação_e_treinamento_de_redes_neurais_artificiais_para">2.5. Preparação e treinamento de Redes Neurais Artificiais para</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -629,8 +633,10 @@ não se logrou sucesso nessa etapa.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_preparação_das_ferramentas">2. Preparação das ferramentas</h2>
+<h2 id="_ferramentas_de_reconhecimento_de_camadas_de_rede_e_transporte">2. Ferramentas de reconhecimento de camadas de rede e transporte</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_preparação_das_ferramentas">2.1. Preparação das ferramentas</h3>
 <div class="paragraph">
 <p>Uma vez instaladas as bibliotecas e a compilada a ferramenta auxiliar,
 basta executar a seguinte sequência de comandos no diretório raiz</p>
@@ -646,18 +652,14 @@ $ make</code></pre>
 executáveis serão armazenados no diretório <code>bin</code>.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_apresentação_da_ferramenta_de_captura">3. Apresentação da ferramenta de captura</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_apresentação_da_ferramenta_de_captura">2.2. Apresentação da ferramenta de captura</h3>
 <div class="paragraph">
 <p>a fazer&#8230;&#8203; provavelmente joao paulo já tem isso disponível.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_apresentação_das_ferramentas_de_preparação_do_espaco_de_fase">4. Apresentação das ferramentas de preparação do espaco de fase</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_apresentação_das_ferramentas_de_preparação_do_espaco_de_fase">2.3. Apresentação das ferramentas de preparação do espaco de fase</h3>
 <div class="paragraph">
 <p>As ferramentas de geração de tráfego geram como respostas dois tipos
 de informações: pacotes de respostas de sincronismo TCP (para análise
@@ -751,10 +753,8 @@ idênticos os formatos de representação dos arquivos de entrada e saída.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_apresentação_da_ferramenta_para_cálculo_de_descritores">5. Apresentação da ferramenta para cálculo de descritores</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_apresentação_da_ferramenta_para_cálculo_de_descritores">2.4. Apresentação da ferramenta para cálculo de descritores</h3>
 <div class="paragraph">
 <p>A identificação dos sistemas operacionais pela análise do espaço de
 fase é feita com um método que esquadrinha o espaço de fase em
@@ -842,12 +842,10 @@ de descritores:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_preparação_e_treinamento_de_redes_neurais_artificiais_para">6. Preparação e treinamento de Redes Neurais Artificiais para</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_preparação_e_treinamento_de_redes_neurais_artificiais_para">2.5. Preparação e treinamento de Redes Neurais Artificiais para</h3>
 <div class="paragraph">
-<p>reconhecimento de sistemas operacionais ==</p>
+<p>reconhecimento de sistemas operacionais ===</p>
 </div>
 <div class="paragraph">
 <p>A identificação dos Sistemas Operacionais pela análise das camadas de
@@ -992,9 +990,10 @@ para proceder com o teste de identificação.</p>
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2018-02-27 14:05:05 -03
+Última atualização 2018-02-27 14:11:20 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
