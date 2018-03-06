@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="generator" content="Asciidoctor 1.5.6">
 <meta name="author" content="Agostinho Brito">
 <title>Manual de uso de ferramentas - projeto CIRD</title>
 <style>
@@ -799,7 +799,7 @@ comandos:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell"><span></span>$ git clone https://github.com/rampageX/paping
-$ <span class="tok-nb">cd</span> paping
+$ cd paping
 $ mkdir bin
 $ make</code></pre>
 </div>
@@ -821,16 +821,16 @@ máquina e algumas opções, como sugere a ferramenta:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>paping v1.5.5 - Copyright <span class="tok-o">(</span>c<span class="tok-o">)</span> <span class="tok-m">2017</span> Mike Lovell
+<pre class="pygments highlight"><code data-lang="shell"><span></span>paping v1.5.5 - Copyright (c) 2017 Mike Lovell
 
-Syntax: paping <span class="tok-o">[</span>options<span class="tok-o">]</span> destination
+Syntax: paping [options] destination
 
 Options:
  -?, --help	display usage
- -p, --port N	<span class="tok-nb">set</span> TCP port N <span class="tok-o">(</span>required<span class="tok-o">)</span>
+ -p, --port N	set TCP port N (required)
      --nocolor	Disable color output
- -t, --timeout	timeout in milliseconds <span class="tok-o">(</span>default <span class="tok-m">1000</span><span class="tok-o">)</span>
- -c, --count N	<span class="tok-nb">set</span> number of checks to N</code></pre>
+ -t, --timeout	timeout in milliseconds (default 1000)
+ -c, --count N	set number of checks to N</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -838,7 +838,7 @@ Options:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>$ ./paping -c <span class="tok-m">100</span> -p <span class="tok-m">80</span> <span class="tok-m">10</span>.13.111.173</code></pre>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ ./paping -c 100 -p 80 10.13.111.173</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -915,8 +915,8 @@ associado ao campo (<code>unsigned int</code> ou <code>unsigned short</code>).</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>$ bin/espaco_fase_tcpisn <span class="tok-o">[</span>samples<span class="tok-o">]</span>
-$ bin/espaco_fase_ipid <span class="tok-o">[</span>samples<span class="tok-o">]</span></code></pre>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ bin/espaco_fase_tcpisn [samples]
+$ bin/espaco_fase_ipid [samples]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -960,7 +960,7 @@ bem parecido ocorre para a ferramenta <code>espaco_fase_tcpisn</code>, sendo
 idênticos os formatos de representação dos arquivos de entrada e saída.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listagem 2. amostras_isn.txt.fas</div>
+<div class="title">Listagem 2. amostras_tcpisn.txt.fas</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="txt"><span></span>13 22
 22 20</code></pre>
@@ -1022,7 +1022,7 @@ os seguintes comandos:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>$ bin/descriptors <span class="tok-o">[</span>input.fas<span class="tok-o">]</span></code></pre>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ bin/descriptors [input.fas]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1087,11 +1087,12 @@ LICENSE.</p>
 <div class="paragraph">
 <p>A preparação dos dados foi realizada com base em um conjunto de dados
 coletados de sistemas operacionais diversos, onde para cada sistema um
-conjunto de aproximadamente 65.000 amostras foi coletado. Tal
-quantidade de amostras foi selecionada para conseguir montar uma
-representação fiel de cada sistema e obter descritores de boa
-qualidade. O conjunto de amostras usados para treinamento foi rotulado
-no projeto com a terminação <code>large</code> para fins de identificação.</p>
+conjunto de aproximadamente 65.000 amostras de TCP ISNs e 30.000
+amostras de IP iDs foram coletadas. Tal quantidade de amostras foi
+selecionada para conseguir montar uma representação fiel de cada
+sistema e obter descritores de boa qualidade. O conjunto de amostras
+usados para treinamento foi rotulado no projeto com a terminação
+<code>large</code> para fins de identificação.</p>
 </div>
 <div class="paragraph">
 <p>Nos processos de reconhecimento de sistemas em tempo real,
@@ -1110,43 +1111,56 @@ campos TCP ISN.</p>
 </div>
 <div class="paragraph">
 <p>Assumindo, por exemplo, que os arquivos dos descritores tenham sido
-gravados no subdiretório <code>training_isn</code>, a preparação do conjunto de
+gravados no subdiretório <code>training_tcpisn</code>, a preparação do conjunto de
 treinamento pode ser feito com a seguinte sequência de comandos:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span><span class="tok-k">for</span> file in training_isn/*large<span class="tok-p">;</span> <span class="tok-k">do</span>
-		bin/espaco_fase_tcpisn <span class="tok-nv">$file</span><span class="tok-p">;</span>
-<span class="tok-k">done</span>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>#!/bin/sh
+for file in training_tcpisn/*large; do
+		bin/espaco_fase_tcpisn $file;
+done
 
-<span class="tok-k">for</span> file in training_isn/*large.fas<span class="tok-p">;</span> <span class="tok-k">do</span>
-		bin/descriptors <span class="tok-nv">$file</span><span class="tok-p">;</span>
-<span class="tok-k">done</span>
+for file in training_ipid/*large; do
+		bin/espaco_fase_ipid $file;
+done
 
-cat training_isn/*large.fas.desc &gt; so-descriptors-large.txt
+for file in training_tcpisn/*large.fas; do
+		bin/descriptors $file;
+done
 
-bin/prepare_data so-descriptors-large.txt so-descriptors-large-input.txt labels.txt
+for file in training_ipid/*large.fas; do
+		bin/descriptors $file;
+done
 
-bin/treinar_mlp so-large-descriptors-input.txt so_neural.net</code></pre>
+cat training_tcpisn/*large.fas.desc &gt; so-tcpisn-large.txt
+cat training_ipid/*large.fas.desc &gt; so-ipid-large.txt
+
+bin/prepare_data so-tcpisn-large.txt so-tcpisn-large-input.txt labels_tcpisn.txt
+bin/prepare_data so-ipid-large.txt so-ipid-large-input.txt labels_ipid.txt
+
+bin/train_mlp so-tcpisn-large-input.txt so_neural_tcpisn.net
+bin/train_mlp so-ipid-large-input.txt so_neural_ipid.net</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>No exemplo, os primeiro loop do script varre todos os arquivos com as
-amostras presentes no subdiretório <code>training_isn</code> e calculam o espaço
-de fase para cada um.</p>
+<p>No exemplo, os dois primeiros loops do script varrem todos os arquivos
+com as amostras presentes nos subdiretórios <code>training_tcpisn</code> e
+<code>training_ipid</code> e calculam os espaços de fase para cada um.</p>
 </div>
 <div class="paragraph">
-<p>O segundo loop, por sua vez, calcula os
-descritores de cada um dos espaços de fase presentes nos arquivos com
-extensão <code>.fas</code></p>
+<p>Os dois loops seguintes calculam os descritores de cada um dos
+espaços de fase presentes nos arquivos com extensão <code>.fas</code></p>
 </div>
 <div class="paragraph">
 <p>Em seguida, todos os descritores calculados na etapa anterior são
-aglomerados em um único arquivo <code>so-descriptors-large.txt</code>. Para o
-conjunto de dados utilizado o seguinte arquivo foi produzido.</p>
+aglomerados em dois arquivos: <code>so-tcpisn-large.txt</code> e <code>so-ipid-large.txt</code>.</p>
+</div>
+<div class="paragraph">
+<p>Para o conjunto de dados utilizado no exemplo, o seguintes arquivos foram produzidos.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listagem 3. so-descriptors-large.txt</div>
+<div class="title">Listagem 3. so-tcpisn-large.txt</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="txt"><span></span>in/3com-4210-large.fas 0.100009 0.0861942 48.3753 0.0145694 0.309485 5.19855
 in/freebsd-9.2-large.fas 0.027955 -2.32568 57.9164 0.00584189 0.245131 5.42946
@@ -1166,6 +1180,16 @@ in/windows-xp-large.fas 0.010301 -1.50719 48.7784 0.0072789 0.305373 5.13473
 in/xerox-printer-large.fas 1 0 0 1 1 -0</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Listagem 4. so-ipid-large.txt</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="txt"><span></span>training_ipid/android-s7-large.fas 0.122661 -2.80127 57.9906 0.0255704 0.294972 4.41478
+training_ipid/ubuntu-17.10-large.fas 0.0311134 -13.2464 80.1595 0.0153414 0.210234 4.99282
+training_ipid/windows10-large.fas 0.93041 -0.092847 6.10068 0.866833 0.937877 0.363894
+training_ipid/windows8.1-large.fas 1 0 0 1 1 -0
+training_ipid/windowsXP-large.fas 0.98183 -0.00684642 1.74451 0.964072 0.983839 0.116335</code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>A ferramenta <code>prepare_data</code> segue com a preparação dos dados para
 treinamento. Ela opera com três argumentos: o primeiro é o conjunto de
@@ -1179,9 +1203,10 @@ reconhecimento de sistemas.</p>
 <div class="paragraph">
 <p>Finalmente, a última linha do script invoca o processo de treinamento
 da rede neural. O primeiro argumento fornecido à ferramenta deve
-conter o arquivo preparado para treinamento (no caso,
-<code>so-large-descriptors-input.txt</code>) e produz na saída a estrutura da
-rede neural (denotado no exemplo por <code>so_neural.net</code>)</p>
+conter o arquivo preparado para treinamento (no caso, os arquivos
+<code>so-tcpisn-large-input.txt</code> e <code>so-ipid-large-input.txt</code>) e produz na
+saída a estrutura da rede neural (denotado no exemplo por
+<code>so_neural_tcpisn.net</code> e <code>so_neural_ipid.net</code>).</p>
 </div>
 <div class="paragraph">
 <p>O reconhecimento do sistema operacional de um dispositivo sob testes
@@ -1189,14 +1214,16 @@ pode ser feito com a ferramenta <code>find_so</code> desenvolvida para esse fim.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>$ bin/find_so so_neural.net labels.txt training/linux-2.6.32-large.fas.desc</code></pre>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ bin/find_so so_neural_tcpisn.net labels_tcpisn.txt training/linux-2.6.32-large.fas.desc
+$ bin/find_so so_neural_ipid.net labels_ipid.txt training/linux-2.6.32-large.fas.desc</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>O primeiro argumento fornecido é o arquivo contendo a estrutura da
-rede neural treinada (<code>so_neural.net</code>); O segundo é a lista de rótulos
-gerada na etapa de preparação de dados (<code>labels.txt</code>); e o último
-argumento é um arquivo contendo os descritores do dispositivo a ser
+rede neural treinada (<code>so_neural_tcpisn.net</code> ou <code>so_neural_ipid.net</code>);
+O segundo é a lista de rótulos gerada na etapa de preparação de dados
+(<code>labels_tcpisn.txt</code> ou <code>labels_ipid.txt</code>); e o último argumento é um
+arquivo contendo os descritores do dispositivo a ser
 identificado. Neste caso, deve-se coletar previamente as amostras
 desse dispositivo, calcular o espaço de fase e respectivos descritores
 para proceder com o teste de identificação.</p>
@@ -1207,7 +1234,7 @@ para proceder com o teste de identificação.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2018-02-27 14:54:48 -03
+Última atualização 2018-02-28 16:31:16 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
