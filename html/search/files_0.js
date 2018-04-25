@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['funcoes_2ec',['funcoes.c',['../funcoes_8c.html',1,'']]],
-  ['funcoes_2eh',['funcoes.h',['../funcoes_8h.html',1,'']]]
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['matriz_2ecpp',['matriz.cpp',['../matriz_8cpp.html',1,'']]],
+  ['matriz_2eh',['matriz.h',['../matriz_8h.html',1,'']]]
 ];

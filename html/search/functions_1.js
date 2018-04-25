@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['imprime',['imprime',['../funcoes_8c.html#a3577d7f66b118c67c411675d8f41ca8e',1,'imprime(int x):&#160;funcoes.c'],['../funcoes_8h.html#a3577d7f66b118c67c411675d8f41ca8e',1,'imprime(int x):&#160;funcoes.c']]]
+  ['operator_28_29',['operator()',['../class_matriz.html#a7a84e7fb199e8f55681ac1b594be7ee4',1,'Matriz']]],
+  ['operator_2b',['operator+',['../class_matriz.html#a101ba2a6272922ce7599bc05736186c8',1,'Matriz']]],
+  ['operator_3d',['operator=',['../class_matriz.html#ae31f04bcc48d4d514c025368b392a7b8',1,'Matriz']]]
 ];
