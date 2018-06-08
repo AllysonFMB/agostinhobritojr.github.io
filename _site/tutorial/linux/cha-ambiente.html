@@ -1,0 +1,146 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 8. O ambiente gr&aacute;fica X Windows</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o ao Linux"><link rel="prev" href="cha-joe.html" title="Cap&iacute;tulo 7. Edi&ccedil;&atilde;o de textos com joe"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://www.dca.ufrn.br/~ambj/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Cap&iacute;tulo 8. O ambiente gr&aacute;fica X Windows</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="cha-joe.html">Anterior</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;</td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha-ambiente"></a>Cap&iacute;tulo 8. O ambiente gr&aacute;fica X Windows</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="cha-ambiente.html#d5e1120">8.1. Introdu&ccedil;&atilde;o</a></span></dt><dt><span class="sect1"><a href="cha-ambiente.html#d5e1133">8.2. Iniciando e Finalizando o X Window</a></span></dt><dt><span class="sect1"><a href="cha-ambiente.html#d5e1149">8.3. Executando aplicativos</a></span></dt><dt><span class="sect1"><a href="cha-ambiente.html#d5e1158">8.4. Usando o mouse</a></span></dt><dt><span class="sect1"><a href="cha-ambiente.html#d5e1166">8.5. A &aacute;rea de trabalho</a></span></dt><dt><span class="sect1"><a href="cha-ambiente.html#d5e1181">8.6. Definindo o Display</a></span></dt><dt><span class="sect1"><a href="cha-ambiente.html#d5e1203">8.7. Permitindo que m&aacute;quinas remotas acessem o servidor X local</a></span></dt></dl></div>
+    
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1120"></a>8.1. Introdu&ccedil;&atilde;o</h2></div></div></div>
+      
+
+      <p>O sistema X Window (ou simplesmente "<span class="command"><strong>X</strong></span>") &eacute; um ambiente de trabalho gr&aacute;fico utilizado em quase todos os desktops Unix existentes no mundo. Foi desenvolvido inicialmente pelo MIT (<span class="foreignphrase"><em class="foreignphrase">Massachusetts Institute of Technology</em></span>), sendo o projeto posteriormente repassado para um conjunto de empresas denominado "<span class="foreignphrase"><em class="foreignphrase">The X Consortium</em></span>" e mantidos por eles desde ent&atilde;o.</p>
+
+      <p>O X &eacute; constitu&iacute;do de um programa chamado <span class="command"><strong>servidor gr&aacute;fico</strong></span>, respons&aacute;vel por desenhar os elementos da tela e de uma s&eacute;rie de bibliotecas auxiliares. Os programas utilit&aacute;rios s&atilde;o denominados <span class="command"><strong>clientes</strong></span>. O browser <span class="command"><strong>netscape</strong></span> &eacute; um exemplo de programa cliente.</p>
+
+      <p>No Linux, o X Window &eacute; implementado por um conjunto de programas e bibliotecas denominado <span class="command"><strong>XFree86</strong></span>. O XFree86 &eacute; totalmente gratuito e d&aacute; suporte &agrave;s mais diversas placas de v&iacute;deo dispon&iacute;veis no mercado.</p>
+
+      <p>O X Window traz para o usu&aacute;rio Unix o conforto de trabalhar em um ambiente gr&aacute;fico, com &iacute;cones, editores de texto e imagem etc e possibilita, entre outras coisas, que aplicativos desenvolvidos em um tipo de unix possam ser exibidos na tela de outro.</p>
+
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1133"></a>8.2. Iniciando e Finalizando o X Window</h2></div></div></div>
+      
+
+      <p>Em diversas m&aacute;quinas, o X &eacute; normalmente iniciado ap&oacute;s o boot. Neste caso, para o usu&aacute;rio utilizar o sistema, &eacute; preciso entrar com o seu username e a sua senha em alguma janela de di&aacute;log espec&iacute;fica.</p>
+
+      <p>Quando o X Window n&atilde;o &eacute; iniciado ap&oacute;s o boot, o comando</p>
+
+      <div class="cmdsynopsis"><p>
+	<code class="prompt">startx</code>
+      </p></div> 
+
+      <p>resolver&aacute; o problema. <code class="prompt">startx</code> &eacute; um <span class="foreignphrase"><em class="foreignphrase">shell script</em></span> que executa o servidor gr&aacute;fico e inicia o gerenciador de janelas.</p>
+
+      <p>O gerenciador de janelas &eacute; quem arruma na tela todo o arsenal de aplicativos e realiza as intera&ccedil;&otilde;es entre o usu&aacute;rio e o X Window. Dependendo do gerenciador de janelas utilizado, o usu&aacute;rio poder&aacute; ter um &iacute;cone indicando as horas, outro para abrir um terminal de comandos etc. O Linux &eacute; um dos sistemas que mais possue gerenciadores de janela. Entre outros, podemos citar  <span class="command"><strong>fvwm</strong></span>, <span class="command"><strong>olwm</strong></span>, <span class="command"><strong>mwm</strong></span>, <span class="command"><strong>Kde</strong></span> e <span class="command"><strong>gnome</strong></span>.</p>
+
+      <p>A finaliza&ccedil;&atilde;o do X geralmente &eacute; feita atrav&eacute;s de alguma entrada de menu do tipo "Exit Window Manager", ou simplesmente "exit". Caso n&atilde;o seja encontrada alguma sa&iacute;da &oacute;bvia, basta digitar a combina&ccedil;&atilde;o das teclas &lt;CTRL&gt;+&lt;ALT&gt;+&lt;BACKSPACE&gt;.</p>
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1149"></a>8.3. Executando aplicativos</h2></div></div></div>
+      
+
+      <p>Os aplicativos mais comuns podem ser encontrados nos menus que o gerenciador de janelas apresenta, tais como <span class="command"><strong>shells</strong></span>, <span class="command"><strong>gerenciadores de arquivo</strong></span> e <span class="command"><strong>editores de texto</strong></span>. Quando a aplica&ccedil;&atilde;o procurada n&atilde;o se encontra no menu, a maneira mais r&aacute;pida de execut&aacute;-la &eacute; atrav&eacute;s de uma shell.</p>
+
+      <p>A shell &eacute; na maioria das vezes o primeiro aplicativo procurado por um usu&aacute;rio Unix, pois agiliza a tarefa de interagir com o sistema. No X Window, o programa <code class="prompt">xterm</code> disponibiliza a shell para o usu&aacute;rio. Praticamente todos aplicativos gr&aacute;ficos do sistema podem ser executados pelo usu&aacute;rio diretamente de um terminal. Recomenda-se fazer a execu&ccedil;&atilde;o do aplicativo em <span class="foreignphrase"><em class="foreignphrase">background</em></span> para liberar a shell para outras atividades.</p>
+
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1158"></a>8.4. Usando o mouse</h2></div></div></div>
+      
+
+      <p>No X Window, as tr&ecirc;s teclas do mouse possuem uma fun&ccedil;&atilde;o espec&iacute;fica. Caso o mouse possua apenas dois bot&otilde;es, ou o bot&atilde;o do meio esteja desabilitado, o clique simult&acirc;neo dos bot&otilde;es esquerdo e direito simulam o efeito do bot&atilde;o central.</p>
+
+      <p>A tecla da esquerda &eacute; utilizada para selecionar elementos na tela (bot&otilde;es, menu, barras de rolagem etc), maximizar, minimizar e fechar janelas, al&eacute;m de marcar texto nos programas que permitam esta opera&ccedil;&atilde;o.</p>
+
+      <p>A tecla do meio &eacute; utilizada principalmente para colar objetos selecionado com o bot&atilde;o da esquerda, principalmente texto.</p>
+
+      <p>A tecla da direita abre menus na tela do tipo "<span class="foreignphrase"><em class="foreignphrase">pop-up</em></span>" para o usu&aacute;rio. Sua utiliza&ccedil;&atilde;o &eacute; mais intensiva se d&aacute; no gerenciador de janelas olwm. Neste sistema, as aplica&ccedil;&otilde;es s&atilde;o chamadas com o mouse a partir do menu <span class="foreignphrase"><em class="foreignphrase">pop-up</em></span> apresentado quando o usu&aacute;rio clica com o bot&atilde;o direito no fundo da &aacute;rea de trabalho.</p>
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1166"></a>8.5. A &aacute;rea de trabalho</h2></div></div></div>
+      
+
+      <p>A &aacute;rea de trabalho do usu&aacute;rio, ou <span class="foreignphrase"><em class="foreignphrase">Desktop</em></span>, &eacute; a regi&atilde;o da tela onde todos os aplicativos gr&aacute;ficos s&atilde;o lan&ccedil;ados. Os gerenciadores de janela geralmente executam um programa que disponibiliza v&aacute;rias &aacute;reas de trabalho para o usu&aacute;rio, ou <span class="foreignphrase"><em class="foreignphrase">Desktops</em></span> virtuais. Com isto, a sobrecarga visual &eacute; dividida em diversos ambientes, tornando o uso da m&aacute;quina mais agrad&aacute;vel.</p>
+
+      <p>A figura <a class="xref" href="cha-ambiente.html#fig-xwindow" title="Figura 8.1. O Ambiente X Window utilizando o gerenciador de janelas fvwm95.">Figura&nbsp;8.1</a> mostra uma tela do X Window System utilizando o gerenciador de janelas fvwm95.</p>
+
+
+      <div class="figure"><a name="fig-xwindow"></a><p class="title"><b>Figura 8.1. O Ambiente X Window utilizando o gerenciador de janelas fvwm95.</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/xwindow.svg">figuras/xwindow.svg</object></div></div>
+      </div></div><br class="figure-break">
+
+<p>Alguns gerenciadores de <span class="foreignphrase"><em class="foreignphrase">Desktops</em></span> possibilitam inclusive que o usu&aacute;rio desloque uma janela de um <span class="foreignphrase"><em class="foreignphrase">Desktop</em></span> para outro.</p>
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1181"></a>8.6. Definindo o Display</h2></div></div></div>
+      
+   
+      <p>Em se tratando de X Window, toda aplica&ccedil;&atilde;o gr&aacute;fica possui um display associado &agrave; mesma. O display &eacute; o nome da tela gr&aacute;fica que o servidor X controla. No Unix, &eacute; uma combina&ccedil;&atilde;o de tr&ecirc;s elementos:</p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: opencircle; "><li class="listitem" style="list-style-type: disc">
+	  <p>Nome da m&aacute;quina onde ser&aacute; exibida a aplica&ccedil;&atilde;o.</p>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p>N&uacute;mero do servidor gr&aacute;fico a ser utilizado (uma m&aacute;quina pode ter mais de um servidor em funcionamento).</p>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p>N&uacute;mero da tela gr&aacute;fica (o servidor X pode controlar mais de uma tela ao mesmo tempo).</p>
+	</li></ul></div>
+
+      <p>O display &eacute; geralmente definido pela vari&aacute;vel de ambiente <span class="command"><strong>DISPLAY</strong></span>. Assim para definir que um aplicativo dever&aacute; ser apresentado na m&aacute;quina <code class="prompt">maquina.engcomp.ufrn.br</code>, pelo primeiro servidor na primeira tela, basta executar o seguinte comando:</p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: opencircle; "><li class="listitem" style="list-style-type: disc">
+	  <p>Para <code class="prompt">tcsh</code>:</p>
+	  <pre class="screen">
+	    maquina:~$ setenv DISPLAY maquina.engcomp.ufrn.br:<span class="hl-number">0.0</span>
+	  </pre>
+	</li><li class="listitem" style="list-style-type: disc">
+	  <p>Para <code class="prompt">bash</code>:</p>
+	  <pre class="screen">
+	    maquina:~$ export DISPLAY=maquina.engcomp.ufrn.br:<span class="hl-number">0.0</span>
+	  </pre>
+	</li></ul></div>
+
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e1203"></a>8.7. Permitindo que m&aacute;quinas remotas acessem o servidor X local</h2></div></div></div>
+      
+
+      <p>A vari&aacute;vel de ambiente apresentada na se&ccedil;&atilde;o anterior serve para indicar que o local onde a aplica&ccedil;&atilde;o gr&aacute;fica ser&aacute; apresentada, n&atilde;o para garantir que o servidor especificado ir&aacute; permitir esta opera&ccedil;&atilde;o. Por quest&otilde;es de seguran&ccedil;a, o servido X n&atilde;o oferece a priori os seus servi&ccedil;os para todas as m&aacute;quinas da sua rede. Assi, cada vez o usu&aacute;rio precise apresentar aplica&ccedil;&otilde;es lan&ccedil;adas por m&aacute;quinas remotas na tela gr&aacute;fica local o servidor dever&aacute; ser informado atrav&eacute;s do comando <span class="command"><strong>xhost</strong></span>. </p>
+
+      <p>O comando <span class="command"><strong>xhost</strong></span> quando executado sem argumentos exibe a lista de todas as m&aacute;quinas autorizadas a lan&ccedil;ar aplica&ccedil;&otilde;es no servidor local. As m&aacute;quinas que podem utilizar o servidor X s&atilde;o adicionadas ao sistema da forma:</p>
+
+      <pre class="screen">
+	maquina:~$ xhost + maquina_A
+      </pre>
+
+      <p>e retiradas da forma</p>
+
+      <pre class="screen">
+	maquina:~$ xhost - maquina_A
+      </pre>
+
+      <p>Se um determinado usu&aacute;rio utilizando o computador <span class="command"><strong>A</strong></span> deseja utilizar o poder computacional do computador <span class="command"><strong>B</strong></span> para executar um aplicativo gr&aacute;fico (xpaint, por exemplo) e apresentar tela do programa no computador <span class="command"><strong>A</strong></span> o procedimento para realizar esta tarefa seria o seguinte:</p>
+
+      <pre class="screen">
+	maquina_A:~$ xhost +
+	maquina_A:~$ telnet maquina_B
+	Trying <span class="hl-number">10.0</span>.<span class="hl-number">0.1</span>...
+	Connected to maquina_B.
+	Escape character is <strong class="hl-string"><em style="color:red">'^]'</em></strong>.
+	
+	Linux <span class="hl-number">2.0</span>.<span class="hl-number">34</span> (maquina_B) (ttyp1)
+	
+	maquina_B login: usuario
+	Password: 
+	maquina_B:~$ setenv DISPLAY maquina_A:<span class="hl-number">0.0</span>
+	maquina_B:~$ xpaint &amp;
+	maquina_B:~$ 
+      </pre>
+    </div>
+
+
+
+  </div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="cha-joe.html">Anterior</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;</td></tr><tr><td width="40%" align="left" valign="top">Cap&iacute;tulo 7. Edi&ccedil;&atilde;o de textos com <span class="command"><strong>joe</strong></span>&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td><td width="40%" align="right" valign="top">&nbsp;</td></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2013 Agostinho Brito</p></td></tr></table></div></body></html>
