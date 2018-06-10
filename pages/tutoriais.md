@@ -20,7 +20,7 @@ tags:
   - "tutoriais"
 ---
 
-## [C++](/tutorial/prograv/)
+## [C++](/tutorial/cpp/)
 
 ## [Processamento Digital de Imagens com OpenCV](/tutorial/pdi/)
 
