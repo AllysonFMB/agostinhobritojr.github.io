@@ -192,7 +192,14 @@ Credits: /disclosure
 <hr class="gh">
 
 
-Search box will show up here if Google Custom Search key is set in <code>_config.yml</code>
+<div id="searchbox2" style="margin:0 auto; display: table;">
+<div class="searchcont2">
+    <!-- span class="searchicon2"><i class="fa fa-search fa-2x"></i></span -->
+    <form role="search" method="get" action="/cse/">
+        <input id="searchString2" name="searchString2" placeholder=" Search" type="text">
+    </form>
+</div>
+</div>
 
 
 </div>
@@ -268,7 +275,7 @@ Search box will show up here if Google Custom Search key is set in <code>_config
   <tbody>
     <tr>
       <td>
-<i class="fa fa-anchor"> /tutoriais/</i><br><i class="fa fa-calendar"> 08-Jun-18</i><br><i class="fa fa-creative-commons"> BY-NC-SA 4.0 /disclosure</i>
+<i class="fa fa-anchor"> /tutoriais/</i><br><i class="fa fa-calendar"> 10-Jun-18</i><br><i class="fa fa-creative-commons"> BY-NC-SA 4.0 /disclosure</i>
 </td>
       <td><img src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=/tutoriais/&amp;choe=UTF-8" alt="/tutoriais/"></td>
     </tr>
