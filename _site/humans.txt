@@ -7,6 +7,6 @@ Twitter: https://twitter.com/agostinhobritojr
 Design Contributors: /disclosure/
 
 /* SITE */
-Last Updated: 2018/06/10
+Last Updated: 2018/06/25
 Standards: HTML5, CSS3
 Software: Sublime Text, Chrome, Jekyll, Git, Sass
